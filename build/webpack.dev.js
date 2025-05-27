@@ -17,7 +17,7 @@ module.exports = {
     devServer: {
         historyApiFallback: true,
         port: "8282",
-        host:'0.0.0.0',
+        host:'local.netshort.online',
         proxy: [
             {
                 context: ['/api'],

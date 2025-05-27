@@ -41,7 +41,8 @@
     "valtio": "^1.13.2",
     "video-react": "^0.16.0",
     "webpack": "^5.92.1",
-    "xgplayer": "^3.0.21"
+    "xgplayer": "^3.0.21",
+    "aliyun-aliplayer": "^2.27.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
