@@ -1,0 +1,355 @@
+.main{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .m-header{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 5%;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    .m-h-logo{
+      position: absolute;
+      height: 90%;
+      top: 20px;
+      left: 20px;
+    }
+    .m-h-login{
+      height: 90%;
+      width: 21%;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #F5315E;
+      border-radius: 9999px;
+      font-size: 50px;
+      color: white;
+      display: flex;
+      align-items: center;
+      font-family: "Poppins-Medium", serif;
+      justify-content: center;
+    }
+  }
+  .m-show{
+    position: relative;
+    height: 75%;
+    width: 120%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    .m-s-blur{
+      position: absolute;
+      background: rgba(0,0,0,0.3);
+      width: 100%;
+      height: 200%;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .m-s-title{
+      margin-top: 15%;
+      position: relative;
+      display: inline-block;
+      font-size: 50px;
+      color: white;
+      font-weight: bold;
+      z-index: 1;
+      font-family: "Poppins-SemiBold", serif;
+      max-width: 70%;
+      text-align: center;
+      .m-s-line{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 20px;
+        background: linear-gradient( 90deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+        border-radius: 8px 8px 8px 8px;
+        z-index: 2;
+      }
+    }
+    .m-s-box{
+      position: relative;
+      height: 70%;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .m-s-c-pause{
+        position: absolute;
+        width: 40%;
+        height: auto;
+        z-index: 1;
+      }
+      .m-s-content{
+        border-radius: 10px;
+        height: 100%;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+  .m-btn-box{
+    position: relative;
+    height: 25%;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    .m-btn-pay{
+      position: relative;
+      width: 80%;
+      height: 30%;
+      background: linear-gradient( 97deg, #FD9A21 11%, #FD216E 84%);
+      border-radius: 20px 20px 20px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      padding: 1px 1px 1px 1px;
+      .m-btn-pay-text{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .m-btn-pay-desc{
+          font-family: "Poppins-Medium", serif;
+          position: relative;
+          font-size: 35px;
+        }
+        .m-btn-pay-discount{
+          font-family: "Poppins-SemiBold", serif;
+          position: relative;
+          font-size: 45px;
+          font-weight: bold;
+        }
+      }
+    }
+    .m-btn-install{
+      position: relative;
+      width: 80%;
+      height: 30%;
+      background: rgba(253,188,68,0.1);
+      border-radius: 8px 8px 8px 8px;
+      border: 1px solid rgba(253,188,68,0.6);;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #FDBC44;
+      font-size: 35px;
+      font-family: "Poppins-Medium", serif;
+    }
+    .m-btn-tip-install{
+      right: -2.5%;
+    }
+    .m-btn-tip-pay{
+      right: -2%;
+    }
+    .m-btn-tip{
+      font-family: "Poppins-SemiBold", serif;
+      position: absolute;
+      top: -20%;
+      aspect-ratio: 91/30;
+      width: 30%;
+      background: url("@/assets/main/m-btn-tip.png") no-repeat center;
+      background-size: 100% auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      span{
+        position: absolute;
+        color: black;
+        font-size: 30px;
+        margin-bottom: 10px;
+        margin-left: 5px;
+      }
+    }
+  }
+  .m-mask{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 101;
+  }
+  .m-modal-install{
+    gap: 55px;
+    aspect-ratio: 318/279;
+    background: url("@/assets/main/m-modal.png") no-repeat center;
+  }
+  .m-modal-login{
+    gap: 50px;
+    aspect-ratio: 636/650;
+    background: url("@/assets/main/m-modal-large.png") no-repeat center;
+  }
+  .m-modal-end{
+    gap: 100px;
+    aspect-ratio: 318/279;
+    background: url("@/assets/main/m-modal.png") no-repeat center;
+  }
+  .m-modal{
+    position: absolute;
+    width: 80%;
+    background-size: 100% auto;
+    z-index: 201;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .m-m-install-title{
+      font-family: "Poppins-SemiBold", serif;
+      margin-top: 130px;
+      width: 80%;
+      font-size: 50px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .m-m-install-desc{
+      font-family: "Poppins-Regular", serif;
+      width: 80%;
+      font-size: 40px;
+      color: rgba(255,255,255,0.55);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .m-m-install-btn{
+      font-family: "Poppins-Medium", serif;
+      height: 100px;
+      width: 80%;
+      background: linear-gradient( 130deg, #F5315E 50%, #FF512C 100%);
+      border-radius: 8px 8px 8px 8px;
+      font-size: 40px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .m-m-close{
+      width: 100px;
+      position: absolute;
+      bottom: -80px;
+      transform: translateY(100%);
+    }
+    .m-m-login-title{
+      font-family: "Poppins-SemiBold", serif;
+      margin-top: 130px;
+      width: 80%;
+      font-size: 50px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .m-m-login-input{
+      font-family: "Poppins-Regular", serif;
+      width: 80%;
+      height: 100px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+    .m-m-login-btn-box{
+      position: relative;
+      width: 80%;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .m-m-login-btn-main{
+        font-family: "Poppins-Medium", serif;
+        position: absolute;
+        top: 0;
+        height: 65%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        background: linear-gradient( 130deg, #F5315E 50%, #FF512C 100%);
+        border-radius: 8px 8px 8px 8px;
+        padding: 1px 1px 1px 1px;
+        z-index: 2;
+        font-size: 50px;
+      }
+      .m-m-login-btn-tip{
+        font-family: "Poppins-Regular", serif;
+        position: absolute;
+        width: 100%;
+        height: 35%;
+        bottom: -4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 20px;
+        color: #F5315E;
+        border-radius: 0 0 8px 8px;
+        background: rgba(245, 49, 94, 0.20);
+        border: 1px rgba(245, 49, 94, 0.20) solid;
+        z-index: 1;
+        font-size: 30px;
+      }
+    }
+    .m-m-end-title{
+      font-family: "Poppins-SemiBold", serif;
+      margin-top: 200px;
+      width: 80%;
+      font-size: 50px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .m-m-end-btn-box{
+      width: 100%;
+      height: 100px;
+      display: flex;
+      gap: 10%;
+      justify-content: center;
+      align-items: center;
+      .m-m-end-btn-pay{
+        width: 40%;
+        height: 100%;
+        background: linear-gradient( 97deg, #FD9A21 11%, #FD216E 84%);
+        border-radius: 9999px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        padding: 1px 1px 1px 1px;
+      }
+      .m-m-end-btn-install{
+        width: 40%;
+        height: 100%;
+        background: rgba(253,188,68,0.1);
+        border-radius: 9999px;
+        border: 1px solid rgba(253,188,68,0.6);;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #FDBC44;
+        font-size: 35px;
+        font-family: "Poppins-Medium", serif;
+      }
+    }
+  }
+}

@@ -1,0 +1,337 @@
+.entry{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 5%;
+  .entry-activity {
+    position: absolute;
+    left: -50px;
+    top: 300px;
+    width: 200px;
+    height: 200px;
+    z-index: 30;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .entry-activity-background{
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 0;
+      animation: rotate 20s linear infinite;
+    }
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .entry-activity-content{
+      width: 60%;
+      height: 60%;
+      position: absolute;
+      z-index: 1;
+      animation: rotate-shake 2s infinite;
+      @keyframes rotate-shake {
+        0%, 90%, 100% { transform: rotate(0deg); }
+        91% { transform: rotate(-10deg); }
+        93% { transform: rotate(10deg); }
+        95% { transform: rotate(-10deg); }
+        97% { transform: rotate(10deg); }
+        99% { transform: rotate(0deg); }
+      }
+    }
+  }
+  .entry-background{
+    object-fit: cover;
+    filter: blur(8px);
+    transform: scale(1.1);
+    width: 100%;
+    height: 35%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .entry-title{
+    position: absolute;
+    top: 0;
+    width: 92%;
+    z-index: 10;
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    align-items: center;
+    height: 5%;
+    .entry-logo{
+      left: 0;
+      height: 40px;
+    }
+    .entry-text{
+      position: absolute;
+      right: 0;
+      color: white;
+      font-weight: bold;
+      background: linear-gradient(90deg, #6a5acd, #8a2be2);
+      padding: 5px 5px 5px 5px;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 15%;
+    }
+  }
+  .entry-show{
+    position: absolute;
+    top: 10%;
+    height: 70%;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .entry-show-name{
+      position: absolute;
+      color: white;
+      top: -55px;
+      font-style: italic;
+      font-weight: bold;
+    }
+    video{
+      height: 100%;
+      border-radius: 10px;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+    }
+    .entry-show-next-btn{
+      position: absolute;
+      bottom: -60px;
+      right: -120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 3px 3px 3px 3px;
+      z-index: 1;
+      .entry-show-next-btn-logo{
+        width: 50px;
+      }
+      .entry-show-next-btn-text{
+        color: gray;
+        font-size: 50px;
+      }
+    }
+    .entry-show-img{
+      height: 100%;
+      border-radius: 10px;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+    }
+  }
+  .entry-swiper{
+    margin-top: 5%;
+    bottom: 0;
+    width: 60%;
+    .swiper-img{
+      width: 100%;
+    }
+  }
+  .entry-btn-box{
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    z-index: 10;
+    padding: 5% 10px 5% 10px;
+    display: flex;
+    gap: 40px;
+    height: 10%;
+    font-size: 40px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .entry-btn-tip{
+      position: absolute;
+      color: white;
+      font-size: 35px;
+      right: -25px;
+      top: -5px;
+      transform: rotate(10deg);
+    }
+    .entry-btn-pay{
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      color: white;
+      text-align: center;
+      background: linear-gradient(90deg, #00c853, #009688);
+      border-radius: 2rem;
+      padding: 10px 10px 10px 10px;
+    }
+    .entry-btn-install{
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      color: white;
+      text-align: center;
+      background: linear-gradient(90deg, #f5315e, #ff512c);
+      border-radius: 2rem;
+      padding: 10px 10px 10px 10px;
+    }
+  }
+  .entry-login{
+    position: absolute;
+    border: 5px solid gray;
+    border-radius: 10px;
+    width: 80%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f9e6f4;
+    z-index: 100;
+    gap: 20px;
+    padding: 10px 10px 10px 10px;
+    .entry-login-title{
+      text-align: center;
+      color: black;
+      font-size: 50px;
+      font-weight: bold;
+      width: 80%;
+    }
+    .entry-login-input{
+      text-align: center;
+      color: #1e90ff;
+      font-size: 30px;
+      width: 90%;
+      border-radius: 2rem;
+      background-color: #add8e6;
+      border: 2px solid #87ceeb;
+    }
+    .entry-login-close{
+      position: absolute;
+      right: 2px;
+      top: 2px;
+      width:66px;
+    }
+    .entry-login-btn{
+      position: absolute;
+      bottom: 20px;
+      background: linear-gradient(90deg, #f5315e, #ff512c);
+      padding: 5px 10px 5px 10px;
+      border-radius: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      width: 40%;
+      .entry-login-btn-tip{
+        position: absolute;
+        color: black;
+        font-size: 25px;
+        right: -85px;
+        top: -5px;
+        transform: rotate(10deg);
+      }
+    }
+  }
+  .entry-modal{
+    position: absolute;
+    border: 5px solid gray;
+    border-radius: 10px;
+    width: 80%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f9e6f4;
+    z-index: 100;
+    gap: 100px;
+    padding: 10px 10px 10px 10px;
+    .entry-modal-title{
+      text-align: center;
+      color: black;
+      font-size: 50px;
+      font-weight: bold;
+      width: 80%;
+    }
+    .entry-modal-btn-box{
+      display: flex;
+      width: 80%;
+      gap: 10%;
+      text-align: center;
+      color: white;
+      font-size: 50px;
+      font-weight: bold;
+      .entry-modal-pay{
+        position: relative;
+        right: 0;
+        width: 45%;
+        background: linear-gradient(90deg, #00c853, #009688);
+        padding: 5px 5px 5px 5px;
+        border-radius: 2rem;
+      }
+      .entry-modal-install{
+        position: relative;
+        left: 0;
+        width: 45%;
+        background: linear-gradient(90deg, #f5315e, #ff512c);
+        padding: 5px 5px 5px 5px;
+        border-radius: 2rem;
+      }
+    }
+    .entry-modal-close{
+      position: absolute;
+      right: 2px;
+      top: 2px;
+      width: 88px;
+    }
+  }
+  .entry-install{
+    position: absolute;
+    border: 5px solid gray;
+    border-radius: 10px;
+    width: 80%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f9e6f4;
+    z-index: 100;
+    gap: 50px;
+    .entry-install-text{
+      text-align: center;
+      color: black;
+      font-size: 50px;
+      font-weight: bold;
+      width: 80%;
+    }
+    .entry-install-btn{
+      position: relative;
+      left: 0;
+      width: 60%;
+      background: linear-gradient(90deg, #f5315e, #ff512c);
+      padding: 5px 5px 5px 5px;
+      border-radius: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+    }
+    .entry-install-close{
+      position: absolute;
+      right: 2px;
+      top: 2px;
+      width: 66px;
+    }
+  }
+}
