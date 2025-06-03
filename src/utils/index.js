@@ -1,3 +1,7 @@
+import ss from "good-storage";
+import FingerprintJS from '@fingerprintjs/fingerprintjs'
+import { v4 as uuidv4 } from 'uuid';
+
 export * from './formater'
 export * from './styled-px2rem'
 export * from './tools'
@@ -96,4 +100,21 @@ export function useHashQueryParams() {
 
 export function getSafeTop(){
     return window.Telegram.WebApp.safeAreaInset?(window.Telegram.WebApp.safeAreaInset.top + window.Telegram.WebApp.contentSafeAreaInset.top+ 'px'):0
+}
+
+export async function getLocalId(){
+    let deviceId = ss.get("DeviceID","")
+    if(deviceId){
+        return deviceId
+    }else{
+        try{
+            const fp = await FingerprintJS.load()
+            const ans = await fp.get()
+            deviceId = ans.visitorId
+        }catch (e){
+            deviceId = uuidv4()
+        }
+        ss.set("DeviceID",deviceId)
+        return deviceId
+    }
 }

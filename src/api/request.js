@@ -5,7 +5,7 @@ import ss from 'good-storage'
 let baseURL;
 
 switch(process.env.NODE_ENV){
-    case 'development':baseURL = 'https://api.netshort.online';break;
+    case 'development':baseURL = 'http://localhost:13001';break;
     case 'production':baseURL = 'https://api.netshort.online';break;
 }
 export const BASE_URL = baseURL;
@@ -14,6 +14,7 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(function (config,data) {
+    config.headers["Authorization"] = ss.get("Authorization","");
     return config;
 }, function (error) {
     return Promise.reject(error);
