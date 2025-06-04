@@ -3,17 +3,27 @@ import {useEffect, useRef, useState} from "react";
 import {apiVideo} from "@/api";
 import Aliplayer from "aliyun-aliplayer";
 import {useMediaQuery} from "react-responsive";
+import {useHashQueryParams} from "@/utils";
+import {useNavigate} from "react-router-dom";
+import {Toast} from "react-vant";
 
 export default function (){
+    const params = useHashQueryParams()
     const [player,setPlayer] = useState(null);
     const isMobile = useMediaQuery({ maxWidth: 767 });
+    const [name,setName] = useState("");
+    const navigate = useNavigate();
     async function init() {
         if(isMobile){
-            const resp = await apiVideo.video()
+            const resp = await apiVideo.video({
+                drama_idx: params.drama,
+                video_no: params.no,
+            })
             if (resp.success) {
                 if (player) {
                     player.dispose();
                 }
+                setName(resp.data.name);
                 const playerInstance = new Aliplayer({
                     id: 'J_prismPlayer',
                     height: "100%",
@@ -35,6 +45,10 @@ export default function (){
                     console.log('The player is created.')
                 });
                 setPlayer(playerInstance)
+            }else{
+                if(resp.err_code === 31002){
+                    Toast.info("Drama Finish...")
+                }
             }
         }
     }
@@ -48,8 +62,12 @@ export default function (){
                 <div className='s-box'>
                     <div id='J_prismPlayer'></div>
                 </div>
-                <div className='s-name'>Evil Bride vs. The CEO's Secret Mom</div>
-                <div className='s-back-btn'>
+                <div className='s-name' onClick={()=>{
+                    navigate(`/?drama=${params.drama}`);
+                }}>{name}</div>
+                <div className='s-back-btn' onClick={()=>{
+                    navigate(`/?drama=${params.drama}`);
+                }}>
                     <span>Back</span>
                     <svg t="1748941943578" viewBox="0 0 1024 1024" version="1.1"
                          xmlns="http://www.w3.org/2000/svg" p-id="1070" width="200" height="200">
@@ -64,7 +82,9 @@ export default function (){
                             p-id="1073" fill="#dbdbdb"></path>
                     </svg>
                 </div>
-                <div className='s-next-btn'>
+                <div className='s-next-btn' onClick={()=>{
+                    navigate(`/show?drama=${params.drama}&no=${params.no+1}`);
+                }}>
                     <svg t="1748941152591" viewBox="0 0 1024 1024" version="1.1"
                          xmlns="http://www.w3.org/2000/svg" p-id="1450" width="200" height="200">
                         <path

@@ -1,10 +1,11 @@
 import "./style.less"
 import {useHashQueryParams} from "@/utils";
 import {useEffect, useState} from "react";
-import {apiVideo} from "@/api";
+import {apiAuth, apiVideo} from "@/api";
 import { useMediaQuery } from 'react-responsive';
 import ReactLoading from "react-loading";
 import Aliplayer from "aliyun-aliplayer";
+import {useNavigate} from "react-router-dom";
 
 export default function (){
     const params = useHashQueryParams()
@@ -13,10 +14,21 @@ export default function (){
     const [drama,setDrama] = useState(null)
 
     const [player,setPlayer] = useState(null);
+    const [playingVideoNo,setPlayingVideoNo] = useState(null);
+    const navigate = useNavigate();
+    const [email,setEmail] = useState("");
+    const [emailInput,setEmailInput] = useState("");
+    const [codeInput,setCodeInput] = useState("")
 
+    const [login,setLogin] = useState(null)
     async function init(){
         setLoading(true)
         if(params.drama){
+            apiAuth.userInfo({}).then((resp)=>{
+                if(resp?.data?.email){
+                    setEmail(resp?.data?.email)
+                }
+            })
             const dramaResp = await apiVideo.drama({
                 idx: params.drama
             })
@@ -27,18 +39,22 @@ export default function (){
         setLoading(false)
     }
     async function play(no){
-        setTimeout(async ()=>{
-            const resp = await apiVideo.video()
-            if (resp.success) {
-                if (player) {
-                    player.dispose();
-                }
+        setLoading(true)
+        setPlayingVideoNo(no)
+        const resp = await apiVideo.video({
+            drama_idx: params.drama,
+            video_no: no
+        })
+        if (resp.success) {
+            if (player) {
+                player.replayByVidAndPlayAuth(resp.data.id,resp.data.auth)
+            }else{
                 const playerInstance = new Aliplayer({
                     id: 'J_prismPlayer',
                     height: "100%",
                     width: "100%",
-                    vid : resp.data.id,// 必选参数，可以通过点播控制台（路径：媒资库>音/视频）查询。示例：1e067a2831b641db90d570b6480f****。
-                    playauth : resp.data.auth,// 必选参数，参数值可通过调用GetVideoPlayAuth接口获取。
+                    vid: resp.data.id,// 必选参数，可以通过点播控制台（路径：媒资库>音/视频）查询。示例：1e067a2831b641db90d570b6480f****。
+                    playauth: resp.data.auth,// 必选参数，参数值可通过调用GetVideoPlayAuth接口获取。
                     encryptType: 1, // 必选参数，当播放私有加密流时需要设置本参数值为1。其它情况无需设置。
                     license: {
                         domain: "netshort.online",
@@ -46,16 +62,17 @@ export default function (){
                     },
                     autoplay: true,
                     playsinline: true,
-                    useH5Prism:true,
+                    useH5Prism: true,
                     useFlashPrism: false,
                     isLive: false,
-                    playConfig:{EncryptType:'AliyunVoDEncryption'}, // 当您输出的M3U8流中，含有其他非私有加密流时，需要指定此参数。
-                },function(player){
+                    playConfig: {EncryptType: 'AliyunVoDEncryption'}, // 当您输出的M3U8流中，含有其他非私有加密流时，需要指定此参数。
+                }, function (player) {
                     console.log('The player is created.')
                 });
                 setPlayer(playerInstance)
             }
-        },500)
+        }
+        setLoading(false)
     }
     useEffect(() => {
         init()
@@ -95,12 +112,16 @@ export default function (){
                 </div>
                 <div className='m-h-video'>
                     {Array.from({length: drama.pay_num}).map((item, index) => {
-                        return <div className='m-h-video-item free'>
+                        return <div className='m-h-video-item free' onClick={()=>{
+                            navigate(`/show?drama=${item.drama}&no=${index+1}`)
+                        }}>
                             <span>{index + 1}</span>
                         </div>
                     })}
                     {Array.from({length: drama.video_num - drama.pay_num}).map((item, index) => {
-                        return <div className='m-h-video-item pay'>
+                        return <div className='m-h-video-item pay' onClick={()=>{
+                            navigate(`/show?drama=${item.drama}&no=${index+drama.pay_num+1}`)
+                        }}>
                             <span>{index + drama.pay_num + 1}</span>
                         </div>
                     })}
@@ -139,7 +160,17 @@ export default function (){
                                     p-id="2657" fill="#f5315e"></path>
                             </svg>
                         </div>
-                        <div className='ph-h-login'>Login</div>
+                        <div className='ph-h-login'>
+                            <span onClick={async ()=>{
+                                setLoading(true)
+                                setLogin(true)
+                                setLoading(false)
+                            }}>{email?email:"Login"}</span>
+                            {login&&<>
+                                <div className='ph-h-login-modal-mask' onClick={()=>{setLogin(false)}}/>
+                                <div className='ph-h-login-modal'></div>
+                            </>}
+                        </div>
                     </div>
                 </div>
                 <div className='ph-content'>
@@ -161,7 +192,7 @@ export default function (){
                                 <span>Purchase</span>
                             </div>}
                             <div className='ph-c-i-btn-play' onClick={async ()=>{
-                                await play()
+                                await play(1)
                             }}>
                                 <img
                                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAWRJREFUWEft2L0uBUEYxvH/kygULkBBKNyAe3ABCoULUCrodSLhUkSBxCkkVBqlC1DQ6RUUkpdJbLIRZ3dm5+PMSXaqLWZ3fvs+uzO7IypvqtzHCIxNaP4raGYrwDGwBSwAd8CRpNfY6vic31lBM1sDHoHlPxf7BE6BM0nuOFvrA14C2x2jvwAHkq5zCfuA78CSx+BXv9DksfcBzQPXdMkSe0pgA00aew5gA00Se06gg0bHnhsYHXsp4ODYSwODY58FsB37nqT7rqlslsDGtSvpfBqyBuAbsCrp6z9kDUDn2pT0NAID1u121+ojrvYleQb2Jd3WNs0Erc+l3+Ib4FCSq55XKwV0IPdrMPFStTrlBgbFWXoeDI6zFHBwnLmB0XEOAX78/KAvejzYSeIcArwAdjqASeMcAtwAHqrd+nB3ZGbrrc0j983mNo9OQiZbj0dkapf5336LufsU544VjK1i9RX8Bm7FuSnbLuzHAAAAAElFTkSuQmCC"
@@ -171,14 +202,34 @@ export default function (){
                         </div>
                         <div className='ph-c-i-video'>
                             {Array.from({length: drama.pay_num}).map((item,index)=>{
-                                return <div className='ph-c-i-video-item free'>
-                                    <span>{index+1}</span>
-                                </div>
+                                if(playingVideoNo === index+1){
+                                    return <div className='ph-c-i-video-item playing' onClick={async ()=>{
+                                        await play(index+1)
+                                    }}>
+                                        <span>{index+1}</span>
+                                    </div>
+                                }else {
+                                    return <div className='ph-c-i-video-item free' onClick={async ()=>{
+                                        await play(index+1)
+                                    }}>
+                                        <span>{index+1}</span>
+                                    </div>
+                                }
                             })}
                             {Array.from({length: drama.video_num-drama.pay_num}).map((item,index)=>{
-                                return <div className='ph-c-i-video-item pay'>
-                                    <span>{index+drama.pay_num+1}</span>
-                                </div>
+                                if(playingVideoNo === index+drama.pay_num+1){
+                                    return <div className='ph-c-i-video-item playing' onClick={async ()=>{
+                                        await play(index+drama.pay_num+1)
+                                    }}>
+                                        <span>{index+drama.pay_num+1}</span>
+                                    </div>
+                                }else{
+                                    return <div className='ph-c-i-video-item pay' onClick={async ()=>{
+                                        await play(index+drama.pay_num+1)
+                                    }}>
+                                        <span>{index+drama.pay_num+1}</span>
+                                    </div>
+                                }
                             })}
                         </div>
                     </div>

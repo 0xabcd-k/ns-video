@@ -160,14 +160,41 @@
         background: linear-gradient(90deg, #f5315e, #f5315e, #ff512c);
         border-radius: 9999px;
         height: 4vh;
-        padding-left: 40px;
-        padding-right: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
         color: white;
         font-size: 100%;
         font-weight: bold;
+        span{
+          padding-left: 40px;
+          padding-right: 40px;
+          height: 100%;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .ph-h-login-modal-mask{
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(255, 255, 255, 0.5);
+          z-index: 1;
+        }
+        .ph-h-login-modal{
+          position: absolute;
+          width: 1000px;
+          height: 500px;
+          bottom: -10px;
+          right: -10px;
+          background: linear-gradient(90deg, #f5315e, #f5315e, #ff512c);
+          border-radius: 20px;
+          transform: translateY(100%);
+          z-index: 2;
+        }
       }
     }
   }
@@ -259,10 +286,11 @@
         height: 100%;
         display: flex;
         flex-wrap: wrap;
-        gap: 2%;
+        gap: 20px;
         overflow: auto;
         .ph-c-i-video-item{
-          width: 8%;
+          width: 100px;
+          height: 100px;
           aspect-ratio: 1;
           display: flex;
           justify-content: center;
@@ -288,6 +316,13 @@
                   rgb(245, 49, 94, 0.2),
                   rgba(255, 255, 255, 0)
           );
+        }
+        .playing{
+          background: linear-gradient(
+                  to bottom right,
+                  rgb(89, 194, 245, 0.5),
+                  rgba(255, 255, 255, 0)
+          )
         }
       }
       .ph-c-i-video::-webkit-scrollbar {
@@ -473,11 +508,12 @@
     height: 20vh;
     display: flex;
     flex-wrap: wrap;
-    gap: 2%;
-    overflow: scroll;
+    gap: 10px;
+    overflow: auto;
     margin-top: 2vh;
     .m-h-video-item{
-      width: 12%;
+      width: 80px;
+      height: 80px;
       aspect-ratio: 1;
       display: flex;
       justify-content: center;
