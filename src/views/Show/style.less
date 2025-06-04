@@ -1,129 +1,60 @@
 .show {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: black;
   .s-box {
     height: 90%;
     width: 100%;
-    .prism-player{
-      .prism-big-play-btn{
-        left: 5% !important;
-        bottom: 20% !important;
-        width: 20%;
-        height: auto;
-        aspect-ratio: 1;
-        .outter{
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .prism-quality-selector{
-        margin-right: 0 !important;
-        margin-top: 0 !important;
-        right: 50%;
-        bottom: 50%;
-        width: 80%;
-        transform: translateX(50%) translateY(50%);
-        .header{
-          width: 100%;
-          height: auto;
-          font-size: 100%;
-        }
-        .selector-list{
-
-        }
-      }
-      .prism-setting-list{
-        margin-right: 0 !important;
-        margin-top: 0 !important;
-        right: 50%;
-        bottom: 50%;
-        width: 80%;
-        height: 30%;
-        transform: translateX(50%) translateY(50%);
-        .prism-setting-item{
-          font-size: 70%;
-          height: 25%;
-        }
-      }
-      .prism-controlbar{
-        height: 9%;
-        .prism-progress{
-          height: 10%;
-        }
-        .prism-play-btn{
-          margin-left: 2% !important;
-          width: 10%;
-          height: auto;
-          aspect-ratio: 1;
-          margin-top: 5% !important;
-        }
-        .prism-time-display{
-          margin-left: 2% !important;
-          font-size: 5vw;
-          margin-top: 8% !important;
-          height: auto;
-          line-height: 80%;
-          color: rgba(255,255,255,0.6);
-        }
-        .prism-setting-btn{
-          margin-right: 2% !important;
-          width: 10%;
-          height: auto;
-          aspect-ratio: 1;
-          margin-top: 5% !important;
-        }
-        .prism-cc-btn{
-          margin-right: 2% !important;
-          width: 10%;
-          height: auto;
-          aspect-ratio: 1;
-          margin-top: 5% !important;
-        }
-        .prism-fullscreen-btn{
-          margin-right: 2% !important;
-          width: 10%;
-          height: auto;
-          aspect-ratio: 1;
-          margin-top: 5% !important;
-        }
-        .prism-volume{
-          margin-right: 2% !important;
-          margin-top: 5% !important;
-          width: 10%;
-          height: auto;
-          aspect-ratio: 1;
-          .volume-icon{
-            width: 100%;
-            height: 100%;
-            .short-horizontal{
-              width: 10.7%;
-              height: 35.7%;
-              right: 35.7%;
-            }
-            .long-horizontal{
-              width: 10.7%;
-              height: 64.28%;
-              right: 17.85%;
-            }
-          }
-          .mute{
-            .volume-hover-animation{
-              height: 35.7%;
-            }
-            .short-horizontal{
-              top: 35.71%;
-              left: 68.57%;
-            }
-            .long-horizontal{
-              top: 35.71%;
-              left: 68.57%;
-            }
-          }
-        }
-      }
+  }
+  .s-name{
+    color: #bfbfbf;
+    width: 100%;
+    font-size: 5vw;
+    text-align: center;
+    text-decoration: underline;
+  }
+  .s-back-btn{
+    position: absolute;
+    color: #bfbfbf;
+    left: 5vw;
+    bottom: 2vh;
+    font-size: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg{
+      height: 3vh;
+      width: auto;
+    }
+    span{
+      height: 2vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .s-next-btn{
+    position: absolute;
+    color: #bfbfbf;
+    right: 5vw;
+    bottom: 2vh;
+    font-size: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg{
+      height: 3vh;
+      width: auto;
+    }
+    span{
+      height: 2vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

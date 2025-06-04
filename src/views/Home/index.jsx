@@ -4,12 +4,16 @@ import {useEffect, useState} from "react";
 import {apiVideo} from "@/api";
 import { useMediaQuery } from 'react-responsive';
 import ReactLoading from "react-loading";
+import Aliplayer from "aliyun-aliplayer";
 
 export default function (){
     const params = useHashQueryParams()
     const isMobile = useMediaQuery({ maxWidth: 767 });
     const [loading,setLoading] = useState(false)
     const [drama,setDrama] = useState(null)
+
+    const [player,setPlayer] = useState(null);
+
     async function init(){
         setLoading(true)
         if(params.drama){
@@ -21,6 +25,37 @@ export default function (){
             }
         }
         setLoading(false)
+    }
+    async function play(no){
+        setTimeout(async ()=>{
+            const resp = await apiVideo.video()
+            if (resp.success) {
+                if (player) {
+                    player.dispose();
+                }
+                const playerInstance = new Aliplayer({
+                    id: 'J_prismPlayer',
+                    height: "100%",
+                    width: "100%",
+                    vid : resp.data.id,// 必选参数，可以通过点播控制台（路径：媒资库>音/视频）查询。示例：1e067a2831b641db90d570b6480f****。
+                    playauth : resp.data.auth,// 必选参数，参数值可通过调用GetVideoPlayAuth接口获取。
+                    encryptType: 1, // 必选参数，当播放私有加密流时需要设置本参数值为1。其它情况无需设置。
+                    license: {
+                        domain: "netshort.online",
+                        key: "OPUqr2Q0b4B5gDa4796f243470179497ea766f3363ce753d6"
+                    },
+                    autoplay: true,
+                    playsinline: true,
+                    useH5Prism:true,
+                    useFlashPrism: false,
+                    isLive: false,
+                    playConfig:{EncryptType:'AliyunVoDEncryption'}, // 当您输出的M3U8流中，含有其他非私有加密流时，需要指定此参数。
+                },function(player){
+                    console.log('The player is created.')
+                });
+                setPlayer(playerInstance)
+            }
+        },500)
     }
     useEffect(() => {
         init()
@@ -108,7 +143,10 @@ export default function (){
                     </div>
                 </div>
                 <div className='ph-content'>
-                    <img className='ph-c-poster' src={drama.poster} alt='poster'/>
+                    <div className='ph-c-playground'>
+                        <img className='ph-c-poster' src={drama.poster} alt='poster'/>
+                        <div id='J_prismPlayer' className='ph-c-video' style={player?{}:{display: 'none'}} />
+                    </div>
                     <div className='ph-c-info'>
                         <div className='ph-c-i-name'>{drama.name}</div>
                         <div className='ph-c-i-desc'>{drama.desc}</div>
@@ -122,7 +160,9 @@ export default function (){
                                 </svg>
                                 <span>Purchase</span>
                             </div>}
-                            <div className='ph-c-i-btn-play'>
+                            <div className='ph-c-i-btn-play' onClick={async ()=>{
+                                await play()
+                            }}>
                                 <img
                                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAWRJREFUWEft2L0uBUEYxvH/kygULkBBKNyAe3ABCoULUCrodSLhUkSBxCkkVBqlC1DQ6RUUkpdJbLIRZ3dm5+PMSXaqLWZ3fvs+uzO7IypvqtzHCIxNaP4raGYrwDGwBSwAd8CRpNfY6vic31lBM1sDHoHlPxf7BE6BM0nuOFvrA14C2x2jvwAHkq5zCfuA78CSx+BXv9DksfcBzQPXdMkSe0pgA00aew5gA00Se06gg0bHnhsYHXsp4ODYSwODY58FsB37nqT7rqlslsDGtSvpfBqyBuAbsCrp6z9kDUDn2pT0NAID1u121+ojrvYleQb2Jd3WNs0Erc+l3+Ib4FCSq55XKwV0IPdrMPFStTrlBgbFWXoeDI6zFHBwnLmB0XEOAX78/KAvejzYSeIcArwAdjqASeMcAtwAHqrd+nB3ZGbrrc0j983mNo9OQiZbj0dkapf5336LufsU544VjK1i9RX8Bm7FuSnbLuzHAAAAAElFTkSuQmCC"
                                     alt='play-icon'/>
