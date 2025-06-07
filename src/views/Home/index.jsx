@@ -87,6 +87,7 @@ export default function (){
         setLoading(false)
     }
     async function buyDrama(payment){
+        setLoading(true)
         let os = "ANDROID"
         if(/iPhone|iPad|iPod/i.test(navigator.userAgent)){
             os = "IOS"
@@ -104,6 +105,7 @@ export default function (){
         if(rechargeResp.success){
             window.location.href = rechargeResp.data.url
         }
+        setLoading(false)
     }
     useEffect(() => {
         init()
