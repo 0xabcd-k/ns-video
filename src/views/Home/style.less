@@ -5,6 +5,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  .ph-purchase{
+    position: absolute;
+    z-index: 2;
+    top: 50vh;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, #2193b0, #6dd5ed);
+    width: 800px;
+    height: 500px;
+    border-radius: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    .ph-p-title{
+      font-size: 50px;
+      font-weight: bold;
+      color: white;
+    }
+    .ph-p-icon-box{
+      display: flex;
+      gap: 50px;
+      .icon{
+        width: 120px;
+        height: 100px;
+      }
+    }
+  }
+  .ph-p-mask{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(255,255,255,0.5);
+    z-index: 1;
+  }
   .pprism-player{
     .prism-big-play-btn{
       left: 5% !important;
@@ -186,7 +222,7 @@
         }
         .ph-h-login-modal{
           position: absolute;
-          width: 1000px;
+          width: 800px;
           height: 500px;
           bottom: -10px;
           right: -10px;
@@ -194,6 +230,74 @@
           border-radius: 20px;
           transform: translateY(100%);
           z-index: 2;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 50px;
+          .ph-h-lm-title{
+            font-size: 80px;
+            font-weight: bold;
+          }
+          .ph-h-lm-email{
+            width: 80%;
+            height: 50px;
+            input{
+              height: 100%;
+              border-radius: 9999px;
+              border: none;
+              text-align: center;
+              color: black;
+            }
+          }
+          .ph-h-lm-code{
+            width: 80%;
+            height: 50px;
+            display: flex;
+            gap: 5%;
+            align-items: center;
+            justify-content: start;
+            input{
+              height: 100%;
+              width: 65%;
+              border-radius: 9999px;
+              border: none;
+              text-align: center;
+              color: black;
+            }
+            .ph-h-lm-code-btn{
+              width: 30%;
+              height: 100%;
+              font-size: 30px;
+              font-weight: bold;
+              border-radius: 9999px;
+              padding: 5px 10px 5px 10px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background: linear-gradient(
+                      to bottom right,
+                      rgba(255, 255, 255, 0.9),
+                      rgba(255, 255, 255, 0)
+              );
+              box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            }
+          }
+          .ph-h-lm-confirm{
+            font-size: 50px;
+            font-weight: bold;
+            border-radius: 9999px;
+            padding: 5px 10px 5px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(
+                    to bottom right,
+                    rgba(255, 255, 255, 0.9),
+                    rgba(255, 255, 255, 0)
+            );
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          }
         }
       }
     }
@@ -309,6 +413,7 @@
                   rgba(255, 255, 255, 0.2),
                   rgba(255, 255, 255, 0)
           );
+          box-shadow: 0 1px 10px rgba(255, 255, 255, 0.1);
         }
         .pay{
           background: linear-gradient(
@@ -316,13 +421,15 @@
                   rgb(245, 49, 94, 0.2),
                   rgba(255, 255, 255, 0)
           );
+          box-shadow: 0 1px 10px rgba(255, 255, 255, 0.1);
         }
         .playing{
           background: linear-gradient(
                   to bottom right,
                   rgb(89, 194, 245, 0.5),
                   rgba(255, 255, 255, 0)
-          )
+          );
+          box-shadow: 0 1px 10px rgba(255, 255, 255, 0.1);
         }
       }
       .ph-c-i-video::-webkit-scrollbar {
@@ -532,6 +639,7 @@
               rgba(255, 255, 255, 0.2),
               rgba(255, 255, 255, 0)
       );
+      box-shadow: 0 1px 10px rgba(255, 255, 255, 0.1);
     }
     .pay{
       background: linear-gradient(
@@ -539,6 +647,7 @@
               rgb(245, 49, 94, 0.2),
               rgba(255, 255, 255, 0)
       );
+      box-shadow: 0 1px 10px rgba(255, 255, 255, 0.1);
     }
   }
   .m-h-video::-webkit-scrollbar {

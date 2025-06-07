@@ -6,14 +6,18 @@ import ss from "good-storage";
 import {getLocalId} from "@/utils";
 const rootDom = document.getElementById('root')
 const root = ReactDOM.createRoot(rootDom)
-
-getLocalId().then((ans)=> {
-    apiAuth.loginDevice({
-        device_id: ans
-    }).then((resp)=>{
-        if(resp.success){
-            ss.set("Authorization", resp.data.token)
-            root.render(router);
-        }
+const auth = ss.get("Authorization","")
+if(auth){
+    root.render(router)
+}else{
+    getLocalId().then((ans)=> {
+        apiAuth.loginDevice({
+            device_id: ans
+        }).then((resp)=>{
+            if(resp.success){
+                ss.set("Authorization", resp.data.token)
+                root.render(router);
+            }
+        })
     })
-})
+}
