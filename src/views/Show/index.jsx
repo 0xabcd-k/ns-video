@@ -83,7 +83,8 @@ export default function (){
                     </svg>
                 </div>
                 <div className='s-next-btn' onClick={()=>{
-                    navigate(`/show?drama=${params.drama}&no=${params.no+1}`);
+                    navigate(`/show?drama=${params.drama}&no=${Number(params.no)+1}`);
+                    window.location.reload();
                 }}>
                     <svg t="1748941152591" viewBox="0 0 1024 1024" version="1.1"
                          xmlns="http://www.w3.org/2000/svg" p-id="1450" width="200" height="200">

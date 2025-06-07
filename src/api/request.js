@@ -26,6 +26,8 @@ instance.interceptors.response.use(function (response) {
     try{
         switch(error.response.status){
             case 401:
+                ss.remove("Authorization","");
+                window.location.reload();
                 break;
             default:
                 Toast.info("The server is busy now. try again later.")
