@@ -3,7 +3,9 @@ import {redirect} from "react-router-dom";
 
 export const apiVideo = {
     video:form=>req.get('/video/meta',form),
-    drama:form=>req.get('/drama/video',form)
+    drama:form=>req.get('/drama/video',form),
+    setHistory:form=>req.post('/drama/history',form),
+    listHistory:form=>req.get('/drama/history',form)
 }
 
 export const apiAuth = {
