@@ -39,6 +39,9 @@ export default function (){
                 setDrama(dramaResp.data)
             }
         }
+        if(params.purchase){
+            setPurchase(true)
+        }
         setLoading(false)
     }
     async function play(no){

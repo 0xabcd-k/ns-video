@@ -48,6 +48,9 @@ export default function (){
             }else{
                 if(resp.err_code === 31002){
                     Toast.info("Drama Finish...")
+                }else{
+                    Toast.info("Need Purchase")
+                    navigate(`/?drama=${params.drama}&no=${params.no}&purchase=true`);
                 }
             }
         }
