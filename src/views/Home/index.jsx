@@ -468,7 +468,7 @@ export default function (){
                                         Login
                                     </div>
                                     <div className='ph-h-lm-desc'>
-                                        (To prevent information loss)
+                                        Log in to your email，keep your viewing progress intact
                                     </div>
                                     <div className='ph-h-lm-email'>
                                         <input value={emailInput} onChange={(e) => {

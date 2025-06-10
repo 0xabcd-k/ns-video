@@ -32,7 +32,7 @@ export default function (){
                     Login
                 </div>
                 <div className='l-desc'>
-                    (To prevent information loss)
+                    Log in to your email，keep your viewing progress intact
                 </div>
                 <div className='l-email'>
                     <input value={emailInput} onChange={(e) => {
