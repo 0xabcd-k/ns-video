@@ -111,10 +111,14 @@ export default function (){
             if(/iPhone|iPad|iPod/i.test(navigator.userAgent)){
                 os = "IOS"
             }
+            let p = "PaymentTypeAntSessionPay"
+            if (payment === "JKOPAY"){
+                p = "PaymentTypeAntPay"
+            }
             const rechargeResp = await apiFinance.recharge({
                 os: os,
                 redirect: `https://player.netshort.online/#/?drama=${params.drama}`,
-                payment: "PaymentTypeAntSessionPay",
+                payment: p,
                 method_type: payment,
                 terminal_type: isMobile?"WAP":"WEB",
                 sku: "SkuTypeDrama",
