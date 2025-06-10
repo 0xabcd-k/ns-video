@@ -187,7 +187,7 @@ export default function (){
             <div className='m-home'>
                 {purchase&&<>
                     <div className='mh-p-mask' onClick={()=>{
-                        window.location.href = window.location.origin+`/#/?drama=${drama}`
+                        window.location.href = window.location.origin+`/#/?drama=${params.drama}`
                         setPurchase(null)
                     }}></div>
                     <div className='mh-purchase'>
