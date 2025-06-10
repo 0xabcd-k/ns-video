@@ -404,7 +404,9 @@ export default function (){
                         <div className='ph-c-i-desc'>{drama.desc}</div>
                         <div className='ph-c-i-btn-box'>
                             {drama.pay_num <= drama.video_num && <div className={'ph-c-i-btn-pay'+(drama.purchase?" paid":"")} onClick={()=>{
-                                setPurchase(true)
+                                if(!drama.purchase) {
+                                    setPurchase(true)
+                                }
                             }}>
                                 <svg t="1748600990112" viewBox="0 0 1024 1024" version="1.1"
                                      xmlns="http://www.w3.org/2000/svg" p-id="2342" width="88" height="88">
