@@ -30,7 +30,6 @@ export default function (){
 
     const [login,setLogin] = useState(null)
     const [purchase,setPurchase] = useState(null);
-    const [purchaseContinue,setPurchaseContinue] = useState(null);
     async function updateHistory(){
         apiVideo.listHistory({
             page_size:8,
@@ -57,6 +56,7 @@ export default function (){
         if(params.from==="order"){
             Toast.info("The order may take a while to complete. If it doesn't take effect after payment, please try refreshing.")
             await delay(3000)
+            window.location.href = window.location.origin+`/#/?drama=${params.drama}`;
         }
         if(params.drama){
             apiAuth.userInfo({}).then((resp)=>{
@@ -79,6 +79,9 @@ export default function (){
         setLoading(false)
     }
     async function play(no){
+        if(!no){
+            return
+        }
         setLoading(true)
         setPlayingVideoNo(no)
         const resp = await apiVideo.video({
@@ -237,7 +240,9 @@ export default function (){
                         </div>
                     </div>
                 </>}
-                <div className='m-h-h-history'>
+                <div className='m-h-h-history' onClick={()=>{
+                    navigate("/history");
+                }}>
                     <svg t="1748934937683" className="icon" viewBox="0 0 1024 1024" version="1.1"
                          xmlns="http://www.w3.org/2000/svg" p-id="2656" width="88" height="88">
                         <path
@@ -253,7 +258,16 @@ export default function (){
                         <div className='m-h-h-login' onClick={()=>{
                             navigate("/login")
                         }}>
-                            {email ? <span>{email}</span> : "Login"}
+                            {email ? <span>{email}</span> : <>
+                                <svg t="1749537708692" className="icon" viewBox="0 0 1024 1024" version="1.1"
+                                     xmlns="http://www.w3.org/2000/svg" p-id="2439" id="mx_n_1749537708693" width="200"
+                                     height="200">
+                                    <path
+                                        d="M512 64C264.8 64 64 264.8 64 512s200.8 448 448 448 448-200.8 448-448S759.2 64 512 64z m32 704h-64v-64h64v64z m-64-128V256h64v384h-64z"
+                                        p-id="2440" fill="#2c2c2c"></path>
+                                </svg>
+                                Login
+                            </>}
                         </div>
                     </div>
                 </div>
@@ -264,22 +278,38 @@ export default function (){
                 </div>
                 <div className='m-h-video'>
                     {Array.from({length: drama.pay_num}).map((item, index) => {
-                        return <div className='m-h-video-item free' onClick={()=>{
-                            navigate(`/show?drama=${params.drama}&no=${index+1}`)
-                        }}>
-                            <span>{index + 1}</span>
-                        </div>
+                        if(index+1 === playingVideoNo){
+                            return <div className='m-h-video-item playing' onClick={()=>{
+                                navigate(`/show?drama=${params.drama}&no=${index+1}`)
+                            }}>
+                                <span>{index + 1}</span>
+                            </div>
+                        }else{
+                            return <div className='m-h-video-item free' onClick={()=>{
+                                navigate(`/show?drama=${params.drama}&no=${index+1}`)
+                            }}>
+                                <span>{index + 1}</span>
+                            </div>
+                        }
                     })}
                     {Array.from({length: drama.video_num - drama.pay_num}).map((item, index) => {
-                        return <div className='m-h-video-item pay' onClick={()=>{
-                            navigate(`/show?drama=${params.drama}&no=${index+drama.pay_num+1}`)
-                        }}>
-                            <span>{index + drama.pay_num + 1}</span>
-                        </div>
+                        if(index+drama.pay_num+1===playingVideoNo){
+                            return <div className='m-h-video-item playing' onClick={()=>{
+                                navigate(`/show?drama=${params.drama}&no=${index+drama.pay_num+1}`)
+                            }}>
+                                <span>{index + drama.pay_num + 1}</span>
+                            </div>
+                        }else{
+                            return <div className='m-h-video-item pay' onClick={()=>{
+                                navigate(`/show?drama=${params.drama}&no=${index+drama.pay_num+1}`)
+                            }}>
+                                <span>{index + drama.pay_num + 1}</span>
+                            </div>
+                        }
                     })}
                 </div>
                 <div className='m-h-btn-box'>
-                    {drama.pay_num <= drama.video_num && <div className='m-h-btn-pay' onClick={()=>{
+                    {drama.pay_num <= drama.video_num && <div className={'m-h-btn-pay'+(drama.purchase?" paid":"")} onClick={()=>{
                         setPurchase(true)
                     }}>
                         <svg t="1748600990112" viewBox="0 0 1024 1024" version="1.1"
@@ -288,7 +318,7 @@ export default function (){
                                 d="M237.358431 284.464797l131.472334 375.310851-27.569916-19.554358L890.249275 640.22129c16.136515 0 29.212322 13.0799 29.212322 29.213345 0 16.129352-13.075807 29.205159-29.212322 29.205159L341.259826 698.639794c-12.409634 0-23.465434-7.836479-27.566846-19.549242L109.05016 94.8963l27.567869 19.553335L77.586564 114.449635c-16.129352 0-29.207206-13.074783-29.207206-29.212322 0-16.129352 13.077853-29.207206 29.207206-29.207206l59.032488 0c12.409634 0 23.466458 7.842619 27.566846 19.555381l52.728922 150.525272 710.724017 0c18.48705 0 32.326243 16.962324 28.612665 35.077913l-46.633087 227.389894c-2.547009 12.408611-12.796444 21.75549-25.382087 23.160489l-431.515944 48.065715c-16.036231 1.786693-30.482245-9.761318-32.266891-25.797549-1.783623-16.030092 9.764388-30.475082 25.798573-32.257681l410.798087-47.145763c0 0 20.75879-96.119151 35.926234-170.074513C893.311007 282.900162 362.038058 284.149619 237.358431 284.464797L237.358431 284.464797zM407.438061 818.372759c23.362081 0 42.36897 19.004843 42.36897 42.3659 0 23.360034-19.006889 42.364877-42.36897 42.364877-23.360034 0-42.363853-19.004843-42.363853-42.364877C365.073184 837.377602 384.078027 818.372759 407.438061 818.372759M407.438061 762.594385c-54.202483 0-98.142228 43.941791-98.142228 98.144274 0 54.207599 43.939745 98.143251 98.142228 98.143251s98.147344-43.936675 98.147344-98.143251C505.584382 806.536176 461.640544 762.594385 407.438061 762.594385L407.438061 762.594385zM816.372707 818.372759c23.357987 0 42.360783 19.004843 42.360783 42.3659 0 23.360034-19.002796 42.364877-42.360783 42.364877-23.360034 0-42.364877-19.004843-42.364877-42.364877C774.007831 837.377602 793.012673 818.372759 816.372707 818.372759M816.372707 762.594385c-54.206576 0-98.143251 43.941791-98.143251 98.144274 0 54.207599 43.937698 98.143251 98.143251 98.143251 54.200436 0 98.139158-43.936675 98.139158-98.143251C914.512888 806.536176 870.573143 762.594385 816.372707 762.594385L816.372707 762.594385zM816.372707 958.88191"
                                 fill="#ffffff" p-id="2343"></path>
                         </svg>
-                        <span>Purchase</span>
+                        <span>{drama.purchase?"Purchased":"Purchase"}</span>
                     </div>}
                     <div className='m-h-btn-play' onClick={()=>{
                         navigate(`/show?drama=${params.drama}&no=${1}`)
@@ -384,7 +414,9 @@ export default function (){
                                                         endMessage={<div className='ph-h-h-m-end'>No More</div>}                                    >
                                             {history.map((item, index) => {
                                                 return <>
-                                                    <div className='ph-h-h-m-item'>
+                                                    <div className='ph-h-h-m-item' onClick={()=>{
+                                                        navigate(`/?drama=${item.idx}`);
+                                                    }}>
                                                         <img className='ph-h-h-m-item-poster' src={item.poster} alt='poster' />
                                                         <div className='ph-h-h-m-item-info'>
                                                             <div className='ph-h-h-m-item-info-title'>
@@ -486,7 +518,7 @@ export default function (){
                         <div className='ph-c-i-name'>{drama.name}</div>
                         <div className='ph-c-i-desc'>{drama.desc}</div>
                         <div className='ph-c-i-btn-box'>
-                            {drama.pay_num <= drama.video_num && <div className={'ph-c-i-btn-pay'+(drama.purchase?" paid":"")} onClick={()=>{
+                            {drama.pay_num <= drama.video_num && <div className={'ph-c-i-btn-pay'+(drama.purchase?" paid": "")} onClick={()=>{
                                 if(!drama.purchase) {
                                     setPurchase(true)
                                 }

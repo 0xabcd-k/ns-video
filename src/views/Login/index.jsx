@@ -31,6 +31,9 @@ export default function (){
                 <div className='l-title'>
                     Login
                 </div>
+                <div className='l-desc'>
+                    (To prevent information loss)
+                </div>
                 <div className='l-email'>
                     <input value={emailInput} onChange={(e) => {
                         setEmailInput(e.target.value)

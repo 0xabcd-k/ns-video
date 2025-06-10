@@ -13,6 +13,7 @@ export default function (){
     const isMobile = useMediaQuery({ maxWidth: 767 });
     const [name,setName] = useState("");
     const navigate = useNavigate();
+    const [recording,setRecording] = useState(false);
     async function init() {
         if(isMobile){
             const resp = await apiVideo.video({
@@ -20,6 +21,17 @@ export default function (){
                 video_no: params.no,
             })
             if (resp.success) {
+                setTimeout(()=>{
+                    if(!recording){
+                        setRecording(true);
+                        apiVideo.setHistory({
+                            drama_idx: params.drama,
+                            no: Number(params.no),
+                        }).then(()=>{
+                            setRecording(false)
+                        })
+                    }
+                },3000)
                 if (player) {
                     player.dispose();
                 }
@@ -69,6 +81,7 @@ export default function (){
                     navigate(`/?drama=${params.drama}`);
                 }}>{name}</div>
                 <div className='s-back-btn' onClick={()=>{
+                    player.dispose();
                     navigate(`/?drama=${params.drama}`);
                 }}>
                     <span>Back</span>
