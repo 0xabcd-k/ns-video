@@ -1,5 +1,5 @@
 import "./style.less"
-import {delay, useHashQueryParams} from "@/utils";
+import {delay, getCurrencySignal, useHashQueryParams} from "@/utils";
 import {useEffect, useState} from "react";
 import {apiAuth, apiFinance, apiVideo} from "@/api";
 import { useMediaQuery } from 'react-responsive';
@@ -152,7 +152,7 @@ export default function (){
             }
             const rechargeResp = await apiFinance.recharge({
                 os: os,
-                redirect: `http://local.netshort.online:8282/#/?drama=${params.drama}&from=order`,
+                redirect: `https://player.netshort.online/#/?drama=${params.drama}&from=order`,
                 payment: p,
                 method_type: payment,
                 terminal_type: isMobile?"WAP":"WEB",
@@ -191,8 +191,11 @@ export default function (){
                         setPurchase(null)
                     }}></div>
                     <div className='mh-purchase'>
-                        <div className='m-p-title'>
+                        <div className='mh-p-title'>
                             pls choice a payment
+                        </div>
+                        <div className='mh-p-description'>
+                            Lowest price online，Buy the series for {drama.amount} {getCurrencySignal(drama.currency)}
                         </div>
                         <div className='mh-p-icon-box'>
                             <svg t="1749267876715" onClick={() => {
@@ -339,7 +342,10 @@ export default function (){
                     }}></div>
                     <div className='ph-purchase'>
                         <div className='ph-p-title'>
-                            pls choice a payment
+                            pls choice a payment<br/>
+                        </div>
+                        <div className='ph-p-description'>
+                            Lowest price online，Buy the series for {drama.amount} {getCurrencySignal(drama.currency)}
                         </div>
                         <div className='ph-p-icon-box'>
                             <svg t="1749267876715" onClick={()=>{

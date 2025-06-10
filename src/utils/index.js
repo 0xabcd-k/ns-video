@@ -118,3 +118,14 @@ export async function getLocalId(){
         return deviceId
     }
 }
+
+export function getCurrencySignal(currency){
+    switch (currency){
+        case "USD":
+            return "$"
+        case "TWD":
+            return "NT$"
+        default:
+            return "$"
+    }
+}
