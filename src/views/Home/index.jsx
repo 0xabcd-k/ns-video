@@ -1,5 +1,5 @@
 import "./style.less"
-import {useHashQueryParams} from "@/utils";
+import {delay, useHashQueryParams} from "@/utils";
 import {useEffect, useState} from "react";
 import {apiAuth, apiFinance, apiVideo} from "@/api";
 import { useMediaQuery } from 'react-responsive';
@@ -8,6 +8,7 @@ import Aliplayer from "aliyun-aliplayer";
 import {useNavigate} from "react-router-dom";
 import {Toast} from "react-vant";
 import ss from "good-storage";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function (){
     const params = useHashQueryParams()
@@ -21,18 +22,49 @@ export default function (){
     const [email,setEmail] = useState("");
     const [emailInput,setEmailInput] = useState("");
     const [codeInput,setCodeInput] = useState("");
-    const [purchase,setPurchase] = useState(null);
     const [recording,setRecording] = useState(false);
+    const [showHistory,setShowHistory] = useState(false);
+    const [history,setHistory] = useState([]);
+    const [nextId,setNextId] = useState("");
+    const [hasMore,setHasMore] = useState(true);
 
     const [login,setLogin] = useState(null)
+    const [purchase,setPurchase] = useState(null);
+    const [purchaseContinue,setPurchaseContinue] = useState(null);
+    async function updateHistory(){
+        apiVideo.listHistory({
+            page_size:8,
+            pre_idx: nextId
+        }).then((resp)=>{
+            if(resp.success){
+                setHistory([history,...resp.data.list]);
+                if(resp.data.list.length>0){
+                    setHistory([...history,...resp.data.list]);
+                    setNextId(resp.data.next_idx)
+                    if(resp.data.list.length<8){
+                        setHasMore(false);
+                    }
+                }
+            }else{
+                if(resp.err_code===7){
+                    setHasMore(false);
+                }
+            }
+        })
+    }
     async function init(){
         setLoading(true)
+        if(params.from==="order"){
+            Toast.info("The order may take a while to complete. If it doesn't take effect after payment, please try refreshing.")
+            await delay(3000)
+        }
         if(params.drama){
             apiAuth.userInfo({}).then((resp)=>{
                 if(resp?.data?.email){
                     setEmail(resp?.data?.email)
                 }
             })
+            updateHistory()
             const dramaResp = await apiVideo.drama({
                 idx: params.drama
             })
@@ -117,7 +149,7 @@ export default function (){
             }
             const rechargeResp = await apiFinance.recharge({
                 os: os,
-                redirect: `https://player.netshort.online/#/?drama=${params.drama}`,
+                redirect: `http://local.netshort.online:8282/#/?drama=${params.drama}&from=order`,
                 payment: p,
                 method_type: payment,
                 terminal_type: isMobile?"WAP":"WEB",
@@ -131,6 +163,11 @@ export default function (){
             }
             setLoading(false)
         }
+    }
+    function parseTime(timestamp){
+        const t = new Date(timestamp*1000)
+        console.log(t)
+        return t.toLocaleString()
     }
     useEffect(() => {
         init()
@@ -327,19 +364,62 @@ export default function (){
                     </div>
                     <div className='ph-h-right'>
                         <div className='ph-h-history'>
-                            <svg t="1748934937683" className="icon" viewBox="0 0 1024 1024" version="1.1"
+                            <svg t="1748934937683" onClick={()=>{
+                                setShowHistory(true)
+                            }} className="icon" viewBox="0 0 1024 1024" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg" p-id="2656" width="88" height="88">
                                 <path
                                     d="M511.215 62.066c-247.841 0-448.76 200.919-448.76 448.766 0 247.841 200.919 448.76 448.76 448.76 247.847 0 448.766-200.919 448.766-448.76 0-247.847-200.919-448.766-448.766-448.766zM734.022 733.632c-5.145 5.145-11.888 7.718-18.625 7.718-6.743 0-13.486-2.573-18.63-7.718l-211.887-211.893v-267.967c0-14.558 11.803-26.348 26.342-26.348 14.545 0 26.348 11.791 26.348 26.348v246.152l196.452 196.452c10.289 10.278 10.289 26.971 0 37.256z"
                                     p-id="2657" fill="#f5315e"></path>
                             </svg>
+                            {showHistory&&<>
+                                <div className='ph-h-h-mask' onClick={()=>{
+                                    setShowHistory(false)
+                                }}/>
+                                <div className='ph-h-history-modal'>
+                                    <div className='ph-h-history-modal-inner' id='ph-h-history-scroll'>
+                                        <InfiniteScroll scrollableTarget="ph-h-history-scroll" next={updateHistory} hasMore={hasMore} loader={
+                                            <h4>loading</h4>
+                                        } dataLength={history.length}
+                                                        endMessage={<div className='ph-h-h-m-end'>No More</div>}                                    >
+                                            {history.map((item, index) => {
+                                                return <>
+                                                    <div className='ph-h-h-m-item'>
+                                                        <img className='ph-h-h-m-item-poster' src={item.poster} alt='poster' />
+                                                        <div className='ph-h-h-m-item-info'>
+                                                            <div className='ph-h-h-m-item-info-title'>
+                                                                {item.name}
+                                                            </div>
+                                                            <div className='ph-h-h-m-item-info-content'>
+                                                                Watched up to Episode  <span>{item.no}</span>
+                                                            </div>
+                                                            <div className='ph-h-h-m-item-info-time'>
+                                                                {parseTime(item.watch_time)}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            })}
+                                        </InfiniteScroll>
+                                    </div>
+                                </div>
+                            </>}
                         </div>
                         <div className='ph-h-login'>
                             <span onClick={async () => {
                                 setLoading(true)
                                 setLogin(true)
                                 setLoading(false)
-                            }}>{email ? email : "Login"}</span>
+                            }}>{email ? email : <>
+                                <svg t="1749537708692" className="icon" viewBox="0 0 1024 1024" version="1.1"
+                                     xmlns="http://www.w3.org/2000/svg" p-id="2439" id="mx_n_1749537708693" width="200"
+                                     height="200">
+                                    <path
+                                        d="M512 64C264.8 64 64 264.8 64 512s200.8 448 448 448 448-200.8 448-448S759.2 64 512 64z m32 704h-64v-64h64v64z m-64-128V256h64v384h-64z"
+                                        p-id="2440" fill="#2c2c2c"></path>
+                                </svg>
+                                Login
+                            </>}</span>
                             {login && <>
                                 <div className='ph-h-login-modal-mask' onClick={() => {
                                     setLogin(false)
@@ -347,6 +427,9 @@ export default function (){
                                 <div className='ph-h-login-modal'>
                                     <div className='ph-h-lm-title'>
                                         Login
+                                    </div>
+                                    <div className='ph-h-lm-desc'>
+                                        (To prevent information loss)
                                     </div>
                                     <div className='ph-h-lm-email'>
                                         <input value={emailInput} onChange={(e) => {
