@@ -29,7 +29,23 @@ export default function (){
     const [hasMore,setHasMore] = useState(true);
 
     const [login,setLogin] = useState(null)
-    const [purchase,setPurchase] = useState(null);
+    const [purchase,setPurchaseState] = useState(null);
+    function setPurchase(state){
+        if(state){
+            if(email === ""){
+                Toast.info("Log in to your email，keep your viewing progress intact")
+                if(isMobile){
+                    navigate("/login")
+                }else{
+                    setLogin(true)
+                }
+            }else{
+                setPurchaseState(state)
+            }
+        }else{
+            setPurchaseState(state)
+        }
+    }
     async function updateHistory(){
         apiVideo.listHistory({
             page_size:8,
@@ -127,11 +143,6 @@ export default function (){
             }
         }else{
             if (resp.err_code===31004){
-                if(!email){
-                    setLogin(true)
-                    Toast.info("Pls Login")
-                    setPurchase(true)
-                }
                 setPurchase(true)
             }
         }
