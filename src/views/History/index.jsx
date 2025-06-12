@@ -4,6 +4,7 @@ import {apiVideo} from "@/api";
 import ReactLoading from "react-loading";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {useNavigate} from "react-router-dom";
+import {Text,getText} from "@/utils/i18";
 
 export default function (){
     const [history,setHistory] = useState([]);
@@ -59,13 +60,13 @@ export default function (){
             <div className='h-back' onClick={()=>{
                 navigate(-1)
             }}>
-                Back
+                {getText(Text.Back)}
             </div>
             <div className='h-modal-inner' id='history-scroll'>
                 <InfiniteScroll scrollableTarget="history-scroll" next={updateHistory} hasMore={hasMore} loader={
-                    <h4>loading</h4>
+                    <h4>{getText(Text.Loading)}</h4>
                 } dataLength={history.length}
-                                endMessage={<div className='h-m-end'>No More</div>}                                    >
+                    endMessage={<div className='h-m-end'>{getText(Text.NoMore)}</div>}                                    >
                     {history.map((item, index) => {
                         return <>
                             <div className='h-m-item' onClick={()=>{
@@ -77,7 +78,7 @@ export default function (){
                                         {item.name}
                                     </div>
                                     <div className='h-m-item-info-content'>
-                                        Watched up to Episode  <span>{item.no}</span>
+                                        {getText(Text.WatchUpToEpisode)} <span>{item.no}</span>
                                     </div>
                                     <div className='h-m-item-info-time'>
                                         {parseTime(item.watch_time)}

@@ -6,6 +6,7 @@ import {apiAuth} from "@/api";
 import ss from "good-storage";
 import {useNavigate} from "react-router-dom";
 import {useMediaQuery} from "react-responsive";
+import {getText} from "@/utils/i18";
 
 export default function (){
     const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -27,33 +28,33 @@ export default function (){
             <div className='login'>
                 <div className='l-back' onClick={()=>{
                     navigate(-1)
-                }}>Back</div>
+                }}>{getText(Text.Back)}</div>
                 <div className='l-title'>
-                    Login
+                    {getText(Text.Login)}
                 </div>
                 <div className='l-desc'>
-                    Log in to your email，keep your viewing progress intact
+                    {getText(Text.LoginEmailToast)}
                 </div>
                 <div className='l-email'>
                     <input value={emailInput} onChange={(e) => {
                         setEmailInput(e.target.value)
-                    }} placeholder='input your email'/>
+                    }} placeholder={getText(Text.EmailInput)} />
                 </div>
                 <div className='l-code'>
                     <input value={codeInput} onChange={(e) => {
                         setCodeInput(e.target.value)
-                    }} placeholder='email verify code'/>
+                    }} placeholder={getText(Text.CodeInput)} />
                     <div className='l-code-btn' onClick={async () => {
                         setLoading(true)
                         const resp = await apiAuth.emailCode({email: emailInput})
                         if (resp.success) {
-                            Toast.info("Email sent successfully. Pls Check your email")
+                            Toast.info(getText(Text.EmailSuccess))
                         } else {
-                            Toast.info("Email send failed.Pls try again")
+                            Toast.info(getText(Text.EmailFailure))
                         }
                         setLoading(false)
                     }}>
-                        Get Code
+                        {getText(Text.GetCode)}
                     </div>
                 </div>
                 <div className='l-confirm' onClick={async () => {
@@ -67,16 +68,16 @@ export default function (){
                         navigate(-1)
                     }else {
                         if(authResp.err_code === 31003){
-                            Toast.info("Email verify code expire.Pls try again")
+                            Toast.info(getText(Text.EmailCodeExpire))
                         }else {
-                            Toast.info("Login failed.Pls try again")
+                            Toast.info(Text.LoginFail)
                         }
                     }
                     setLoading(false)
-                }}>Confirm</div>
+                }}>{getText(Text.Confirm)}</div>
             </div>
         </>: <>
-            404 NOT FOUND
+            {getText(Text.NotFound)}
         </>}
     </>
 }

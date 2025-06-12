@@ -6,6 +6,7 @@ import {useMediaQuery} from "react-responsive";
 import {useHashQueryParams} from "@/utils";
 import {useNavigate} from "react-router-dom";
 import {Toast} from "react-vant";
+import {getText} from "@/utils/i18";
 
 export default function (){
     const params = useHashQueryParams()
@@ -59,9 +60,9 @@ export default function (){
                 setPlayer(playerInstance)
             }else{
                 if(resp.err_code === 31002){
-                    Toast.info("Drama Finish...")
+                    Toast.info(getText(Text.DramaFinish))
                 }else{
-                    Toast.info("Need Purchase")
+                    Toast.info(getText(Text.NeedPurchase))
                     navigate(`/?drama=${params.drama}&no=${params.no}&purchase=true`);
                 }
             }
@@ -84,7 +85,7 @@ export default function (){
                     player.dispose();
                     navigate(`/?drama=${params.drama}`);
                 }}>
-                    <span>Back</span>
+                    <span>{getText(Text.Back)}</span>
                     <svg t="1748941943578" viewBox="0 0 1024 1024" version="1.1"
                          xmlns="http://www.w3.org/2000/svg" p-id="1070" width="200" height="200">
                         <path
@@ -114,11 +115,11 @@ export default function (){
                             d="M695.5 695.4l212.1-212.1c19.5-19.5 51.2-19.5 70.7 0s19.5 51.2 0 70.7L766.2 766.1c-19.5 19.5-51.2 19.5-70.7 0s-19.5-51.2 0-70.7z"
                             p-id="1453" fill="#bfbfbf"></path>
                     </svg>
-                    <span>Next</span>
+                    <span>{getText(Text.Next)}</span>
                 </div>
             </div>
         </>: <>
-            404 NOT FOUND
+            {getText(Text.NotFound)}
         </>}
     </>
 }

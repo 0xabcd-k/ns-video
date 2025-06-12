@@ -1,0 +1,154 @@
+export const Text = {
+    Back: {
+        "en-US": "Back",
+        "zh-TW": "返回",
+    },
+    Loading: {
+        "en-US": "loading",
+        "zh-TW": "載入中",
+    },
+    NoMore: {
+        "en-US": "No More",
+        "zh-TW": "沒有更多了",
+    },
+    WatchUpToEpisode:{
+        "en-US": "Watch Up to Episode",
+        "zh-TW": "觀看至",
+    },
+    LoginEmailToast: {
+        "en-US": "Log in to your email，keep your viewing progress intact",
+        "zh-TW": "登入電子郵件，以維持您的觀看進度",
+    },
+    OrderWaitToast: {
+        "en-US": "The order may take a while to complete. If it doesn't take effect after payment, please try refreshing.",
+        "zh-TW": "訂單可能需要一段時間才能完成。如付款後未生效，請嘗試重新整理。",
+    },
+    Purchased: {
+        "en-US": "Purchased",
+        "zh-TW": "已購買",
+    },
+    Purchase: {
+        "en-US": "Purchase",
+        "zh-TW": "購買",
+    },
+    PaymentChoice: {
+        "en-US": "Pls choice a payment",
+        "zh-TW": "請選擇一種付款方式",
+    },
+    PriceDesc: {
+        "en-US": "Lowest price online，Buy the series for",
+        "zh-TW": "線上最低價，購買全集僅需",
+    },
+    Login: {
+        "en-US": "Login",
+        "zh-TW": "登入",
+    },
+    PlayNow: {
+        "en-US": "Play Now",
+        "zh-TW": "立即播放",
+    },
+    Store: {
+        "en-US": "Store",
+        "zh-TW": "商店",
+    },
+    EmailInput: {
+        "en-US": "input your email",
+        "zh-TW": "輸入您的電子郵件",
+    },
+    CodeInput: {
+        "en-US": "email verify code",
+        "zh-TW": "電子郵件驗證碼",
+    },
+    EmailSuccess: {
+        "en-US": "Email sent successfully. Pls Check your email",
+        "zh-TW": "驗證郵件已送出，請檢查您的信箱",
+    },
+    EmailFailure: {
+        "en-US": "Email send failed.Pls try again",
+        "zh-TW": "驗證郵件發送失敗，請再試一次",
+    },
+    GetCode: {
+        "en-US": "Get Code",
+        "zh-TW": "獲取驗證碼",
+    },
+    EmailCodeExpire: {
+        "en-US": "Email verify code expire.Pls try again",
+        "zh-TW": "驗證碼已過期，請重新取得",
+    },
+    LoginFail: {
+        "en-US": "Login failed.Pls try again",
+        "zh-TW": "登入失敗，請再試一次",
+    },
+    Confirm: {
+        "en-US": "Confirm",
+        "zh-TW": "確認",
+    },
+    About: {
+        "en-US": "About",
+        "zh-TW": "關於",
+    },
+    TermsOfService: {
+        "en-US": "Terms of Service",
+        "zh-TW": "服務條款",
+    },
+    PrivacyPolicy: {
+        "en-US": "Privacy Policy",
+        "zh-TW": "隱私政策",
+    },
+    FAQ: {
+        "en-US": "FAQ",
+        "zh-TW": "常見問題",
+    },
+    ContactUs: {
+        "en-US": "Contact Us",
+        "zh-TW": "聯絡我們",
+    },
+    Community: {
+        "en-US": "Community",
+        "zh-TW": "社群",
+    },
+    DownloadApp:{
+        "en-US": "Download App",
+        "zh-TW": "下載應用程式",
+    },
+    BottomLine: {
+        "en-US": "NetShort | All Rights Reserved | 2024 NETSTORY PTE. LTD.",
+        "zh-TW": "NetShort | 版權所有 | 2024 NETSTORY PTE. LTD.",
+    },
+    NotFound: {
+        "en-US": "404 Not Found",
+        "zh-TW": "404 網頁不存在",
+    },
+    DramaFinish: {
+        "en-US": "Drama Finish...",
+        "zh-TW": "劇集已完結…",
+    },
+    NeedPurchase: {
+        "en-US": "Need Purchase",
+        "zh-TW": "需要購買",
+    },
+    Next:{
+        "en-US": "Next",
+        "zh-TW": "下一步",
+    }
+}
+
+export function getText(item){
+    const userLang = navigator.language;
+    console.log(userLang);
+    let ans = null
+    if(item){
+        try{ ans = item[userLang]}catch (e){}
+    }else{
+        return "***"
+    }
+    if(!ans){
+        try{
+            return item["en-US"]
+        }catch (e){
+            return "***"
+        }
+    }else{
+        return ans
+    }
+}

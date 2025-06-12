@@ -9,6 +9,7 @@ import {useNavigate} from "react-router-dom";
 import {Toast} from "react-vant";
 import ss from "good-storage";
 import InfiniteScroll from "react-infinite-scroll-component";
+import {getText,Text} from "@/utils/i18";
 
 export default function (){
     const params = useHashQueryParams()
@@ -33,7 +34,7 @@ export default function (){
     function setPurchase(state){
         if(state){
             if(email === ""){
-                Toast.info("Log in to your email，keep your viewing progress intact")
+                Toast.info(getText(Text.LoginEmailToast))
                 if(isMobile){
                     navigate("/login")
                 }else{
@@ -70,7 +71,7 @@ export default function (){
     async function init(){
         setLoading(true)
         if(params.from==="order"){
-            Toast.info("The order may take a while to complete. If it doesn't take effect after payment, please try refreshing.")
+            Toast.info(getText(Text.OrderWaitToast))
             await delay(3000)
             window.location.href = window.location.origin+`/#/?drama=${params.drama}`;
         }
@@ -150,7 +151,7 @@ export default function (){
     }
     async function buyDrama(payment){
         if(drama.purchase){
-            Toast.info("Purchased")
+            Toast.info(getText(Text.Purchased))
         }else{
             setLoading(true)
             let os = "ANDROID"
@@ -238,10 +239,10 @@ export default function (){
                     }}></div>
                     <div className='mh-purchase'>
                         <div className='mh-p-title'>
-                            pls choice a payment
+                            {getText(Text.PaymentChoice)}
                         </div>
                         <div className='mh-p-description'>
-                            Lowest price online，Buy the series for {drama.amount} {getCurrencySignal(drama.currency)}
+                            {getText(Text.PriceDesc)} {drama.amount} {getCurrencySignal(drama.currency)}
                         </div>
                         <div className='mh-p-icon-box'>
                             <svg t="1749267876715" onClick={() => {
@@ -316,7 +317,7 @@ export default function (){
                                         d="M512 64C264.8 64 64 264.8 64 512s200.8 448 448 448 448-200.8 448-448S759.2 64 512 64z m32 704h-64v-64h64v64z m-64-128V256h64v384h-64z"
                                         p-id="2440" fill="#2c2c2c"></path>
                                 </svg>
-                                Login
+                                {getText(Text.Login)}
                             </>}
                         </div>
                     </div>
@@ -368,7 +369,7 @@ export default function (){
                                 d="M237.358431 284.464797l131.472334 375.310851-27.569916-19.554358L890.249275 640.22129c16.136515 0 29.212322 13.0799 29.212322 29.213345 0 16.129352-13.075807 29.205159-29.212322 29.205159L341.259826 698.639794c-12.409634 0-23.465434-7.836479-27.566846-19.549242L109.05016 94.8963l27.567869 19.553335L77.586564 114.449635c-16.129352 0-29.207206-13.074783-29.207206-29.212322 0-16.129352 13.077853-29.207206 29.207206-29.207206l59.032488 0c12.409634 0 23.466458 7.842619 27.566846 19.555381l52.728922 150.525272 710.724017 0c18.48705 0 32.326243 16.962324 28.612665 35.077913l-46.633087 227.389894c-2.547009 12.408611-12.796444 21.75549-25.382087 23.160489l-431.515944 48.065715c-16.036231 1.786693-30.482245-9.761318-32.266891-25.797549-1.783623-16.030092 9.764388-30.475082 25.798573-32.257681l410.798087-47.145763c0 0 20.75879-96.119151 35.926234-170.074513C893.311007 282.900162 362.038058 284.149619 237.358431 284.464797L237.358431 284.464797zM407.438061 818.372759c23.362081 0 42.36897 19.004843 42.36897 42.3659 0 23.360034-19.006889 42.364877-42.36897 42.364877-23.360034 0-42.363853-19.004843-42.363853-42.364877C365.073184 837.377602 384.078027 818.372759 407.438061 818.372759M407.438061 762.594385c-54.202483 0-98.142228 43.941791-98.142228 98.144274 0 54.207599 43.939745 98.143251 98.142228 98.143251s98.147344-43.936675 98.147344-98.143251C505.584382 806.536176 461.640544 762.594385 407.438061 762.594385L407.438061 762.594385zM816.372707 818.372759c23.357987 0 42.360783 19.004843 42.360783 42.3659 0 23.360034-19.002796 42.364877-42.360783 42.364877-23.360034 0-42.364877-19.004843-42.364877-42.364877C774.007831 837.377602 793.012673 818.372759 816.372707 818.372759M816.372707 762.594385c-54.206576 0-98.143251 43.941791-98.143251 98.144274 0 54.207599 43.937698 98.143251 98.143251 98.143251 54.200436 0 98.139158-43.936675 98.139158-98.143251C914.512888 806.536176 870.573143 762.594385 816.372707 762.594385L816.372707 762.594385zM816.372707 958.88191"
                                 fill="#ffffff" p-id="2343"></path>
                         </svg>
-                        <span>{drama.purchase?"Purchased":"Purchase"}</span>
+                        <span>{drama.purchase?getText(Text.Purchased):getText(Text.Purchase)}</span>
                     </div>}
                     <div className='m-h-btn-play' onClick={()=>{
                         navigate(`/show?drama=${params.drama}&no=${drama.watch_no}`)
@@ -376,7 +377,7 @@ export default function (){
                         <img
                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAWRJREFUWEft2L0uBUEYxvH/kygULkBBKNyAe3ABCoULUCrodSLhUkSBxCkkVBqlC1DQ6RUUkpdJbLIRZ3dm5+PMSXaqLWZ3fvs+uzO7IypvqtzHCIxNaP4raGYrwDGwBSwAd8CRpNfY6vic31lBM1sDHoHlPxf7BE6BM0nuOFvrA14C2x2jvwAHkq5zCfuA78CSx+BXv9DksfcBzQPXdMkSe0pgA00aew5gA00Se06gg0bHnhsYHXsp4ODYSwODY58FsB37nqT7rqlslsDGtSvpfBqyBuAbsCrp6z9kDUDn2pT0NAID1u121+ojrvYleQb2Jd3WNs0Erc+l3+Ib4FCSq55XKwV0IPdrMPFStTrlBgbFWXoeDI6zFHBwnLmB0XEOAX78/KAvejzYSeIcArwAdjqASeMcAtwAHqrd+nB3ZGbrrc0j983mNo9OQiZbj0dkapf5336LufsU544VjK1i9RX8Bm7FuSnbLuzHAAAAAElFTkSuQmCC"
                             alt='play-icon'/>
-                        <span>Play Now</span>
+                        <span>{getText(Text.PlayNow)}</span>
                     </div>
                 </div>
             </div>
@@ -420,10 +421,10 @@ export default function (){
                     }}></div>
                     <div className='ph-purchase'>
                         <div className='ph-p-title'>
-                            pls choice a payment<br/>
+                            {getText(Text.PaymentChoice)}<br/>
                         </div>
                         <div className='ph-p-description'>
-                            Lowest price online，Buy the series for {drama.amount} {getCurrencySignal(drama.currency)}
+                            {getText(Text.PriceDesc)} {drama.amount} {getCurrencySignal(drama.currency)}
                         </div>
                         <div className='ph-p-icon-box'>
                             <svg t="1749267876715" onClick={() => {
@@ -475,7 +476,7 @@ export default function (){
                 <div className='ph-header'>
                     <div className='ph-h-left'>
                         <img className='ph-h-logo' src={require("@/assets/logo.png")} alt='logo'/>
-                        <div className='ph-h-home'>Store</div>
+                        <div className='ph-h-home'>{getText(Text.Store)}</div>
                     </div>
                     <div className='ph-h-right'>
                         <div className='ph-h-history'>
@@ -494,7 +495,7 @@ export default function (){
                                 <div className='ph-h-history-modal'>
                                     <div className='ph-h-history-modal-inner' id='ph-h-history-scroll'>
                                         <InfiniteScroll scrollableTarget="ph-h-history-scroll" next={updateHistory} hasMore={hasMore} loader={
-                                            <h4>loading</h4>
+                                            <h4>{getText(Text.Loading)}</h4>
                                         } dataLength={history.length}
                                                         endMessage={<div className='ph-h-h-m-end'>No More</div>}                                    >
                                             {history.map((item, index) => {
@@ -508,7 +509,7 @@ export default function (){
                                                                 {item.name}
                                                             </div>
                                                             <div className='ph-h-h-m-item-info-content'>
-                                                                Watched up to Episode  <span>{item.no}</span>
+                                                                {getText(Text.WatchUpToEpisode)}  <span>{item.no}</span>
                                                             </div>
                                                             <div className='ph-h-h-m-item-info-time'>
                                                                 {parseTime(item.watch_time)}
@@ -535,7 +536,7 @@ export default function (){
                                         d="M512 64C264.8 64 64 264.8 64 512s200.8 448 448 448 448-200.8 448-448S759.2 64 512 64z m32 704h-64v-64h64v64z m-64-128V256h64v384h-64z"
                                         p-id="2440" fill="#2c2c2c"></path>
                                 </svg>
-                                Login
+                                {getText(Text.Login)}
                             </>}</span>
                             {login && <>
                                 <div className='ph-h-login-modal-mask' onClick={() => {
@@ -543,31 +544,31 @@ export default function (){
                                 }}/>
                                 <div className='ph-h-login-modal'>
                                     <div className='ph-h-lm-title'>
-                                        Login
+                                        {getText(Text.Login)}
                                     </div>
                                     <div className='ph-h-lm-desc'>
-                                        Log in to your email，keep your viewing progress intact
+                                        {getText(Text.LoginEmailToast)}
                                     </div>
                                     <div className='ph-h-lm-email'>
                                         <input value={emailInput} onChange={(e) => {
                                             setEmailInput(e.target.value)
-                                        }} placeholder='input your email'/>
+                                        }} placeholder={getText(Text.EmailInput)}/>
                                     </div>
                                     <div className='ph-h-lm-code'>
                                         <input value={codeInput} onChange={(e) => {
                                             setCodeInput(e.target.value)
-                                        }} placeholder='email verify code'/>
+                                        }} placeholder={getText(Text.CodeInput)} />
                                         <div className='ph-h-lm-code-btn' onClick={async () => {
                                             setLoading(true)
                                             const resp = await apiAuth.emailCode({email: emailInput})
                                             if (resp.success) {
-                                                Toast.info("Email sent successfully. Pls Check your email")
+                                                Toast.info(getText(Text.EmailSuccess))
                                             } else {
-                                                Toast.info("Email send failed.Pls try again")
+                                                Toast.info(getText(Text.EmailFailure))
                                             }
                                             setLoading(false)
                                         }}>
-                                            Get Code
+                                            {getText(Text.GetCode)}
                                         </div>
                                     </div>
                                     <div className='ph-h-lm-confirm' onClick={async () => {
@@ -581,14 +582,14 @@ export default function (){
                                             setEmail(emailInput)
                                         }else {
                                             if(authResp.err_code === 31003){
-                                                Toast.info("Email verify code expire.Pls try again")
+                                                Toast.info(getText(Text.EmailCodeExpire))
                                             }else {
-                                                Toast.info("Login failed.Pls try again")
+                                                Toast.info(getText(Text.LoginFail))
                                             }
                                         }
                                         setLogin(false)
                                         setLoading(false)
-                                    }}>Confirm</div>
+                                    }}>{getText(Text.Confirm)}</div>
                                 </div>
                             </>}
                         </div>
@@ -614,7 +615,7 @@ export default function (){
                                         d="M237.358431 284.464797l131.472334 375.310851-27.569916-19.554358L890.249275 640.22129c16.136515 0 29.212322 13.0799 29.212322 29.213345 0 16.129352-13.075807 29.205159-29.212322 29.205159L341.259826 698.639794c-12.409634 0-23.465434-7.836479-27.566846-19.549242L109.05016 94.8963l27.567869 19.553335L77.586564 114.449635c-16.129352 0-29.207206-13.074783-29.207206-29.212322 0-16.129352 13.077853-29.207206 29.207206-29.207206l59.032488 0c12.409634 0 23.466458 7.842619 27.566846 19.555381l52.728922 150.525272 710.724017 0c18.48705 0 32.326243 16.962324 28.612665 35.077913l-46.633087 227.389894c-2.547009 12.408611-12.796444 21.75549-25.382087 23.160489l-431.515944 48.065715c-16.036231 1.786693-30.482245-9.761318-32.266891-25.797549-1.783623-16.030092 9.764388-30.475082 25.798573-32.257681l410.798087-47.145763c0 0 20.75879-96.119151 35.926234-170.074513C893.311007 282.900162 362.038058 284.149619 237.358431 284.464797L237.358431 284.464797zM407.438061 818.372759c23.362081 0 42.36897 19.004843 42.36897 42.3659 0 23.360034-19.006889 42.364877-42.36897 42.364877-23.360034 0-42.363853-19.004843-42.363853-42.364877C365.073184 837.377602 384.078027 818.372759 407.438061 818.372759M407.438061 762.594385c-54.202483 0-98.142228 43.941791-98.142228 98.144274 0 54.207599 43.939745 98.143251 98.142228 98.143251s98.147344-43.936675 98.147344-98.143251C505.584382 806.536176 461.640544 762.594385 407.438061 762.594385L407.438061 762.594385zM816.372707 818.372759c23.357987 0 42.360783 19.004843 42.360783 42.3659 0 23.360034-19.002796 42.364877-42.360783 42.364877-23.360034 0-42.364877-19.004843-42.364877-42.364877C774.007831 837.377602 793.012673 818.372759 816.372707 818.372759M816.372707 762.594385c-54.206576 0-98.143251 43.941791-98.143251 98.144274 0 54.207599 43.937698 98.143251 98.143251 98.143251 54.200436 0 98.139158-43.936675 98.139158-98.143251C914.512888 806.536176 870.573143 762.594385 816.372707 762.594385L816.372707 762.594385zM816.372707 958.88191"
                                         fill="#ffffff" p-id="2343"></path>
                                 </svg>
-                                <span>{drama.purchase?"Purchased":"Purchase"}</span>
+                                <span>{drama.purchase?getText(Text.Purchased):getText(Text.Purchase)}</span>
                             </div>}
                             <div className='ph-c-i-btn-play' onClick={async ()=>{
                                 await play(drama.watch_no)
@@ -622,7 +623,7 @@ export default function (){
                                 <img
                                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAWRJREFUWEft2L0uBUEYxvH/kygULkBBKNyAe3ABCoULUCrodSLhUkSBxCkkVBqlC1DQ6RUUkpdJbLIRZ3dm5+PMSXaqLWZ3fvs+uzO7IypvqtzHCIxNaP4raGYrwDGwBSwAd8CRpNfY6vic31lBM1sDHoHlPxf7BE6BM0nuOFvrA14C2x2jvwAHkq5zCfuA78CSx+BXv9DksfcBzQPXdMkSe0pgA00aew5gA00Se06gg0bHnhsYHXsp4ODYSwODY58FsB37nqT7rqlslsDGtSvpfBqyBuAbsCrp6z9kDUDn2pT0NAID1u121+ojrvYleQb2Jd3WNs0Erc+l3+Ib4FCSq55XKwV0IPdrMPFStTrlBgbFWXoeDI6zFHBwnLmB0XEOAX78/KAvejzYSeIcArwAdjqASeMcAtwAHqrd+nB3ZGbrrc0j983mNo9OQiZbj0dkapf5336LufsU544VjK1i9RX8Bm7FuSnbLuzHAAAAAElFTkSuQmCC"
                                     alt='play-icon'/>
-                                <span>Play Now</span>
+                                <span>{getText(Text.PlayNow)}</span>
                             </div>
                         </div>
                         <div className='ph-c-i-video'>
@@ -663,27 +664,27 @@ export default function (){
                     <div className='ph-bottom-2'>
                         <div className='ph-b-list'>
                             <div className='ph-b-l-header'>
-                                About
+                                {getText(Text.About)}
                             </div>
                             <div className='ph-b-l-item' onClick={()=>{
                                 window.open("https://www.netshort.com/agreement/4","_blank")
                             }}>
-                                Terms of Service
+                                {getText(Text.TermsOfService)}
                             </div>
                             <div className='ph-b-l-item' onClick={()=>{
                                 window.open("https://www.netshort.com/agreement/2","_blank")
                             }}>
-                                Privacy Policy
+                                {getText(Text.PrivacyPolicy)}
                             </div>
                             <div className='ph-b-l-item' onClick={()=>{
                                 window.open("https://www.netshort.com/faq","_blank")
                             }}>
-                                FAQ
+                                {getText(Text.FAQ)}
                             </div>
                         </div>
                         <div className='ph-b-list'>
                             <div className='ph-b-l-header'>
-                                Contact Us
+                                {getText(Text.ContactUs)}
                             </div>
                             <div className='ph-b-l-item' onClick={()=>{
                                 window.location.href = "mailto:support@netshort.com";
@@ -698,7 +699,7 @@ export default function (){
                         </div>
                         <div className='ph-b-list'>
                             <div className='ph-b-l-header'>
-                                Community
+                                {getText(Text.Community)}
                             </div>
                             <div className='ph-b-l-icon-box'>
                                 <div className='ph-b-l-icon-item' onClick={()=>{
@@ -737,7 +738,7 @@ export default function (){
                         </div>
                         <div className='ph-b-list'>
                             <div className='ph-b-l-header'>
-                                Download App
+                                {getText(Text.DownloadApp)}
                             </div>
                             <img className='ph-b-l-ios-download' onClick={()=>{
                                 window.open("https://apps.apple.com/us/app/netshort-popular-dramas-tv/id6504849169?mt=8","_blank")
@@ -748,7 +749,7 @@ export default function (){
                         </div>
                     </div>
                     <div className='ph-bottom-line'>
-                        NetShort | All Rights Reserved | 2024 NETSTORY PTE. LTD.
+                        {getText(Text.BottomLine)}
                     </div>
                 </div>
             </div>
