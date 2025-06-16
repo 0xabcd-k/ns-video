@@ -15,9 +15,49 @@
       width: 100%;
       height: 100%;
     }
+    .ph-agent-question-box {
+      display: none;
+    }
   }
   .ph-agent:hover {
-    transform: scale(1.5); /* 放大 10% */
+    .icon{
+      transform: scale(1.5);
+    }
+    .ph-agent-question-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: end;
+      gap: 20px;
+      position: absolute;
+      right: 0;
+      bottom: -50px;
+      transform: translateY(100%);
+      .ph-agent-question{
+        padding: 5px 50px;
+        background: #f8f4fc;
+        color: #8474fc;
+        font-size: 30px;
+        white-space: nowrap;
+        border-radius: 9999px;
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+      }
+      .ph-agent-question:nth-child(1){
+        animation-delay: 0.25s;
+      }
+      .ph-agent-question:nth-child(2){
+        animation-delay: 0.5s;
+      }
+      .ph-agent-question:nth-child(3){
+        animation-delay: 0.75s;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+    }
   }
   .ph-purchase{
     position: absolute;
@@ -188,6 +228,7 @@
     .ph-h-left{
       width: 50%;
       display: flex;
+      align-items: center;
       .ph-h-logo{
         height: 4vh;
       }

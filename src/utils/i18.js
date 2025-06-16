@@ -130,6 +130,18 @@ export const Text = {
     Next:{
         "en-US": "Next",
         "zh-TW": "下一步",
+    },
+    QuestionPurchase: {
+        "en-US": "Purchase or After-sales Issues?",
+        "zh-TW": "購買或售後問題"
+    },
+    QuestionSuggestion: {
+        "en-US": "Some Suggestions",
+        "zh-TW": "一些建議",
+    },
+    QuestionCollaboration: {
+        "en-US": "Ideas for Collaboration",
+        "zh-TW": "有些創意想合作",
     }
 }
 
