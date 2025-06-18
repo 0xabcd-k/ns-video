@@ -46,7 +46,7 @@ export default function (){
                     encryptType: 1, // 必选参数，当播放私有加密流时需要设置本参数值为1。其它情况无需设置。
                     license: {
                         domain: "netshort.online",
-                        key: "OPUqr2Q0b4B5gDa4796f243470179497ea766f3363ce753d6"
+                        key: "zPKRdofDrJuVP2scGf4d9fbc25a7f4f02887aad84c71e799b"
                     },
                     autoplay: true,
                     playsinline: true,
