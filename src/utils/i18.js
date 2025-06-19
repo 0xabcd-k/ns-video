@@ -146,6 +146,10 @@ export const Text = {
     VideoNo:{
         "en-US": "Episode:",
         "zh-TW": "戏集：",
+    },
+    Recommend:{
+        "en-US": "Top Series for You",
+        "zh-TW": "劇集推薦",
     }
 }
 
