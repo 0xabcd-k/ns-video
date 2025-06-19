@@ -129,7 +129,7 @@ export const Text = {
     },
     Next:{
         "en-US": "Next",
-        "zh-TW": "下一步",
+        "zh-TW": "下一集",
     },
     QuestionPurchase: {
         "en-US": "Purchase or After-sales Issues?",
@@ -142,18 +142,19 @@ export const Text = {
     QuestionCollaboration: {
         "en-US": "Ideas for Collaboration",
         "zh-TW": "有些創意想合作",
+    },
+    VideoNo:{
+        "en-US": "Episode:",
+        "zh-TW": "戏集：",
     }
 }
 
 export function getText(item){
     const userLang = navigator.language;
-    console.log(userLang);
     let ans = null
     if(item){
         try{ ans = item[userLang]}catch (e){}
-    }else{
-        return "***"
-    }
+    }else{}
     if(!ans){
         try{
             return item["en-US"]

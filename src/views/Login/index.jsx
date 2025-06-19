@@ -6,7 +6,7 @@ import {apiAuth} from "@/api";
 import ss from "good-storage";
 import {useNavigate} from "react-router-dom";
 import {useMediaQuery} from "react-responsive";
-import {getText} from "@/utils/i18";
+import {getText,Text} from "@/utils/i18";
 
 export default function (){
     const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -70,7 +70,7 @@ export default function (){
                         if(authResp.err_code === 31003){
                             Toast.info(getText(Text.EmailCodeExpire))
                         }else {
-                            Toast.info(Text.LoginFail)
+                            Toast.info(getText(Text.LoginFail))
                         }
                     }
                     setLoading(false)

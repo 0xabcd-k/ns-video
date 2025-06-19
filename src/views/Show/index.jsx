@@ -6,10 +6,14 @@ import {useMediaQuery} from "react-responsive";
 import {useHashQueryParams} from "@/utils";
 import {useNavigate} from "react-router-dom";
 import {Toast} from "react-vant";
-import {getText} from "@/utils/i18";
+import {getText,Text} from "@/utils/i18";
 
 export default function (){
     const params = useHashQueryParams()
+    let no = Number(params.no);
+    if(!no){
+        no = 1;
+    }
     const [player,setPlayer] = useState(null);
     const isMobile = useMediaQuery({ maxWidth: 767 });
     const [name,setName] = useState("");
@@ -19,7 +23,7 @@ export default function (){
         if(isMobile){
             const resp = await apiVideo.video({
                 drama_idx: params.drama,
-                video_no: params.no,
+                video_no: no,
             })
             if (resp.success) {
                 setTimeout(()=>{
@@ -27,7 +31,7 @@ export default function (){
                         setRecording(true);
                         apiVideo.setHistory({
                             drama_idx: params.drama,
-                            no: Number(params.no),
+                            no: no,
                         }).then(()=>{
                             setRecording(false)
                         })
@@ -63,7 +67,7 @@ export default function (){
                     Toast.info(getText(Text.DramaFinish))
                 }else{
                     Toast.info(getText(Text.NeedPurchase))
-                    navigate(`/?drama=${params.drama}&no=${params.no}&purchase=true`);
+                    navigate(`/?drama=${params.drama}&purchase=true`);
                 }
             }
         }
@@ -78,9 +82,6 @@ export default function (){
                 <div className='s-box'>
                     <div id='J_prismPlayer'></div>
                 </div>
-                <div className='s-name' onClick={()=>{
-                    navigate(`/?drama=${params.drama}`);
-                }}>{name}</div>
                 <div className='s-back-btn' onClick={()=>{
                     player.dispose();
                     navigate(`/?drama=${params.drama}`);
@@ -99,6 +100,7 @@ export default function (){
                             p-id="1073" fill="#dbdbdb"></path>
                     </svg>
                 </div>
+                <div className='s-video-no'>{getText(Text.VideoNo)} {no}</div>
                 <div className='s-next-btn' onClick={()=>{
                     navigate(`/show?drama=${params.drama}&no=${Number(params.no)+1}`);
                     window.location.reload();
