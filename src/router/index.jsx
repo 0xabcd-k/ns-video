@@ -5,6 +5,7 @@ import Home from "@/views/Home";
 import Login from "@/views/Login";
 import History from "@/views/History";
 import Series from "@/views/Series";
+import Redirect from "@/views/Redirect";
 const router = createHashRouter([
     {path:"/",element:<App />,children:[
         {index: true, element:<Home/>},
@@ -12,6 +13,7 @@ const router = createHashRouter([
         {path: "/show", element: <Show />},
         {path: "/history", element: <History />},
         {path: "/series", element: <Series/>},
+        {path: "/i18",element: <Redirect />},
     ]},
     {path:"*",element:<Navigate to="/"/>}
 ]);
