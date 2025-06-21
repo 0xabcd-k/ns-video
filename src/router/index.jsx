@@ -6,6 +6,7 @@ import Login from "@/views/Login";
 import History from "@/views/History";
 import Series from "@/views/Series";
 import Redirect from "@/views/Redirect";
+import Admin from "@/views/Admin";
 const router = createHashRouter([
     {path:"/",element:<App />,children:[
         {index: true, element:<Home/>},
@@ -14,6 +15,7 @@ const router = createHashRouter([
         {path: "/history", element: <History />},
         {path: "/series", element: <Series/>},
         {path: "/i18",element: <Redirect />},
+        {path: "/admin114514", element: <Admin />},
     ]},
     {path:"*",element:<Navigate to="/"/>}
 ]);
