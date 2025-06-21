@@ -20,3 +20,7 @@ export const apiAuth = {
 export const apiFinance= {
     recharge:form=>req.post('recharge/order',form)
 }
+
+export const apiAdmin = {
+    VideoUploadToken:form=>req.post('/video/admin/upload/token',form),
+}

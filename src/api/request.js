@@ -15,6 +15,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(function (config,data) {
     config.headers["Authorization"] = ss.get("Authorization","");
+    config.headers["Admin"] = ss.get("Admin","");
     return config;
 }, function (error) {
     return Promise.reject(error);
@@ -27,6 +28,7 @@ instance.interceptors.response.use(function (response) {
         switch(error.response.status){
             case 401:
                 ss.remove("Authorization","");
+                ss.remove("Admin","")
                 window.location.reload();
                 break;
             default:

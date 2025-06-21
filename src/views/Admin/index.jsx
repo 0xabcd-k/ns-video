@@ -1,4 +1,5 @@
 import {useEffect} from "react";
+import {apiAdmin} from "@/api";
 
 let uploader;
 export default function (){
@@ -29,10 +30,21 @@ export default function (){
             retryDuration: 2,
             onUploadstarted: async function (uploadInfo) {
                 let duration = await getVideoDuration(uploadInfo.file);
+                console.log(duration);
+                const resp = await apiAdmin.VideoUploadToken({
+                    file_name: uploadInfo.file.name,
+                    title: uploadInfo.file.name,
+                    cate_id: 1154
+                })
+                if(resp.success){
+                    uploader.setUploadAuthAndAddress(uploadInfo, resp.data.upload_auth, resp.data.upload_address,resp.data.video_id)
+                }
             },
             onUploadSucceed: function (uploadInfo) {},
             onUploadFailed: function (uploadInfo, code, message) {},
-            onUploadProgress: function (uploadInfo, totalSize, loadedPercent) {},
+            onUploadProgress: function (uploadInfo, totalSize, progress) {
+                console.log("onUploadProgress:file:" + uploadInfo.file.name + ", fileSize:" + totalSize + ", percent:" + Math.ceil(progress * 100) + "%")
+            },
             onUploadTokenExpired: function (uploadInfo) {},
             onUploadEnd: function (uploadInfo) {},
         })
