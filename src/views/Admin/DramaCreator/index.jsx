@@ -79,7 +79,11 @@ export default function ({onUpload}){
                     <input onChange={(e)=>setBelongLan(e.target.value)} value={belongLan} placeholder='语言'/>
                 </div>
             </div>
-            <div className='dc-upload' ></div>
+            <div className='dc-upload' onClick={async ()=>{
+                await onUpload(title,desc,poster,total,free,price,currency,belongName,belongLan,expireTime)
+            }}>
+                创建剧目
+            </div>
         </div>
     </>
 }

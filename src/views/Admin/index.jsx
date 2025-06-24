@@ -5,6 +5,7 @@ import {apiAdmin, apiVideo} from "@/api";
 import {Toast} from "react-vant";
 import ReactLoading from "react-loading";
 import DramaCreator from "@/views/Admin/DramaCreator";
+import VideoUploader from "@/views/Admin/VideoUploader";
 
 const tabName = {
     VideoManager: "剧集管理",
@@ -21,18 +22,22 @@ export default function (){
     const [tab,setTab]=useState("")
 
     const [dramaCreatorModal,setDramaCreatorModal] = useState(null)
-
+    const [videoUploadModal,setVideoUploadModal] = useState(null)
+    const [dramaLinkModal,setDramaLinkModal] = useState(null)
     //videManager
     const [videoList,setVideoList] = useState([])
     const [lastId, setLastId] = useState(0)
     const [whereBelongName,setWhereBelongName] = useState("")
+    const [whereIdx,setWhereIdx] = useState("")
     const [total,setTotal]=useState(0)
+    
     async function getNextVideoList(){
         setLoading(true)
         const videoListResp = await apiAdmin.listVideo({
             pre_id:lastId,
             page_size: 10,
-            where_belong_name: whereBelongName
+            where_belong_name: whereBelongName,
+            where_idx: whereIdx.replace("https://player.netshort.online/#/?drama=",""),
         })
         if(videoListResp.success){
             if(videoListResp.data.list?.length){
@@ -67,12 +72,50 @@ export default function (){
         {
             logined ? <>
                 <div className='admin-home'>
-                    {dramaCreatorModal || 1===1 &&<>
-                        <div className='mask' onClick={()=>{
+                    {dramaCreatorModal &&<>
+                        <div className='mask' onDoubleClick={()=>{
                             setDramaCreatorModal(null)
                         }}></div>
                         <div className='drama-creator-modal'>
-                            <DramaCreator />
+                            <DramaCreator onUpload={async (title,desc,poster,totalNo,freeNo,price,currency,belongName,belongLan,expireTime)=>{
+                                setLoading(true)
+                                const resp = await apiAdmin.createDrama({
+                                    title: title,
+                                    desc: desc,
+                                    poster: poster,
+                                    total_no: Number(totalNo),
+                                    free_no: Number(freeNo),
+                                    price: price,
+                                    currency: currency,
+                                    belong_name: belongName,
+                                    belong_lan: belongLan,
+                                    expire_time: Number(expireTime),
+                                })
+                                if(resp.success) {
+                                    setVideoUploadModal(resp.data)
+                                }else {
+                                    Toast.info("创建失败")
+                                }
+                                setLoading(false)
+                            }}/>
+                        </div>
+                    </>}
+                    {videoUploadModal && <>
+                        <div className='mask' onDoubleClick={()=>{
+                            setVideoUploadModal(null)
+                        }}></div>
+                        <div className='video-upload-modal'>
+                            <VideoUploader cateId={videoUploadModal.cate_id} dramaId={videoUploadModal.drama_id}/>
+                        </div>
+                    </>}
+                    {dramaLinkModal && <>
+                        <div className='mask' onDoubleClick={()=>{
+                            setDramaLinkModal(null)
+                        }}></div>
+                        <div className='drama-link-modal' onClick={()=>{
+                            window.open(dramaLinkModal.link,"_blank");
+                        }}>
+                            {dramaLinkModal.link}
                         </div>
                     </>}
                     <div className='admin-main'>
@@ -86,17 +129,52 @@ export default function (){
                             }}>
                                 {tabName.VideoManager}
                             </div>
-                            <div className={'am-tab-item'+" "+ (tabName.AdminManager===tab?"clicked":"")} onClick={()=>{
-                                setTab(tabName.AdminManager);
-                            }}>
-                                {tabName.AdminManager}
-                            </div>
+                            {/*<div className={'am-tab-item'+" "+ (tabName.AdminManager===tab?"clicked":"")} onClick={()=>{*/}
+                            {/*    setTab(tabName.AdminManager);*/}
+                            {/*}}>*/}
+                            {/*    {tabName.AdminManager}*/}
+                            {/*</div>*/}
                         </div>
                         <div className='am-content'>
                             {tab === tabName.VideoManager && <>
                                 <div className='am-vm-header'>
-                                    <div className='am-vm-upload-new'>
-                                        上传新剧
+                                    <div className='am-vm-header-left'>
+                                        <div className='am-vm-upload-new' onClick={async ()=>{
+                                            setDramaCreatorModal(true)
+                                        }}>
+                                            上传新剧
+                                        </div>
+                                    </div>
+                                    <div className='am-vm-header-right'>
+                                        <input onChange={(e)=>{
+                                            setWhereBelongName(e.target.value)
+                                        }} value={whereBelongName} placeholder="搜索归属剧名"/>
+                                        <input onChange={(e)=>{
+                                            setWhereIdx(e.target.value)
+                                        }} value={whereIdx} placeholder="搜索链接对应剧目"/>
+                                        <div className='am-vm-search-btn' onClick={async ()=>{
+                                            setLoading(true)
+                                            const videoListResp = await apiAdmin.listVideo({
+                                                pre_id:0,
+                                                page_size: 10,
+                                                where_belong_name: whereBelongName,
+                                                where_idx: whereIdx.replace("https://player.netshort.online/#/?drama=",""),
+                                            })
+                                            if(videoListResp.success){
+                                                if(videoListResp.data.list?.length){
+                                                    setVideoList([...videoListResp.data.list])
+                                                    setLastId(videoListResp.data.last_id)
+                                                    setTotal(videoListResp.data.total)
+                                                }else{
+                                                    Toast.info("下面没有了~")
+                                                }
+                                            }else{
+                                                Toast.info("系统错误")
+                                            }
+                                            setLoading(false)
+                                        }}>
+                                            查询
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='am-vm-table'>
@@ -130,47 +208,27 @@ export default function (){
                                                 <li className='am-vm-t-effect-time am-vm-t-effect-time-body'>{item.effect_time}</li>
                                                 <li className='am-vm-t-belong-name am-vm-t-belong-name-body'>{item.belong_name}</li>
                                                 <li className='am-vm-t-lan am-vm-t-lan-body'>{item.lan}</li>
-                                                <li className='am-vm-t-exec am-vm-t-exec-body'></li>
+                                                <li className='am-vm-t-exec am-vm-t-exec-body'>
+                                                    <div className='am-vm-t-exec-btn' onClick={()=>{
+                                                        setVideoUploadModal({
+                                                            drama_id: item.id,
+                                                            cate_id: item.cate_id,
+                                                        })
+                                                    }}>
+                                                        更新剧集
+                                                    </div>
+                                                    <div className='am-vm-t-exec-btn' onClick={()=>{
+                                                        setDramaLinkModal({
+                                                            link: `https://player.netshort.online/#/?drama=${item.idx}`
+                                                        })
+                                                    }}>
+                                                        获取链接
+                                                    </div>
+                                                </li>
                                             </ul>
                                         })}
                                     </div>
                                 </div>
-                                {/*<table>*/}
-                                {/*    <thead>*/}
-                                {/*    <tr>*/}
-                                {/*        <th>序号</th>*/}
-                                {/*        <th>标题</th>*/}
-                                {/*        <th>简介</th>*/}
-                                {/*        <th>海报</th>*/}
-                                {/*        <th>总集数</th>*/}
-                                {/*        <th>试看集数</th>*/}
-                                {/*        <th>价格</th>*/}
-                                {/*        <th>币种</th>*/}
-                                {/*        <th>有效期</th>*/}
-                                {/*        <th>归属剧名</th>*/}
-                                {/*        <th>语言</th>*/}
-                                {/*        <th>操作</th>*/}
-                                {/*    </tr>*/}
-                                {/*    </thead>*/}
-                                {/*    <tbody>*/}
-                                {/*    {videoList.map((item,index)=>{*/}
-                                {/*        return <tr>*/}
-                                {/*            <td className='am-vm-t-index'>{index}</td>*/}
-                                {/*            <td>{item.title}</td>*/}
-                                {/*            <td><div className='am-vm-t-desc'>{item.desc}</div></td>*/}
-                                {/*            <td>{item.poster}</td>*/}
-                                {/*            <td>{item.total_no}</td>*/}
-                                {/*            <td>{item.free_no}</td>*/}
-                                {/*            <td>{item.price}</td>*/}
-                                {/*            <td>{item.currency}</td>*/}
-                                {/*            <td>{item.effect_time}</td>*/}
-                                {/*            <td>{item.belong_name}</td>*/}
-                                {/*            <td>{item.lan}</td>*/}
-                                {/*            <td></td>*/}
-                                {/*        </tr>*/}
-                                {/*    })}*/}
-                                {/*    </tbody>*/}
-                                {/*</table>*/}
                                 <div className='am-vm-bottom'>
                                     <div className='am-vm-total'>总共：{total}条</div>
                                     <div className='am-vm-next' onClick={getNextVideoList}>
