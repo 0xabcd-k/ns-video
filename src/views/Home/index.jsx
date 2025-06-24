@@ -197,9 +197,9 @@ export default function (){
         }
         switch (drama.currency){
         case "TWD":
-            return [payments.CARD,payments.JKOPAY,payments.MORE]
+            return [payments.CARD,payments.GOOGLE,payments.APPLEPAY,payments.JKOPAY,payments.MORE]
         default:
-            return [payments.CARD,payments.MORE]
+            return [payments.CARD,payments.GOOGLE,payments.APPLEPAY,payments.MORE]
         }
     }
     async function buyDrama(payment){

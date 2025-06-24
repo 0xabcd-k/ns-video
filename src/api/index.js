@@ -22,5 +22,7 @@ export const apiFinance= {
 }
 
 export const apiAdmin = {
+    login:form=>req.post("/video/admin/login",form),
+    listVideo:form=>req.get("/video/admin/drama/list",form),
     VideoUploadToken:form=>req.post('/video/admin/upload/token',form),
 }
