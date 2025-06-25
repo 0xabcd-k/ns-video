@@ -138,6 +138,8 @@ export default function (){
                     {seriesUpdateModal && <>
                         <div className='series-update-modal'>
                             <SeriesUpdate seriesId={seriesUpdateModal.seriesId} dramaList={dramaList} setDramaList={setDramaList} bak={bakInfo} setBak={setBakInfo} onClose={()=>{
+                                setDramaList([])
+                                setBakInfo("")
                                 setSeriesUpdateModal(null)
                             }}/>
                         </div>
