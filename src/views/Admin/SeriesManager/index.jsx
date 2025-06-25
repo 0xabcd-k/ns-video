@@ -56,7 +56,7 @@ export default function ({onClick,onClose}){
                             <li className='sm-ul-bak sm-ul-bak-body'>{item.bak}</li>
                             <li className='sm-ul-exec sm-ul-exec-body'>
                                 <div className='sm-ul-exec-btn' onClick={() => {
-
+                                    window.open(`https://player.netshort.online/#/series?series=${item.id}`)
                                 }}>
                                     跳转剧单
                                 </div>
