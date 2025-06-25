@@ -256,6 +256,7 @@ export default function (){
                                                     {seriesUpdateModal &&
                                                         <div className='am-vm-t-exec-btn' onClick={() => {
                                                             const list = [...dramaList,{id: item.id,idx: item.idx, title: item.title}]
+                                                            setDramaList(list)
                                                         }}>
                                                             添加剧单
                                                         </div>

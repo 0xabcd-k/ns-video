@@ -45,7 +45,6 @@ export default function ({seriesId,onClose,dramaList,setDramaList,bak,setBak}){
                                     const list = dramaList
                                     list.splice(index, 1)
                                     const newDramaList = [...list]
-                                    console.log(newDramaList)
                                     setDramaList(newDramaList)
                                 }}>
                                     移除剧目
