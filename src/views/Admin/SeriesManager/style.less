@@ -1,0 +1,115 @@
+.series-manager{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .sm-close{
+    position: absolute;
+    bottom: -10px;
+    transform: translateY(100%);
+    width: 80px;
+    height: 80px;
+  }
+  .sm-title{
+    width: 96%;
+    height: 5%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+  }
+  .sm-list{
+    width: 96%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    ul{
+      display: flex;
+    }
+    li{
+      border: black solid 1px;
+    }
+    .sm-ul-index{
+      width: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .sm-ul-bak{
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .sm-ul-exec{
+      width: 30%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .sm-ul-header{
+      height: 5%;
+      width: 96%;
+      overflow-y: scroll;
+      .sm-ul-index-header{
+
+      }
+      .sm-ul-bak-header{
+
+      }
+      .sm-ul-exec-header{
+
+      }
+    }
+    .sm-ul-body{
+      height: 95%;
+      width: 96%;
+      overflow-y: scroll;
+      .ul-body{
+        height: 15%;
+      }
+      .sm-ul-index-body{
+
+      }
+      .sm-ul-bak-body{
+        font-size: 30px;
+      }
+      .sm-ul-exec-body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        .sm-ul-exec-btn{
+          border: black solid 1px;
+          border-radius: 5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 30px;
+          padding: 5px 10px 5px 10px;
+        }
+      }
+    }
+  }
+  .sm-ul-bottom{
+    width: 96%;
+    height: 5%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    .sm-ul-bottom-btn{
+      border: black solid 1px;
+      border-radius: 10px;
+      padding: 2px 5px 2px 5px;
+    }
+    .sm-ul-bottom-total{
+
+    }
+  }
+}

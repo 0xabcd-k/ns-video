@@ -6,6 +6,8 @@ import {Toast} from "react-vant";
 import ReactLoading from "react-loading";
 import DramaCreator from "@/views/Admin/DramaCreator";
 import VideoUploader from "@/views/Admin/VideoUploader";
+import SeriesManager from "@/views/Admin/SeriesManager";
+import SeriesUpdate from "@/views/Admin/SeriesUpdate";
 
 const tabName = {
     VideoManager: "剧集管理",
@@ -24,12 +26,17 @@ export default function (){
     const [dramaCreatorModal,setDramaCreatorModal] = useState(null)
     const [videoUploadModal,setVideoUploadModal] = useState(null)
     const [dramaLinkModal,setDramaLinkModal] = useState(null)
+    const [dramaSeriesModal,setDramaSeriesModal] = useState(null)
+    const [seriesUpdateModal,setSeriesUpdateModal] = useState(null)
     //videManager
     const [videoList,setVideoList] = useState([])
     const [lastId, setLastId] = useState(0)
     const [whereBelongName,setWhereBelongName] = useState("")
     const [whereIdx,setWhereIdx] = useState("")
     const [total,setTotal]=useState(0)
+
+    const [dramaList,setDramaList] = useState([])
+    const [bakInfo,setBakInfo] = useState("")
     
     async function getNextVideoList(){
         setLoading(true)
@@ -118,6 +125,23 @@ export default function (){
                             {dramaLinkModal.link}
                         </div>
                     </>}
+                    {dramaSeriesModal && <>
+                        <div className='drama-series-modal'>
+                            <SeriesManager onClick={(seriesId)=>{
+                                setSeriesUpdateModal({seriesId: seriesId})
+                                setDramaSeriesModal(null)
+                            }} onClose={()=>{
+                                setDramaSeriesModal(null)
+                            }}/>
+                        </div>
+                    </>}
+                    {seriesUpdateModal && <>
+                        <div className='series-update-modal'>
+                            <SeriesUpdate seriesId={seriesUpdateModal.seriesId} dramaList={dramaList} setDramaList={setDramaList} bak={bakInfo} setBak={setBakInfo} onClose={()=>{
+                                setSeriesUpdateModal(null)
+                            }}/>
+                        </div>
+                    </>}
                     <div className='admin-main'>
                         <div className='am-title'>
                             管理员信息：{bak}
@@ -139,14 +163,19 @@ export default function (){
                             {tab === tabName.VideoManager && <>
                                 <div className='am-vm-header'>
                                     <div className='am-vm-header-left'>
-                                        <div className='am-vm-upload-new' onClick={async ()=>{
+                                        <div className='am-vm-upload-new' onClick={async () => {
                                             setDramaCreatorModal(true)
                                         }}>
                                             上传新剧
                                         </div>
+                                        <div className='am-vm-upload-new' onClick={async () => {
+                                            setDramaSeriesModal(true)
+                                        }}>
+                                            剧单管理
+                                        </div>
                                     </div>
                                     <div className='am-vm-header-right'>
-                                        <input onChange={(e)=>{
+                                        <input onChange={(e) => {
                                             setWhereBelongName(e.target.value)
                                         }} value={whereBelongName} placeholder="搜索归属剧名"/>
                                         <input onChange={(e)=>{
@@ -224,6 +253,13 @@ export default function (){
                                                     }}>
                                                         获取链接
                                                     </div>
+                                                    {seriesUpdateModal &&
+                                                        <div className='am-vm-t-exec-btn' onClick={() => {
+                                                            const list = [...dramaList,{id: item.id,idx: item.idx, title: item.title}]
+                                                        }}>
+                                                            添加剧单
+                                                        </div>
+                                                    }
                                                 </li>
                                             </ul>
                                         })}
@@ -232,7 +268,7 @@ export default function (){
                                 <div className='am-vm-bottom'>
                                     <div className='am-vm-total'>总共：{total}条</div>
                                     <div className='am-vm-next' onClick={getNextVideoList}>
-                                        拉取更多
+                                    拉取更多
                                     </div>
                                 </div>
                             </>}

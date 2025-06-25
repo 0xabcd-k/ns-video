@@ -1,0 +1,114 @@
+.series-update{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .su-title{
+    width: 96%;
+    height: 5%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+  }
+  .su-bak{
+    width: 96%;
+    height: 20%;
+  }
+  .su-list{
+    width: 96%;
+    height: 65%;
+    display: flex;
+    margin-top: 5%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    ul{
+      display: flex;
+    }
+    li{
+      border: black solid 1px;
+    }
+    .su-ul-index{
+      width: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .su-ul-bak{
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .su-ul-exec{
+      width: 30%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .su-ul-header{
+      height: 5%;
+      width: 96%;
+      overflow-y: scroll;
+      .su-ul-index-header{
+
+      }
+      .su-ul-bak-header{
+
+      }
+      .su-ul-exec-header{
+
+      }
+    }
+    .su-ul-body{
+      height: 95%;
+      width: 96%;
+      overflow-y: scroll;
+
+      .ul-body{
+        height: 20%;
+      }
+      .su-ul-index-body{
+
+      }
+      .su-ul-bak-body{
+        font-size: 30px;
+      }
+      .su-ul-exec-body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        .su-ul-exec-btn{
+          border: black solid 1px;
+          border-radius: 5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 30px;
+          padding: 5px 10px 5px 10px;
+        }
+      }
+    }
+  }
+  .su-ul-bottom{
+    width: 96%;
+    height: 5%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    .su-ul-bottom-btn{
+      border: black solid 1px;
+      border-radius: 10px;
+      padding: 2px 5px 2px 5px;
+    }
+    .su-ul-bottom-total{
+
+    }
+  }
+}
