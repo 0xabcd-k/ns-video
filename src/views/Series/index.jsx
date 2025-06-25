@@ -26,7 +26,7 @@ export default function (){
             setEmail(resp?.data?.email)
         }
         const dramaResp = await apiVideo.dramaList({
-            series: params.series,
+            series: Number(params.series),
             lan: navigator.language,
         })
         if(dramaResp.success){
