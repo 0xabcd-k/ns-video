@@ -15,7 +15,7 @@ export default function ({type,content,update}){
                 setDbClicked(false)
             }}/>
         </>:<>
-            <div className='content-origin' onClick={()=>{
+            <div className='content-origin' onDoubleClick={()=>{
                 setDbClicked(true)
             }}>
                 {content}
