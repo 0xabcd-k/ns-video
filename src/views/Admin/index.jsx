@@ -8,6 +8,7 @@ import DramaCreator from "@/views/Admin/DramaCreator";
 import VideoUploader from "@/views/Admin/VideoUploader";
 import SeriesManager from "@/views/Admin/SeriesManager";
 import SeriesUpdate from "@/views/Admin/SeriesUpdate";
+import Content from "@/views/Admin/Content";
 
 const tabName = {
     VideoManager: "剧集管理",
@@ -222,25 +223,209 @@ export default function (){
                                             <li className='am-vm-t-effect-time am-vm-t-effect-time-header'>有效期</li>
                                             <li className='am-vm-t-belong-name am-vm-t-belong-name-header'>归属剧名</li>
                                             <li className='am-vm-t-lan am-vm-t-lan-header'>语言</li>
+                                            <li className='am-vm-t-series am-vm-t-series-header'>剧单</li>
                                             <li className='am-vm-t-exec am-vm-t-exec-header'>操作</li>
                                         </ul>
                                     </div>
                                     <div className='am-vm-table-body'>
                                         {videoList.map((item,index)=>{
                                             return <ul className='ul-body'>
-                                                <li className='am-vm-t-index am-vm-t-index-body'>{index+1}</li>
-                                                <li className='am-vm-t-title am-vm-t-title-body'>{item.title}</li>
-                                                <li className='am-vm-t-desc am-vm-t-desc-body'><div>{item.desc}</div></li>
-                                                <li className='am-vm-t-poster am-vm-t-poster-body'><img src={item.poster} alt='poster'/></li>
-                                                <li className='am-vm-t-total-no am-vm-t-total-no-body'>{item.total_no}</li>
-                                                <li className='am-vm-t-free-no am-vm-t-free-no-body'>{item.free_no}</li>
-                                                <li className='am-vm-t-price am-vm-t-price-body'>{item.price}</li>
-                                                <li className='am-vm-t-currency am-vm-t-currency-body'>{item.currency}</li>
-                                                <li className='am-vm-t-effect-time am-vm-t-effect-time-body'>{item.effect_time}</li>
-                                                <li className='am-vm-t-belong-name am-vm-t-belong-name-body'>{item.belong_name}</li>
-                                                <li className='am-vm-t-lan am-vm-t-lan-body'>{item.lan}</li>
+                                                <li className='am-vm-t-index am-vm-t-index-body'>{index + 1}</li>
+                                                <li className='am-vm-t-title am-vm-t-title-body'><Content type={"text"} content={item.title} update={async (value)=>{
+                                                    if(value) {
+                                                        setLoading(true)
+                                                        videoList[index].title = value
+                                                        setVideoList([...videoList])
+                                                        const resp = await apiAdmin.updateDrama({
+                                                            drama_id: item.id,
+                                                            title: value,
+                                                        })
+                                                        if(resp.success) {
+                                                            Toast.info("更新成功")
+                                                        }else{
+                                                            Toast.info("更新失败")
+                                                        }
+                                                        setLoading(false)
+                                                    }
+                                                }}/></li>
+                                                <li className='am-vm-t-desc am-vm-t-desc-body'>
+                                                    <div>
+                                                        <Content type={"text"} content={item.desc} update={async (value)=>{
+                                                        if(value) {
+                                                            setLoading(true)
+                                                            videoList[index].desc = value
+                                                            setVideoList([...videoList])
+                                                            const resp = await apiAdmin.updateDrama({
+                                                                drama_id: item.id,
+                                                                desc: value,
+                                                            })
+                                                            if(resp.success) {
+                                                                Toast.info("更新成功")
+                                                            }else{
+                                                                Toast.info("更新失败")
+                                                            }
+                                                            setLoading(false)
+                                                        }
+                                                    }}/></div>
+                                                </li>
+                                                <li className='am-vm-t-poster am-vm-t-poster-body'><Content type={"text"} content={<img
+                                                    src={item.poster} alt='poster'/>} update={async (value)=>{
+                                                    if(value) {
+                                                        setLoading(true)
+                                                        videoList[index].poster = value
+                                                        setVideoList([...videoList])
+                                                        const resp = await apiAdmin.updateDrama({
+                                                            drama_id: item.id,
+                                                            poster: value,
+                                                        })
+                                                        if(resp.success) {
+                                                            Toast.info("更新成功")
+                                                        }else{
+                                                            Toast.info("更新失败")
+                                                        }
+                                                        setLoading(false)
+                                                    }
+                                                }}/></li>
+                                                <li className='am-vm-t-total-no am-vm-t-total-no-body'><Content type={"text"} content={item.total_no} update={async (value)=>{
+                                                    if(value) {
+                                                        setLoading(true)
+                                                        videoList[index].total_no = Number(value)
+                                                        setVideoList([...videoList])
+                                                        const resp = await apiAdmin.updateDrama({
+                                                            drama_id: item.id,
+                                                            total_no: Number(value),
+                                                        })
+                                                        if(resp.success) {
+                                                            Toast.info("更新成功")
+                                                        }else{
+                                                            Toast.info("更新失败")
+                                                        }
+                                                        setLoading(false)
+                                                    }
+                                                }}/></li>
+                                                <li className='am-vm-t-free-no am-vm-t-free-no-body'><Content type={"text"} content={item.free_no} update={async (value)=>{
+                                                    if(value) {
+                                                        setLoading(true)
+                                                        videoList[index].free_no = Number(value)
+                                                        setVideoList([...videoList])
+                                                        const resp = await apiAdmin.updateDrama({
+                                                            drama_id: item.id,
+                                                            free_no: Number(value),
+                                                        })
+                                                        if(resp.success) {
+                                                            Toast.info("更新成功")
+                                                        }else{
+                                                            Toast.info("更新失败")
+                                                        }
+                                                        setLoading(false)
+                                                    }
+                                                }}/></li>
+                                                <li className='am-vm-t-price am-vm-t-price-body'>
+                                                    <Content type={"text"} content={item.price} update={async (value)=>{
+                                                        if(value) {
+                                                            setLoading(true)
+                                                            videoList[index].price = value
+                                                            setVideoList([...videoList])
+                                                            const resp = await apiAdmin.updateDrama({
+                                                                drama_id: item.id,
+                                                                price: value,
+                                                            })
+                                                            if(resp.success) {
+                                                                Toast.info("更新成功")
+                                                            }else{
+                                                                Toast.info("更新失败")
+                                                            }
+                                                            setLoading(false)
+                                                        }
+                                                    }}/></li>
+                                                <li className='am-vm-t-currency am-vm-t-currency-body'><Content type={"text"} content={item.currency} update={async (value)=>{
+                                                    if(value) {
+                                                        setLoading(true)
+                                                        videoList[index].currency = value
+                                                        setVideoList([...videoList])
+                                                        const resp = await apiAdmin.updateDrama({
+                                                            drama_id: item.id,
+                                                            currency: value,
+                                                        })
+                                                        if(resp.success) {
+                                                            Toast.info("更新成功")
+                                                        }else{
+                                                            Toast.info("更新失败")
+                                                        }
+                                                        setLoading(false)
+                                                    }
+                                                }}/></li>
+                                                <li className='am-vm-t-effect-time am-vm-t-effect-time-body'>
+                                                    <Content type={"text"} content={item.effect_time} update={async (value)=>{
+                                                        if(value) {
+                                                            setLoading(true)
+                                                            videoList[index].effect_time = Number(value)
+                                                            setVideoList([...videoList])
+                                                            const resp = await apiAdmin.updateDrama({
+                                                                drama_id: item.id,
+                                                                effect_time: Number(value),
+                                                            })
+                                                            if(resp.success) {
+                                                                Toast.info("更新成功")
+                                                            }else{
+                                                                Toast.info("更新失败")
+                                                            }
+                                                            setLoading(false)
+                                                        }
+                                                    }}/></li>
+                                                <li className='am-vm-t-belong-name am-vm-t-belong-name-body'><Content type={"text"} content={item.belong_name} update={async (value)=>{
+                                                    if(value) {
+                                                        setLoading(true)
+                                                        videoList[index].belong_name = value
+                                                        setVideoList([...videoList])
+                                                        const resp = await apiAdmin.updateDrama({
+                                                            drama_id: item.id,
+                                                            belong_name: value,
+                                                        })
+                                                        if(resp.success) {
+                                                            Toast.info("更新成功")
+                                                        }else{
+                                                            Toast.info("更新失败")
+                                                        }
+                                                        setLoading(false)
+                                                    }
+                                                }}/></li>
+                                                <li className='am-vm-t-lan am-vm-t-lan-body'><Content type={"text"} content={item.lan} update={async (value)=>{
+                                                    if(value) {
+                                                        setLoading(true)
+                                                        videoList[index].lan = value
+                                                        setVideoList([...videoList])
+                                                        const resp = await apiAdmin.updateDrama({
+                                                            drama_id: item.id,
+                                                            belong_lan: value,
+                                                        })
+                                                        if(resp.success) {
+                                                            Toast.info("更新成功")
+                                                        }else{
+                                                            Toast.info("更新失败")
+                                                        }
+                                                        setLoading(false)
+                                                    }
+                                                }}/></li>
+                                                <li className='am-vm-t-series am-vm-t-series-body'><Content type={"text"} content={item.series_id} update={async (value)=>{
+                                                    if(value) {
+                                                        setLoading(true)
+                                                        videoList[index].series_id = Number(value)
+                                                        setVideoList([...videoList])
+                                                        const resp = await apiAdmin.updateDrama({
+                                                            drama_id: item.id,
+                                                            series_id: Number(value),
+                                                        })
+                                                        if(resp.success) {
+                                                            Toast.info("更新成功")
+                                                        }else{
+                                                            Toast.info("更新失败")
+                                                        }
+                                                        setLoading(false)
+                                                    }
+                                                }}/></li>
                                                 <li className='am-vm-t-exec am-vm-t-exec-body'>
-                                                    <div className='am-vm-t-exec-btn' onClick={()=>{
+                                                    <div className='am-vm-t-exec-btn' onClick={() => {
                                                         setVideoUploadModal({
                                                             drama_id: item.id,
                                                             cate_id: item.cate_id,
@@ -248,7 +433,7 @@ export default function (){
                                                     }}>
                                                         更新剧集
                                                     </div>
-                                                    <div className='am-vm-t-exec-btn' onClick={()=>{
+                                                    <div className='am-vm-t-exec-btn' onClick={() => {
                                                         setDramaLinkModal({
                                                             link: `https://player.netshort.online/#/?drama=${item.idx}`
                                                         })
@@ -257,7 +442,11 @@ export default function (){
                                                     </div>
                                                     {seriesUpdateModal &&
                                                         <div className='am-vm-t-exec-btn' onClick={() => {
-                                                            const list = [...dramaList,{id: item.id,idx: item.idx, title: item.title}]
+                                                            const list = [...dramaList, {
+                                                                id: item.id,
+                                                                idx: item.idx,
+                                                                title: item.title
+                                                            }]
                                                             setDramaList(list)
                                                         }}>
                                                             添加剧单
