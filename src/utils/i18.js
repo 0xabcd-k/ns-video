@@ -150,7 +150,15 @@ export const Text = {
     Recommend:{
         "en-US": "Top Series for You",
         "zh-TW": "劇集推薦",
-    }
+    },
+    CompleteSeries: {
+        "en-US": "Complete Series",
+        "zh-TW": "全集",
+    },
+    More:{
+        "zh-TW": "更多推荐的好剧",
+        "en-US": "More Top Recommended Shows",
+    },
 }
 
 export function getText(item){

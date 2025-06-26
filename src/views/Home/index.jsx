@@ -10,6 +10,7 @@ import {Toast} from "react-vant";
 import ss from "good-storage";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {getText,Text} from "@/utils/i18";
+import Recommend from "@/views/Home/Recommend";
 
 export default function (){
     const params = useHashQueryParams()
@@ -31,6 +32,9 @@ export default function (){
 
     const [login,setLogin] = useState(null)
     const [purchase,setPurchaseState] = useState(null);
+
+    const [recommendModal,setRecommendModal] = useState(null);
+
     function setPurchase(state){
         if(state){
             if(email === ""){
@@ -250,6 +254,11 @@ export default function (){
                     <ReactLoading type="bars" color="#fff"/>
                 </div>
             </div>
+        </>}
+        {recommendModal && <>
+            <Recommend onClose={()=>{
+                setRecommendModal(null)
+            }} isMobile={isMobile} series={recommendModal.series}  setLoading={setLoading}/>
         </>}
         {drama&&(isMobile?<>
             <div className='m-home'>
@@ -585,7 +594,9 @@ export default function (){
                         <div id='J_prismPlayer' className='ph-c-video' style={player?{}:{display: 'none'}} />
                     </div>
                     <div className='ph-c-info'>
-                        <div className='ph-c-i-name'>{drama.name}</div>
+                        <div className='ph-c-i-name'>{drama.name}<span className="ph-c-i-n-more" onClick={()=>{
+                            setRecommendModal({series: drama.series_id})
+                        }}>{getText(Text.More)}</span></div>
                         <div className='ph-c-i-desc'>{drama.desc}</div>
                         <div className='ph-c-i-btn-box'>
                             {drama.pay_num <= drama.video_num && <div className={'ph-c-i-btn-pay'+(drama.purchase?" paid": "")} onClick={()=>{
