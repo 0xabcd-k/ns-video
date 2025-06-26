@@ -32,6 +32,7 @@ export default function ({isMobile,series,setLoading,onClose}){
                     {dramas&&dramas.map((item,index)=>{
                         return <div className='rmm-c-item' onClick={()=>{
                             navigate(`/?drama=${item.idx}`)
+                            window.location.reload()
                         }}>
                             <div className='rmm-c-i-tip'>
                                 {getText(Text.CompleteSeries)}
@@ -51,6 +52,7 @@ export default function ({isMobile,series,setLoading,onClose}){
                     {dramas&&dramas.map((item,index)=>{
                         return <div className='rmpc-c-item' onClick={()=>{
                             navigate(`/?drama=${item.idx}`)
+                            window.location.reload()
                         }}>
                             <div className='rmpc-c-i-tip'>
                                 {getText(Text.CompleteSeries)}
