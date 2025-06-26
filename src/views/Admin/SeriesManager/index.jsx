@@ -52,7 +52,7 @@ export default function ({onClick,onClose}){
                 <div className='sm-ul-body'>
                     {seriesList.map((item, index) => {
                         return <ul className='ul-body'>
-                            <li className='sm-ul-index sm-ul-index-body'>{index + 1}</li>
+                            <li className='sm-ul-index sm-ul-index-body'>{item.id}</li>
                             <li className='sm-ul-bak sm-ul-bak-body'>{item.bak}</li>
                             <li className='sm-ul-exec sm-ul-exec-body'>
                                 <div className='sm-ul-exec-btn' onClick={() => {
