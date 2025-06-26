@@ -152,7 +152,7 @@ export const Text = {
         "zh-TW": "劇集推薦",
     },
     CompleteSeries: {
-        "en-US": "Complete Series",
+        "en-US": "Full Series",
         "zh-TW": "全集",
     },
     More:{
