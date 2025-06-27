@@ -34,6 +34,8 @@ export default function (){
     const [purchase,setPurchaseState] = useState(null);
 
     const [recommendModal,setRecommendModal] = useState(null);
+    const [detailModel,setDetailModal] = useState(null)
+    const [recommendsList,setRecommendsList] = useState([])
 
     function setPurchase(state){
         if(state){
@@ -93,6 +95,13 @@ export default function (){
                 setDrama(dramaResp.data)
                 setPlayingVideoNo(dramaResp.data.watch_no)
             }
+            const recommendsResp = await apiVideo.dramaList({
+                series: Number(dramaResp.data.series_id),
+                lan: navigator.language,
+            })
+            if(recommendsResp.success){
+                setRecommendsList(recommendsResp.data.list)
+            }
             setTimeout(async ()=>{
                 await play(dramaResp.data.watch_no)
             },1000)
@@ -147,6 +156,13 @@ export default function (){
                 }, function (player) {
                     console.log('The player is created.')
                 });
+                const nextNo = no+1
+                playerInstance.on("ended",()=>{
+                    setTimeout(async ()=>{
+                        playerInstance.dispose();
+                        await play(nextNo)
+                    },1000)
+                })
                 setPlayer(playerInstance)
             }
         }else{
@@ -263,7 +279,78 @@ export default function (){
                 setRecommendModal(null)
             }} isMobile={isMobile} series={recommendModal.series}  setLoading={setLoading}/>
         </>}
-        {drama&&(isMobile?<>
+        {detailModel && <>
+            <div className='mask' onClick={()=>{
+                setDetailModal(null)
+            }}></div>
+            <svg t="1751007437661" className="m-h-d-close" viewBox="0 0 1024 1024" version="1.1"
+                 xmlns="http://www.w3.org/2000/svg" p-id="3474" width="200" height="200">
+                <path
+                    d="M511.021898 12.759124c-275.912409 0-498.175182 222.262774-498.175182 498.175182s222.262774 498.175182 498.175182 498.175182 498.175182-222.262774 498.175182-498.175182S786.934307 12.759124 511.021898 12.759124zM511.021898 914.583942c-222.262774 0-403.649635-181.386861-403.649635-403.649635s181.386861-403.649635 403.649635-403.649635 403.649635 181.386861 403.649635 403.649635S733.284672 914.583942 511.021898 914.583942zM697.518248 367.868613c0-10.218978-5.109489-22.992701-12.773723-30.656934-7.664234-7.664234-20.437956-12.773723-30.656934-12.773723-12.773723 0-25.547445 2.554745-35.766423 12.773723l-107.29927 107.29927-107.29927-107.29927c-10.218978-10.218978-22.992701-12.773723-35.766423-12.773723-10.218978 0-22.992701 5.109489-30.656934 12.773723-7.664234 7.664234-12.773723 20.437956-12.773723 30.656934 0 12.773723 2.554745 25.547445 12.773723 35.766423l107.29927 107.29927-107.29927 107.29927c-10.218978 10.218978-12.773723 22.992701-12.773723 35.766423 0 10.218978 5.109489 22.992701 12.773723 30.656934 7.664234 7.664234 20.437956 12.773723 30.656934 12.773723 12.773723 0 25.547445-2.554745 35.766423-12.773723l107.29927-107.29927 107.29927 107.29927c10.218978 10.218978 22.992701 12.773723 35.766423 12.773723 10.218978 0 22.992701-5.109489 30.656934-12.773723 7.664234-7.664234 12.773723-20.437956 12.773723-30.656934 0-12.773723-2.554745-25.547445-12.773723-35.766423l-107.29927-107.29927 107.29927-107.29927C694.963504 393.416058 697.518248 380.642336 697.518248 367.868613z"
+                    p-id="3475" fill="#ffffff"></path>
+            </svg>
+            {drama && <div className='m-h-detail'>
+                <div className='m-h-d-info'>
+                    <img src={drama.poster} alt='poster'/>
+                    <div className='m-h-d-info-content'>
+                        <div className='m-h-d-info-c-title'>
+                            {drama.name}
+                        </div>
+                        <div className='m-h-d-info-c-desc'>
+                            {drama.desc}
+                        </div>
+                    </div>
+                </div>
+                <div className='m-h-d-video-box'>
+                    {Array.from({length: drama.pay_num}).map((item, index) => {
+                        if (index + 1 === playingVideoNo) {
+                            return <div className='m-h-d-video-box-item playing' onClick={async () => {
+                                await play(index+1)
+                            }}>
+                                <span>{index + 1}</span>
+                            </div>
+                        } else {
+                            return <div className='m-h-d-video-box-item free' onClick={async () => {
+                                await play(index+1)
+                            }}>
+                                <span>{index + 1}</span>
+                            </div>
+                        }
+                    })}
+                    {Array.from({length: drama.video_num - drama.pay_num}).map((item, index) => {
+                        if (index + drama.pay_num + 1 === playingVideoNo) {
+                            return <div className='m-h-d-video-box-item playing' onClick={async () => {
+                                await play(index + drama.pay_num + 1)
+                            }}>
+                                <span>{index + drama.pay_num + 1}</span>
+                            </div>
+                        } else {
+                            return <div className='m-h-d-video-box-item pay' onClick={async () => {
+                                await play(index + drama.pay_num + 1)
+                            }}>
+                                <span>{index + drama.pay_num + 1}</span>
+                            </div>
+                        }
+                    })}
+                </div>
+                <div className='m-h-d-title'>{getText(Text.Recommend)}</div>
+                <div className='m-h-d-item-box'>
+                    {recommendsList && recommendsList.map((item, index) => {
+                        return <div className='m-h-d-item' onClick={() => {
+                            navigate(`/?drama=${item.idx}`)
+                            window.location.reload()
+                        }}>
+                            <div className='m-h-d-i-tip'>
+                                {getText(Text.CompleteSeries)}
+                            </div>
+                            <img className='m-h-d-i-poster' src={item.poster} alt='poster'/>
+                            <div className='m-h-d-i-name'>{item.name}</div>
+                        </div>
+                    })}
+                </div>
+            </div>}
+        </>}
+        {drama && (isMobile ? <>
             <div className='m-home'>
                 <div className='mh-agent' onClick={goAgent}>
                     <svg t="1749717877636" className="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -327,7 +414,7 @@ export default function (){
                     </svg>
                 </div>
                 <div className='m-h-h-recommend' onClick={() => {
-                    setRecommendModal({series: drama.series_id})
+                  setDetailModal(true)
                 }}>
                     <svg t="1750992948188" className="icon" viewBox="0 0 1024 1024" version="1.1"
                          xmlns="http://www.w3.org/2000/svg" p-id="5742" width="200" height="200">
@@ -359,6 +446,23 @@ export default function (){
                 </div>
                 <div className='m-h-show'>
                     <div id='J_prismPlayer' />
+                </div>
+                <div className='m-h-bottom'>
+                    <div className='m-h-b-title' onClick={()=>{
+                        setDetailModal(true)
+                    }}><span>{drama.name}</span></div>
+                    <div className='m-h-b-btn-box'>
+                        <div className='m-h-b-btn-box-left'>
+                            <div className='m-h-b-btn-box-no'>
+                                {getText(Text.VideoNo)} {playingVideoNo}
+                            </div>
+                        </div>
+                        <div className='m-h-b-btn-box-right'>
+                            <div className='m-h-b-btn-box-right-next' onClick={async ()=>{
+                                await play(playingVideoNo+1)
+                            }}>{getText(Text.Next)}</div>
+                        </div>
+                    </div>
                 </div>
                 {/*<div className='m-h-content'>*/}
                 {/*    <div className='m-h-title'>{drama.name}</div>*/}
