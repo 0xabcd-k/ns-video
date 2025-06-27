@@ -93,6 +93,9 @@ export default function (){
                 setDrama(dramaResp.data)
                 setPlayingVideoNo(dramaResp.data.watch_no)
             }
+            setTimeout(async ()=>{
+                await play(dramaResp.data.watch_no)
+            },1000)
         }
         if(params.purchase){
             setPurchase(true)
@@ -326,18 +329,11 @@ export default function (){
                 <div className='m-h-h-recommend' onClick={() => {
                     setRecommendModal({series: drama.series_id})
                 }}>
-                    <svg t="1750931354612" className="icon" viewBox="0 0 1024 1024" version="1.1"
-                         xmlns="http://www.w3.org/2000/svg" p-id="4241" width="200" height="200">
-                        <path d="M0 0h1024v1024H0V0z" fill="#202425" opacity=".01" p-id="4242"></path>
+                    <svg t="1750992948188" className="icon" viewBox="0 0 1024 1024" version="1.1"
+                         xmlns="http://www.w3.org/2000/svg" p-id="5742" width="200" height="200">
                         <path
-                            d="M136.533333 68.266667a34.133333 34.133333 0 0 1 34.133334-34.133334h682.666666a34.133333 34.133333 0 0 1 34.133334 34.133334v170.666666a34.133333 34.133333 0 0 1-34.133334 34.133334H170.666667a34.133333 34.133333 0 0 1-34.133334-34.133334V68.266667z"
-                            fill="#FFAA44" p-id="4243"></path>
-                        <path
-                            d="M102.4 170.666667a34.133333 34.133333 0 0 1 34.133333-34.133334h750.933334a34.133333 34.133333 0 0 1 34.133333 34.133334v593.3056a34.133333 34.133333 0 0 1-18.875733 30.5152l-360.209067 180.1216a68.266667 68.266667 0 0 1-61.0304 0L121.275733 794.487467A34.133333 34.133333 0 0 1 102.4 763.972267V170.666667z"
-                            fill="#11AA66" p-id="4244"></path>
-                        <path
-                            d="M496.605867 305.3568a17.066667 17.066667 0 0 1 30.788266 0L576.853333 408.917333a17.066667 17.066667 0 0 0 13.175467 9.557334l113.800533 15.018666a17.066667 17.066667 0 0 1 9.5232 29.2864l-83.2512 79.018667a17.066667 17.066667 0 0 0-5.051733 15.496533l20.923733 112.8448a17.066667 17.066667 0 0 1-24.917333 18.090667l-100.864-54.749867a17.066667 17.066667 0 0 0-16.315733 0l-100.864 54.749867a17.066667 17.066667 0 0 1-24.917334-18.090667l20.8896-112.8448a17.066667 17.066667 0 0 0-5.0176-15.496533l-83.217066-79.018667a17.066667 17.066667 0 0 1 9.489066-29.2864l113.800534-15.018666a17.066667 17.066667 0 0 0 13.175466-9.557334l49.425067-103.560533z"
-                            fill="#FFFFFF" p-id="4245"></path>
+                            d="M843 126v738L583.717 737.328c-22.067-11.015-49.65-16.522-71.717-16.522s-49.65 5.507-71.717 16.522L181 864V126h662zM622.833 396H402.167c-33.1 0-55.167-22-55.167-55s22.067-55 55.167-55h220.666c33.1 0 55.167 22 55.167 55s-22.067 55-55.167 55z m0 215H402.167c-33.1 0-55.167-22-55.167-55s22.067-55 55.167-55h220.666c33.1 0 55.167 22 55.167 55s-22.067 55-55.167 55zM842.75 16h-661.5C120.612 16 71 65.6 71 126.222V952.89C71 985.956 98.562 1008 126.125 1008c5.512 0 16.537 0 22.05-5.511l336.262-165.333c5.513-5.512 16.538-5.512 22.05-5.512 5.513 0 16.538 0 22.05 5.512L864.8 1002.489c16.538 5.511 27.563 5.511 33.075 5.511 27.562 0 55.125-22.044 55.125-55.111V126.222C953 65.6 903.388 16 842.75 16z"
+                            fill="#d4237a" p-id="5743"></path>
                     </svg>
                 </div>
                 <div className='m-h-header'>
@@ -361,64 +357,67 @@ export default function (){
                         </div>
                     </div>
                 </div>
-                <div className='m-h-content'>
-                    <div className='m-h-title'>{drama.name}</div>
-                    <img className='m-h-poster' src={drama.poster} alt='poster'/>
-                    <div className='m-h-desc'>{drama.desc}</div>
+                <div className='m-h-show'>
+                    <div id='J_prismPlayer' />
                 </div>
-                <div className='m-h-video'>
-                    {Array.from({length: drama.pay_num}).map((item, index) => {
-                        if(index+1 === playingVideoNo){
-                            return <div className='m-h-video-item playing' onClick={()=>{
-                                navigate(`/show?drama=${params.drama}&no=${index+1}`)
-                            }}>
-                                <span>{index + 1}</span>
-                            </div>
-                        }else{
-                            return <div className='m-h-video-item free' onClick={()=>{
-                                navigate(`/show?drama=${params.drama}&no=${index+1}`)
-                            }}>
-                                <span>{index + 1}</span>
-                            </div>
-                        }
-                    })}
-                    {Array.from({length: drama.video_num - drama.pay_num}).map((item, index) => {
-                        if(index+drama.pay_num+1===playingVideoNo){
-                            return <div className='m-h-video-item playing' onClick={()=>{
-                                navigate(`/show?drama=${params.drama}&no=${index+drama.pay_num+1}`)
-                            }}>
-                                <span>{index + drama.pay_num + 1}</span>
-                            </div>
-                        }else{
-                            return <div className='m-h-video-item pay' onClick={()=>{
-                                navigate(`/show?drama=${params.drama}&no=${index+drama.pay_num+1}`)
-                            }}>
-                                <span>{index + drama.pay_num + 1}</span>
-                            </div>
-                        }
-                    })}
-                </div>
-                <div className='m-h-btn-box'>
-                    {drama.pay_num <= drama.video_num && <div className={'m-h-btn-pay'+(drama.purchase?" paid":"")} onClick={()=>{
-                        setPurchase(true)
-                    }}>
-                        <svg t="1748600990112" viewBox="0 0 1024 1024" version="1.1"
-                             xmlns="http://www.w3.org/2000/svg" p-id="2342" width="88" height="88">
-                            <path
-                                d="M237.358431 284.464797l131.472334 375.310851-27.569916-19.554358L890.249275 640.22129c16.136515 0 29.212322 13.0799 29.212322 29.213345 0 16.129352-13.075807 29.205159-29.212322 29.205159L341.259826 698.639794c-12.409634 0-23.465434-7.836479-27.566846-19.549242L109.05016 94.8963l27.567869 19.553335L77.586564 114.449635c-16.129352 0-29.207206-13.074783-29.207206-29.212322 0-16.129352 13.077853-29.207206 29.207206-29.207206l59.032488 0c12.409634 0 23.466458 7.842619 27.566846 19.555381l52.728922 150.525272 710.724017 0c18.48705 0 32.326243 16.962324 28.612665 35.077913l-46.633087 227.389894c-2.547009 12.408611-12.796444 21.75549-25.382087 23.160489l-431.515944 48.065715c-16.036231 1.786693-30.482245-9.761318-32.266891-25.797549-1.783623-16.030092 9.764388-30.475082 25.798573-32.257681l410.798087-47.145763c0 0 20.75879-96.119151 35.926234-170.074513C893.311007 282.900162 362.038058 284.149619 237.358431 284.464797L237.358431 284.464797zM407.438061 818.372759c23.362081 0 42.36897 19.004843 42.36897 42.3659 0 23.360034-19.006889 42.364877-42.36897 42.364877-23.360034 0-42.363853-19.004843-42.363853-42.364877C365.073184 837.377602 384.078027 818.372759 407.438061 818.372759M407.438061 762.594385c-54.202483 0-98.142228 43.941791-98.142228 98.144274 0 54.207599 43.939745 98.143251 98.142228 98.143251s98.147344-43.936675 98.147344-98.143251C505.584382 806.536176 461.640544 762.594385 407.438061 762.594385L407.438061 762.594385zM816.372707 818.372759c23.357987 0 42.360783 19.004843 42.360783 42.3659 0 23.360034-19.002796 42.364877-42.360783 42.364877-23.360034 0-42.364877-19.004843-42.364877-42.364877C774.007831 837.377602 793.012673 818.372759 816.372707 818.372759M816.372707 762.594385c-54.206576 0-98.143251 43.941791-98.143251 98.144274 0 54.207599 43.937698 98.143251 98.143251 98.143251 54.200436 0 98.139158-43.936675 98.139158-98.143251C914.512888 806.536176 870.573143 762.594385 816.372707 762.594385L816.372707 762.594385zM816.372707 958.88191"
-                                fill="#ffffff" p-id="2343"></path>
-                        </svg>
-                        <span>{drama.purchase?getText(Text.Purchased):getText(Text.Purchase)}</span>
-                    </div>}
-                    <div className='m-h-btn-play' onClick={()=>{
-                        navigate(`/show?drama=${params.drama}&no=${drama.watch_no}`)
-                    }}>
-                        <img
-                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAWRJREFUWEft2L0uBUEYxvH/kygULkBBKNyAe3ABCoULUCrodSLhUkSBxCkkVBqlC1DQ6RUUkpdJbLIRZ3dm5+PMSXaqLWZ3fvs+uzO7IypvqtzHCIxNaP4raGYrwDGwBSwAd8CRpNfY6vic31lBM1sDHoHlPxf7BE6BM0nuOFvrA14C2x2jvwAHkq5zCfuA78CSx+BXv9DksfcBzQPXdMkSe0pgA00aew5gA00Se06gg0bHnhsYHXsp4ODYSwODY58FsB37nqT7rqlslsDGtSvpfBqyBuAbsCrp6z9kDUDn2pT0NAID1u121+ojrvYleQb2Jd3WNs0Erc+l3+Ib4FCSq55XKwV0IPdrMPFStTrlBgbFWXoeDI6zFHBwnLmB0XEOAX78/KAvejzYSeIcArwAdjqASeMcAtwAHqrd+nB3ZGbrrc0j983mNo9OQiZbj0dkapf5336LufsU544VjK1i9RX8Bm7FuSnbLuzHAAAAAElFTkSuQmCC"
-                            alt='play-icon'/>
-                        <span>{getText(Text.PlayNow)}</span>
-                    </div>
-                </div>
+                {/*<div className='m-h-content'>*/}
+                {/*    <div className='m-h-title'>{drama.name}</div>*/}
+                {/*    <img className='m-h-poster' src={drama.poster} alt='poster'/>*/}
+                {/*    <div className='m-h-desc'>{drama.desc}</div>*/}
+                {/*</div>*/}
+                {/*<div className='m-h-video'>*/}
+                {/*    {Array.from({length: drama.pay_num}).map((item, index) => {*/}
+                {/*        if(index+1 === playingVideoNo){*/}
+                {/*            return <div className='m-h-video-item playing' onClick={()=>{*/}
+                {/*                navigate(`/show?drama=${params.drama}&no=${index+1}`)*/}
+                {/*            }}>*/}
+                {/*                <span>{index + 1}</span>*/}
+                {/*            </div>*/}
+                {/*        }else{*/}
+                {/*            return <div className='m-h-video-item free' onClick={()=>{*/}
+                {/*                navigate(`/show?drama=${params.drama}&no=${index+1}`)*/}
+                {/*            }}>*/}
+                {/*                <span>{index + 1}</span>*/}
+                {/*            </div>*/}
+                {/*        }*/}
+                {/*    })}*/}
+                {/*    {Array.from({length: drama.video_num - drama.pay_num}).map((item, index) => {*/}
+                {/*        if(index+drama.pay_num+1===playingVideoNo){*/}
+                {/*            return <div className='m-h-video-item playing' onClick={()=>{*/}
+                {/*                navigate(`/show?drama=${params.drama}&no=${index+drama.pay_num+1}`)*/}
+                {/*            }}>*/}
+                {/*                <span>{index + drama.pay_num + 1}</span>*/}
+                {/*            </div>*/}
+                {/*        }else{*/}
+                {/*            return <div className='m-h-video-item pay' onClick={()=>{*/}
+                {/*                navigate(`/show?drama=${params.drama}&no=${index+drama.pay_num+1}`)*/}
+                {/*            }}>*/}
+                {/*                <span>{index + drama.pay_num + 1}</span>*/}
+                {/*            </div>*/}
+                {/*        }*/}
+                {/*    })}*/}
+                {/*</div>*/}
+                {/*<div className='m-h-btn-box'>*/}
+                {/*    {drama.pay_num <= drama.video_num && <div className={'m-h-btn-pay'+(drama.purchase?" paid":"")} onClick={()=>{*/}
+                {/*        setPurchase(true)*/}
+                {/*    }}>*/}
+                {/*        <svg t="1748600990112" viewBox="0 0 1024 1024" version="1.1"*/}
+                {/*             xmlns="http://www.w3.org/2000/svg" p-id="2342" width="88" height="88">*/}
+                {/*            <path*/}
+                {/*                d="M237.358431 284.464797l131.472334 375.310851-27.569916-19.554358L890.249275 640.22129c16.136515 0 29.212322 13.0799 29.212322 29.213345 0 16.129352-13.075807 29.205159-29.212322 29.205159L341.259826 698.639794c-12.409634 0-23.465434-7.836479-27.566846-19.549242L109.05016 94.8963l27.567869 19.553335L77.586564 114.449635c-16.129352 0-29.207206-13.074783-29.207206-29.212322 0-16.129352 13.077853-29.207206 29.207206-29.207206l59.032488 0c12.409634 0 23.466458 7.842619 27.566846 19.555381l52.728922 150.525272 710.724017 0c18.48705 0 32.326243 16.962324 28.612665 35.077913l-46.633087 227.389894c-2.547009 12.408611-12.796444 21.75549-25.382087 23.160489l-431.515944 48.065715c-16.036231 1.786693-30.482245-9.761318-32.266891-25.797549-1.783623-16.030092 9.764388-30.475082 25.798573-32.257681l410.798087-47.145763c0 0 20.75879-96.119151 35.926234-170.074513C893.311007 282.900162 362.038058 284.149619 237.358431 284.464797L237.358431 284.464797zM407.438061 818.372759c23.362081 0 42.36897 19.004843 42.36897 42.3659 0 23.360034-19.006889 42.364877-42.36897 42.364877-23.360034 0-42.363853-19.004843-42.363853-42.364877C365.073184 837.377602 384.078027 818.372759 407.438061 818.372759M407.438061 762.594385c-54.202483 0-98.142228 43.941791-98.142228 98.144274 0 54.207599 43.939745 98.143251 98.142228 98.143251s98.147344-43.936675 98.147344-98.143251C505.584382 806.536176 461.640544 762.594385 407.438061 762.594385L407.438061 762.594385zM816.372707 818.372759c23.357987 0 42.360783 19.004843 42.360783 42.3659 0 23.360034-19.002796 42.364877-42.360783 42.364877-23.360034 0-42.364877-19.004843-42.364877-42.364877C774.007831 837.377602 793.012673 818.372759 816.372707 818.372759M816.372707 762.594385c-54.206576 0-98.143251 43.941791-98.143251 98.144274 0 54.207599 43.937698 98.143251 98.143251 98.143251 54.200436 0 98.139158-43.936675 98.139158-98.143251C914.512888 806.536176 870.573143 762.594385 816.372707 762.594385L816.372707 762.594385zM816.372707 958.88191"*/}
+                {/*                fill="#ffffff" p-id="2343"></path>*/}
+                {/*        </svg>*/}
+                {/*        <span>{drama.purchase?getText(Text.Purchased):getText(Text.Purchase)}</span>*/}
+                {/*    </div>}*/}
+                {/*    <div className='m-h-btn-play' onClick={()=>{*/}
+                {/*        navigate(`/show?drama=${params.drama}&no=${drama.watch_no}`)*/}
+                {/*    }}>*/}
+                {/*        <img*/}
+                {/*            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAWRJREFUWEft2L0uBUEYxvH/kygULkBBKNyAe3ABCoULUCrodSLhUkSBxCkkVBqlC1DQ6RUUkpdJbLIRZ3dm5+PMSXaqLWZ3fvs+uzO7IypvqtzHCIxNaP4raGYrwDGwBSwAd8CRpNfY6vic31lBM1sDHoHlPxf7BE6BM0nuOFvrA14C2x2jvwAHkq5zCfuA78CSx+BXv9DksfcBzQPXdMkSe0pgA00aew5gA00Se06gg0bHnhsYHXsp4ODYSwODY58FsB37nqT7rqlslsDGtSvpfBqyBuAbsCrp6z9kDUDn2pT0NAID1u121+ojrvYleQb2Jd3WNs0Erc+l3+Ib4FCSq55XKwV0IPdrMPFStTrlBgbFWXoeDI6zFHBwnLmB0XEOAX78/KAvejzYSeIcArwAdjqASeMcAtwAHqrd+nB3ZGbrrc0j983mNo9OQiZbj0dkapf5336LufsU544VjK1i9RX8Bm7FuSnbLuzHAAAAAElFTkSuQmCC"*/}
+                {/*            alt='play-icon'/>*/}
+                {/*        <span>{getText(Text.PlayNow)}</span>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
         </> : <>
             <div className='p-home'>
