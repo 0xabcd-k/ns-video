@@ -257,7 +257,6 @@ export default function (){
             if(rechargeResp.success){
                 window.location.href = rechargeResp.data.url
             }
-            setLoading(false)
         }
     }
     function parseTime(timestamp){
@@ -310,12 +309,14 @@ export default function (){
                     {Array.from({length: drama.pay_num}).map((item, index) => {
                         if (index + 1 === playingVideoNo) {
                             return <div className='m-h-d-video-box-item playing' onClick={async () => {
+                                setDetailModal(null)
                                 await play(index+1)
                             }}>
                                 <span>{index + 1}</span>
                             </div>
                         } else {
                             return <div className='m-h-d-video-box-item free' onClick={async () => {
+                                setDetailModal(null)
                                 await play(index+1)
                             }}>
                                 <span>{index + 1}</span>
@@ -325,12 +326,14 @@ export default function (){
                     {Array.from({length: drama.video_num - drama.pay_num}).map((item, index) => {
                         if (index + drama.pay_num + 1 === playingVideoNo) {
                             return <div className='m-h-d-video-box-item playing' onClick={async () => {
+                                setDetailModal(null)
                                 await play(index + drama.pay_num + 1)
                             }}>
                                 <span>{index + drama.pay_num + 1}</span>
                             </div>
                         } else {
                             return <div className='m-h-d-video-box-item pay' onClick={async () => {
+                                setDetailModal(null)
                                 await play(index + drama.pay_num + 1)
                             }}>
                                 <span>{index + drama.pay_num + 1}</span>
