@@ -15,6 +15,8 @@ export const apiAuth = {
     userInfo:form=>req.get('/user/info',form),
     emailCode:form=>req.post('/email/code/login',form),
     loginEmail:form=>req.post('/login/email',form),
+    isAccountExist:form=>req.get('/account/exist',form),
+    loginPassword:form=>req.post('/login/password',form),
 }
 
 export const apiFinance= {

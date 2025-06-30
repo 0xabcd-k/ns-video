@@ -103,7 +103,11 @@ export default function (){
                 setRecommendsList(recommendsResp.data.list)
             }
             setTimeout(async ()=>{
-                await play(dramaResp.data.watch_no)
+                if(dramaResp.data.watch_no){
+                    await play(dramaResp.data.watch_no)
+                }else{
+                    await play(1)
+                }
             },1000)
         }
         if(params.purchase){
@@ -167,6 +171,7 @@ export default function (){
             }
         }else{
             if (resp.err_code===31004){
+                setDetailModal(null)
                 setPurchase(true)
             }
         }

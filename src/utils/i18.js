@@ -1,4 +1,8 @@
 export const Text = {
+    ServerError:{
+      "en-US": "Server Error",
+      "zh-TW": "伺服器錯誤",
+    },
     Back: {
         "en-US": "Back",
         "zh-TW": "返回",
@@ -16,8 +20,8 @@ export const Text = {
         "zh-TW": "觀看至",
     },
     LoginEmailToast: {
-        "en-US": "Log in to your email，keep your viewing progress intact",
-        "zh-TW": "登入電子郵件，以維持您的觀看進度",
+        "en-US": "Login to keep your viewing progress intact",
+        "zh-TW": "请登录账号以維持您的觀看進度",
     },
     OrderWaitToast: {
         "en-US": "The order may take a while to complete. If it doesn't take effect after payment, please try refreshing.",
@@ -159,6 +163,46 @@ export const Text = {
         "zh-TW": "更多推荐的好剧",
         "en-US": "More Top Recommended Shows",
     },
+    EmailLogin: {
+        "zh-TW": "電子信箱登入",
+        "en-US": "Email Login",
+    },
+    AccountLogin: {
+        "zh-TW": "帳號密碼登入",
+        "en-US": "Account Login",
+    },
+    AccountInput: {
+        "zh-TW": "输入您的帳號",
+        "en-US": "Input your account",
+    },
+    PasswordInput: {
+        "zh-TW": "輸入您的密碼",
+        "en-US": "Input your password",
+    },
+    PasswordAgainInput: {
+        "zh-TW": "再次輸入您的密碼",
+        "en-US": "Input your password again",
+    },
+    RegisterTip: {
+        "zh-TW": "若您輸入的是未註冊的帳號，我們將自動建立新帳號。",
+        "en-US": "A new account will be created if the username you enter is not registered"
+    },
+    AccountTip: {
+        "zh-TW": "僅限 a-z、A-Z、0-9、底線，且須以字母開頭，長度為 6 至 12 個字元",
+        "en-US": "a-z,A-Z, 0-9, _, start with letter, 6–12 chars",
+    },
+    PasswordTip: {
+        "zh-TW": "僅限 a-z、A-Z、0-9、符號，長度 6–10 個字元",
+        "en-US": "a-z, A-Z, 0-9, symbols, 6–10 chars",
+    },
+    NotSamePassword: {
+        "zh-TW": "兩次輸入的密碼不相同",
+        "en-US": "The two passwords you entered are not the same"
+    },
+    InvalidFormat:{
+        "zh-TW": "錯誤的格式",
+        "en-US": "Invalid format",
+    }
 }
 
 export function getText(item){
