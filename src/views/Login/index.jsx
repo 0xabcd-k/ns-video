@@ -48,7 +48,7 @@ export default function (){
                 <div className='l-desc'>
                     {getText(Text.LoginEmailToast)}
                 </div>
-                <div className='l-tab'>
+                <div className='l-tab' style={{height: "500px"}}>
                     <div className={'l-tab-box'+" "+(LoginType.Account===loginType?"l-tab-box-item1":"l-tab-box-item2")} >
                         <div className='l-tab-item'>
                             <div className='l-email'>
