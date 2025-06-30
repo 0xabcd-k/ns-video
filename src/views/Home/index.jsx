@@ -254,6 +254,9 @@ export default function (){
             if(rechargeResp.success){
                 window.location.href = rechargeResp.data.url
             }
+            setTimeout(()=>{
+                setLoading(false)
+            },1000)
         }
     }
     function parseTime(timestamp){
