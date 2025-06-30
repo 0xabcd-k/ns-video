@@ -71,16 +71,15 @@ export default function (){
                         {getText(Text.Recommend)}
                     </div>
                     <div className='m-s-items'>
-                        {dramas&&dramas.map((item,index)=>{
-                            return <div className='m-s-item' onClick={()=>{
+                        {dramas && dramas.map((item, index) => {
+                            return <div className='m-s-item' onClick={() => {
                                 navigate(`/?drama=${item.idx}`)
                             }}>
-                                <img className='m-s-i-poster' src={item.poster} alt='poster'/>
-                                <div className='m-s-i-desc'>
-                                    <div className='m-s-i-title'>{item.name}</div>
-                                    <div className='m-s-i-content'>{item.desc}</div>
+                                <div className='m-s-tip'>
+                                    {getText(Text.CompleteSeries)}
                                 </div>
-                                <div className='m-s-item-bg1'></div>
+                                <img className='m-s-poster' src={item.poster} alt='poster'/>
+                                <div className='m-s-name'>{item.name}</div>
                             </div>
                         })}
                     </div>
