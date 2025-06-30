@@ -12,6 +12,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {getText,Text} from "@/utils/i18";
 import Recommend from "@/views/Home/Recommend";
 
+let watchRecordTimeout;
 export default function (){
     const params = useHashQueryParams()
     const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -126,16 +127,12 @@ export default function (){
             video_no: no
         })
         if (resp.success) {
-            setTimeout(()=>{
-                if(!recording){
-                    setRecording(true);
-                    apiVideo.setHistory({
-                        drama_idx: params.drama,
-                        no: no,
-                    }).then(()=>{
-                        setRecording(false)
-                    })
-                }
+            clearTimeout(watchRecordTimeout)
+            watchRecordTimeout = setTimeout(()=>{
+                apiVideo.setHistory({
+                    drama_idx: params.drama,
+                    no: no,
+                })
             },3000)
             if (player) {
                 player.replayByVidAndPlayAuth(resp.data.id,resp.data.auth)
