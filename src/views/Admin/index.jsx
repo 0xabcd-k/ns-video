@@ -9,10 +9,12 @@ import VideoUploader from "@/views/Admin/VideoUploader";
 import SeriesManager from "@/views/Admin/SeriesManager";
 import SeriesUpdate from "@/views/Admin/SeriesUpdate";
 import Content from "@/views/Admin/Content";
+import CreateCDK from "@/views/Admin/CreateCDK";
 
 const tabName = {
     VideoManager: "剧集管理",
-    AdminManager: "管理员管理"
+    CDKManager: "CDK管理",
+    AdminManager: "管理员管理",
 }
 
 export default function (){
@@ -29,12 +31,19 @@ export default function (){
     const [dramaLinkModal,setDramaLinkModal] = useState(null)
     const [dramaSeriesModal,setDramaSeriesModal] = useState(null)
     const [seriesUpdateModal,setSeriesUpdateModal] = useState(null)
+
+    const [createCDKModal,setCreateCDKModal] = useState(null)
+
     //videManager
     const [videoList,setVideoList] = useState([])
     const [lastId, setLastId] = useState(0)
     const [whereBelongName,setWhereBelongName] = useState("")
     const [whereIdx,setWhereIdx] = useState("")
     const [total,setTotal]=useState(0)
+    //cdkManager
+    const [cdkList,setCDKList] = useState([])
+    const [cdkLastId,setCDKLastID] = useState(0)
+    const [cdkTotal,setCDKTotal] = useState(0)
 
     const [dramaList,setDramaList] = useState([])
     const [bakInfo,setBakInfo] = useState("")
@@ -52,6 +61,26 @@ export default function (){
                 setVideoList([...videoList,...videoListResp.data.list])
                 setLastId(videoListResp.data.last_id)
                 setTotal(videoListResp.data.total)
+            }else{
+                Toast.info("下面没有了~")
+            }
+        }else{
+            Toast.info("系统错误")
+        }
+        setLoading(false)
+    }
+
+    async function getNextCDKList(){
+        setLoading(true)
+        const cdkListResp = await apiAdmin.listCDK({
+            pre_id:cdkLastId,
+            page_size: 10,
+        })
+        if(cdkListResp.success){
+            if(cdkListResp.data.list?.length){
+                setCDKList([...cdkList,...cdkListResp.data.list])
+                setCDKLastID(cdkListResp.data.last_id)
+                setCDKTotal(cdkListResp.data.total)
             }else{
                 Toast.info("下面没有了~")
             }
@@ -145,6 +174,16 @@ export default function (){
                             }}/>
                         </div>
                     </>}
+                    {createCDKModal && <>
+                        <div className='mask' onDoubleClick={() => {
+                            setCreateCDKModal(null)
+                        }}></div>
+                        <div className='create-cdk-modal'>
+                            <CreateCDK onClose={() => {
+                                setCreateCDKModal(null)
+                            }}/>
+                        </div>
+                    </>}
                     <div className='admin-main'>
                         <div className='am-title'>
                             管理员信息：{bak}
@@ -155,6 +194,12 @@ export default function (){
                                 await getNextVideoList()
                             }}>
                                 {tabName.VideoManager}
+                            </div>
+                            <div className={'am-tab-item'+" "+ (tabName.CDKManager===tab?"clicked":"")} onClick={async ()=>{
+                                setTab(tabName.CDKManager);
+                                await getNextCDKList()
+                            }}>
+                                {tabName.CDKManager}
                             </div>
                             {/*<div className={'am-tab-item'+" "+ (tabName.AdminManager===tab?"clicked":"")} onClick={()=>{*/}
                             {/*    setTab(tabName.AdminManager);*/}
@@ -464,25 +509,67 @@ export default function (){
                                     </div>
                                 </div>
                             </>}
+                            {tab === tabName.CDKManager && <>
+                                <div className='am-cm-header'>
+                                    <div className='am-cm-header-left'>
+                                        <div className='am-cm-upload-new' onClick={async () => {
+                                            setCreateCDKModal(true)
+                                        }}>
+                                            创建CDK
+                                        </div>
+                                    </div>
+                                    <div className='am-cm-header-right'></div>
+                                </div>
+                                <div className='am-cm-table'>
+                                    <div className='ul-header'>
+                                        <ul>
+                                            <li className='am-cm-t-index am-cm-t-index-header'>序号</li>
+                                            <li className='am-cm-t-cdk am-cm-t-cdk-header'>CDK</li>
+                                            <li className='am-cm-t-limit am-cm-t-limit-header'>可领取数</li>
+                                            <li className='am-cm-t-claim am-cm-t-claim-header'>已领取数</li>
+                                            <li className='am-cm-t-uniq am-cm-t-uniq-header'>活动去重标示</li>
+                                            <li className='am-cm-t-exec am-cm-t-exec-header'>操作</li>
+                                        </ul>
+                                    </div>
+                                    <div className='am-cm-table-body'>
+                                        {cdkList.map((item, index) => {
+                                            return <ul className='ul-body'>
+                                                <li className='am-cm-t-index am-cm-t-index-body'>{index + 1}</li>
+                                                <li className='am-cm-t-cdk am-cm-t-cdk-body'>{item.code}</li>
+                                                <li className='am-cm-t-limit am-cm-t-limit-body'>{item.num_limit}</li>
+                                                <li className='am-cm-t-claim am-cm-t-claim-body'>{item.claim_num}</li>
+                                                <li className='am-cm-t-uniq am-cm-t-uniq-body'>{item.activity_uniq}</li>
+                                                <li className='am-cm-t-exec am-cm-t-exec-body'></li>
+                                            </ul>
+                                        })}
+                                    </div>
+                                </div>
+                                <div className='am-cm-bottom'>
+                                    <div className='am-cm-total'>总共:{cdkTotal}条</div>
+                                    <div className='am-cm-next' onClick={getNextCDKList}>
+                                        拉取更多
+                                    </div>
+                                </div>
+                            </>}
                         </div>
                     </div>
                 </div>
-            </>: <>
+            </> : <>
                 <div className='admin-login'>
                     <div className='admin-login-model'>
-                        <input className='alm-input' type='password' onChange={(e)=>{
+                        <input className='alm-input' type='password' onChange={(e) => {
                             setKey(e.target.value)
                         }} value={key} placeholder="输入管理员密钥"/>
-                        <div className='alm-btn' onClick={async ()=>{
+                        <div className='alm-btn' onClick={async () => {
                             const resp = await apiAdmin.login({
                                 key: key
                             })
-                            if(resp.success) {
-                                ss.set("Admin",resp.data.token)
-                                ss.set("Admin-IsSuper",resp.data.is_super)
-                                ss.set("Admin-Bak",resp.data.desc)
+                            if (resp.success) {
+                                ss.set("Admin", resp.data.token)
+                                ss.set("Admin-IsSuper", resp.data.is_super)
+                                ss.set("Admin-Bak", resp.data.desc)
                                 window.location.reload()
-                            }else{
+                            } else {
                                 Toast.info("登录失败")
                             }
                         }}>

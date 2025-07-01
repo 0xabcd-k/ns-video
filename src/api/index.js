@@ -32,5 +32,9 @@ export const apiAdmin = {
     listSeriesDrama:form=>req.get("/video/admin/series/drama",form),
     createDramaSeries:form=>req.post("/video/admin/drama/series",form),
     updateDrama:form=>req.post("/video/admin/drama/update",form),
+
+    listCDK:form=>req.get("/video/admin/cdk/list",form),
+    createCDK:form=>req.post("/video/admin/cdk",form),
+
     VideoUploadToken:form=>req.post('/video/admin/upload/token',form),
 }
