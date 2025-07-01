@@ -153,12 +153,12 @@ export default function (){
                     <div className={LoginType.Account===loginType?'l-l-m-btn-light':'l-l-m-btn-black'} onClick={()=>{
                         setLoginType(LoginType.Account)
                     }}>
-                        {getText(Text.AccountLogin)}
+                        {getText(Text.EmailLogin)}
                     </div>
                     <div className={LoginType.Email===loginType?'l-l-m-btn-light':'l-l-m-btn-black'} onClick={()=>{
                         setLoginType(LoginType.Email)
                     }}>
-                        {getText(Text.EmailLogin)}
+                        {getText(Text.AccountLogin)}
                     </div>
                 </div>
             </div>

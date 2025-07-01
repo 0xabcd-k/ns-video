@@ -52,7 +52,9 @@ export default function (){
                         <img className='m-s-h-logo' src={require("@/assets/logo.png")} alt='logo'/>
                     </div>
                     <div className='m-s-h-right'>
-                        <div className='m-s-h-login'>
+                        <div className='m-s-h-login' onClick={()=>{
+                            navigate("/login")
+                        }}>
                             {email ? <span>{email}</span> : <>
                                 <svg t="1749537708692" className="icon" viewBox="0 0 1024 1024" version="1.1"
                                      xmlns="http://www.w3.org/2000/svg" p-id="2439" id="mx_n_1749537708693" width="200"
