@@ -13,6 +13,7 @@ import {getText,Text} from "@/utils/i18";
 import Recommend from "@/views/Home/Recommend";
 
 let watchRecordTimeout;
+let playNo;
 export default function (){
     const params = useHashQueryParams()
     const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -113,12 +114,14 @@ export default function (){
                 }
             },1000)
         }
-        if(params.purchase){
-            setPurchase(true)
-        }
         setLoading(false)
     }
+    async function playNext(playerInstance){
+        playerInstance.dispose();
+        await play(playNo+1)
+    }
     async function play(no){
+        playNo = no
         if(!no){
             return
         }
@@ -159,12 +162,8 @@ export default function (){
                 }, function (player) {
                     console.log('The player is created.')
                 });
-                const nextNo = no+1
                 playerInstance.on("ended",()=>{
-                    setTimeout(async ()=>{
-                        playerInstance.dispose();
-                        await play(nextNo)
-                    },1000)
+                    playNext(playerInstance)
                 })
                 setPlayer(playerInstance)
             }
