@@ -33,6 +33,8 @@ export default function (){
 
     const [login,setLogin] = useState(null)
     const [purchase,setPurchaseState] = useState(null);
+    const [gift,setGift] = useState(null)
+    const [giftCode,setGiftCode] = useState(null)
 
     const [recommendModal,setRecommendModal] = useState(null);
     const [detailModel,setDetailModal] = useState(null)
@@ -409,9 +411,57 @@ export default function (){
                                 return payment
                             })}
                         </div>
+                        <div className='mh-p-icon-gift'>
+                            {gift?<>
+                                <div className='mh-p-icon-gift-input-box'>
+                                    <input onChange={(e) => {
+                                        setGiftCode(e.target.value)
+                                    }} value={giftCode} placeholder={getText(Text.RedeemTip)} />
+                                    <div className='mh-p-icon-gift-input-box-btn' onClick={async ()=>{
+                                        setLoading(true)
+                                        const resp = await apiVideo.dramaRedeem({
+                                            cdk: giftCode,
+                                            drama_idx: params.drama
+                                        })
+                                        if(resp.success) {
+                                            Toast.info(getText(Text.RedeemSuccess))
+                                            setGift(null)
+                                            setGiftCode('')
+                                            setPurchase(null)
+                                        }else {
+                                            switch (resp.err_code) {
+                                                case 51001:
+                                                    Toast.info(getText(Text.RedeemInsufficient))
+                                                    break
+                                                case 51002:
+                                                    Toast.info(getText(Text.RedeemDuplicate))
+                                                    break
+                                                default:
+                                                    Toast.info(getText(Text.RedeemFailed))
+                                            }
+                                        }
+                                        setLoading(false)
+                                    }}>
+                                        {getText(Text.Redeem)}
+                                    </div>
+                                </div>
+                            </>:<>
+                                <svg t="1751363820224" onClick={()=>{
+                                    setGift(true)
+                                }} className="icon" viewBox="0 0 1024 1024" version="1.1"
+                                     xmlns="http://www.w3.org/2000/svg" p-id="8067" width="200" height="200">
+                                    <path
+                                        d="M592.789333 308.288c-11.349333 5.354667-57.216 38.442667-51.882666 49.813333 5.525333 11.392 60.053333-8.426667 71.424-13.802666 11.370667-5.354667 16.213333-17.856 10.752-29.226667-5.397333-11.370667-18.944-12.138667-30.293334-6.784zM424.682667 268.181333c-11.882667 7.658667-14.698667 22.485333-7.04 34.325334 7.68 11.904 48.298667 63.253333 60.16 55.573333 11.904-7.658667-12.373333-66.56-20.181334-78.421333-7.637333-11.882667-21.056-19.136-32.938666-11.477334z"
+                                        p-id="8068" fill="#2c2c2c"></path>
+                                    <path
+                                        d="M512 21.333333C241.002667 21.333333 21.333333 240.981333 21.333333 512c0 270.954667 219.669333 490.666667 490.666667 490.666667 270.976 0 490.666667-219.712 490.666667-490.666667C1002.666667 240.981333 782.976 21.333333 512 21.333333z m-38.4 744.874667h-179.2V510.250667h179.2v255.957333z m0-281.642667h-204.778667v-76.778666H473.6v76.778666z m32.042667-83.413333c-23.872 15.338667-97.194667-56.064-112.384-79.829333-18.026667-28.117333-8.192-64.64 15.552-79.978667 23.765333-15.338667 60.565333-8.042667 75.904 15.701333 15.338667 23.808 44.608 128.768 20.928 144.106667z m12.8-2.048c-17.365333-18.133333 29.632-102.698667 47.786666-120.064 18.133333-17.365333 51.328-16.106667 68.714667 2.048s18.282667 51.733333-2.944 72.277333c-18.133333 17.408-96.192 63.893333-113.557333 45.738667z m211.008 367.104H550.4V510.250667h179.072v255.957333z m25.685333-281.642667H550.4v-76.778666h204.757333v76.778666z"
+                                        p-id="8069" fill="#2c2c2c"></path>
+                                </svg>
+                            </>}
+                        </div>
                     </div>
                 </>}
-                <div className='m-h-h-history' onClick={()=>{
+                <div className='m-h-h-history' onClick={() => {
                     navigate("/history");
                 }}>
                     <svg t="1748934937683" className="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -422,7 +472,7 @@ export default function (){
                     </svg>
                 </div>
                 <div className='m-h-h-recommend' onClick={() => {
-                  setDetailModal(true)
+                    setDetailModal(true)
                 }}>
                     <svg t="1750992948188" className="icon" viewBox="0 0 1024 1024" version="1.1"
                          xmlns="http://www.w3.org/2000/svg" p-id="5742" width="200" height="200">
@@ -453,10 +503,10 @@ export default function (){
                     </div>
                 </div>
                 <div className='m-h-show'>
-                    <div id='J_prismPlayer' />
+                    <div id='J_prismPlayer'/>
                 </div>
                 <div className='m-h-bottom'>
-                    <div className='m-h-b-title' onClick={()=>{
+                    <div className='m-h-b-title' onClick={() => {
                         setDetailModal(true)
                     }}><span>{drama.name}</span></div>
                     <div className='m-h-b-btn-box'>
@@ -466,8 +516,8 @@ export default function (){
                             </div>
                         </div>
                         <div className='m-h-b-btn-box-right'>
-                            <div className='m-h-b-btn-box-right-next' onClick={async ()=>{
-                                await play(playingVideoNo+1)
+                            <div className='m-h-b-btn-box-right-next' onClick={async () => {
+                                await play(playingVideoNo + 1)
                             }}>{getText(Text.Next)}</div>
                         </div>
                     </div>
@@ -601,7 +651,7 @@ export default function (){
                     </div>
                     <div className='ph-h-right'>
                         <div className='ph-h-history'>
-                            <svg t="1748934937683" onClick={()=>{
+                            <svg t="1748934937683" onClick={() => {
                                 setShowHistory(true)
                             }} className="icon" viewBox="0 0 1024 1024" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg" p-id="2656" width="88" height="88">
@@ -609,28 +659,30 @@ export default function (){
                                     d="M511.215 62.066c-247.841 0-448.76 200.919-448.76 448.766 0 247.841 200.919 448.76 448.76 448.76 247.847 0 448.766-200.919 448.766-448.76 0-247.847-200.919-448.766-448.766-448.766zM734.022 733.632c-5.145 5.145-11.888 7.718-18.625 7.718-6.743 0-13.486-2.573-18.63-7.718l-211.887-211.893v-267.967c0-14.558 11.803-26.348 26.342-26.348 14.545 0 26.348 11.791 26.348 26.348v246.152l196.452 196.452c10.289 10.278 10.289 26.971 0 37.256z"
                                     p-id="2657" fill="#f5315e"></path>
                             </svg>
-                            {showHistory&&<>
-                                <div className='ph-h-h-mask' onClick={()=>{
+                            {showHistory && <>
+                                <div className='ph-h-h-mask' onClick={() => {
                                     setShowHistory(false)
                                 }}/>
                                 <div className='ph-h-history-modal'>
                                     <div className='ph-h-history-modal-inner' id='ph-h-history-scroll'>
-                                        <InfiniteScroll scrollableTarget="ph-h-history-scroll" next={updateHistory} hasMore={hasMore} loader={
+                                        <InfiniteScroll scrollableTarget="ph-h-history-scroll" next={updateHistory}
+                                                        hasMore={hasMore} loader={
                                             <h4>{getText(Text.Loading)}</h4>
                                         } dataLength={history.length}
-                                                        endMessage={<div className='ph-h-h-m-end'>No More</div>}                                    >
+                                                        endMessage={<div className='ph-h-h-m-end'>No More</div>}>
                                             {history.map((item, index) => {
                                                 return <>
-                                                    <div className='ph-h-h-m-item' onClick={()=>{
+                                                    <div className='ph-h-h-m-item' onClick={() => {
                                                         navigate(`/?drama=${item.idx}`);
                                                     }}>
-                                                        <img className='ph-h-h-m-item-poster' src={item.poster} alt='poster' />
+                                                        <img className='ph-h-h-m-item-poster' src={item.poster}
+                                                             alt='poster'/>
                                                         <div className='ph-h-h-m-item-info'>
                                                             <div className='ph-h-h-m-item-info-title'>
                                                                 {item.name}
                                                             </div>
                                                             <div className='ph-h-h-m-item-info-content'>
-                                                                {getText(Text.WatchUpToEpisode)}  <span>{item.no}</span>
+                                                                {getText(Text.WatchUpToEpisode)} <span>{item.no}</span>
                                                             </div>
                                                             <div className='ph-h-h-m-item-info-time'>
                                                                 {parseTime(item.watch_time)}
@@ -678,7 +730,7 @@ export default function (){
                                     <div className='ph-h-lm-code'>
                                         <input value={codeInput} onChange={(e) => {
                                             setCodeInput(e.target.value)
-                                        }} placeholder={getText(Text.CodeInput)} />
+                                        }} placeholder={getText(Text.CodeInput)}/>
                                         <div className='ph-h-lm-code-btn' onClick={async () => {
                                             setLoading(true)
                                             const resp = await apiAuth.emailCode({email: emailInput})
@@ -698,13 +750,13 @@ export default function (){
                                             email: emailInput,
                                             code: codeInput,
                                         })
-                                        if(authResp.success){
+                                        if (authResp.success) {
                                             ss.set("Authorization", authResp.data.token)
                                             setEmail(emailInput)
-                                        }else {
-                                            if(authResp.err_code === 31003){
+                                        } else {
+                                            if (authResp.err_code === 31003) {
                                                 Toast.info(getText(Text.EmailCodeExpire))
-                                            }else {
+                                            } else {
                                                 Toast.info(getText(Text.LoginFail))
                                             }
                                         }
@@ -719,28 +771,29 @@ export default function (){
                 <div className='ph-content'>
                     <div className='ph-c-playground'>
                         <img className='ph-c-poster' src={drama.poster} alt='poster'/>
-                        <div id='J_prismPlayer' className='ph-c-video' style={player?{}:{display: 'none'}} />
+                        <div id='J_prismPlayer' className='ph-c-video' style={player ? {} : {display: 'none'}}/>
                     </div>
                     <div className='ph-c-info'>
-                        <div className='ph-c-i-name'>{drama.name}<span className="ph-c-i-n-more" onClick={()=>{
+                        <div className='ph-c-i-name'>{drama.name}<span className="ph-c-i-n-more" onClick={() => {
                             setRecommendModal({series: drama.series_id})
                         }}>{getText(Text.More)}</span></div>
                         <div className='ph-c-i-desc'>{drama.desc}</div>
                         <div className='ph-c-i-btn-box'>
-                            {drama.pay_num <= drama.video_num && <div className={'ph-c-i-btn-pay'+(drama.purchase?" paid": "")} onClick={()=>{
-                                if(!drama.purchase) {
-                                    setPurchase(true)
-                                }
-                            }}>
-                                <svg t="1748600990112" viewBox="0 0 1024 1024" version="1.1"
-                                     xmlns="http://www.w3.org/2000/svg" p-id="2342" width="88" height="88">
-                                    <path
-                                        d="M237.358431 284.464797l131.472334 375.310851-27.569916-19.554358L890.249275 640.22129c16.136515 0 29.212322 13.0799 29.212322 29.213345 0 16.129352-13.075807 29.205159-29.212322 29.205159L341.259826 698.639794c-12.409634 0-23.465434-7.836479-27.566846-19.549242L109.05016 94.8963l27.567869 19.553335L77.586564 114.449635c-16.129352 0-29.207206-13.074783-29.207206-29.212322 0-16.129352 13.077853-29.207206 29.207206-29.207206l59.032488 0c12.409634 0 23.466458 7.842619 27.566846 19.555381l52.728922 150.525272 710.724017 0c18.48705 0 32.326243 16.962324 28.612665 35.077913l-46.633087 227.389894c-2.547009 12.408611-12.796444 21.75549-25.382087 23.160489l-431.515944 48.065715c-16.036231 1.786693-30.482245-9.761318-32.266891-25.797549-1.783623-16.030092 9.764388-30.475082 25.798573-32.257681l410.798087-47.145763c0 0 20.75879-96.119151 35.926234-170.074513C893.311007 282.900162 362.038058 284.149619 237.358431 284.464797L237.358431 284.464797zM407.438061 818.372759c23.362081 0 42.36897 19.004843 42.36897 42.3659 0 23.360034-19.006889 42.364877-42.36897 42.364877-23.360034 0-42.363853-19.004843-42.363853-42.364877C365.073184 837.377602 384.078027 818.372759 407.438061 818.372759M407.438061 762.594385c-54.202483 0-98.142228 43.941791-98.142228 98.144274 0 54.207599 43.939745 98.143251 98.142228 98.143251s98.147344-43.936675 98.147344-98.143251C505.584382 806.536176 461.640544 762.594385 407.438061 762.594385L407.438061 762.594385zM816.372707 818.372759c23.357987 0 42.360783 19.004843 42.360783 42.3659 0 23.360034-19.002796 42.364877-42.360783 42.364877-23.360034 0-42.364877-19.004843-42.364877-42.364877C774.007831 837.377602 793.012673 818.372759 816.372707 818.372759M816.372707 762.594385c-54.206576 0-98.143251 43.941791-98.143251 98.144274 0 54.207599 43.937698 98.143251 98.143251 98.143251 54.200436 0 98.139158-43.936675 98.139158-98.143251C914.512888 806.536176 870.573143 762.594385 816.372707 762.594385L816.372707 762.594385zM816.372707 958.88191"
-                                        fill="#ffffff" p-id="2343"></path>
-                                </svg>
-                                <span>{drama.purchase?getText(Text.Purchased):getText(Text.Purchase)}</span>
-                            </div>}
-                            <div className='ph-c-i-btn-play' onClick={async ()=>{
+                            {drama.pay_num <= drama.video_num &&
+                                <div className={'ph-c-i-btn-pay' + (drama.purchase ? " paid" : "")} onClick={() => {
+                                    if (!drama.purchase) {
+                                        setPurchase(true)
+                                    }
+                                }}>
+                                    <svg t="1748600990112" viewBox="0 0 1024 1024" version="1.1"
+                                         xmlns="http://www.w3.org/2000/svg" p-id="2342" width="88" height="88">
+                                        <path
+                                            d="M237.358431 284.464797l131.472334 375.310851-27.569916-19.554358L890.249275 640.22129c16.136515 0 29.212322 13.0799 29.212322 29.213345 0 16.129352-13.075807 29.205159-29.212322 29.205159L341.259826 698.639794c-12.409634 0-23.465434-7.836479-27.566846-19.549242L109.05016 94.8963l27.567869 19.553335L77.586564 114.449635c-16.129352 0-29.207206-13.074783-29.207206-29.212322 0-16.129352 13.077853-29.207206 29.207206-29.207206l59.032488 0c12.409634 0 23.466458 7.842619 27.566846 19.555381l52.728922 150.525272 710.724017 0c18.48705 0 32.326243 16.962324 28.612665 35.077913l-46.633087 227.389894c-2.547009 12.408611-12.796444 21.75549-25.382087 23.160489l-431.515944 48.065715c-16.036231 1.786693-30.482245-9.761318-32.266891-25.797549-1.783623-16.030092 9.764388-30.475082 25.798573-32.257681l410.798087-47.145763c0 0 20.75879-96.119151 35.926234-170.074513C893.311007 282.900162 362.038058 284.149619 237.358431 284.464797L237.358431 284.464797zM407.438061 818.372759c23.362081 0 42.36897 19.004843 42.36897 42.3659 0 23.360034-19.006889 42.364877-42.36897 42.364877-23.360034 0-42.363853-19.004843-42.363853-42.364877C365.073184 837.377602 384.078027 818.372759 407.438061 818.372759M407.438061 762.594385c-54.202483 0-98.142228 43.941791-98.142228 98.144274 0 54.207599 43.939745 98.143251 98.142228 98.143251s98.147344-43.936675 98.147344-98.143251C505.584382 806.536176 461.640544 762.594385 407.438061 762.594385L407.438061 762.594385zM816.372707 818.372759c23.357987 0 42.360783 19.004843 42.360783 42.3659 0 23.360034-19.002796 42.364877-42.360783 42.364877-23.360034 0-42.364877-19.004843-42.364877-42.364877C774.007831 837.377602 793.012673 818.372759 816.372707 818.372759M816.372707 762.594385c-54.206576 0-98.143251 43.941791-98.143251 98.144274 0 54.207599 43.937698 98.143251 98.143251 98.143251 54.200436 0 98.139158-43.936675 98.139158-98.143251C914.512888 806.536176 870.573143 762.594385 816.372707 762.594385L816.372707 762.594385zM816.372707 958.88191"
+                                            fill="#ffffff" p-id="2343"></path>
+                                    </svg>
+                                    <span>{drama.purchase ? getText(Text.Purchased) : getText(Text.Purchase)}</span>
+                                </div>}
+                            <div className='ph-c-i-btn-play' onClick={async () => {
                                 await play(drama.watch_no)
                             }}>
                                 <img
@@ -750,33 +803,33 @@ export default function (){
                             </div>
                         </div>
                         <div className='ph-c-i-video'>
-                            {Array.from({length: drama.pay_num}).map((item,index)=>{
-                                if(playingVideoNo === index+1){
-                                    return <div className='ph-c-i-video-item playing' onClick={async ()=>{
-                                        await play(index+1)
+                            {Array.from({length: drama.pay_num}).map((item, index) => {
+                                if (playingVideoNo === index + 1) {
+                                    return <div className='ph-c-i-video-item playing' onClick={async () => {
+                                        await play(index + 1)
                                     }}>
-                                        <span>{index+1}</span>
+                                        <span>{index + 1}</span>
                                     </div>
-                                }else {
-                                    return <div className='ph-c-i-video-item free' onClick={async ()=>{
-                                        await play(index+1)
+                                } else {
+                                    return <div className='ph-c-i-video-item free' onClick={async () => {
+                                        await play(index + 1)
                                     }}>
-                                        <span>{index+1}</span>
+                                        <span>{index + 1}</span>
                                     </div>
                                 }
                             })}
-                            {Array.from({length: drama.video_num-drama.pay_num}).map((item,index)=>{
-                                if(playingVideoNo === index+drama.pay_num+1){
-                                    return <div className='ph-c-i-video-item playing' onClick={async ()=>{
-                                        await play(index+drama.pay_num+1)
+                            {Array.from({length: drama.video_num - drama.pay_num}).map((item, index) => {
+                                if (playingVideoNo === index + drama.pay_num + 1) {
+                                    return <div className='ph-c-i-video-item playing' onClick={async () => {
+                                        await play(index + drama.pay_num + 1)
                                     }}>
-                                        <span>{index+drama.pay_num+1}</span>
+                                        <span>{index + drama.pay_num + 1}</span>
                                     </div>
-                                }else{
-                                    return <div className='ph-c-i-video-item pay' onClick={async ()=>{
-                                        await play(index+drama.pay_num+1)
+                                } else {
+                                    return <div className='ph-c-i-video-item pay' onClick={async () => {
+                                        await play(index + drama.pay_num + 1)
                                     }}>
-                                        <span>{index+drama.pay_num+1}</span>
+                                        <span>{index + drama.pay_num + 1}</span>
                                     </div>
                                 }
                             })}
@@ -789,18 +842,18 @@ export default function (){
                             <div className='ph-b-l-header'>
                                 {getText(Text.About)}
                             </div>
-                            <div className='ph-b-l-item' onClick={()=>{
-                                window.open("https://player.netshort.online/user_agreement.html","_blank")
+                            <div className='ph-b-l-item' onClick={() => {
+                                window.open("https://player.netshort.online/user_agreement.html", "_blank")
                             }}>
                                 {getText(Text.TermsOfService)}
                             </div>
-                            <div className='ph-b-l-item' onClick={()=>{
-                                window.open("https://player.netshort.online/privacy_policy.html","_blank")
+                            <div className='ph-b-l-item' onClick={() => {
+                                window.open("https://player.netshort.online/privacy_policy.html", "_blank")
                             }}>
                                 {getText(Text.PrivacyPolicy)}
                             </div>
-                            <div className='ph-b-l-item' onClick={()=>{
-                                window.open("https://player.netshort.online/FAQ.html","_blank")
+                            <div className='ph-b-l-item' onClick={() => {
+                                window.open("https://player.netshort.online/FAQ.html", "_blank")
                             }}>
                                 {getText(Text.FAQ)}
                             </div>
@@ -809,12 +862,12 @@ export default function (){
                             <div className='ph-b-l-header'>
                                 {getText(Text.ContactUs)}
                             </div>
-                            <div className='ph-b-l-item' onClick={()=>{
+                            <div className='ph-b-l-item' onClick={() => {
                                 window.location.href = "mailto:lichuanhz00670@maiyawx.com";
                             }}>
                                 support@shortshore.com
                             </div>
-                            <div className='ph-b-l-item' onClick={()=>{
+                            <div className='ph-b-l-item' onClick={() => {
                                 window.location.href = "mailto:lichuanhz00670@maiyawx.com";
                             }}>
                                 business@shortstore.com
@@ -825,7 +878,7 @@ export default function (){
                                 {getText(Text.Community)}
                             </div>
                             <div className='ph-b-l-icon-box'>
-                                <div className='ph-b-l-icon-item' onClick={()=>{
+                                <div className='ph-b-l-icon-item' onClick={() => {
                                     // window.open("https://www.facebook.com/profile.php?id=61564956644828","_blank")
                                 }}>
                                     <img className='ph-b-l-icon-item-hover'
@@ -833,7 +886,7 @@ export default function (){
                                     <img className='ph-b-l-icon-item-normal'
                                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAhFBMVEUAAAA6Ojo5OTlAQEA5OTkwMDA6Ojo5OTk5OTk6Ojo6Ojo5OTk4ODg5OTk5OTk5OTkgICA5OTk6Ojo4ODg4ODg6Ojo3Nzc6Ojo5OTk4ODg3Nzc1NTU3Nzc4ODg6Ojp0dHRFRUVpaWlBQUFPT09wcHBeXl5mZmZXV1c9PT1sbGxLS0tJSUk4tIo8AAAAHnRSTlMA940EthDv6eHNx62FeWdZCNvbf19TNycjIBwYPDsYUHBRAAAB0UlEQVRYw6XX2XKjMBAF0Cs5bGEL3pfMJTh4Seb//28KiplxbLUs0HmyH/qWBF1UNyS7MkuTSJEqTtJstccoaz3nnUr/gqMgr2gU54FL+SKkSOkD7GZFSKuomMFi88qnXrcQlYoO1FI6vqYjbbzG2wudvbwJ9R4JM6FeTLi/heZIGj8sOVqJG1vF0dTm5gFY+ufjcm7ruv06Xx466v9jKCi5nuq/Gt4rMDhElJxrS0AYPH0Dp9oWwAV6gRLvX9sDhiPklFz+Vbdte+ajHJ2YkmYoPx1pVnX17xS1Qz1Fa3sTDwf4bW/o6mnAB0VzYE+fAO6w8gsokfkFZEhp8v3ZGQIu/R9zTIpE6IAHnzRJELsEyC8zgnINuNJEgY4BLc2cAxohwPkKJwpXiGhy7A21393vK41iJH6NlCD1C0j9W7n0C1hh5xewB+Y+ARUA7ROgAax9Avrhs5oeEKOTTw/I0QnCqQEqQG8xNUADwxGmBUQHDIppAcXTEaf56j5FzZEDccTBZsqQtcWNkqMtfQdN71HXd9j2Hfe9Fw6zpdvKU0K0dVm6Nva1L6JVWMxgd9DKUr4InFbfmEZVHsDR++PyPddrjLJfZWkSK1JFSZqVOwj+AN7id+gXcsVLAAAAAElFTkSuQmCC"/>
                                 </div>
-                                <div className='ph-b-l-icon-item' onClick={()=>{
+                                <div className='ph-b-l-icon-item' onClick={() => {
                                     // window.open("https://www.youtube.com/@NetShort-app","_blank")
                                 }}>
                                     <img className='ph-b-l-icon-item-hover'
@@ -841,7 +894,7 @@ export default function (){
                                     <img className='ph-b-l-icon-item-normal'
                                          src="data:image/png;base64,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"/>
                                 </div>
-                                <div className='ph-b-l-icon-item' onClick={()=>{
+                                <div className='ph-b-l-icon-item' onClick={() => {
                                     // window.open("https://www.instagram.com/netshortdrama","_blank")
                                 }}>
                                     <img className='ph-b-l-icon-item-hover'

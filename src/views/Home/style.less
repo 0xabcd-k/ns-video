@@ -1019,14 +1019,14 @@
     transform: translateY(-50%);
     background: linear-gradient(90deg, #FFD700, #FFC300, #FFB300);;
     width: 90vw;
-    height: 30vh;
+    height: 35vh;
     border-radius: 50px;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2vh;
+    gap: 1vh;
     .mh-p-title{
       font-size: 50px;
       font-weight: bold;
@@ -1045,6 +1045,33 @@
       .icon{
         width: 12vw;
         height: 10vh;
+      }
+    }
+    .mh-p-icon-gift{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .icon{
+        height: 8vh;
+        aspect-ratio: 1;
+      }
+      .mh-p-icon-gift-input-box{
+        width: 90%;
+        display: flex;
+        gap: 10%;
+        input{
+          width: 70%;
+        }
+        .mh-p-icon-gift-input-box-btn{
+          width: 20%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-decoration: underline;
+          font-weight: bold;
+          color: #6b3e00;
+          font-size: 40px;
+        }
       }
     }
   }

@@ -202,6 +202,30 @@ export const Text = {
     InvalidFormat:{
         "zh-TW": "錯誤的格式",
         "en-US": "Invalid format",
+    },
+    Redeem: {
+        "zh-TW": "兌換",
+        "en-US": "Redeem",
+    },
+    RedeemTip: {
+        "zh-TW": "請輸入禮品碼",
+        "en-US": "Please input the gift code."
+    },
+    RedeemInsufficient: {
+        "zh-TW": "此禮品碼兌換名額已用光",
+        "en-US": "The redemption limit for this gift code has been reached."
+    },
+    RedeemDuplicate: {
+        "zh-TW": "你已經參與過此活動",
+        "en-US": "You have already participated in this event.",
+    },
+    RedeemFailed: {
+        "zh-TW": "兌換失敗，請重試",
+        "en-US": "Redemption failed. Please try again.",
+    },
+    RedeemSuccess: {
+        "zh-TW": "兌換成功",
+        "en-US": "Redemption successful",
     }
 }
 
