@@ -14,6 +14,7 @@ import Recommend from "@/views/Home/Recommend";
 
 let watchRecordTimeout;
 let playNo;
+let logined;
 export default function (){
     const params = useHashQueryParams()
     const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -43,15 +44,15 @@ export default function (){
 
     function setPurchase(state){
         if(state){
-            if(email === ""){
+            if(logined){
+                setPurchaseState(state)
+            }else{
                 Toast.info(getText(Text.LoginEmailToast))
                 if(isMobile){
                     navigate("/login")
                 }else{
                     setLogin(true)
                 }
-            }else{
-                setPurchaseState(state)
             }
         }else{
             setPurchaseState(state)
@@ -88,6 +89,7 @@ export default function (){
         if(params.drama){
             apiAuth.userInfo({}).then((resp)=>{
                 if(resp?.data?.email){
+                    logined = true
                     setEmail(resp?.data?.email)
                 }
             })
