@@ -36,6 +36,7 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-loading": "^2.0.3",
     "react-responsive": "^10.0.1",
+    "react-telegram-auth": "^1.0.4",
     "react-vant": "^3.3.5",
     "style-loader": "^4.0.0",
     "styled-components": "^6.1.11",

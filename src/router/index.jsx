@@ -7,10 +7,12 @@ import History from "@/views/History";
 import Series from "@/views/Series";
 import Redirect from "@/views/Redirect";
 import Admin from "@/views/Admin/index.jsx";
+import Login2 from "@/views/Login2";
 const router = createHashRouter([
     {path:"/",element:<App />,children:[
         {index: true, element:<Home/>},
         {path: "/login",element:<Login/>},
+        {path: "/login2",element:<Login2/>},
         {path: "/show", element: <Show />},
         {path: "/history", element: <History />},
         {path: "/series", element: <Series/>},

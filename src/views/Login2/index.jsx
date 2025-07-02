@@ -7,6 +7,7 @@ import ss from "good-storage";
 import {useNavigate} from "react-router-dom";
 import {useMediaQuery} from "react-responsive";
 import {getText,Text} from "@/utils/i18";
+import { TLoginButton, TLoginButtonSize } from 'react-telegram-auth';
 
 const LoginType = {
     Account: 1,
@@ -149,16 +150,33 @@ export default function (){
                         </div>
                     </div>
                 </div>
-                <div className='l-login-methods'>
-                    <div className={LoginType.Account===loginType?'l-l-m-btn-light':'l-l-m-btn-black'} onClick={()=>{
-                        setLoginType(LoginType.Account)
-                    }}>
-                        {getText(Text.EmailLogin)}
+                <div className='l2-login-bottom'>
+                    <div className='l2-login-methods'>
+                        <div className={LoginType.Account === loginType ? 'l2-l-m-btn-light' : 'l2-l-m-btn-black'}
+                             onClick={() => {
+                                 setLoginType(LoginType.Account)
+                             }}>
+                            {getText(Text.EmailLogin)}
+                        </div>
+                        <div className={LoginType.Email === loginType ? 'l2-l-m-btn-light' : 'l2-l-m-btn-black'}
+                             onClick={() => {
+                                 setLoginType(LoginType.Email)
+                             }}>
+                            {getText(Text.AccountLogin)}
+                        </div>
                     </div>
-                    <div className={LoginType.Email===loginType?'l-l-m-btn-light':'l-l-m-btn-black'} onClick={()=>{
-                        setLoginType(LoginType.Email)
-                    }}>
-                        {getText(Text.AccountLogin)}
+                    <div className='l2-login-third-item'>
+                        <TLoginButton
+                            botName="netshort001bot"
+                            buttonSize={TLoginButtonSize.Medium}
+                            lang="en"
+                            usePic={false}
+                            cornerRadius={20}
+                            onAuthCallback={(user) => {
+                                console.log('Hello, user!', user);
+                            }}
+                            requestAccess={'write'}
+                        />
                     </div>
                 </div>
             </div>
