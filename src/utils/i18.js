@@ -226,6 +226,10 @@ export const Text = {
     RedeemSuccess: {
         "zh-TW": "兌換成功",
         "en-US": "Redemption successful",
+    },
+    NoRedeem:{
+        "zh-TW": "本劇暫不可使用禮品碼",
+        "en-US": "Gift codes are currently unavailable for this show",
     }
 }
 
