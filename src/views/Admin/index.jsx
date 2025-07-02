@@ -181,7 +181,7 @@ export default function (){
                         <div className='create-cdk-modal'>
                             <CreateCDK onClose={() => {
                                 setCreateCDKModal(null)
-                            }}/>
+                            }} setLoading={setLoading}/>
                         </div>
                     </>}
                     <div className='admin-main'>

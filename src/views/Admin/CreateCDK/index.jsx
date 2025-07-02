@@ -54,7 +54,7 @@ export default function ({onClose,setLoading}){
                 onClose()
                 setLoading(false)
             }}>
-                创建剧目
+                创建
             </div>
         </div>
     </>
