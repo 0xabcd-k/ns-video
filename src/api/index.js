@@ -18,6 +18,7 @@ export const apiAuth = {
     loginEmail:form=>req.post('/login/email',form),
     isAccountExist:form=>req.get('/account/exist',form),
     loginPassword:form=>req.post('/login/password',form),
+    loginTelegram:form=>req.post('/login/tg',form),
 }
 
 export const apiFinance= {

@@ -49,7 +49,7 @@ export default function (){
             }else{
                 Toast.info(getText(Text.LoginEmailToast))
                 if(isMobile){
-                    navigate("/login")
+                    navigate(`/login?drama=${params.drama}`)
                 }else{
                     setLogin(true)
                 }
@@ -492,7 +492,7 @@ export default function (){
                     </div>
                     <div className='m-h-h-right'>
                         <div className='m-h-h-login' onClick={() => {
-                            navigate("/login")
+                            navigate(`/login?drama=${params.drama}`)
                         }}>
                             {email ? <span>{email}</span> : <>
                                 <svg t="1749537708692" className="icon" viewBox="0 0 1024 1024" version="1.1"

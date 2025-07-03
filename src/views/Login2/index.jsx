@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 import {useMediaQuery} from "react-responsive";
 import {getText,Text} from "@/utils/i18";
 import { TLoginButton, TLoginButtonSize } from 'react-telegram-auth';
+import {useHashQueryParams} from "@/utils";
 
 const LoginType = {
     Account: 1,
@@ -15,6 +16,7 @@ const LoginType = {
 }
 let accountTimeout;
 export default function (){
+    const params = useHashQueryParams()
     const isMobile = useMediaQuery({ maxWidth: 767 });
     const [loading, setLoading] = useState(false);
     const [emailInput,setEmailInput] = useState("")
@@ -165,21 +167,29 @@ export default function (){
                             {getText(Text.AccountLogin)}
                         </div>
                     </div>
-                    <div className='l2-login-third-item'>
+                    <div className='l2-login-third-item' style={{marginTop: "2vh"}}>
                         <TLoginButton
                             botName="netshort001bot"
                             buttonSize={TLoginButtonSize.Medium}
                             lang="en"
                             usePic={false}
                             cornerRadius={20}
-                            onAuthCallback={(user) => {
-                                console.log('Hello, user!', user);
+                            onAuthCallback={async (user) => {
+                                const resp = await apiAuth.loginTelegram(user)
+                                if(resp.success) {
+                                    ss.set("Authorization", resp.data.token)
+                                    navigate(-1)
+                                }else {
+                                    Toast.info(getText(Text.LoginFail))
+                                }
                             }}
                             requestAccess={'write'}
                         />
                     </div>
                     <div className='l2-login-third-item'>
-                        <div className='l2-login-line'>
+                        <div className='l2-login-line' onClick={()=>{
+                            window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=2007677100&redirect_uri=https%3A%2F%2Fapi.netshort.online%2Fline%2Fauth&state=${params.drama}&scope=profile%20openid`
+                        }}>
                             <svg t="1751454356123" className="icon" viewBox="0 0 1024 1024" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg" p-id="2292" width="88" height="88">
                                 <path
