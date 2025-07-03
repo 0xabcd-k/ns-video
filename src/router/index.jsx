@@ -11,7 +11,7 @@ import Login2 from "@/views/Login2";
 const router = createHashRouter([
     {path:"/",element:<App />,children:[
         {index: true, element:<Home/>},
-        {path: "/login",element:<Login/>},
+        {path: "/login",element:<Login2/>},
         {path: "/login2",element:<Login2/>},
         {path: "/show", element: <Show />},
         {path: "/history", element: <History />},
