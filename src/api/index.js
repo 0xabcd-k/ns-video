@@ -8,7 +8,9 @@ export const apiVideo = {
     listHistory:form=>req.get('/drama/history',form),
     dramaList:form=>req.get('/drama/list',form),
     dramaI18:form=>req.get('/drama/i18',form),
-    dramaRedeem:form=>req.post("/drama/redeem",form)
+    dramaRedeem:form=>req.post("/drama/redeem",form),
+    listComment:form=>req.get('/drama/comment',form),
+    addComment:form=>req.post('/drama/comment',form),
 }
 
 export const apiAuth = {

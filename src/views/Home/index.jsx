@@ -143,6 +143,16 @@ export default function (){
             },3000)
             if (player) {
                 player.replayByVidAndPlayAuth(resp.data.id,resp.data.auth)
+                apiVideo.listComment({
+                    drama_idx: params.drama,
+                    no: no,
+                }).then((resp)=>{
+                    if(resp.success){
+                        const component = player.getComponent("AliplayerDanmuComponent")
+                        component.CM.clear()
+                        component.CM.load(resp.data.list)
+                    }
+                })
             }else{
                 const playerInstance = new Aliplayer({
                     id: 'J_prismPlayer',
@@ -161,13 +171,36 @@ export default function (){
                     useFlashPrism: false,
                     isLive: false,
                     playConfig: {EncryptType: 'AliyunVoDEncryption'}, // 当您输出的M3U8流中，含有其他非私有加密流时，需要指定此参数。
+                    components: [{
+                        name: 'AliplayerDanmuComponent',
+                        type: AliPlayerComponent.AliplayerDanmuComponent,
+                        args: [[],(msg)=>{
+                            const resp = playerInstance.getCurrentTime()
+                            apiVideo.addComment({
+                                drama_idx: params.drama,
+                                no: playNo,
+                                ...msg,
+                                stime: Math.floor(resp*1000)
+                            })
+                        }]
+                    }]
                 }, function (player) {
                     console.log('The player is created.')
                 });
+                const component = playerInstance.getComponent("AliplayerDanmuComponent")
                 playerInstance.on("ended",()=>{
                     playNext(playerInstance)
                 })
                 setPlayer(playerInstance)
+                apiVideo.listComment({
+                    drama_idx: params.drama,
+                    no: no,
+                }).then((resp)=>{
+                    if(resp.success){
+                        component.CM.clear()
+                        component.CM.load(resp.data.list)
+                    }
+                })
             }
         }else{
             if (resp.err_code===31004){

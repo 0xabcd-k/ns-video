@@ -17,7 +17,7 @@ module.exports = {
     devServer: {
         historyApiFallback: true,
         port: "80",
-        host:'127.0.0.1',
+        host:'local.netshort.online',
         headers: {
             'Content-Security-Policy': ''
         },
