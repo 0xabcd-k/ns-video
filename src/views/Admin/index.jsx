@@ -110,7 +110,7 @@ export default function (){
             logined ? <>
                 <div className='admin-home'>
                     {dramaCreatorModal &&<>
-                        <div className='mask' onDoubleClick={()=>{
+                        <div className='mask-bg' onDoubleClick={()=>{
                             setDramaCreatorModal(null)
                         }}></div>
                         <div className='drama-creator-modal'>
@@ -138,7 +138,7 @@ export default function (){
                         </div>
                     </>}
                     {videoUploadModal && <>
-                        <div className='mask' onDoubleClick={()=>{
+                        <div className='mask-bg' onDoubleClick={()=>{
                             setVideoUploadModal(null)
                         }}></div>
                         <div className='video-upload-modal'>
@@ -146,7 +146,7 @@ export default function (){
                         </div>
                     </>}
                     {dramaLinkModal && <>
-                        <div className='mask' onDoubleClick={()=>{
+                        <div className='mask-bg' onDoubleClick={()=>{
                             setDramaLinkModal(null)
                         }}></div>
                         <div className='drama-link-modal' onClick={()=>{
@@ -175,7 +175,7 @@ export default function (){
                         </div>
                     </>}
                     {createCDKModal && <>
-                        <div className='mask' onDoubleClick={() => {
+                        <div className='mask-bg' onDoubleClick={() => {
                             setCreateCDKModal(null)
                         }}></div>
                         <div className='create-cdk-modal'>

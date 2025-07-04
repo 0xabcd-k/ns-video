@@ -2,15 +2,15 @@ import req from './request'
 import {redirect} from "react-router-dom";
 
 export const apiVideo = {
-    video:form=>req.get('/video/meta',form),
-    drama:form=>req.get('/drama/video',form),
-    setHistory:form=>req.post('/drama/history',form),
-    listHistory:form=>req.get('/drama/history',form),
-    dramaList:form=>req.get('/drama/list',form),
-    dramaI18:form=>req.get('/drama/i18',form),
-    dramaRedeem:form=>req.post("/drama/redeem",form),
-    listComment:form=>req.get('/drama/comment',form),
-    addComment:form=>req.post('/drama/comment',form),
+    video:form=>req.get('/video/meta',{lan:navigator.language,...form}),
+    drama:form=>req.get('/drama/video',{lan:navigator.language,...form}),
+    setHistory:form=>req.post('/drama/history',{lan:navigator.language,...form}),
+    listHistory:form=>req.get('/drama/history',{lan:navigator.language,...form}),
+    dramaList:form=>req.get('/drama/list',{lan:navigator.language,...form}),
+    dramaI18:form=>req.get('/drama/i18',{lan:navigator.language,...form}),
+    dramaRedeem:form=>req.post("/drama/redeem",{lan:navigator.language,...form}),
+    listComment:form=>req.get('/drama/comment',{lan:navigator.language,...form}),
+    addComment:form=>req.post('/drama/comment',{lan:navigator.language,...form}),
 }
 
 export const apiAuth = {
