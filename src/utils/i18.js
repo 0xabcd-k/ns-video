@@ -230,6 +230,22 @@ export const Text = {
     NoRedeem:{
         "zh-TW": "本劇暫不可使用禮品碼",
         "en-US": "Gift codes are currently unavailable for this show",
+    },
+    ShareTitle: {
+        "zh-TW": "你想分享到哪裡？",
+        "en-US": "Where would you like to share?",
+    },
+    ReviewTitle: {
+        "zh-TW": "Please leave your feedback",
+        "en-US": "請留下你的意見",
+    },
+    LiveAgent: {
+        "zh-TW": "人工客服",
+        "en-US": "Live Agent",
+    },
+    Submit:{
+        "zh-TW": "提交",
+        "en-US": "Submit",
     }
 }
 

@@ -11,6 +11,7 @@ export const apiVideo = {
     dramaRedeem:form=>req.post("/drama/redeem",{lan:navigator.language,...form}),
     listComment:form=>req.get('/drama/comment',{lan:navigator.language,...form}),
     addComment:form=>req.post('/drama/comment',{lan:navigator.language,...form}),
+    review:form=>req.post('/review',{lan:navigator.language,...form})
 }
 
 export const apiAuth = {

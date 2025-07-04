@@ -998,6 +998,20 @@
       height: auto;
     }
   }
+  .m-h-h-share{
+    position: absolute;
+    right: 0;
+    top: 42vh;
+    width: 10vw;
+    margin-right: 2vw;
+    z-index: 990;
+    opacity: 0.5;
+    svg{
+      width: 100%;
+      aspect-ratio: 1;
+      height: auto;
+    }
+  }
   .m-h-h-recommend{
     position: absolute;
     right: 0;
@@ -1010,6 +1024,125 @@
       width: 100%;
       aspect-ratio: 1;
       height: auto;
+    }
+  }
+  .mh-share{
+    position: absolute;
+    top: 50%;
+    transform:translateY(-50%);
+    z-index: 999;
+    background: linear-gradient(90deg, #f5315e, #f5315e, #ff512c);;
+    width: 80vw;
+    height: 25vh;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow:
+            inset 0 4px 8px 0 rgba(255, 170, 190, 0.54),   /* 上方浅高光 */
+            inset 0 -4px 8px 0 #c02048;                   /* 下方深阴影 */
+    gap: 30px;
+    .mh-share-close{
+      position: absolute;
+      transform: translateY(100%);
+      bottom: -20px;
+      width: 100px;
+      height: 100px;
+    }
+    .mh-share-title{
+      margin-top: 40px;
+      width: 80%;
+      font-size: 60px;
+      font-weight: bold;
+      color: white;
+      text-align: center;
+    }
+    .mh-share-box{
+      width: 80%;
+      height: 30%;
+      border-radius: 50px;
+      background: #5c0f24;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      .icon{
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+  .mh-review{
+    position: absolute;
+    top: 50%;
+    transform:translateY(-50%);
+    z-index: 999;
+    background: linear-gradient(90deg, #f5315e, #f5315e, #ff512c);;
+    width: 80vw;
+    height: 40vh;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow:
+            inset 0 4px 8px 0 rgba(255, 170, 190, 0.54),   /* 上方浅高光 */
+            inset 0 -4px 8px 0 #c02048;                   /* 下方深阴影 */
+    gap: 30px;
+    .mh-review-title{
+      margin-top: 40px;
+      width: 80%;
+      font-size: 50px;
+      font-weight: bold;
+      color: white;
+      text-align: center;
+    }
+    .mh-review-comment{
+      width: 80%;
+      height: 40%;
+      border-radius: 40px;
+      background: #e7e4e1;
+      box-sizing: border-box;
+      padding: 40px 40px 40px 40px;
+    }
+    .mh-review-close{
+      position: absolute;
+      transform: translateY(100%);
+      bottom: -20px;
+      width: 100px;
+      height: 100px;
+    }
+    .mh-reiview-btn-box{
+      width: 80%;
+      height: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10%;
+      color: white;
+      .mh-review-agent{
+        font-size: 40px;
+        font-weight: bold;
+        height: 100%;
+        width: 40%;
+        border-radius: 9999px;
+        background: linear-gradient(90deg, #9b1dff, #9b1dff, #d04cff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .mh-review-submit{
+        font-size: 40px;
+        font-weight: bold;
+        height: 100%;
+        width: 40%;
+        border-radius: 9999px;
+        background: linear-gradient(90deg, #f5a623, #f5a623, #f8e71c);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
   .mh-purchase{
