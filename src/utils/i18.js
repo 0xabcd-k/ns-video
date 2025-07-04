@@ -236,8 +236,8 @@ export const Text = {
         "en-US": "Where would you like to share?",
     },
     ReviewTitle: {
-        "zh-TW": "Please leave your feedback",
-        "en-US": "請留下你的意見",
+        "zh-TW": "請留下你的意見",
+        "en-US": "Please leave your feedback",
     },
     LiveAgent: {
         "zh-TW": "人工客服",
