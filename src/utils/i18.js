@@ -247,6 +247,10 @@ export const Text = {
         "zh-TW": "提交",
         "en-US": "Submit",
     },
+    RechargeTip: {
+        "zh-TW": "此訂單僅用於本網站觀看",
+        "en-US": "This order is for viewing on this website only"
+    },
     RechargeRecord: {
         "zh-TW": "充值紀錄",
         "en-US": "Recharge Record",
