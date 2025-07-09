@@ -493,6 +493,8 @@ export default function (){
                         </div>
                         <div className='mh-p-description'>
                             {getText(Text.PriceDesc)} {drama.amount} {getCurrencySignal(drama.currency)}
+                            <br/>
+                            {getText(Text.RechargeTip)}
                         </div>
                         <div className='mh-p-icon-box'>
                             {getPayments().map((payment) => {
