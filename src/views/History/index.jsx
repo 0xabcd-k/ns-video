@@ -32,7 +32,6 @@ export default function (){
                 pre_idx: nextId
             })
             if(resp.success){
-                setHistory([history,...resp.data.list]);
                 if(resp.data.list.length>0){
                     setHistory([...history,...resp.data.list]);
                     setNextId(resp.data.next_idx)
@@ -56,7 +55,6 @@ export default function (){
                 pre_id: nextRechargeId,
             })
             if(resp.success){
-                setRecharge([recharge,...resp.data.list]);
                 if(resp.data.list.length>0){
                     setRecharge([...recharge,...resp.data.list]);
                     setNextRechargeId(resp.data.last_id)
@@ -78,6 +76,7 @@ export default function (){
     async function init(){
         setLoading(true);
         await updateHistory();
+        await updateRecharge();
         setLoading(false)
     }
     useEffect(() => {
