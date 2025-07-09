@@ -39,6 +39,7 @@ export default function (){
     const [lastId, setLastId] = useState(0)
     const [whereBelongName,setWhereBelongName] = useState("")
     const [whereIdx,setWhereIdx] = useState("")
+    const [whereSeries,setWhereSeries] = useState("")
     const [total,setTotal]=useState(0)
     //cdkManager
     const [cdkList,setCDKList] = useState([])
@@ -226,26 +227,30 @@ export default function (){
                                         <input onChange={(e) => {
                                             setWhereBelongName(e.target.value)
                                         }} value={whereBelongName} placeholder="搜索归属剧名"/>
-                                        <input onChange={(e)=>{
+                                        <input onChange={(e) => {
                                             setWhereIdx(e.target.value)
                                         }} value={whereIdx} placeholder="搜索链接对应剧目"/>
-                                        <div className='am-vm-search-btn' onClick={async ()=>{
+                                        <input onChange={(e) => {
+                                            setWhereSeries(e.target.value)
+                                        }} value={whereSeries} placeholder="搜索剧单对应剧目"/>
+                                        <div className='am-vm-search-btn' onClick={async () => {
                                             setLoading(true)
                                             const videoListResp = await apiAdmin.listVideo({
-                                                pre_id:0,
+                                                pre_id: 0,
                                                 page_size: 10,
                                                 where_belong_name: whereBelongName,
-                                                where_idx: whereIdx.replace("https://player.netshort.online/#/?drama=",""),
+                                                where_idx: whereIdx.replace("https://player.netshort.online/#/?drama=", ""),
+                                                where_series: whereSeries,
                                             })
-                                            if(videoListResp.success){
-                                                if(videoListResp.data.list?.length){
+                                            if (videoListResp.success) {
+                                                if (videoListResp.data.list?.length) {
                                                     setVideoList([...videoListResp.data.list])
                                                     setLastId(videoListResp.data.last_id)
                                                     setTotal(videoListResp.data.total)
-                                                }else{
+                                                } else {
                                                     Toast.info("下面没有了~")
                                                 }
-                                            }else{
+                                            } else {
                                                 Toast.info("系统错误")
                                             }
                                             setLoading(false)
@@ -256,7 +261,7 @@ export default function (){
                                 </div>
                                 <div className='am-vm-table'>
                                     <div className='ul-header'>
-                                        <ul>
+                                    <ul>
                                             <li className='am-vm-t-index am-vm-t-index-header'>序号</li>
                                             <li className='am-vm-t-title am-vm-t-title-header'>标题</li>
                                             <li className='am-vm-t-desc am-vm-t-desc-header'>简介</li>
