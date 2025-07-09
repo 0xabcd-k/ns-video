@@ -246,6 +246,22 @@ export const Text = {
     Submit:{
         "zh-TW": "提交",
         "en-US": "Submit",
+    },
+    RechargeRecord: {
+        "zh-TW": "充值紀錄",
+        "en-US": "Recharge Record",
+    },
+    WatchRecord: {
+        "zh-TW": "觀看紀錄",
+        "en-US": "Watch Record",
+    },
+    RechargeSuccess: {
+        "zh-TW": "已付款",
+        "en-US": "Paid",
+    },
+    RechargePending: {
+        "zh-TW": "等待中",
+        "en-US": "Pending",
     }
 }
 

@@ -25,7 +25,8 @@ export const apiAuth = {
 }
 
 export const apiFinance= {
-    recharge:form=>req.post('recharge/order',form)
+    recharge:form=>req.post('/recharge/order',form),
+    rechargeList:form=>req.get('/recharge/order/list',form)
 }
 
 export const apiAdmin = {

@@ -14,6 +14,37 @@
     font-weight: bold;
     color: white;
   }
+  .h-switch-method{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 50vw;
+    background: rgba(0,0,0, 0.1);
+    border-radius: 9999px;
+    display: flex;
+    .h-switch-method-btn-light{
+      width: 50%;
+      height: 3vh;
+      background: linear-gradient(90deg, #FFD700, #FFC300, #FFB300);
+      color: #6b3e00;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 9999px;
+      font-size: 2.5vw;
+      font-weight: bold;
+    }
+    .h-switch-method-btn-black{
+      width: 50%;
+      height: 3vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.5vw;
+      font-weight: bold;
+      color: rgba(0,0,0,0.5);
+    }
+  }
   .h-modal-inner{
     height: 90%;
     width: 90%;
@@ -82,6 +113,71 @@
           align-items: center;
           justify-content: end;
         }
+      }
+    }
+    .h-m-r-item{
+      position: relative;
+      width: 100%;
+      height: 200px;
+      border-bottom: #ff0000 solid 1px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      .h-m-r-item-drama-name{
+        width: 100%;
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+      }
+      .h-m-r-item-drama-order{
+        width: 100%;
+        font-size: 25px;
+        color: white;
+        box-sizing: border-box;
+        padding-left: 50px;
+        font-weight: bold;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+      }
+      .h-m-r-item-drama-price{
+        width: 100%;
+        font-size: 30px;
+        color: white;
+        box-sizing: border-box;
+        padding-left: 100px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .h-m-r-item-drama-time{
+        width: 100%;
+        display: flex;
+        color: white;
+        justify-content: end;
+        align-items: center;
+        font-size: 25px;
+      }
+      .h-m-r-item-drama-state-pending{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 40px;
+        font-weight: bold;
+        color: gray;
+      }
+      .h-m-r-item-drama-state-success{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 40px;
+        font-weight: bold;
+        color: greenyellow;
       }
     }
   }
