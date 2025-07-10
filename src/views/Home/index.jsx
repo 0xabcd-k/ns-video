@@ -11,6 +11,7 @@ import ss from "good-storage";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {getText,Text} from "@/utils/i18";
 import Recommend from "@/views/Home/Recommend";
+import Uid from "@/views/Common/Uid";
 
 let watchRecordTimeout;
 let playNo;
@@ -19,7 +20,9 @@ export default function (){
     const params = useHashQueryParams()
     const isMobile = useMediaQuery({ maxWidth: 767 });
     const [loading,setLoading] = useState(false)
-    const [drama,setDrama] = useState(null)
+    const [drama,setDrama] = useState(null);
+
+    const [uid,setUid] = useState(null)
 
     const [player,setPlayer] = useState(null);
     const [playingVideoNo,setPlayingVideoNo] = useState(null);
@@ -94,6 +97,9 @@ export default function (){
                 if(resp?.data?.email){
                     logined = true
                     setEmail(resp?.data?.email)
+                }
+                if(resp?.data?.user_idx){
+                    setUid(resp?.data?.user_idx)
                 }
             })
             updateHistory()
@@ -313,6 +319,7 @@ export default function (){
         init()
     }, []);
     return <>
+        <Uid uid={uid}/>
         {loading && <>
             <div className='mask'>
                 <div className='loading'>
