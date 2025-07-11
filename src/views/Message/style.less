@@ -1,0 +1,94 @@
+.message{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-content: center;
+  background: linear-gradient(90deg, #6a5acd, #8a2be2);
+  gap: 2vh;
+  .m-header{
+    position: relative;
+    width: 100vw;
+    height: 5vh;
+    .m-h-back{
+      position: absolute;
+      height: 100%;
+      left: 10px;
+      font-weight: bold;
+      font-size: 5vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .m-modal{
+    z-index: 9999;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 60vh;
+    background: linear-gradient(90deg, #6a5acd, #8a2be2);
+    border-radius: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 50px 50px 50px 50px;
+    gap: 2vh;
+    .icon{
+      width: 20vw;
+      height: auto;
+      aspect-ratio: 1;
+      border-radius: 50%;
+    }
+    .m-m-title{
+      height: 5vh;
+      font-size: 60px;
+      font-weight: bold;
+      color: white;
+    }
+    .m-m-content{
+      flex: 1;
+      width: 100%;
+      overflow: auto;
+    }
+    .m-m-close{
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateY(100%) translateX(-50%);
+      width: 10vw;
+      height: auto;
+      aspect-ratio: 1;
+    }
+    .m-m-link{
+      padding: 5px 50px 5px 50px;
+      font-size: 50px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(
+              to bottom,
+              #fff8dc 0%,     /* 金属高光 */
+              #ffd700 30%,    /* 黄金色 */
+              #f0c300 50%,    /* 深一点的金色 */
+              #d4af37 70%,    /* 古金色 */
+              #b8860b 100%    /* 底部金棕阴影 */
+      );
+      border-radius: 9999px;
+    }
+  }
+  .m-list{
+    height: 93vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 2vh;
+  }
+}

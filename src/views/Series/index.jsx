@@ -81,7 +81,8 @@ export default function (){
                                     {getText(Text.CompleteSeries)}
                                 </div>
                                 <img className='m-s-poster' src={item.poster} alt='poster'/>
-                                <div className='m-s-name'>{item.name}</div>
+                                <div className='
+'>{item.name}</div>
                             </div>
                         })}
                     </div>

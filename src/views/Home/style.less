@@ -980,7 +980,6 @@
     width: 10vw;
     margin-right: 2vw;
     z-index: 990;
-    opacity: 0.5;
     svg{
       width: 100%;
       aspect-ratio: 1;
@@ -994,7 +993,6 @@
     width: 10vw;
     margin-right: 2vw;
     z-index: 990;
-    opacity: 0.5;
     svg{
       width: 100%;
       aspect-ratio: 1;
@@ -1008,11 +1006,57 @@
     width: 10vw;
     margin-right: 2vw;
     z-index: 990;
-    opacity: 0.5;
     svg{
       width: 100%;
       aspect-ratio: 1;
       height: auto;
+    }
+  }
+  .m-h-h-msg{
+    position: absolute;
+    right: 0;
+    top: 51vh;
+    width: 10vw;
+    margin-right: 2vw;
+    z-index: 990;
+    svg{
+      width: 100%;
+      aspect-ratio: 1;
+      height: auto;
+    }
+    .dot{
+      display: none;
+    }
+  }
+  .m-h-h-msg-notify{
+    position: absolute;
+    right: 0;
+    top: 51vh;
+    width: 10vw;
+    margin-right: 2vw;
+    z-index: 990;
+    animation: rotate-shake 2s infinite;
+    @keyframes rotate-shake {
+      0%, 90%, 100% { transform: rotate(0deg); }
+      91% { transform: rotate(-10deg); }
+      93% { transform: rotate(10deg); }
+      95% { transform: rotate(-10deg); }
+      97% { transform: rotate(10deg); }
+      99% { transform: rotate(0deg); }
+    }
+    svg{
+      width: 100%;
+      aspect-ratio: 1;
+      height: auto;
+    }
+    .dot{
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 25%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #ff0000;
     }
   }
   .m-h-h-recommend{
@@ -1022,7 +1066,6 @@
     width: 10vw;
     margin-right: 2vw;
     z-index: 990;
-    opacity: 0.5;
     svg{
       width: 100%;
       aspect-ratio: 1;
