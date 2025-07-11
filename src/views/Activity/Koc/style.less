@@ -1,0 +1,192 @@
+.koc{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  .koc-log{
+    position: absolute;
+    left: 4%;
+    top: 1vh;
+    height: 5vh;
+    width: auto;
+    z-index: 9999;
+  }
+  .koc-main{
+    position: relative;
+    width: 100%;
+    .km-top{
+      position: absolute;
+      height: 20vh;
+      width: 96%;
+      left: 4%;
+      top: 8vh;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: start;
+      gap: 1.5vh;
+      .km-t-title{
+        background: radial-gradient(1163.51% 105.13% at 103.12% 78.75%, #FCF6E4 0%, #FFD382 70.67%, #DFDFDF 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 2.5vh;
+        font-weight: 1000;
+        span{
+          font-size: 4vh;
+        }
+      }
+      .km-t-content{
+        color: #FFD890;
+        font-size: 1.5vh;
+        width: 60%;
+        text-wrap: wrap;
+      }
+      .km-t-time{
+        width: auto;
+        font-size: 1.5vh;
+        padding: 0.5vh 8vw 0.5vh 8vw;
+        color: #FFE5CC;
+        background: #5F4834;
+        border-radius: 9999px;
+      }
+    }
+    .bg-1{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40vh;
+      background: linear-gradient(169deg, #000009 5.13%, #371B0E 85.26%);
+      z-index: 0;
+    }
+    .bg-star{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      z-index: 1;
+    }
+    .bg-fire-1{
+      position: absolute;
+      top: 5vh;
+      left: 55%;
+      width: 20%;
+      height: auto;
+      z-index: 2;
+    }
+    .bg-fire-2{
+      position: absolute;
+      top: 20vh;
+      left: 58%;
+      width: 10%;
+      height: auto;
+      z-index: 2;
+    }
+    .bg-gift{
+      position: absolute;
+      right: 0;
+      top: 3vh;
+      width: 40%;
+      height: auto;
+      z-index: 1;
+    }
+    .bg-modal{
+      position: absolute;
+      top: 28vh;
+      width: 100%;
+      border-top-right-radius: 5vh;
+      border-top-left-radius: 5vh;
+      border: 0.1vh solid #9F814C;
+      z-index: 3;
+      background: #0E0E0E;
+      box-sizing: border-box;
+      padding-top: 5vh;
+      padding-bottom: 5vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      gap: 2vh;
+      .bg-modal-1{
+        position: relative;
+        width: 90%;
+        border: 0.1vh solid #9F814C;
+        border-radius: 2vh;
+        box-sizing: border-box;
+        padding: 3vh 3vh 3vh 3vh;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        gap: 1vh;
+        .bg-modal-title{
+          text-wrap: nowrap;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          font-size: 1.5vh;
+          font-weight: bold;
+          color: black;
+          transform: translateX(-50%);
+          padding: 0.5vh 2.5vh 0.5vh 2.5vh;
+          border-bottom-left-radius: 1vh;
+          border-bottom-right-radius: 1vh;
+          background: linear-gradient(84deg, #FDF3E2 1.33%, #E7B06E 101.95%);
+        }
+        .bg-modal-line-first{
+          margin-top: 3vh;
+        }
+        .bg-modal-line{
+          color: #FFD890;
+          display: flex;
+          justify-content: start;
+          align-items: start;
+          gap: 10px;
+          .bg-modal-dot{
+            margin-top: 0.5vh;
+            height: 1vh;
+            width: auto;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: #FFD890;
+          }
+          .bg-modal-text{
+            font-size: 1.5vh;
+            flex: 1;
+            text-wrap: wrap;
+            word-break: break-word;
+            span{
+              font-weight: bold;
+            }
+          }
+        }
+        .bg-modal-btn-box{
+          margin-top: 2vh;
+          width: 100%;
+          height: 2vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .bg-modal-btn{
+            padding: 1vh 2.5vh 1vh 2.5vh;
+            border-radius: 9999px;
+            background: #9F814C;
+            color: #FFD890;
+            font-size: 2vh;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+.koc::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+a{
+  color: #FFD890;
+  text-decoration: underline;
+}

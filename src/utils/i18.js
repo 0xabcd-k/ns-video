@@ -1,7 +1,7 @@
 export const Text = {
-    ServerError:{
-      "en-US": "Server Error",
-      "zh-TW": "伺服器錯誤",
+    ServerError: {
+        "en-US": "Server Error",
+        "zh-TW": "伺服器錯誤",
     },
     Back: {
         "en-US": "Back",
@@ -15,7 +15,7 @@ export const Text = {
         "en-US": "No More",
         "zh-TW": "沒有更多了",
     },
-    WatchUpToEpisode:{
+    WatchUpToEpisode: {
         "en-US": "Watch Up to Episode",
         "zh-TW": "觀看至",
     },
@@ -131,7 +131,7 @@ export const Text = {
         "en-US": "Need Purchase",
         "zh-TW": "需要購買",
     },
-    Next:{
+    Next: {
         "en-US": "Next",
         "zh-TW": "下一集",
     },
@@ -147,11 +147,11 @@ export const Text = {
         "en-US": "Ideas for Collaboration",
         "zh-TW": "有些創意想合作",
     },
-    VideoNo:{
+    VideoNo: {
         "en-US": "Episode:",
         "zh-TW": "戏集：",
     },
-    Recommend:{
+    Recommend: {
         "en-US": "Top Series for You",
         "zh-TW": "劇集推薦",
     },
@@ -159,7 +159,7 @@ export const Text = {
         "en-US": "Full Series",
         "zh-TW": "全集",
     },
-    More:{
+    More: {
         "zh-TW": "更多推荐的好剧",
         "en-US": "More Top Recommended Shows",
     },
@@ -199,7 +199,7 @@ export const Text = {
         "zh-TW": "兩次輸入的密碼不相同",
         "en-US": "The two passwords you entered are not the same"
     },
-    InvalidFormat:{
+    InvalidFormat: {
         "zh-TW": "錯誤的格式",
         "en-US": "Invalid format",
     },
@@ -227,7 +227,7 @@ export const Text = {
         "zh-TW": "兌換成功",
         "en-US": "Redemption successful",
     },
-    NoRedeem:{
+    NoRedeem: {
         "zh-TW": "本劇暫不可使用禮品碼",
         "en-US": "Gift codes are currently unavailable for this show",
     },
@@ -243,7 +243,7 @@ export const Text = {
         "zh-TW": "人工客服",
         "en-US": "Live Agent",
     },
-    Submit:{
+    Submit: {
         "zh-TW": "提交",
         "en-US": "Submit",
     },
@@ -266,6 +266,167 @@ export const Text = {
     RechargePending: {
         "zh-TW": "等待中",
         "en-US": "Pending",
+    },
+    KocTitle: {
+        "zh-TW": "發影片拿 <span>99,999</span> 金幣！",
+        "en-US": "Post to Win <span>99,999</span> Bonus!",
+    },
+    KocContent: {
+        "zh-TW": "你也愛看 Netshort 的短劇嗎？現在輪到你發揮創意了！🎬<br/>拍一支短影片就能領 99,999 金幣獎勵，超簡單🔥",
+        "en-US": "Netshort is calling all short drama lovers and content creators!🎬<br/>Post a short video & get 99,999 bonus — it’s that easy! 🔥",
+    },
+    KocTime: {
+        "zh-TW": "7月1日至7月31日（UTC+0）",
+        "en-US": "July 1 - July 31 (UTC+0)",
+    },
+    KocEnterTip1: {
+        "zh-TW": "你的 IG / TikTok / YouTube / FB 有 5,000+ 粉絲",
+        "en-US": "Post a short video (under 1 min) + caption about Netshort on any social media platform (must have 5,000+ followers)",
+    },
+    KocEnterTip2: {
+        "zh-TW": "發一則和 Netshort 有關的短影片（1 分鐘內）+文案",
+        "en-US": "Fill out the form after posting",
+    },
+    KocEnterTip3: {
+        "zh-TW": "填寫表單提交",
+        "en-US": "Once approved, you’ll get <span>99,999 bonus within 24 hours!</span>",
+    },
+    KocEnterTip4: {
+        "zh-TW": "通過審核後，24 小時內發 99,999 金幣（金幣使用期限 7 天）",
+        "en-US": "<span>Note:</span> Bonus must be used within <span>7 days</span> after receiving them.",
+    },
+    KocEnterBtn: {
+        "zh-TW": "填寫表單",
+        "en-US": "Fill Form",
+    },
+    KocEnterHowToEnter: {
+        "zh-TW": "🎬怎麼參加",
+        "en-US": "🎬How to Join",
+    },
+    KocVideoDemandTitle: {
+        "zh-TW": "📌影片要求",
+        "en-US": "📌Video demand",
+    },
+    KocVideoDemandTip1: {
+        "zh-TW": "📽 Netshort Logo（素材下載看下方）",
+        "en-US": "🎥 Feature the Netshort logo (download from Google Drive)",
+    },
+    KocVideoDemandTip2: {
+        "zh-TW": "📢 積極推薦或正向介紹 Netshort",
+        "en-US": "📢 Actively Recommend or Positively Introduce Netshort",
+    },
+    KocTextDemandTitle: {
+        "zh-TW": "📝文案要求",
+        "en-US": "📝Text demand",
+    },
+    KocTextDemandTip1: {
+        "zh-TW": "🔗 App下載連結：<a href='https://netshort.com/base/n/tm0VuEo'>https://netshort.com/base/n/tm0VuEo</a>",
+        "en-US": "🔗 Netshort app link: <a href='https://netshort.com/base/n/tm0VuEo'>https://netshort.com/base/n/tm0VuEo</a>",
+    },
+    KocTextDemandTip2: {
+        "en-US": "👥 Community links:<br/>" +
+            " FB Group: <a href='https://api.netshort.online/pay/line-tw'>https://api.netshort.online/pay/line-tw</a><br/>" +
+            " TG Group: <a href='https://www.facebook.com/share/g/1ANS4NPvAn/'>https://www.facebook.com/share/g/1ANS4NPvAn/</a>",
+        "zh-TW": "👥 社群連結：<br/>" +
+            " Line 社群：<a href='https://api.netshort.online/pay/line-tw'>https://api.netshort.online/pay/line-tw</a><br/>" +
+            " FB社群：<a href='https://www.facebook.com/share/g/1ANS4NPvAn/'>https://www.facebook.com/share/g/1ANS4NPvAn/</a>"
+    },
+    KocHashTagTitle: {
+        "zh-TW": "🏷HashTag",
+        "en-US": "🏷HashTag",
+    },
+    KocHashTagTip1:{
+        "zh-TW": "<span class='copy'>#NetshortDramas #DownloadNetshort</span>",
+        "en-US": "<span class='copy'>#NetshortDramas #DownloadNetshort</span>",
+    },
+    KocHashTagTip2:{
+        "zh-TW": "@官方帳號",
+        "en-US": "Tag the official Netshort account on your platform",
+    },
+    KocHashTagTip3:{
+        "zh-TW": "Ins官号：<span class='copy'>@netshortdrama</span>",
+        "en-US": "IG：<span class='copy'>@netshortdrama</span>",
+    },
+    KocHashTagTip4:{
+        "zh-TW": "TT官号：<span class='copy'>@netshortdramas</span>",
+        "en-US": "TikTok：<span class='copy'>@netshortdramas</span>",
+    },
+    KocHashTagTip5:{
+        "zh-TW": "YT官号：<span class='copy'>@NetShort - Popular Dramas & TV</span>",
+        "en-US": "YouTube：<span class='copy'>@NetShort - Popular Dramas & TV</span>",
+    },
+    KocHashTagTip6:{
+        "zh-TW": "FB官号：<span class='copy'>@Netshort Drama</span>",
+        "en-US": "FB：<span class='copy'>@Netshort Drama</span>",
+    },
+    KocContentTitle: {
+        "zh-TW": "📁 影片素材來源",
+        "en-US": "📁 Need Content?",
+    },
+    KocContentTip1: {
+        "zh-TW": "從 Google 雲端硬碟下載 <a href='https://drive.google.com/drive/folders/1kLtgA67H7Hnzcb6cVsWGVN4OxnDCvj_5?usp=sharing'>https://drive.google.com/drive/folders/1kLtgA67H7Hnzcb6cVsWGVN4OxnDCvj_5?usp=sharing</a>",
+        "en-US": "Grab drama clips <a href='https://drive.google.com/drive/folders/1kLtgA67H7Hnzcb6cVsWGVN4OxnDCvj_5?usp=sharing'>https://drive.google.com/drive/folders/1kLtgA67H7Hnzcb6cVsWGVN4OxnDCvj_5?usp=sharing</a>",
+    },
+    KocContentTip2: {
+        "zh-TW": "Netshort 各平台官方帳號上可下載影片",
+        "en-US": "Download from Netshort’s official accounts.",
+    },
+    KocContentBtn: {
+        "zh-TW": "獲取資源",
+        "en-US": "Download Resources",
+    },
+    KocCreateTitle: {
+        "zh-TW": "✨ 創作示範",
+        "en-US": "✨ Post Ideas (Easy & Fun!)"
+    },
+    KocCreateTip1: {
+        "zh-TW": "範例1：短劇精彩片段剪輯 + 導流引導",
+        "en-US": "Highlight scenes + your voiceover/reaction",
+    },
+    KocCreateTip2: {
+        "zh-TW": "範例2：你本人 + 劇情反應/模仿 + App 下載引導",
+        "en-US": " You + reaction + app promo<br/>" +
+            " → “I was hooked after just one episode...” + your reaction or imitation + call to download",
+    },
+    KocCreateTip3: {
+        "zh-TW": "範例3：自創有趣內容，只要跟 Netshort 有關都可以！",
+        "en-US": "Skits, edits, cosplay — anything goes, as long as it’s Netshort-related!",
+    },
+    KocBonusAlertTitle: {
+        "zh-TW": "🎁額外獎勵",
+        "en-US": "🎁Bonus Alert"
+    },
+    KocBonusAlertTip1: {
+        "zh-TW": "貼文按讚破 1,000 或瀏覽破 10,000 就有加碼獎！",
+        "en-US": "Get 1,000+ likes or 10K+ views? We’ll throw in <span>extra rewards</span> 👀💥"
+    },
+    KocMoreRuleTitle: {
+        "zh-TW": "規則補充",
+        "en-US": "Rule Supplement",
+    },
+    KocMoreRuleTip1: {
+        "zh-TW": "📅 活動時間：7/16 ～ 7/31（UTC+0）",
+        "en-US": "📅 Event Time: July 16–31 (UTC+0)",
+    },
+    KocMoreRuleTip2: {
+        "zh-TW": "🛑 每個帳號僅能參加一次",
+        "en-US": "🛑 1 entry per account",
+    },
+    KocMoreRuleTip3: {
+        "zh-TW": "🚫 禁止違規或虛假內容",
+        "en-US": "🚫 No fake/misleading content",
+    },
+    KocMoreRuleTip4: {
+        "zh-TW": "✔️ 最終解釋權歸 Netshort 所有",
+        "en-US": "✅ Final interpretation rights belong to Netshort",
+    },
+    KocFinish: {
+        "zh-TW": "📣 機會難得，發揮你的創意，來挑戰「發片賺金幣」吧！",
+        "en-US": "Ready to show your creativity and get rewarded? Let’s go!",
+    },
+    KocDMUs: {
+        "zh-TW": "有問題找 <span class='copy'>@Nina</span> 詢問喔 💬",
+        "en-US": "DM us 👉 @NetshortHelpbot",
     }
 }
 
