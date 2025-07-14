@@ -425,7 +425,7 @@ export const Text = {
         "en-US": "Ready to show your creativity and get rewarded? Let’s go!",
     },
     KocDMUs: {
-        "zh-TW": "有問題找 <span class='copy'>@Nina</span> 詢問喔 💬",
+        "zh-TW": "有問題找 @Nina",
         "en-US": "DM us 👉 @NetshortHelpbot",
     }
 }
