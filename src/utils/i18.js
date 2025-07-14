@@ -276,8 +276,8 @@ export const Text = {
         "en-US": "Netshort is calling all short drama lovers and content creators!🎬<br/>Post a short video & get 99,999 bonus — it’s that easy! 🔥",
     },
     KocTime: {
-        "zh-TW": "7月1日至7月31日（UTC+0）",
-        "en-US": "July 1 - July 31 (UTC+0)",
+        "zh-TW": "7月16日至7月31日（UTC+0）",
+        "en-US": "July 16 - July 31 (UTC+0)",
     },
     KocEnterTip1: {
         "zh-TW": "你的 IG / TikTok / YouTube / FB 有 5,000+ 粉絲",
@@ -304,36 +304,32 @@ export const Text = {
         "en-US": "🎬How to Join",
     },
     KocVideoDemandTitle: {
-        "zh-TW": "📌影片要求",
-        "en-US": "📌Video demand",
+        "zh-TW": "📌 影片內容需包含",
+        "en-US": "📌 What to Include",
     },
     KocVideoDemandTip1: {
         "zh-TW": "📽 Netshort Logo（素材下載看下方）",
-        "en-US": "🎥 Feature the Netshort logo (download from Google Drive)",
-    },
-    KocVideoDemandTip2: {
-        "zh-TW": "📢 積極推薦或正向介紹 Netshort",
-        "en-US": "📢 Actively Recommend or Positively Introduce Netshort",
+        "en-US": "🎥 The video must include the Netshort logo (download from Google Drive)",
     },
     KocTextDemandTitle: {
-        "zh-TW": "📝文案要求",
-        "en-US": "📝Text demand",
+        "zh-TW": "📝 文案需包含",
+        "en-US": "📝 Caption must include:",
     },
     KocTextDemandTip1: {
-        "zh-TW": "🔗 App下載連結：<a href='https://netshort.com/base/n/tm0VuEo'>https://netshort.com/base/n/tm0VuEo</a>",
-        "en-US": "🔗 Netshort app link: <a href='https://netshort.com/base/n/tm0VuEo'>https://netshort.com/base/n/tm0VuEo</a>",
+        "zh-TW": "1. 🔗 App下載連結：<a href='https://netshort.com/base/n/tm0VuEo'>https://netshort.com/base/n/tm0VuEo</a>",
+        "en-US": "1. 🔗 Netshort app link: <a href='https://netshort.com/base/n/tm0VuEo'>https://netshort.com/base/n/tm0VuEo</a>",
     },
     KocTextDemandTip2: {
-        "en-US": "👥 Community links:<br/>" +
-            " FB Group: <a href='https://api.netshort.online/pay/line-tw'>https://api.netshort.online/pay/line-tw</a><br/>" +
-            " TG Group: <a href='https://www.facebook.com/share/g/1ANS4NPvAn/'>https://www.facebook.com/share/g/1ANS4NPvAn/</a>",
-        "zh-TW": "👥 社群連結：<br/>" +
+        "en-US": "<br/>2. 👥 Community links:<br/>" +
+            " FB Group: <a href='https://api.netshort.online/pay/fb-group'>https://api.netshort.online/pay/fb-group</a><br/>" +
+            " TG Group: <a href='https://t.me/+1KTeeg_zpxMwODZk'>https://t.me/+1KTeeg_zpxMwODZk</a>",
+        "zh-TW": "<br/>2. 👥 社群連結：<br/>" +
             " Line 社群：<a href='https://api.netshort.online/pay/line-tw'>https://api.netshort.online/pay/line-tw</a><br/>" +
             " FB社群：<a href='https://www.facebook.com/share/g/1ANS4NPvAn/'>https://www.facebook.com/share/g/1ANS4NPvAn/</a>"
     },
     KocHashTagTitle: {
-        "zh-TW": "🏷HashTag",
-        "en-US": "🏷HashTag",
+        "zh-TW": "3. 🏷 HashTag",
+        "en-US": "3. 🏷 HashTag",
     },
     KocHashTagTip1:{
         "zh-TW": "<span class='copy'>#NetshortDramas #DownloadNetshort</span>",

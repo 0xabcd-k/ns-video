@@ -70,45 +70,7 @@ export default function (){
                         </div>
                         <div className='bg-modal-line'>
                             <div className='bg-modal-dot' />
-                            <div className='bg-modal-text' dangerouslySetInnerHTML={{__html: getText(Text.KocVideoDemandTip2)}}/>
-                        </div>
-                    </div>
-                    <div className='bg-modal-1'>
-                        <div className='bg-modal-title'>{getText(Text.KocTextDemandTitle)}</div>
-                        <div className='bg-modal-line bg-modal-line-first'>
-                            <div className='bg-modal-dot' />
-                            <div className='bg-modal-text' dangerouslySetInnerHTML={{__html: getText(Text.KocTextDemandTip1)}}/>
-                        </div>
-                        <div className='bg-modal-line'>
-                            <div className='bg-modal-dot' />
-                            <div className='bg-modal-text' dangerouslySetInnerHTML={{__html: getText(Text.KocTextDemandTip2)}}/>
-                        </div>
-                    </div>
-                    <div className='bg-modal-1'>
-                        <div className='bg-modal-title'>{getText(Text.KocHashTagTitle)}</div>
-                        <div className='bg-modal-line bg-modal-line-first'>
-                            <div className='bg-modal-dot' />
-                            <div className='bg-modal-text' dangerouslySetInnerHTML={{__html: getText(Text.KocHashTagTip1)}}/>
-                        </div>
-                        <div className='bg-modal-line'>
-                            <div className='bg-modal-dot' />
-                            <div className='bg-modal-text' dangerouslySetInnerHTML={{__html: getText(Text.KocHashTagTip2)}}/>
-                        </div>
-                        <div className='bg-modal-line'>
-                            <div className='bg-modal-dot' />
-                            <div className='bg-modal-text' dangerouslySetInnerHTML={{__html: getText(Text.KocHashTagTip3)}}/>
-                        </div>
-                        <div className='bg-modal-line'>
-                            <div className='bg-modal-dot' />
-                            <div className='bg-modal-text' dangerouslySetInnerHTML={{__html: getText(Text.KocHashTagTip4)}}/>
-                        </div>
-                        <div className='bg-modal-line'>
-                            <div className='bg-modal-dot' />
-                            <div className='bg-modal-text' dangerouslySetInnerHTML={{__html: getText(Text.KocHashTagTip5)}}/>
-                        </div>
-                        <div className='bg-modal-line'>
-                            <div className='bg-modal-dot' />
-                            <div className='bg-modal-text' dangerouslySetInnerHTML={{__html: getText(Text.KocHashTagTip6)}}/>
+                            <div className='bg-modal-text' dangerouslySetInnerHTML={{__html: `${getText(Text.KocTextDemandTitle)}<br/>${getText(Text.KocTextDemandTip1)}<br/>${getText(Text.KocTextDemandTip2)}<br/><br/>${getText(Text.KocHashTagTitle)}<br/><br/>${getText(Text.KocHashTagTip1)}<br/>${getText(Text.KocHashTagTip2)}<br/><br/>${getText(Text.KocHashTagTip3)}<br/><br/>${getText(Text.KocHashTagTip4)}<br/><br/>${getText(Text.KocHashTagTip5)}<br/><br/>${getText(Text.KocHashTagTip6)}`}}/>
                         </div>
                     </div>
                     <div className='bg-modal-1'>
