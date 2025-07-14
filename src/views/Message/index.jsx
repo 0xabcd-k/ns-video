@@ -1,18 +1,54 @@
 import "./style.less"
 import {getText,Text} from "@/utils/i18";
 import Item from "@/views/Message/Item";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import {apiFinance, apiVideo} from "@/api";
+import ReactLoading from "react-loading";
 
 export default function (){
-    const [modal,setModal] = useState({
-        "id": 6,
-        "icon": "",
-        "title": "test6",
-        "text": "test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6",
-        "link": "https://www.google.com",
-        "read": true,
-    })
+    const [messages,setMessages] = useState([])
+    const [modal,setModal] = useState(null);
+    const [loading,setLoading] = useState(false);
+    const [hasMore,setHasMore] = useState(true);
+    const [total,setTotal] = useState(0);
+
+    const [pageNo,setPageNo] = useState(1);
+
+    async function updateMessage(){
+        setLoading(true);
+        if(hasMore){
+            const resp = await apiVideo.listNotify({
+                page_no:pageNo,
+                page_size: 8,
+            })
+            if(resp.success){
+                if(resp.data.list.length>0){
+                    setMessages([...messages,...resp.data.list]);
+                    setPageNo(pageNo+1);
+                    if(resp.data.list.length<8){
+                        setHasMore(false);
+                    }
+                    setTotal(resp.data.total)
+                }else{
+                    setHasMore(false);
+                }
+            }
+        }
+        setLoading(false);
+    }
+
+    useEffect(() => {
+        updateMessage()
+    }, []);
     return <>
+        {loading && <>
+            <div className='mask'>
+                <div className='loading'>
+                    <ReactLoading type="bars" color="#fff"/>
+                </div>
+            </div>
+        </>}
         <div className='message'>
             {modal &&<>
                 <div className='mask'/>
@@ -51,7 +87,9 @@ export default function (){
                         {modal.title}
                     </div>
                     <div className='m-m-content' dangerouslySetInnerHTML={{__html: modal.text}}/>
-                    {modal.link&&<div className='m-m-link'>
+                    {modal.link&&<div className='m-m-link' onClick={()=>{
+                        window.open(modal.link,"_blank")
+                    }}>
                         Go
                     </div>}
                 </div>
@@ -60,32 +98,17 @@ export default function (){
                 <div className='m-h-back' onClick={() => {
                     navigate(-1)
                 }}>{getText(Text.Back)}</div>
+                <div className='m-h-count' >{getText(Text.MessageNum)}: {total}</div>
             </div>
-            <div className='m-list'>
-                <Item msg={{
-                    "id": 6,
-                    "icon": "",
-                    "title": "test6",
-                    "text": "test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6",
-                    "link": "https://www.google.com",
-                    "read": false,
-                }}/>
-                <Item msg={{
-                    "id": 6,
-                    "icon": "",
-                    "title": "test6",
-                    "text": "test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6",
-                    "link": "https://www.google.com",
-                    "read": true,
-                }}/>
-                <Item msg={{
-                    "id": 6,
-                    "icon": "",
-                    "title": "test6",
-                    "text": "test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6test6",
-                    "link": "https://www.google.com",
-                    "read": true,
-                }}/>
+            <div className='m-list' id='m-list-scroll'>
+                <InfiniteScroll scrollableTarget="m-list-scroll" next={updateMessage} hasMore={hasMore} loader={<h4>{getText(Text.Loading)}</h4>} dataLength={messages.length} endMessage={<div className='m-list-end'>{getText(Text.NoMore)}</div>} >
+                    {messages?.map((item,index)=>{
+                        return <Item msg={item} onClick={()=>{
+                            apiVideo.readNotify({id: item.id})
+                            setModal(item)
+                        }} />
+                    })}
+                </InfiniteScroll>
             </div>
         </div>
     </>

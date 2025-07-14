@@ -23,6 +23,7 @@ export default function (){
     const [drama,setDrama] = useState(null);
 
     const [uid,setUid] = useState(null)
+    const [isReadAll,setIsReadAll] = useState(null)
 
     const [player,setPlayer] = useState(null);
     const [playingVideoNo,setPlayingVideoNo] = useState(null);
@@ -100,6 +101,9 @@ export default function (){
                 }
                 if(resp?.data?.user_idx){
                     setUid(resp?.data?.user_idx)
+                }
+                if(resp?.data?.is_read_all){
+                    setIsReadAll(true)
                 }
             })
             updateHistory()
@@ -620,8 +624,8 @@ export default function (){
                             fill="#d4237a" p-id="2327"></path>
                     </svg>
                 </div>
-                <div className={1===1?'m-h-h-msg-notify':'m-h-h-msg'} onClick={() => {
-                    setDetailModal(true)
+                <div className={isReadAll?'m-h-h-msg':'m-h-h-msg-notify'} onClick={() => {
+                    navigate("/message");
                 }}>
                     <svg t="1752130498424" className="icon" viewBox="0 0 1024 1024" version="1.1"
                          xmlns="http://www.w3.org/2000/svg" p-id="5950" width="200" height="200">

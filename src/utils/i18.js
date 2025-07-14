@@ -423,6 +423,10 @@ export const Text = {
     KocDMUs: {
         "zh-TW": "有問題找 @Nina",
         "en-US": "DM us 👉 @NetshortHelpbot",
+    },
+    MessageNum: {
+        "zh-TW": "訊息數量",
+        "en-US": "Message Count",
     }
 }
 

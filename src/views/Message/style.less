@@ -21,6 +21,16 @@
       justify-content: center;
       align-items: center;
     }
+    .m-h-count{
+      position: absolute;
+      height: 100%;
+      right: 8vw;
+      font-weight: bold;
+      font-size: 3vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   .m-modal{
     z-index: 9999;
@@ -85,10 +95,13 @@
   .m-list{
     height: 93vh;
     width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    gap: 2vh;
+    overflow: auto;
+    .infinite-scroll-component{
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      gap: 2vh;
+    }
   }
 }

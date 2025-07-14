@@ -1,8 +1,8 @@
 import "./style.less"
 
-export default function ({msg}){
+export default function ({msg,onClick}){
     return <>
-        <div className={'me-item'+' '+(msg.read?'me-item-read':'me-item-unread')}>
+        <div className={'me-item'+' '+(msg.read?'me-item-read':'me-item-unread')} onClick={onClick}>
             <div className='me-i-icon'>
                 <div className='red-dot'/>
                 {msg.icon?<>
@@ -37,8 +37,7 @@ export default function ({msg}){
                 <div className='me-i-title'>
                     {msg.title}
                 </div>
-                <div className='me-i-text'>
-                    {msg.text}
+                <div className='me-i-text' dangerouslySetInnerHTML={{__html:msg.text}}>
                 </div>
             </div>
         </div>
