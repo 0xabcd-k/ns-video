@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {apiFinance, apiVideo} from "@/api";
 import ReactLoading from "react-loading";
+import {useNavigate} from "react-router-dom";
 
 export default function (){
     const [messages,setMessages] = useState([])
@@ -12,6 +13,7 @@ export default function (){
     const [loading,setLoading] = useState(false);
     const [hasMore,setHasMore] = useState(true);
     const [total,setTotal] = useState(0);
+    const navigate = useNavigate()
 
     const [pageNo,setPageNo] = useState(1);
 
