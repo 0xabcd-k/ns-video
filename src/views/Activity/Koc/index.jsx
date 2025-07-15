@@ -56,7 +56,12 @@ export default function (){
                         </div>
                         <div className='bg-modal-btn-box'>
                             <div className='bg-modal-btn' onClick={()=>{
-                                window.open("https://forms.gle/3izrveWoVkv3PsmQ9","_blank")
+                                const userLang = navigator.language;
+                                if(userLang.includes("zh-TW")) {
+                                    window.open("https://forms.gle/pB8pn7QNGQuc541MA","_blank")
+                                }else{
+                                    window.open("https://forms.gle/3izrveWoVkv3PsmQ9","_blank")
+                                }
                             }}>
                                 {getText(Text.KocEnterBtn)}
                             </div>
