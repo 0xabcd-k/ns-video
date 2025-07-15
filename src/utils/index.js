@@ -107,13 +107,7 @@ export async function getLocalId(){
     if(deviceId){
         return deviceId
     }else{
-        try{
-            const fp = await FingerprintJS.load()
-            const ans = await fp.get()
-            deviceId = ans.visitorId
-        }catch (e){
-            deviceId = uuidv4()
-        }
+        deviceId = uuidv4()
         ss.set("DeviceID",deviceId)
         return deviceId
     }
