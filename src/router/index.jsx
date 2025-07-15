@@ -9,6 +9,7 @@ import Admin from "@/views/Admin/index.jsx";
 import Login2 from "@/views/Login2";
 import Koc from "@/views/Activity/Koc";
 import Message from "@/views/Message";
+import Fission from "@/views/Activity/Fission";
 const router = createHashRouter([
     {path:"/",element:<App />,children:[
         {index: true, element:<Home/>},
@@ -20,7 +21,8 @@ const router = createHashRouter([
         {path: "/i18",element: <Redirect />},
         {path: "/message", element: <Message />},
         {path: "/admin114514", element: <Admin />},
-        {path: "/koc", element: <Koc />}
+        {path: "/koc", element: <Koc />},
+        {path: "/activity/fission",element: <Fission />}
     ]},
     {path:"*",element:<Navigate to="/"/>}
 ]);

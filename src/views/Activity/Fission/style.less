@@ -1,0 +1,124 @@
+.fission{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient( 180deg, #FFBBEF 0%, #FFF0D5 100%);
+
+  .f-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  .f-logo{
+    position: absolute;
+    left: 4%;
+    top: 1vh;
+    height: 5vh;
+    width: auto;
+    z-index: 9999;
+  }
+
+  .f-main{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .f-m-title{
+      margin-top: 6vh;
+      width: 100%;
+      height: 10vh;
+      font-size: 4vh;
+      font-weight: bold;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      box-sizing: border-box;
+      padding-left: 4%;
+
+      color: #fB0;
+
+      text-shadow:
+              0.1vh 0 #ac6629,
+              -0.1vh 0 #ac6629,
+              0 0.1vh #ac6629,
+                0 -0.1vh #ac6629,
+              0.1vh 0.1vh #ac6629,
+                -0.1vh -0.1vh #ac6629,
+                0.1vh -0.1vh #ac6629,
+              -0.1vh 0.1vh #ac6629,
+
+              0.3vh 0 #fff,
+              -0.3vh 0 #fff,
+              0 0.3vh #fff,
+                0 -0.3vh #fff,
+              0.3vh 0.3vh #fff,
+                -0.3vh -0.3vh #fff,
+                0.3vh -0.3vh #fff,
+              -0.3vh 0.3vh #fff;
+    }
+
+    .f-m-time{
+      margin-top: 1vh;
+      width: 100%;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      box-sizing: border-box;
+      padding-left: 4%;
+      span{
+        font-size: 1.5vh;
+        padding: 0.5vh 8vw 0.5vh 8vw;
+        background: linear-gradient(90deg, #b679ff, #ff93d3);
+        color: white;
+        border-radius: 9999px;
+      }
+    }
+
+    .f-m-modal-1{
+      height: auto;
+      background: #FECD7B;
+      box-shadow: inset 0 4px 8px 0 rgba(255,255,255,0.54), inset 0px -4px 8px 0px #C9943A;
+      border-radius: 23px 23px 23px 23px;
+      box-sizing: border-box;
+      padding: 10px 10px 10px 10px;
+      .f-m-modal-2{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #FCEDD8;
+        box-shadow: 0 4px 4px 0 #DE9C59, inset 0 4px 8px 0 rgba(255,255,255,0.25), inset 0px -5px 8px 0px #E5BA7E;
+        border-radius: 15px 15px 15px 15px;
+      }
+    }
+    .f-balance{
+      width: 70%;
+      margin-top: 3vh;
+    }
+    .f-balance-modal{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1vh;
+      box-sizing: border-box;
+      padding: 1vh 5vw 1vh 5vw;
+      .f-balance-modal-title{
+        font-size: 3vh;
+        font-weight: bold;
+      }
+      .f-balance-modal-btn{
+
+      }
+    }
+  }
+}

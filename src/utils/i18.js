@@ -427,6 +427,19 @@ export const Text = {
     MessageNum: {
         "zh-TW": "訊息數量",
         "en-US": "Message Count",
+    },
+    
+    FissionTitle: {
+        "zh-TW": "邀請好友免費看劇",
+        "en-US": "Invite friends to watch drama for free",
+    },
+    FissionTime: {
+        "zh-TW": "📅 活動時間：7/1 ～ -（UTC+0）",
+        "en-US": "📅 Event Time: July 7– (UTC+0)",
+    },
+    FissionBalance: {
+        "zh-TW": "積分",
+        "en-US": "Points"
     }
 }
 
