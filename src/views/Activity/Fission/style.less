@@ -122,9 +122,42 @@
         }
       }
     }
-    .f-modal-close{
-      width: 5vh;
-      height: auto;
+    .f-modal-btn-box{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10vw;
+      .f-modal-btn-close{
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        width: 30vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 9999px;
+        background: linear-gradient(to right bottom, #0b6623, #28a745, #6dd47e, #a8eb12);
+        color: white;
+        font-size: 2vh;
+        font-weight: bold;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+      .f-modal-btn-guide{
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        width: 30vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 9999px;
+        background: linear-gradient(to right bottom, #c63cb0, #f52154, #fd4e36, #ff6a26);
+        color: white;
+        font-size: 2vh;
+        font-weight: bold;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
     }
   }
 
@@ -163,10 +196,10 @@
       display: flex;
       justify-content: center;
       align-items: start;
-      font-size: 4vh;
+      font-size: 5vh;
       font-weight: bold;
       span{
-        margin-top: 0.5vh;
+        margin-top: 1vh;
         background: linear-gradient(270deg, #00ffff, #00ff00, #00ffff);
         background-size: 200% auto;
         background-clip: text;
@@ -180,23 +213,10 @@
         100% { background-position: 200% 50%; }
       }
       .icon{
-        margin-top: 0.2vh;
-        height: 5vh;
+        margin-top: 0.3vh;
+        height: 7vh;
         width: auto;
       }
-    }
-    .f-modal-redeem-btn{
-      padding: 1vh 5vw 1vh 5vw;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      border-radius: 9999px;
-      background: linear-gradient(to right bottom, #c63cb0, #f52154, #fd4e36, #ff6a26);
-      color: white;
-      font-size: 2vh;
-      font-weight: bold;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
   }
 
