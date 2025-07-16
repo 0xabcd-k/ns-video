@@ -3,9 +3,12 @@
   width: 100%;
   height: 100vh;
   background: linear-gradient( 180deg, #FFBBEF 0%, #FFF0D5 100%);
+  overflow: auto;
+  box-sizing: border-box;
+  padding-bottom: 5vh;
 
   .f-bg{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -13,7 +16,7 @@
   }
 
   .f-logo{
-    position: absolute;
+    position: fixed;
     left: 4%;
     top: 1vh;
     height: 5vh;
@@ -22,9 +25,7 @@
   }
 
   .f-main{
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     height: auto;
     z-index: 100;
@@ -85,6 +86,8 @@
     }
 
     .f-m-modal-1{
+      width: 80%;
+      margin-top: 3vh;
       height: auto;
       background: #FECD7B;
       box-shadow: inset 0 4px 8px 0 rgba(255,255,255,0.54), inset 0px -4px 8px 0px #C9943A;
@@ -98,27 +101,196 @@
         background: #FCEDD8;
         box-shadow: 0 4px 4px 0 #DE9C59, inset 0 4px 8px 0 rgba(255,255,255,0.25), inset 0px -5px 8px 0px #E5BA7E;
         border-radius: 15px 15px 15px 15px;
+        .f-m-modal-title{
+          position: absolute;
+          padding: 1vh 5vw 1vh 5vw;
+          border-radius: 5px;
+          background: #FCEDD8;
+          top: -2vh;
+          left: 50%;
+          transform: translateX(-50%);
+          font-weight: bold;
+          text-wrap: nowrap;
+          color: #ac6629;
+          font-size: 2vh;
+        }
+        .f-m-modal-desc{
+          width: 90%;
+          font-size: 1.5vh;
+          color: #ac6629;
+          text-indent: 1em;
+        }
+        .f-claim-btn-tag{
+          position: absolute;
+          right: -8vw;
+          width: 2vh;
+          height: 2vh;
+          background: white;
+          border-radius: 9999px;
+        }
       }
-    }
-    .f-balance{
-      width: 70%;
-      margin-top: 3vh;
     }
     .f-balance-modal{
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 1vh;
+      gap: 2vh;
       box-sizing: border-box;
-      padding: 1vh 5vw 1vh 5vw;
+      padding: 3vh 5vw 3vh 5vw;
       .f-balance-modal-title{
         font-size: 3vh;
         font-weight: bold;
+        color: #ac6629;
       }
       .f-balance-modal-btn{
+        padding: 1vh 5vw 1vh 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 9999px;
+        background: linear-gradient(to right bottom, #c63cb0, #f52154, #fd4e36, #ff6a26);
+        color: white;
+        font-size: 2vh;
+        font-weight: bold;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+    }
+    .f-login-modal{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2vh;
+      box-sizing: border-box;
+      padding: 3vh 5vw 3vh 5vw;
+      .f-m-modal-name{
+        font-size: 3vh;
+        font-weight: bold;
+        color: #ac6629;
+      }
+      .f-m-modal-btn-redeem{
+        padding: 1vh 5vw 1vh 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 9999px;
+        background: linear-gradient(to right bottom, #000000, #222222, #555555, #888888);
+        color: white;
+        font-size: 2vh;
+        font-weight: bold;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+      .f-m-modal-btn-unredeem{
+        padding: 1vh 5vw 1vh 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 9999px;
+        background: linear-gradient(to right bottom, #0b6623, #28a745, #6dd47e, #a8eb12);
+        color: white;
+        font-size: 2vh;
+        font-weight: bold;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+    }
 
+    .f-follow-modal{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2vh;
+      box-sizing: border-box;
+      padding: 3vh 5vw 3vh 5vw;
+      .f-follow-btn{
+        padding: 1vh 5vw 1vh 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 9999px;
+        background: linear-gradient(to right bottom, #c63cb0, #f52154, #fd4e36, #ff6a26);
+        color: white;
+        font-size: 2vh;
+        font-weight: bold;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+      .can-click{
+        background: linear-gradient(to right bottom, #c63cb0, #f52154, #fd4e36, #ff6a26);
+      }
+      .cannot-click{
+        background: linear-gradient(to right bottom, #000000, #222222, #555555, #888888);
+      }
+      .f-followed-btn{
+        padding: 1vh 5vw 1vh 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 9999px;
+        background: linear-gradient(to right bottom, #000000, #222222, #555555, #888888);
+        color: white;
+        font-size: 2vh;
+        font-weight: bold;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+      .f-claim-btn{
+        padding: 1vh 5vw 1vh 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 9999px;
+        background: linear-gradient(to right bottom, #0b6623, #28a745, #6dd47e, #a8eb12);
+        color: white;
+        font-size: 2vh;
+        font-weight: bold;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+    }
+    .f-invite-modal{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2vh;
+      box-sizing: border-box;
+      padding: 3vh 5vw 3vh 5vw;
+      .f-invite-btn{
+        padding: 1vh 5vw 1vh 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 9999px;
+        background: linear-gradient(to right bottom, #c63cb0, #f52154, #fd4e36, #ff6a26);
+        color: white;
+        font-size: 2vh;
+        font-weight: bold;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       }
     }
   }
+  .f-btn-mask{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 98%;
+    height: 98%;
+    border-radius: 9999px;
+    background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.6) 0%,
+            rgba(255, 255, 255, 0) 50%,
+            rgba(255, 255, 255, 0) 100%
+    );
+  }
+}
+.fission::-webkit-scrollbar {
+  display: none;
 }

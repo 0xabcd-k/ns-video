@@ -434,12 +434,64 @@ export const Text = {
         "en-US": "Invite friends to watch drama for free",
     },
     FissionTime: {
-        "zh-TW": "📅 活動時間：7/1 ～ -（UTC+0）",
-        "en-US": "📅 Event Time: July 7– (UTC+0)",
+        "zh-TW": "📅 活動時間：7/1 ~ ？（UTC+0）",
+        "en-US": "📅 Event Time: July 1 – ?(UTC+0)",
+    },
+    FissionRedeem: {
+        "zh-TW": "兌換",
+        "en-US": "Redeem"
     },
     FissionBalance: {
-        "zh-TW": "積分",
-        "en-US": "Points"
+        "zh-TW": "獎勵",
+        "en-US": "Reward"
+    },
+    FissionLogin: {
+        "zh-TW": "登入Telegram",
+        "en-US": "Login Telegram"
+    },
+    FissionClaimed: {
+        "zh-TW": "已獲取",
+        "en-US": "Claimed"
+    },
+    FissionClaim: {
+        "zh-TW": "獲取",
+        "en-US": "Claim"
+    },
+    FissionFollowChannel: {
+        "zh-TW": "關注頻道",
+        "en-US": "Follow Channel",
+    },
+    FissionFollow:{
+        "zh-TW": "關注",
+        "en-US": "Follow",
+    },
+    FissionFollowed: {
+        "zh-TW": "已關注",
+        "en-US": "Followed",
+    },
+    FissionInviteFriend: {
+        "zh-TW": "邀請好友",
+        "en-US": "Invite Friends",
+    },
+    FissionInvite: {
+        "zh-TW": "邀請好友",
+        "en-US": "Invite Friends",
+    },
+    FissionLoginTelegramDesc: {
+        "zh-TW": "登入 Telegram，獲得 100 積分",
+        "en-US": "Log in to Telegram and earn 100 points!",
+    },
+    FissionFollowChannelDesc: {
+        "zh-TW": "關注官方頻道，即可獲得 100 積分！",
+        "en-US": "Follow the official channel to get 100 points again"
+    },
+    FissionInviteDesc: {
+        "zh-TW":"每邀請一位好友參與活動，即可獲得 100 積分",
+        "en-US":"Earn 100 points for each friend you invite to join the event"
+    },
+    FissionClaimSuccess: {
+        "zh-TW": "獲取成功",
+        "en-US": "Claim Success"
     }
 }
 

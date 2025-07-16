@@ -46,3 +46,10 @@ export const apiAdmin = {
 
     VideoUploadToken:form=>req.post('/video/admin/upload/token',form),
 }
+
+export const apiTelegramChannelActivity = {
+    getUserInfo:form=>req.get('/telegram/user/info',form),
+    claimReward:form=>req.post('/telegram/reward/claim',form),
+    redeemReward:form=>req.post('/telegram/reward/redeem',form),
+    bindTelegram:form=>req.post('/telegram/bind',form),
+}
