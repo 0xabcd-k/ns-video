@@ -492,6 +492,14 @@ export const Text = {
     FissionClaimSuccess: {
         "zh-TW": "獲取成功",
         "en-US": "Claim Success"
+    },
+    FissionRedeemSuccess: {
+        "zh-TW": "兌換成功",
+        "en-US": "Redeem Success"
+    },
+    FissionRedeemFailed: {
+        "zh-TW": "需要 200 積分才可兌換",
+        "en-US": "Requires 200 points to redeem"
     }
 }
 

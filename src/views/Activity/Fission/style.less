@@ -24,6 +24,182 @@
     z-index: 9999;
   }
 
+  .f-gift{
+    position: fixed;
+    right: 4%;
+    top: 2vh;
+    padding: 0.5vh 8vw 0.5vh 8vw;
+
+    background: #FECD7B;
+    box-shadow: inset 0 4px 8px 0 rgba(255,255,255,0.54), inset 0px -4px 8px 0px #C9943A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 9999px;
+
+    z-index: 9999;
+    .icon{
+      width: 2vh;
+      height: auto;
+    }
+  }
+  .f-mask{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  .f-modal-box{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 90%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5vh;
+    .f-modal{
+      width: 100%;
+      height: 40vh;
+      box-sizing: border-box;
+      padding: 3vh 5vw 3vh 5vw;
+      overflow: auto;
+      background: #FECD7B;
+      box-shadow: inset 0 4px 8px 0 rgba(255,255,255,0.54), inset 0px -4px 8px 0px #C9943A;
+      border-radius: 50px;
+      .f-modal-content{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+
+        .f-modal-content-item{
+          width: 100%;
+          height: 3vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .f-modal-content-item-code{
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            font-weight: bold;
+
+            text-shadow:
+                    0.1vh 0 #fff,
+                    -0.1vh 0 #fff,
+                    0 0.1vh #fff,
+                      0 -0.1vh #fff,
+                    0.1vh 0.1vh #fff,
+                      -0.1vh -0.1vh #fff,
+                      0.1vh -0.1vh #fff,
+                    -0.1vh 0.1vh #fff;
+          }
+          .f-modal-content-item-code-green{
+            color: #0b6623;
+          }
+          .f-modal-content-item-code-gray{
+            color: #222222;
+          }
+          .f-modal-content-item-time{
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            color: #ac6629;
+          }
+        }
+      }
+    }
+    .f-modal-close{
+      width: 5vh;
+      height: auto;
+    }
+  }
+
+  .f-modal-redeem{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 90%;
+    height: 74vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #FECD7B;
+    box-shadow: inset 0 4px 8px 0 rgba(255,255,255,0.54), inset 0px -4px 8px 0px #C9943A;
+    border-radius: 50px;
+    gap: 0.5vh;
+    .f-modal-redeem-close{
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -10vh;
+      width: 5vh;
+      height: auto;
+    }
+    video{
+      width: 96%;
+      height: 60vh;
+    }
+    .f-modal-redeem-tip{
+      height: 5vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      font-size: 4vh;
+      font-weight: bold;
+      span{
+        margin-top: 0.5vh;
+        background: linear-gradient(270deg, #00ffff, #00ff00, #00ffff);
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        animation: moveGradient 1s linear infinite;
+      }
+      @keyframes moveGradient {
+        0% { background-position: 0 50%; }
+        100% { background-position: 200% 50%; }
+      }
+      .icon{
+        margin-top: 0.2vh;
+        height: 5vh;
+        width: auto;
+      }
+    }
+    .f-modal-redeem-btn{
+      padding: 1vh 5vw 1vh 5vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border-radius: 9999px;
+      background: linear-gradient(to right bottom, #c63cb0, #f52154, #fd4e36, #ff6a26);
+      color: white;
+      font-size: 2vh;
+      font-weight: bold;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+  }
+
   .f-main{
     position: relative;
     width: 100%;

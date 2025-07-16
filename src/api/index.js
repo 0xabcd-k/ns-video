@@ -52,4 +52,5 @@ export const apiTelegramChannelActivity = {
     claimReward:form=>req.post('/telegram/reward/claim',form),
     redeemReward:form=>req.post('/telegram/reward/redeem',form),
     bindTelegram:form=>req.post('/telegram/bind',form),
+    listGift:form=>req.get('/telegram/activity/gift',form)
 }
