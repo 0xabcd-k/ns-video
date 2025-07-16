@@ -1,6 +1,6 @@
 import "./style.less"
 import {getText,Text} from "@/utils/i18";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {Toast} from "react-vant";
 import { useMediaQuery } from 'react-responsive';
 
@@ -18,11 +18,17 @@ export default function (){
         }
         elements.forEach(el=>el.addEventListener("click", handleClick));
     }
+    const [imgDetail,setImgDetail] = useState(null)
     useEffect(() => {
         addCopy();
     }, []);
     function content(){
         return <div className='koc'>
+            {imgDetail && <>
+                    <div className='img-mask' onClick={()=>{setImgDetail(null)}}/>
+                    <img className='img-detail' onClick={()=>{setImgDetail(null)}} src='https://static.netshort.online/koc_example.jpg' alt='koc'/>
+                </>
+            }
             <img className='koc-log' src={require("@/assets/koc/logo.png")} alt='logo'/>
             <div className='koc-main'>
                 <div className='km-top'>
@@ -77,6 +83,9 @@ export default function (){
                             <div className='bg-modal-dot' />
                             <div className='bg-modal-text' dangerouslySetInnerHTML={{__html: `${getText(Text.KocTextDemandTitle)}<br/>${getText(Text.KocTextDemandTip1)}<br/>${getText(Text.KocTextDemandTip2)}<br/><br/>${getText(Text.KocHashTagTitle)}<br/><br/>${getText(Text.KocHashTagTip1)}<br/>${getText(Text.KocHashTagTip2)}<br/><br/>${getText(Text.KocHashTagTip3)}<br/><br/>${getText(Text.KocHashTagTip4)}<br/><br/>${getText(Text.KocHashTagTip5)}<br/><br/>${getText(Text.KocHashTagTip6)}`}}/>
                         </div>
+                        <img className='bg-modal-img' src="https://static.netshort.online/koc_example.jpg" alt='koc' onClick={()=>{
+                            setImgDetail(true)
+                        }}/>
                     </div>
                     <div className='bg-modal-1'>
                         <div className='bg-modal-title'>{getText(Text.KocContentTitle)}</div>
