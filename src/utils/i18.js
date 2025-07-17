@@ -428,7 +428,11 @@ export const Text = {
         "zh-TW": "訊息數量",
         "en-US": "Message Count",
     },
-    
+
+    FissionNoGift: {
+        "zh-TW": "參與活動領取獎勵喔～",
+        "en-US": "Join the event to claim your reward~"
+    },
     FissionTitle: {
         "zh-TW": "邀請好友免費看劇",
         "en-US": "Invite friends to watch drama for free",
@@ -446,8 +450,8 @@ export const Text = {
         "en-US": "Reward"
     },
     FissionLogin: {
-        "zh-TW": "登入Telegram",
-        "en-US": "Login Telegram"
+        "zh-TW": "步驟1 登入Telegram",
+        "en-US": "Step1 Login Telegram"
     },
     FissionClaimed: {
         "zh-TW": "已獲取",
@@ -458,8 +462,8 @@ export const Text = {
         "en-US": "Claim"
     },
     FissionFollowChannel: {
-        "zh-TW": "關注頻道",
-        "en-US": "Follow Channel",
+        "zh-TW": "步驟2 關注頻道",
+        "en-US": "Step2 Follow Channel",
     },
     FissionFollow:{
         "zh-TW": "關注",
@@ -470,8 +474,8 @@ export const Text = {
         "en-US": "Followed",
     },
     FissionInviteFriend: {
-        "zh-TW": "邀請好友",
-        "en-US": "Invite Friends",
+        "zh-TW": "步驟3 邀請好友",
+        "en-US": "Step3 Invite Friends",
     },
     FissionInvite: {
         "zh-TW": "邀請好友",
@@ -500,6 +504,10 @@ export const Text = {
     FissionRedeemFailed: {
         "zh-TW": "需要 200 積分才可兌換",
         "en-US": "Requires 200 points to redeem"
+    },
+    FissionDesc: {
+        "zh-TW": "做任務領取積分，兌換 CDK 就可以免費看劇了！",
+        "en-US": "Complete tasks to earn points and redeem a CDK to watch dramas for free!"
     },
     Activity: {
         "zh-TW": "近期活動",

@@ -7,6 +7,11 @@
   box-sizing: border-box;
   padding-bottom: 5vh;
 
+  .f-icon{
+    aspect-ratio: 1;
+    width: auto;
+  }
+
   .f-bg{
     position: fixed;
     top: 0;
@@ -174,8 +179,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #FECD7B;
-    box-shadow: inset 0 4px 8px 0 rgba(255,255,255,0.54), inset 0px -4px 8px 0px #C9943A;
+    background: #FCEDD8;
+    box-shadow: inset 0 4px 8px 0 rgba(255,255,255,0.54), inset 0px -4px 8px 0px #FECD7BFF;
     border-radius: 50px;
     gap: 0.5vh;
     .f-modal-redeem-close{
@@ -187,8 +192,9 @@
       height: auto;
     }
     video{
-      width: 96%;
-      height: 60vh;
+      max-width: 96%;
+      max-height: 60vh;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
     .f-modal-redeem-tip{
       height: 5vh;
@@ -198,7 +204,13 @@
       align-items: start;
       font-size: 5vh;
       font-weight: bold;
-      span{
+      .f-modal-text{
+        margin-top: 1vh;
+      }
+      .f-icon{
+        margin-top: 1vh;
+      }
+      .f-modal-aron{
         margin-top: 1vh;
         background: linear-gradient(270deg, #00ffff, #00ff00, #00ffff);
         background-size: 200% auto;
@@ -309,6 +321,9 @@
           text-wrap: nowrap;
           color: #ac6629;
           font-size: 2vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
         .f-m-modal-desc{
           width: 90%;

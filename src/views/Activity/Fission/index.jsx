@@ -40,7 +40,7 @@ export default function (){
         {userInfo&&<>
             <div className='fission'>
                 <img className='f-bg' src={require("@/assets/fission/bg.png")} alt='bg'/>
-                <img className='f-logo' src={require("@/assets/fission/logo.png")} alt='logo'/>
+                {/*<img className='f-logo' src={require("@/assets/fission/logo.png")} alt='logo'/>*/}
                 <div className='f-gift' onClick={async ()=>{
                     setLoading(true)
                     const resp = await apiTelegramChannelActivity.listGift({})
@@ -61,29 +61,33 @@ export default function (){
                     <div className='f-modal-box'>
                         <div className='f-modal'>
                             <div className='f-modal-content'>
-                                {giftList.map((item, index) => {
-                                    return <>
-                                        <div className='f-modal-content-item'>
-                                            <div className={'f-modal-content-item-code'+' '+(item.claimed?'f-modal-content-item-code-gray':'f-modal-content-item-code-green')} onClick={()=>{
-                                                navigator.clipboard.writeText(item.code)
-                                                    .then(() => {
-                                                        Toast.info("copy success")
-                                                    })
-                                                    .catch(err => {
-                                                        Toast.info("copy failed")
-                                                    });
-                                            }}>
-                                                {item.code}
+                                {giftList.length?<>
+                                    {giftList.map((item, index) => {
+                                        return <>
+                                            <div className='f-modal-content-item'>
+                                                <div className={'f-modal-content-item-code'+' '+(item.claimed?'f-modal-content-item-code-gray':'f-modal-content-item-code-green')} onClick={()=>{
+                                                    navigator.clipboard.writeText(item.code)
+                                                        .then(() => {
+                                                            Toast.info("copy success")
+                                                        })
+                                                        .catch(err => {
+                                                            Toast.info("copy failed")
+                                                        });
+                                                }}>
+                                                    {item.code}
+                                                </div>
+                                                <div className='f-modal-content-item-time'>
+                                                    {(()=>{
+                                                        let date = new Date(item.create_time * 1000);
+                                                        return date.toLocaleString()
+                                                    })()}
+                                                </div>
                                             </div>
-                                            <div className='f-modal-content-item-time'>
-                                                {(()=>{
-                                                    let date = new Date(item.create_time * 1000);
-                                                    return date.toLocaleString()
-                                                })()}
-                                            </div>
-                                        </div>
-                                    </>
-                                })}
+                                        </>
+                                    })}
+                                </>:<>
+                                    {getText(Text.FissionNoGift)}
+                                </>}
                             </div>
                         </div>
                         <div className='f-modal-btn-box'>
@@ -122,7 +126,9 @@ export default function (){
                             Your browser does not support the video tag.
                         </video>
                         <div className='f-modal-redeem-tip'>
-                            200🪙<span>&gt;&gt;</span>
+                            <span className='f-modal-text'>200</span>
+                            <img className='f-icon' style={{height: '5vh'}} src={require("@/assets/fission/star.png")} alt='star'/>
+                            <span className='f-modal-aron'>&gt;&gt;</span>
                             <svg t="1752663175982" className="icon" viewBox="0 0 1024 1024" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg" p-id="7805" width="200" height="200">
                                 <path
@@ -137,10 +143,13 @@ export default function (){
                     <div className='f-m-time'><span>{getText(Text.FissionTime)}</span></div>
                     <div className='f-m-modal-1'>
                         <div className='f-m-modal-2'>
-                            <div className='f-m-modal-title'>🪙{getText(Text.FissionBalance)}🪙</div>
+                            <div className='f-m-modal-title'><img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/>{getText(Text.FissionBalance)}<img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/></div>
                             <div className='f-balance-modal'>
                                 <div className='f-balance-modal-title'>
                                     {getText(Text.FissionBalance)}: {userInfo.balance * 100}
+                                </div>
+                                <div className='f-m-modal-desc'>
+                                    {getText(Text.FissionDesc)}
                                 </div>
                                 <div className='f-balance-modal-btn' onClick={async () => {
                                     setLoading(true)
@@ -160,14 +169,18 @@ export default function (){
                                     setLoading(false)
                                 }}>
                                     <div className='f-btn-mask'/>
-                                    🔥{getText(Text.FissionRedeem)}🔥
+                                    <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>{getText(Text.FissionRedeem)}<img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className='f-m-modal-1'>
                         <div className='f-m-modal-2'>
-                            <div className='f-m-modal-title'>🪙{getText(Text.FissionLogin)}🪙</div>
+                            <div className='f-m-modal-title'>
+                                <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/>
+                                {getText(Text.FissionLogin)}
+                                <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/>
+                            </div>
                             <div className='f-login-modal'>
                                 <div className='f-m-modal-desc'>{getText(Text.FissionLoginTelegramDesc)}</div>
                                 {userInfo.name?<>
@@ -212,7 +225,7 @@ export default function (){
                                                 </svg>
                                             </>}
                                             <div className='f-btn-mask'/>
-                                            🔥{getText(Text.FissionClaim)}🔥
+                                            <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>{getText(Text.FissionClaim)}<img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>
                                         </div>
                                     </>}
                                 </>:<>
@@ -240,7 +253,7 @@ export default function (){
 
                     <div className='f-m-modal-1'>
                         <div className='f-m-modal-2'>
-                            <div className='f-m-modal-title'>🪙{getText(Text.FissionFollowChannel)}🪙</div>
+                            <div className='f-m-modal-title'><img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/>{getText(Text.FissionFollowChannel)}<img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/></div>
                             <div className='f-follow-modal'>
                                 <div className='f-m-modal-desc'>{getText(Text.FissionFollowChannelDesc)}</div>
                                 <div className={userInfo.is_follower ? (userInfo.claim_follow ? 'f-followed-btn' : 'f-claim-btn') : ('f-follow-btn'+' '+(userInfo.name?'can-click':'cannot-click'))} onClick={async ()=>{
@@ -263,7 +276,21 @@ export default function (){
                                     }
                                 }}>
                                     <div className='f-btn-mask'/>
-                                    {userInfo.is_follower ? (userInfo.claim_follow ? `${getText(Text.FissionFollowed)}` : `🪙${getText(Text.FissionClaim)}🪙`) : `🔥${getText(Text.FissionFollow)}🔥`}
+                                    {userInfo.is_follower ?
+                                        (userInfo.claim_follow ?
+                                            <>{getText(Text.FissionFollowed)}</>:
+                                            <>
+                                                <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/>
+                                                {getText(Text.FissionClaim)}
+                                                <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/>
+                                            </>
+                                        ) :
+                                        <>
+                                            <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>
+                                            {getText(Text.FissionFollow)}
+                                            <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>
+                                        </>
+                                    }
                                     {userInfo.claim_follow && <>
                                         <svg t="1752575628672" className="f-claim-btn-tag" viewBox="0 0 1024 1024" version="1.1"
                                              xmlns="http://www.w3.org/2000/svg" p-id="4048" width="200" height="200">
@@ -279,14 +306,14 @@ export default function (){
 
                     <div className='f-m-modal-1'>
                         <div className='f-m-modal-2'>
-                            <div className='f-m-modal-title'>🪙{getText(Text.FissionInviteFriend)}🪙</div>
+                            <div className='f-m-modal-title'><img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/>{getText(Text.FissionInviteFriend)}<img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/></div>
                             <div className='f-invite-modal'>
                                 <div className='f-m-modal-desc'>{getText(Text.FissionInviteDesc)}</div>
                                 <div className='f-invite-btn' onClick={()=>{
                                     window.open(`https://t.me/share/url?url=https://player.netshort.online/#/activity/fission?invite=${userInfo.user_id}`)
                                 }}>
                                     <div className='f-btn-mask'/>
-                                    🔥{getText(Text.FissionInvite)}🔥
+                                    <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>{getText(Text.FissionInvite)}<img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>
                                 </div>
                             </div>
                         </div>
