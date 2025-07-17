@@ -146,7 +146,7 @@ export default function (){
                             <div className='f-m-modal-title'><img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/>{getText(Text.FissionBalance)}<img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/></div>
                             <div className='f-balance-modal'>
                                 <div className='f-balance-modal-title'>
-                                    {getText(Text.FissionBalance)}: {userInfo.balance * 100}
+                                    {getText(Text.FissionBalance)}: {userInfo.balance * 50}
                                 </div>
                                 <div className='f-m-modal-desc'>
                                     {getText(Text.FissionDesc)}
