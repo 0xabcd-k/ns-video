@@ -1012,6 +1012,28 @@
       height: auto;
     }
   }
+  .m-h-h-activity{
+    position: absolute;
+    right: 0;
+    top: 60vh;
+    width: 10vw;
+    margin-right: 2vw;
+    z-index: 990;
+    animation: rotate-shake 2s infinite;
+    @keyframes rotate-shake {
+      0%, 90%, 100% { transform: rotate(0deg); }
+      91% { transform: rotate(-10deg); }
+      93% { transform: rotate(10deg); }
+      95% { transform: rotate(-10deg); }
+      97% { transform: rotate(10deg); }
+      99% { transform: rotate(0deg); }
+    }
+    svg{
+      width: 100%;
+      aspect-ratio: 1;
+      height: auto;
+    }
+  }
   .m-h-h-msg{
     position: absolute;
     right: 0;

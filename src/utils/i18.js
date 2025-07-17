@@ -500,6 +500,10 @@ export const Text = {
     FissionRedeemFailed: {
         "zh-TW": "需要 200 積分才可兌換",
         "en-US": "Requires 200 points to redeem"
+    },
+    Activity: {
+        "zh-TW": "近期活動",
+        "en-US": "Recent Activities"
     }
 }
 

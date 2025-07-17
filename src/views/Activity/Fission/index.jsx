@@ -195,6 +195,12 @@ export default function (){
                                                 setUserInfo({...userInfo,claim_login: true})
                                                 Toast.info(getText(Text.FissionClaimSuccess))
                                             }
+                                            const infoResp = await apiTelegramChannelActivity.getUserInfo({
+                                                invite: params.invite,
+                                            })
+                                            if (infoResp.success) {
+                                                setUserInfo(infoResp.data)
+                                            }
                                             setLoading(false)
                                         }}>
                                             {userInfo.claim_follow && <>
@@ -211,13 +217,14 @@ export default function (){
                                     </>}
                                 </>:<>
                                     <LoginButton
-                                        botUsername={"netshort002bot"}
+                                        botUsername={"netshort001bot"}
                                         buttonSize="medium"
                                         showAvatar={false}
                                         onAuthCallback={async (user) => {
                                             setLoading(true)
                                             const resp = await apiTelegramChannelActivity.bindTelegram({
-                                                ...user
+                                                ...user,
+                                                invite: Number(params.invite),
                                             })
                                             if(resp.success){
                                                 setUserInfo(resp.data)
@@ -245,6 +252,12 @@ export default function (){
                                         if(resp.success){
                                             setUserInfo({...userInfo,claim_follow: true})
                                             Toast.info(getText(Text.FissionClaimSuccess))
+                                        }
+                                        const infoResp = await apiTelegramChannelActivity.getUserInfo({
+                                            invite: params.invite,
+                                        })
+                                        if (infoResp.success) {
+                                            setUserInfo(infoResp.data)
                                         }
                                         setLoading(false)
                                     }
