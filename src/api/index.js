@@ -17,18 +17,18 @@ export const apiVideo = {
 }
 
 export const apiAuth = {
-    loginDevice:form=>req.post('/login/device',form),
+    loginDevice:form=>req.post('/login/device',{lan:navigator.language,...form}),
     userInfo:form=>req.get('/user/info',{lan:navigator.language,...form}),
-    emailCode:form=>req.post('/email/code/login',form),
-    loginEmail:form=>req.post('/login/email',form),
-    isAccountExist:form=>req.get('/account/exist',form),
-    loginPassword:form=>req.post('/login/password',form),
-    loginTelegram:form=>req.post('/login/tg',form),
+    emailCode:form=>req.post('/email/code/login',{lan:navigator.language,...form}),
+    loginEmail:form=>req.post('/login/email',{lan:navigator.language,...form}),
+    isAccountExist:form=>req.get('/account/exist',{lan:navigator.language,...form}),
+    loginPassword:form=>req.post('/login/password',{lan:navigator.language,...form}),
+    loginTelegram:form=>req.post('/login/tg',{lan:navigator.language,...form}),
 }
 
 export const apiFinance= {
-    recharge:form=>req.post('/recharge/order',form),
-    rechargeList:form=>req.get('/recharge/order/list',form)
+    recharge:form=>req.post('/recharge/order',{lan:navigator.language,...form}),
+    rechargeList:form=>req.get('/recharge/order/list',{lan:navigator.language,...form})
 }
 
 export const apiAdmin = {
@@ -48,9 +48,9 @@ export const apiAdmin = {
 }
 
 export const apiTelegramChannelActivity = {
-    getUserInfo:form=>req.get('/telegram/user/info',form),
-    claimReward:form=>req.post('/telegram/reward/claim',form),
-    redeemReward:form=>req.post('/telegram/reward/redeem',form),
-    bindTelegram:form=>req.post('/telegram/bind',form),
-    listGift:form=>req.get('/telegram/activity/gift',form)
+    getUserInfo:form=>req.get('/telegram/user/info',{lan:navigator.language,...form}),
+    claimReward:form=>req.post('/telegram/reward/claim',{lan:navigator.language,...form}),
+    redeemReward:form=>req.post('/telegram/reward/redeem',{lan:navigator.language,...form}),
+    bindTelegram:form=>req.post('/telegram/bind',{lan:navigator.language,...form}),
+    listGift:form=>req.get('/telegram/activity/gift',{lan:navigator.language,...form})
 }
