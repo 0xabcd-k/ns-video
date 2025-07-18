@@ -21,6 +21,11 @@
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "ry4hn5ivhn");
     </script>
+    <script>
+        if("serviceWorker" in navigator){
+            navigator.serviceWorker.register("/service-worker.js")
+        }
+    </script>
     <style>
         html { overscroll-behavior: none;background-color:#000}
         body{margin:0;}
