@@ -15,6 +15,11 @@ export default function (){
     const [email,setEmail] = useState("");
     const [dramas,setDramas] = useState("");
     const params = useHashQueryParams();
+    if(navigator.language==='zh-TW'){
+        params.series = 2
+    }else {
+        params.series = 1
+    }
     const navigate = useNavigate();
     const [login,setLogin] = useState(null);
     const [emailInput,setEmailInput] = useState("");
