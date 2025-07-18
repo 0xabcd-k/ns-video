@@ -18,7 +18,7 @@ export const apiVideo = {
 
 export const apiAuth = {
     loginDevice:form=>req.post('/login/device',form),
-    userInfo:form=>req.get('/user/info',form),
+    userInfo:form=>req.get('/user/info',{lan:navigator.language,...form}),
     emailCode:form=>req.post('/email/code/login',form),
     loginEmail:form=>req.post('/login/email',form),
     isAccountExist:form=>req.get('/account/exist',form),
