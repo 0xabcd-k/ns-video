@@ -32,6 +32,7 @@ export default function (){
         const resp = await apiTelegramChannelActivity.bindTelegram({
             ...user,
             auth_date: Number(initData.auth_date),
+            hash: initData.hash,
             invite: Number(invite),
         })
         if(resp.success){
