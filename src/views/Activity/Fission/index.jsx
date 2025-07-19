@@ -27,7 +27,7 @@ export default function (){
     const navigate = useNavigate()
     async function init(){
         setLoading(true)
-        const user = window.Telegram.WebApp.initDataUnsafe
+        const user = window.Telegram.WebApp.initDataUnsafe.user
         const resp = await apiTelegramChannelActivity.bindTelegram({
             ...user,
             invite: Number(invite),
