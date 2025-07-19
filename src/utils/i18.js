@@ -462,8 +462,8 @@ export const Text = {
         "en-US": "Claim"
     },
     FissionFollowChannel: {
-        "zh-TW": "任務2 —— 50 積分",
-        "en-US": "Task 2 -- 50points",
+        "zh-TW": "任務1 —— 50 積分",
+        "en-US": "Task1 -- 50points",
     },
     FissionFollow:{
         "zh-TW": "關注",
@@ -474,8 +474,8 @@ export const Text = {
         "en-US": "Followed",
     },
     FissionInviteFriend: {
-        "zh-TW": "任務3 — 無上限",
-        "en-US": "Task 3 -- No limit",
+        "zh-TW": "任務2 — 無上限",
+        "en-US": "Task2 -- No limit",
     },
     FissionInvite: {
         "zh-TW": "邀請好友",
@@ -508,7 +508,7 @@ export const Text = {
     FissionDesc: {
         "zh-TW": <>
 <p>👉 完成任務，賺取積分，免費追劇！</p>
-<p>🎯 250 積分 = 1 部劇集</p>
+<p>🎯 150 積分 = 1 部劇集</p>
 <p>✨ 積分越多，免費看的劇越多！</p>
 <p>♾️ 無上限 — 持續賺積分，盡情追劇！</p>
         </>,

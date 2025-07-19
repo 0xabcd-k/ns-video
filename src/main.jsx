@@ -7,6 +7,26 @@ import {getLocalId} from "@/utils";
 const rootDom = document.getElementById('root')
 const root = ReactDOM.createRoot(rootDom)
 const auth = ss.get("Authorization","")
+if(process.env.NODE_ENV === "development"){
+    await fetch("http://localhost:8282/param.json", {
+        method: 'GET',
+    })
+        .then(response => response.json())
+        .then(data => {
+            window.Telegram = {
+                WebApp: data
+            }
+            window.Telegram.WebApp.openLink = (link)=>{
+                window.open(link, "_blank");
+            }
+            window.Telegram.WebApp.openTelegramLink = (link)=>{
+                window.open(link, "_blank");
+            }
+            window.Telegram.WebApp.safeAreaInset = 20
+            window.Telegram.WebApp.contentSafeAreaInset = 20
+        })
+        .catch(error => {});
+}
 if(auth){
     root.render(router)
 }else{

@@ -1,3 +1,3 @@
-self.addEventListener("fetch",(e)=>{
+addEventListener("install",(e)=>{
     console.log("install")
 })

@@ -2,8 +2,6 @@ import "./style.less"
 import {getText,Text} from "@/utils/i18";
 import {useEffect, useState} from "react";
 import {apiTelegramChannelActivity} from "@/api";
-import {LoginButton} from "@telegram-auth/react";
-import {useHashQueryParams} from "@/utils";
 import ReactLoading from "react-loading";
 import {Toast} from "react-vant";
 import ss from "good-storage";
@@ -11,18 +9,32 @@ import {useNavigate} from "react-router-dom";
 
 export default function (){
     const [loading,setLoading] = useState(false);
-    const params = useHashQueryParams()
+    const startParam = window.Telegram.WebApp.initDataUnsafe.start_param
+    let invite = ""
+    if(startParam){
+        startParam.split("_").forEach(element=>{
+            if(element.startsWith("i")){
+                const index = element.indexOf("i")
+                if(index !== -1){
+                    invite = element.slice(index + 1)
+                }
+            }
+        })
+    }
     const [userInfo,setUserInfo] = useState(null)
     const [giftList,setGiftList] = useState(null)
     const [redeemModal,setRedeemModal] = useState(null)
     const navigate = useNavigate()
     async function init(){
         setLoading(true)
-        const resp = await apiTelegramChannelActivity.getUserInfo({
-            invite: params.invite,
+        const user = window.Telegram.WebApp.initDataUnsafe
+        const resp = await apiTelegramChannelActivity.bindTelegram({
+            ...user,
+            invite: Number(invite),
         })
         if(resp.success){
             setUserInfo(resp.data)
+            ss.set("Authorization", resp.data.token)
         }
         setLoading(false)
     }
@@ -126,7 +138,7 @@ export default function (){
                             Your browser does not support the video tag.
                         </video>
                         <div className='f-modal-redeem-tip'>
-                            <span className='f-modal-text'>200</span>
+                            <span className='f-modal-text'>150</span>
                             <img className='f-icon' style={{height: '5vh'}} src={require("@/assets/fission/star.png")} alt='star'/>
                             <span className='f-modal-aron'>&gt;&gt;</span>
                             <svg t="1752663175982" className="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -161,7 +173,7 @@ export default function (){
                                     }
                                     setRedeemModal(true)
                                     const infoResp = await apiTelegramChannelActivity.getUserInfo({
-                                        invite: params.invite,
+                                        invite: invite,
                                     })
                                     if (infoResp.success) {
                                         setUserInfo(infoResp.data)
@@ -171,82 +183,6 @@ export default function (){
                                     <div className='f-btn-mask'/>
                                     <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>{getText(Text.FissionRedeem)}<img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='f-m-modal-1'>
-                        <div className='f-m-modal-2'>
-                            <div className='f-m-modal-title'>
-                                <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/>
-                                {getText(Text.FissionLogin)}
-                                <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/star.png")} alt='star'/>
-                            </div>
-                            <div className='f-login-modal'>
-                                <div className='f-m-modal-desc'>{getText(Text.FissionLoginTelegramDesc)}</div>
-                                {userInfo.name?<>
-                                    <div className='f-m-modal-name'>{userInfo.name}</div>
-                                    {userInfo.claim_login?<>
-                                        <div className='f-m-modal-btn-redeem'>
-                                            <div className='f-btn-mask'/>
-                                            {getText(Text.FissionClaimed)}
-                                            {userInfo.claim_follow && <>
-                                                <svg t="1752575628672" className="f-claim-btn-tag" viewBox="0 0 1024 1024" version="1.1"
-                                                     xmlns="http://www.w3.org/2000/svg" p-id="4048" width="200" height="200">
-                                                    <path
-                                                        d="M512 1024a512 512 0 1 1 512-512 512 512 0 0 1-512 512z m296.96-819.2c-213.4528 112.1792-348.8256 448.768-348.8256 448.768L376.832 487.936 204.8 594.7904A725.504 725.504 0 0 1 470.3232 819.2c62.5152-117.76 255.1296-357.9392 348.8768-379.3408-36.4544-85.504-15.36-154.9312-10.24-235.0592z"
-                                                        p-id="4049" fill="#1afa29"></path>
-                                                </svg>
-                                            </>}
-                                        </div>
-                                    </>:<>
-                                        <div className='f-m-modal-btn-unredeem' onClick={async ()=>{
-                                            setLoading(true)
-                                            const resp = await apiTelegramChannelActivity.claimReward({
-                                                tp: "login",
-                                            })
-                                            if(resp.success){
-                                                setUserInfo({...userInfo,claim_login: true})
-                                                Toast.info(getText(Text.FissionClaimSuccess))
-                                            }
-                                            const infoResp = await apiTelegramChannelActivity.getUserInfo({
-                                                invite: params.invite,
-                                            })
-                                            if (infoResp.success) {
-                                                setUserInfo(infoResp.data)
-                                            }
-                                            setLoading(false)
-                                        }}>
-                                            {userInfo.claim_follow && <>
-                                                <svg t="1752575628672" className="f-claim-btn-tag" viewBox="0 0 1024 1024" version="1.1"
-                                                     xmlns="http://www.w3.org/2000/svg" p-id="4048" width="200" height="200">
-                                                    <path
-                                                        d="M512 1024a512 512 0 1 1 512-512 512 512 0 0 1-512 512z m296.96-819.2c-213.4528 112.1792-348.8256 448.768-348.8256 448.768L376.832 487.936 204.8 594.7904A725.504 725.504 0 0 1 470.3232 819.2c62.5152-117.76 255.1296-357.9392 348.8768-379.3408-36.4544-85.504-15.36-154.9312-10.24-235.0592z"
-                                                        p-id="4049" fill="#1afa29"></path>
-                                                </svg>
-                                            </>}
-                                            <div className='f-btn-mask'/>
-                                            <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>{getText(Text.FissionClaim)}<img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>
-                                        </div>
-                                    </>}
-                                </>:<>
-                                    <LoginButton
-                                        botUsername={"netshort001bot"}
-                                        buttonSize="medium"
-                                        showAvatar={false}
-                                        onAuthCallback={async (user) => {
-                                            setLoading(true)
-                                            const resp = await apiTelegramChannelActivity.bindTelegram({
-                                                ...user,
-                                                invite: Number(params.invite),
-                                            })
-                                            if(resp.success){
-                                                setUserInfo(resp.data)
-                                                ss.set("Authorization", resp.data.token)
-                                            }
-                                            setLoading(false)
-                                        }}
-                                    />
-                                </>}
                             </div>
                         </div>
                     </div>
@@ -267,7 +203,7 @@ export default function (){
                                             Toast.info(getText(Text.FissionClaimSuccess))
                                         }
                                         const infoResp = await apiTelegramChannelActivity.getUserInfo({
-                                            invite: params.invite,
+                                            invite: invite,
                                         })
                                         if (infoResp.success) {
                                             setUserInfo(infoResp.data)

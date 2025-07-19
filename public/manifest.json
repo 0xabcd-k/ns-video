@@ -1,7 +1,7 @@
 {
   "name": "ShortStore",
   "short_name": "ShortStore",
-  "start_url": "/#/series",
+  "start_url": "./#/series",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0084ff",
