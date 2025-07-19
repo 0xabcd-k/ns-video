@@ -514,7 +514,7 @@ export const Text = {
         </>,
         "en-US": <>
             <p>👉 Do tasks, earn points, and watch dramas for free!</p>
-            <p>🎯 250 points = 1 drama</p>
+            <p>🎯 150 points = 1 drama</p>
             <p>✨ The more points you earn, the more free dramas you get!</p>
             <p>♾️ No limit — keep earning, keep watching!</p>
         </>
