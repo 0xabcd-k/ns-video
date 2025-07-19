@@ -246,7 +246,7 @@ export default function (){
                             <div className='f-invite-modal'>
                                 <div className='f-m-modal-desc'>{getText(Text.FissionInviteDesc)}</div>
                                 <div className='f-invite-btn' onClick={()=>{
-                                    window.open(`https://t.me/share/url?url=https://player.netshort.online/#/activity/fission?invite=${userInfo.user_id}`)
+                                    window.Telegram.WebApp.openTelegramLink(`https://t.me/share/url?url=https://t.me/netshort001bot/app?startapp=i${userInfo.user_id}`)
                                 }}>
                                     <div className='f-btn-mask'/>
                                     <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>{getText(Text.FissionInvite)}<img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>

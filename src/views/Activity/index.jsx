@@ -16,7 +16,7 @@ export default function (){
                         navigate("/koc")
                     }} className='a-box-item' src={require("@/assets/poster/koc-poster.png")} alt='poster'/>
                     <img onClick={()=>{
-                        navigate("/activity/fission")
+                        window.open("https://t.me/netshort001bot/app")
                     }} className='a-box-item' src={require("@/assets/poster/fission-poster.png")} alt='poster'/>
                 </div>
 
