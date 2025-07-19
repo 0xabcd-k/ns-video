@@ -28,8 +28,10 @@ export default function (){
     async function init(){
         setLoading(true)
         const user = window.Telegram.WebApp.initDataUnsafe.user
+        const initData = window.Telegram.WebApp.initDataUnsafe
         const resp = await apiTelegramChannelActivity.bindTelegram({
             ...user,
+            auth_date: initData.auth_date,
             invite: Number(invite),
         })
         if(resp.success){
