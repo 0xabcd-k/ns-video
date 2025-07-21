@@ -249,7 +249,7 @@ export default function (){
                             <div className='f-invite-modal'>
                                 <div className='f-m-modal-desc'>{getText(Text.FissionInviteDesc)}</div>
                                 <div className='f-invite-btn' onClick={()=>{
-                                    window.Telegram.WebApp.openTelegramLink(`https://t.me/share/url?url=https://t.me/netshort001bot/app?startapp=i${userInfo.user_id}`)
+                                    window.Telegram.WebApp.openTelegramLink(`https://t.me/share/url?url=https://t.me/netshort001bot/app?startapp=i${userInfo.user_id}&text=${encodeURIComponent("Your friend just invited you to watch dramas for free!")}`)
                                 }}>
                                     <div className='f-btn-mask'/>
                                     <img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>{getText(Text.FissionInvite)}<img className='f-icon' style={{height: '2vh'}} src={require("@/assets/fission/fire.png")} alt='star'/>
