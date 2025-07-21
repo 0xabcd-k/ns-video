@@ -267,6 +267,10 @@ export const Text = {
         "zh-TW": "等待中",
         "en-US": "Pending",
     },
+    RechargeReportTip: {
+        "zh-TW": "回報支付異常情況，可獲得免費觀看禮品碼喔！",
+        "en-US": "Report payment issues to get a free access gift code!"
+    },
     KocTitle: {
         "zh-TW": "發影片拿 <span>99,999</span> 金幣！",
         "en-US": "Post to Win <span>99,999</span> Bonus!",
