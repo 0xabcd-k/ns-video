@@ -113,6 +113,10 @@ export default function (){
             if(dramaResp.success){
                 setDrama(dramaResp.data)
                 setPlayingVideoNo(dramaResp.data.watch_no)
+            }else{
+                Toast.info(getText(Text.DramaExpire))
+                navigate("/series")
+                return
             }
             const recommendsResp = await apiVideo.dramaList({
                 series: Number(dramaResp.data.series_id),

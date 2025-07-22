@@ -275,6 +275,7 @@ export default function (){
                                             <li className='am-vm-t-lan am-vm-t-lan-header'>语言</li>
                                             <li className='am-vm-t-series am-vm-t-series-header'>剧单</li>
                                             <li className='am-vm-t-redeem am-vm-t-redeem-header'>禁止兑换</li>
+                                            <li className='am-vm-t-expire am-vm-t-expire-header'>过期</li>
                                             <li className='am-vm-t-exec am-vm-t-exec-header'>操作</li>
                                         </ul>
                                     </div>
@@ -506,6 +507,26 @@ export default function (){
                                                         setLoading(false)
                                                     }
                                                 }}/></li>
+                                                <li className='am-vm-t-expire am-vm-t-expire-body'><Content
+                                                        type={"datetime-local"} content={((t)=>{const date = new Date(t*1000);return date.toLocaleString();})(item.watch_time)} update={async (value) => {
+                                                        if (value) {
+                                                            setLoading(true)
+                                                            const timestamp = new Date(value).getTime()/1000;
+                                                            videoList[index].watch_time = timestamp
+                                                            setVideoList([...videoList])
+                                                            const resp = await apiAdmin.updateDrama({
+                                                                drama_id: item.id,
+                                                                watch_time: timestamp,
+                                                            })
+                                                            if (resp.success) {
+                                                                Toast.info("更新成功")
+                                                            } else {
+                                                                Toast.info("更新失败")
+                                                            }
+                                                            setLoading(false)
+                                                        }
+                                                    }}/>
+                                                </li>
                                                 <li className='am-vm-t-exec am-vm-t-exec-body'>
                                                     <div className='am-vm-t-exec-btn' onClick={() => {
                                                         setVideoUploadModal({
