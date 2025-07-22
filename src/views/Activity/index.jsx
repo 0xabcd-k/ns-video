@@ -12,9 +12,9 @@ export default function (){
             <div className='a-box'>
                 <div className='a-box-content'>
                     <div className='a-box-title'>{getText(Text.Activity)}</div>
-                    <img onClick={()=>{
-                        navigate("/koc")
-                    }} className='a-box-item' src={require("@/assets/poster/koc-poster.png")} alt='poster'/>
+                    {/*<img onClick={()=>{*/}
+                    {/*    navigate("/koc")*/}
+                    {/*}} className='a-box-item' src={require("@/assets/poster/koc-poster.png")} alt='poster'/>*/}
                     <img onClick={()=>{
                         window.open("https://t.me/netshort001bot/app")
                     }} className='a-box-item' src={require("@/assets/poster/fission-poster.png")} alt='poster'/>
