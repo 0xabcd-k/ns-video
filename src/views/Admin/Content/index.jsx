@@ -5,7 +5,7 @@ import {apiAdmin} from "@/api";
 
 export default function ({type,content,update}){
     const [dbClicked,setDbClicked] = useState(false)
-    const [v,setV] = useState(null)
+    const [v,setV] = useState(content)
     return <>
         {dbClicked?<>
             <input className='content-edit' type={type} onChange={(e)=>{

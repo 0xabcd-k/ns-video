@@ -276,6 +276,7 @@ export default function (){
                                             <li className='am-vm-t-series am-vm-t-series-header'>剧单</li>
                                             <li className='am-vm-t-redeem am-vm-t-redeem-header'>禁止兑换</li>
                                             <li className='am-vm-t-expire am-vm-t-expire-header'>过期</li>
+                                            <li className='am-vm-t-keys am-vm-t-keys-header'>关键字</li>
                                             <li className='am-vm-t-exec am-vm-t-exec-header'>操作</li>
                                         </ul>
                                     </div>
@@ -517,6 +518,26 @@ export default function (){
                                                             const resp = await apiAdmin.updateDrama({
                                                                 drama_id: item.id,
                                                                 watch_time: timestamp,
+                                                            })
+                                                            if (resp.success) {
+                                                                Toast.info("更新成功")
+                                                            } else {
+                                                                Toast.info("更新失败")
+                                                            }
+                                                            setLoading(false)
+                                                        }
+                                                    }}/>
+                                                </li>
+                                                <li className='am-vm-t-keys am-vm-t-keys-body'>
+                                                    <Content
+                                                        type={"text"} content={item.keys} update={async (value) => {
+                                                        if (value) {
+                                                            setLoading(true)
+                                                            videoList[index].keys = value
+                                                            setVideoList([...videoList])
+                                                            const resp = await apiAdmin.updateDrama({
+                                                                drama_id: item.id,
+                                                                keys: value,
                                                             })
                                                             if (resp.success) {
                                                                 Toast.info("更新成功")
