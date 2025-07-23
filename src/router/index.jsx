@@ -11,6 +11,7 @@ import Koc from "@/views/Activity/Koc";
 import Message from "@/views/Message";
 import Fission from "@/views/Activity/Fission";
 import Activity from "@/views/Activity";
+import Search from "@/views/Search";
 const router = createHashRouter([
     {path:"/",element:<App />,children:[
         {index: true, element:<Home/>},
@@ -24,7 +25,8 @@ const router = createHashRouter([
         {path: "/admin114514", element: <Admin />},
         {path: "/koc", element: <Koc />},
         {path: "/activity/fission",element: <Fission />},
-        {path: "/activity",element: <Activity/>}
+        {path: "/activity",element: <Activity/>},
+        {path: "/search",element: <Search />},
     ]},
     {path:"*",element:<Navigate to="/"/>}
 ]);

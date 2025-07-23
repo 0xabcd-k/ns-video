@@ -530,7 +530,7 @@ export const Text = {
     DramaExpire: {
         "zh-TW": "抱歉，此短劇已下架",
         "en-US": "Sorry, this short drama is no longer available",
-    }
+    },
 }
 
 export function getText(item){
