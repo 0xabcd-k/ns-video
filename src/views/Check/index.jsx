@@ -1,6 +1,7 @@
 import "./style.less"
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
+import ss from "good-storage";
 
 export default function (){
     const navigate = useNavigate()
@@ -9,7 +10,7 @@ export default function (){
         turnstile.render(container,{
             sitekey: "0x4AAAAAABmTbMnbhnNWhBbw",
             callback: function (token){
-                window.safetoken = token
+                ss.set("Safe",token)
                 navigate(-1)
             }
         })
