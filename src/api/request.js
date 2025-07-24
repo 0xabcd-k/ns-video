@@ -16,6 +16,7 @@ const instance = axios.create({
 instance.interceptors.request.use(function (config,data) {
     config.headers["Authorization"] = ss.get("Authorization","");
     config.headers["Admin"] = ss.get("Admin","");
+    config.headers["Safe"] = window.safetoken
     return config;
 }, function (error) {
     return Promise.reject(error);
