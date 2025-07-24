@@ -1,13 +1,16 @@
 import "./style.less"
 import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 export default function (){
+    const navigate = useNavigate()
     window.onloadTurnstileCallback = function (){
         const container = document.getElementById('safe-btn')
         turnstile.render(container,{
             sitekey: "0x4AAAAAABmTbMnbhnNWhBbw",
             callback: function (token){
                 window.safetoken = token
+                navigate(-1)
             }
         })
     }
