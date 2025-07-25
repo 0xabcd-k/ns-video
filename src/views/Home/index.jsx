@@ -114,11 +114,8 @@ export default function (){
                 setDrama(dramaResp.data)
                 setPlayingVideoNo(dramaResp.data.watch_no)
             }else{
-                console.log(dramaResp)
-                if(dramaResp.err_code){
-                    Toast.info(getText(Text.DramaExpire))
-                    navigate("/series")
-                }
+                Toast.info(getText(Text.DramaExpire))
+                navigate("/series")
                 return
             }
             const recommendsResp = await apiVideo.dramaList({
