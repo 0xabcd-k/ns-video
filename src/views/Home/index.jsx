@@ -66,25 +66,24 @@ export default function (){
         }
     }
     async function updateHistory(){
-        apiVideo.listHistory({
+        const resp = await apiVideo.listHistory({
             page_size:8,
             pre_idx: nextId
-        }).then((resp)=>{
-            if(resp.success){
-                setHistory([history,...resp.data.list]);
-                if(resp.data.list.length>0){
-                    setHistory([...history,...resp.data.list]);
-                    setNextId(resp.data.next_idx)
-                    if(resp.data.list.length<8){
-                        setHasMore(false);
-                    }
-                }
-            }else{
-                if(resp.err_code===7){
+        })
+        if(resp.success){
+            setHistory([history,...resp.data.list]);
+            if(resp.data.list.length>0){
+                setHistory([...history,...resp.data.list]);
+                setNextId(resp.data.next_idx)
+                if(resp.data.list.length<8){
                     setHasMore(false);
                 }
             }
-        })
+        }else{
+            if(resp.err_code===7){
+                setHasMore(false);
+            }
+        }
     }
     async function init(){
         setLoading(true)
@@ -94,19 +93,18 @@ export default function (){
             window.location.href = window.location.origin+`/#/?drama=${params.drama}`;
         }
         if(params.drama){
-            apiAuth.userInfo({}).then((resp)=>{
-                if(resp?.data?.email){
-                    logined = true
-                    setEmail(resp?.data?.email)
-                }
-                if(resp?.data?.user_idx){
-                    setUid(resp?.data?.user_idx)
-                }
-                if(resp?.data?.is_read_all){
-                    setIsReadAll(true)
-                }
-            })
-            updateHistory()
+            const infoResp = await apiAuth.userInfo({})
+            if(infoResp?.data?.email){
+                logined = true
+                setEmail(infoResp?.data?.email)
+            }
+            if(infoResp?.data?.user_idx){
+                setUid(infoResp?.data?.user_idx)
+            }
+            if(infoResp?.data?.is_read_all){
+                setIsReadAll(true)
+            }
+            await updateHistory()
             const dramaResp = await apiVideo.drama({
                 idx: params.drama
             })
@@ -114,8 +112,10 @@ export default function (){
                 setDrama(dramaResp.data)
                 setPlayingVideoNo(dramaResp.data.watch_no)
             }else{
-                Toast.info(getText(Text.DramaExpire))
-                navigate("/series")
+                if(dramaResp.err_code){
+                    Toast.info(getText(Text.DramaExpire))
+                    navigate("/series")
+                }
                 return
             }
             const recommendsResp = await apiVideo.dramaList({

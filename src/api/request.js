@@ -33,7 +33,10 @@ instance.interceptors.response.use(function (response) {
                 window.location.reload();
                 break;
             case 423:
-                window.location.href = "#/check"
+                if (window.location.hash !== '#/check') {
+                    console.log("check")
+                    window.location.href = '#/check';
+                }
                 break;
             default:
                 Toast.info("The server is busy now. try again later.")
