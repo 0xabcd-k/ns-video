@@ -602,6 +602,56 @@ export const Text = {
         "en-US": "Sorry, this short drama is no longer available",
         "ja": "申し訳ありませんが、この短編映画は削除されました",
     },
+    LineTitle1:{
+        "zh-TW": <>LINE社群福利來了！</>,
+        "en-US": <>LINE group rewards just dropped!</>,
+        "ja": <>LINEコミュニティ特典が登場！</>
+    },
+    LineTitle2: {
+        "zh-TW": <>關注官號&邀請好友<br/>免費看短劇！</>,
+        "en-US": <>Watch dramas for free<br/>Follow us & Invite friends</>,
+        "ja": <>公式フォロー＆招待で無料ドラマ！<br/>フォロー＋招待でショートドラマ無料！</>,
+    },
+    LineGift: {
+        "zh-TW": "🎁 禮物記錄",
+        "en-US": "🎁 Gift History",
+        "ja": "🎁 ギフト履歴",
+    },
+    LineTip1: {
+        "zh-TW": "火熱進行中",
+        "en-US": "Hot & Live!",
+        "ja": "“大好評開催中！",
+    },
+    LinePointBalance: {
+        "zh-TW": "積分餘額",
+        "en-US": "Reward Balance",
+        "ja": "保有ポイント",
+    },
+    LineTask: {
+        "zh-TW": "🎯 獎勵任務",
+        "en-US": "🎯 Reward Challenge",
+        "ja": "🎯 ご褒美タスク",
+    },
+    LineFollow: {
+        "zh-TW": <>關注<a href='https://line.me/R/ti/p/@887dxxzh'>LINE 官號</a>領取獎勵</>,
+        "en-US": <>🎁 Follow the <a href='https://line.me/R/ti/p/@887dxxzh'>LINE official account</a> to claim your reward</>,
+        "ja": <><a href='https://lin.ee/p7xtiKE'>LINE公式アカウント</a>をフォローして報酬をゲット！</>,
+    },
+    LineClaim: {
+        "zh-TW": "領取",
+        "en-US": "Claim",
+        "ja": "獲得する"
+    },
+    LineClaimed:{
+        "zh-TW": "🎉 已領取",
+        "en-US": "🎉 Already Claimed",
+        "ja": "🎉 受け取り済み"
+    },
+    LineInvite: {
+        "zh-TW": "邀請好友",
+        "en-US": "Invite Friends",
+        "ja": "友達招待"
+    }
 }
 
 export function getText(item){

@@ -13,6 +13,7 @@ import Fission from "@/views/Activity/Fission";
 import Activity from "@/views/Activity";
 import Search from "@/views/Search";
 import Check from "@/views/Check";
+import Line from "@/views/Activity/Line";
 const router = createHashRouter([
     {path:"/",element:<App />,children:[
         {index: true, element:<Home/>},
@@ -29,6 +30,7 @@ const router = createHashRouter([
         {path: "/activity",element: <Activity/>},
         {path: "/search",element: <Search />},
         {path: "/check", element: <Check />},
+        {path: "/activity/line",element: <Line />}
     ]},
     {path:"*",element:<Navigate to="/"/>}
 ]);
