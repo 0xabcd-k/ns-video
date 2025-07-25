@@ -115,7 +115,7 @@ export default function (){
                 setPlayingVideoNo(dramaResp.data.watch_no)
             }else{
                 console.log(dramaResp)
-                if(dramaResp.err_code!==8){
+                if(dramaResp.err_code){
                     Toast.info(getText(Text.DramaExpire))
                     navigate("/series")
                     return
