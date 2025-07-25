@@ -118,8 +118,8 @@ export default function (){
                 if(dramaResp.err_code){
                     Toast.info(getText(Text.DramaExpire))
                     navigate("/series")
-                    return
                 }
+                return
             }
             const recommendsResp = await apiVideo.dramaList({
                 series: Number(dramaResp.data.series_id),
