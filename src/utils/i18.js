@@ -726,6 +726,26 @@ export const Text = {
         "zh-TW": "關注官方LINE社群，定期舉行福利活動，還有更多熱愛短劇的帥哥美女在群裡！",
         "en-US": "Follow the official LINE community! Regular reward events are held, and many short drama lovers — handsome guys and pretty girls — are waiting in the group!",
         "ja": "公式LINEコミュニティをフォローしよう！定期的に特典イベントを開催中。短編ドラマ好きのイケメンや美女もたくさん参加しています！",
+    },
+    LineRedeemSuccess: {
+        "zh-TW": "兌換成功",
+        "en-US": "Exchange Successful",
+        "ja": "交換成功",
+    },
+    LineCodeInvalid: {
+        "zh-TW": "驗證碼錯誤",
+        "en-US": "Verification code error",
+        "ja": "認証コードが間違っています",
+    },
+    LineAccountFollow: {
+        "zh-TW": "你的Line已經綁定了其他的帳號。",
+        "en-US": "Your Line is already linked to another account.",
+        "ja": "あなたのLineはすでに他のアカウントに紐づけられています。",
+    },
+    LineBalanceInsufficient: {
+        "zh-TW": "剩餘積分不足",
+        "en-US": "Insufficient remaining points",
+        "ja": "残りのポイントが不足しています",
     }
 }
 

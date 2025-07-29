@@ -55,3 +55,10 @@ export const apiTelegramChannelActivity = {
     bindTelegram:form=>req.post('/telegram/bind',{lan:navigator.language,...form}),
     listGift:form=>req.get('/telegram/activity/gift',{lan:navigator.language,...form})
 }
+
+export const apiLineActivity = {
+    getStatus:form=>req.get('/line/status',form),
+    listGift:form=>req.get('/line/gift/list',form),
+    redeem:form=>req.post('/line/gift/redeem',form),
+    followAuthed:form=>req.post("/line/follow/authed",form)
+}
