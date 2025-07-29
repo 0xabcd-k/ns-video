@@ -605,16 +605,16 @@ export const Text = {
     LineTitle1:{
         "zh-TW": <>LINE社群福利來了！</>,
         "en-US": <>LINE group rewards just dropped!</>,
-        "ja": <>LINEコミュニティ特典が登場！</>
+        "ja": <>LINE特典が登場！</>
     },
     LineTitle2: {
         "zh-TW": <>關注官號&邀請好友<br/>免費看短劇！</>,
         "en-US": <>Watch dramas for free<br/>Follow us & Invite friends</>,
-        "ja": <>公式フォロー＆招待で無料ドラマ！<br/>フォロー＋招待でショートドラマ無料！</>,
+        "ja": <>公式フォロー＆友達招待<br/>ショドラ無料！</>,
     },
     LineGift: {
         "zh-TW": "🎁 禮物記錄",
-        "en-US": "🎁 Gift History",
+        "en-US": "🎁 History",
         "ja": "🎁 ギフト履歴",
     },
     LineTip1: {
@@ -624,12 +624,12 @@ export const Text = {
     },
     LinePointBalance: {
         "zh-TW": "積分餘額",
-        "en-US": "Reward Balance",
+        "en-US": "Balance",
         "ja": "保有ポイント",
     },
     LineTask: {
         "zh-TW": "🎯 獎勵任務",
-        "en-US": "🎯 Reward Challenge",
+        "en-US": "🎯 Challenge",
         "ja": "🎯 ご褒美タスク",
     },
     LineFollow: {
@@ -640,7 +640,7 @@ export const Text = {
     LineClaim: {
         "zh-TW": "領取",
         "en-US": "Claim",
-        "ja": "獲得する"
+        "ja": "獲得"
     },
     LineClaimed:{
         "zh-TW": "🎉 已領取",
@@ -651,6 +651,81 @@ export const Text = {
         "zh-TW": "邀請好友",
         "en-US": "Invite Friends",
         "ja": "友達招待"
+    },
+    LineClaimTime: {
+        "zh-TW": "領取時間",
+        "en-US": "Claim Time",
+        "ja": "受け取り時間"
+    },
+    LineGiftStatus: {
+        "zh-TW": "狀態",
+        "en-US": "Status",
+        "ja": "ステータス",
+    },
+    LineGiftStatusPending:{
+        "zh-TW": "待處理",
+        "en-US": "Pending",
+        "ja": "保留中",
+    },
+    LineGiftStatusCredited :{
+        "zh-TW": "已到帳",
+        "en-US": "Credited",
+        "ja": "入金済み",
+    },
+    LineGiftStatusAvailable:{
+        "zh-TW": "待使用",
+        "en-US": "Available",
+        "ja": "未使用",
+    },
+    LineGiftStatusUsed: {
+        "zh-TW": "已使用",
+        "en-US": "Used",
+        "ja": "使用済み",
+    },
+    LineGiftClickToCopy: {
+        "zh-TW": "點擊複製",
+        "en-US": "Click to Copy",
+        "ja": "クリックしてコピー",
+    },
+    LineGiftCode: {
+        "zh-TW": "禮品碼",
+        "en-US": "Gift Code",
+        "ja": "ギフトコード"
+    },
+    LineClose: {
+        "zh-TW": "關閉",
+        "en-US": "Close",
+        "ja": "閉じる",
+    },
+    LineGo: {
+        "zh-TW": "前往",
+        "en-US": "Go",
+        "ja": "Go",
+    },
+    LineCouponDesc: {
+        "zh-TW": "禮品碼可用於兌換短劇免費觀看。",
+        "en-US": "Gift codes can be used to redeem free access to short dramas.",
+        "ja": "ギフトコードは短編ドラマの無料視聴に使用できます。",
+    },
+    LineCoinDesc: {
+        "zh-TW": "NetShort禮品金幣可用於購買NetShort APP中的短劇劇集。",
+        "en-US": "NetShort gift coins can be used to purchase short drama episodes in the NetShort app.",
+        "ja": "NetShortのギフトコインは、NetShortアプリ内の短編ドラマのエピソード購入に使用できます。",
+    },
+    LineShareDesc: {
+        "zh-TW": "每邀請一位好友關注官號，都可以獲得一次獎勵。",
+        "en-US": "Each time you invite a friend to follow the official account, you will receive a reward.",
+        "ja": "友達を1人公式アカウントに招待してフォローさせるたびに、報酬がもらえます。",
+    },
+    LineFollowGroup: {
+        "zh-TW": "🎉 福利加碼",
+        "en-US": "🎉 More benefits",
+        "ja": "🎉 もっと特典",
+    },
+    LineGroupDesc: {
+        "zh-TW": "關注官方LINE社群，定期舉行福利活動，還有更多熱愛短劇的帥哥美女在群裡！",
+        "en-US": "Follow the official LINE community! Regular reward events are held, and many short drama lovers — handsome guys and pretty girls — are waiting in the group!",
+        "ja": "公式LINEコミュニティをフォローしよう！定期的に特典イベントを開催中。短編ドラマ好きのイケメンや美女もたくさん参加しています！",
     }
 }
 
