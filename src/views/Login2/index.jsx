@@ -177,7 +177,9 @@ export default function (){
                     }}
                 />
                 <div className='l2-login-line' onClick={()=>{
-                    window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=2007677100&redirect_uri=${encodeURIComponent("https://api.netshort.online/line/auth")}&state=${params.redirect}&scope=profile%20openid`
+                    const link = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=2007677100&redirect_uri=${encodeURIComponent("https://api.netshort.online/line/auth")}&state=${params.redirect}&scope=profile%20openid`
+                    console.log(link)
+                    window.location.href = link
                 }}>
                     <svg t="1751454356123" className="icon" viewBox="0 0 1024 1024" version="1.1"
                          xmlns="http://www.w3.org/2000/svg" p-id="2292" width="88" height="88">
