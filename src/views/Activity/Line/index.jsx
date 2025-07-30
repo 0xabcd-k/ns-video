@@ -126,7 +126,7 @@ export default function (){
                 <img className='line-bg' src={require("@/assets/line/bg.png")} alt='line'/>
                 <div className='line-login'>
                     <div className='line-login-btn' onClick={() => {
-                        navigate(`/login?redirect=${encodeURIComponent(`https://player.netshort.online/#/activity/line`)}`)
+                        navigate(`/login?redirect=${encodeURIComponent(`https://player.netshort.online/#/activity/line?v=1`)}`)
                     }}>
                         {email ? <span>{email}</span> : <>
                             <svg t="1749537708692" className="icon" viewBox="0 0 1024 1024" version="1.1"
