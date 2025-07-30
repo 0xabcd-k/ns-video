@@ -5,7 +5,7 @@ import ss from 'good-storage'
 let baseURL;
 
 switch(process.env.NODE_ENV){
-    case 'development':baseURL = 'https://api.netshort.online';break;
+    case 'development':baseURL = 'http://127.0.0.1:13001';break;
     case 'production':baseURL = 'https://api.netshort.online';break;
 }
 export const BASE_URL = baseURL;

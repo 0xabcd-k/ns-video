@@ -230,7 +230,7 @@ export default function (){
                                                             {getText(Text.LineGiftCode)}: {item.code}
                                                         </div>
                                                         <div className='line-gift-modal-item-info-text'>
-                                                            {getText(Text.LineGiftStatus)}: {item.used ? getText(Text.LineGiftStatusAvailable) : getText(Text.LineGiftStatusUsed)}
+                                                            {getText(Text.LineGiftStatus)}: {!item.used ? getText(Text.LineGiftStatusAvailable) : getText(Text.LineGiftStatusUsed)}
                                                         </div>
                                                     </div>
                                                 </div>
