@@ -746,6 +746,31 @@ export const Text = {
         "zh-TW": "剩餘積分不足",
         "en-US": "Insufficient remaining points",
         "ja": "残りのポイントが不足しています",
+    },
+    LineWelcome: {
+        "zh-TW": <>助力好友<br/>一起免費追新劇！</>,
+        "en-US": <>Team up with friends<br/>watch new dramas free!</>,
+        "ja": <>友達と協力<br/>最新ドラマを無料視聴！</>,
+    },
+    LineInviteFollowTip: {
+        "zh-TW": <>   前往<a href='https://line.me/R/ti/p/@887dxxzh'>官方帳號</a>獲取驗證碼</>,
+        "en-US": <>    Go to the <a href='https://line.me/R/ti/p/@887dxxzh'>official account</a> to get the verification code</>,
+        "ja": <>   <a href='https://lin.ee/p7xtiKE'>公式アカウント</a>で認証コードを取得！</>
+    },
+    LineGiftEmpty: {
+        "zh-TW": "暫時還沒有兌換到獎勵喔",
+        "en-US": "Oops! No rewards redeemed yet",
+        "ja": "まだ報酬をゲットしてないよ〜",
+    },
+    LineCodeAgain: {
+        "zh-TW": "發送單詞 code 即可獲取新的驗證碼",
+        "en-US": "Send the word \"code\" to receive a new verification code",
+        "ja": "「code」と送信すると、新しい認証コードを受け取れます"
+    },
+    LinePlsLogin: {
+        "zh-TW": "請先登入",
+        "en-US": "Please log in first",
+        "ja": "先にログインしてね",
     }
 }
 

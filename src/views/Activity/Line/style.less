@@ -10,6 +10,103 @@
   box-sizing: border-box;
   padding-bottom: 5vh;
   overflow-y: auto;
+
+  .line-invite-modal{
+    position: fixed;
+    width: 80%;
+    height: auto;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    background: #1c043c;
+    border: 1px solid white;
+    box-sizing: border-box;
+    padding: 3vh 5vw 3vh 5vw;
+    border-radius: 50px;
+    z-index: 200;
+    .line-invite-modal-close{
+      position: absolute;
+      left: 50%;
+      bottom: -2vh;
+      transform: translateX(-50%) translateY(100%);
+      width: 5vh;
+      height: auto;
+      aspect-ratio: 1;
+      z-index: 201;
+    }
+    .line-invite-modal-title{
+      text-align: center;
+      font-size: 3.5vh;
+      color: #fB0;
+      text-shadow:
+              0 0 5vw rgba(252, 249, 201, 0.80),
+              0.08vh 0 #ac6629,
+              -0.08vh 0 #ac6629,
+              0 0.08vh #ac6629,
+                0 -0.08vh #ac6629,
+              0.08vh 0.08vh #ac6629,
+                -0.08vh -0.08vh #ac6629,
+                0.08vh -0.08vh #ac6629,
+              -0.08vh 0.08vh #ac6629,
+
+              0.25vh 0 #fff,
+              -0.25vh 0 #fff,
+              0 0.25vh #fff,
+                0 -0.25vh #fff,
+              0.25vh 0.25vh #fff,
+                -0.25vh -0.25vh #fff,
+                0.25vh -0.25vh #fff,
+              -0.25vh 0.25vh #fff,
+
+              ;
+    }
+    .line-invite-modal-desc{
+      margin-top: 5vh;
+      font-size: 2.5vh;
+      color: white;
+      white-space: pre;
+      text-wrap: wrap;
+    }
+    .line-modal-input-box{
+      margin-top: 5vh;
+      height: 5vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap:2vw;
+      input{
+        height: 60%;
+        width: 40vw;
+        background: rgba(255,255,255,0.1);
+        border: none;
+        border-radius: 9999px;
+        color: white;
+        font-size: 2vh;
+        font-weight: bold;
+        text-align: center;
+      }
+      .line-modal-input-btn{
+        position: relative;
+        height: 70%;
+        width: 20vw;
+        border-radius: 9999px;
+        background: linear-gradient(90deg, #FB7D17 0%, #E23673 100%);
+        color: white;
+        font-size: 2vh;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 0 10px rgba(252, 249, 201, 0.50);
+      }
+    }
+    .line-modal-input-tip{
+      font-size: 1.5vh;
+      color: white;
+    }
+  }
+
   .line-modal-btn-mask{
     position: absolute;
     left: 50%;
@@ -208,6 +305,7 @@
       z-index: 201;
     }
     .line-gift-modal-content{
+      position: relative;
       width: 100%;
       height: 100%;
       overflow-y: auto;
@@ -216,6 +314,27 @@
       justify-content: start;
       align-items: center;
       gap: 2vh;
+      .line-gift-modal-empty{
+        width: 40vw;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 2vh;
+        font-weight: bold;
+        color: white;
+        gap: 2vh;
+        text-align: center;
+        .icon{
+          width: 60%;
+          height: auto;
+          aspect-ratio: 1;
+        }
+      }
       .line-gift-modal-item{
         position: relative;
         display: flex;
@@ -324,11 +443,11 @@
       justify-content: center;
       align-items: center;
       color: white;
-      font-size: 100%;
+      font-size: 2vh;
       font-weight: bold;
       margin-right: 2vw;
       span{
-        font-size: 20px;
+        font-size: 2vh;
       }
       .icon{
         height: 80%;
@@ -533,6 +652,10 @@
         justify-content: center;
         align-items: center;
       }
+    }
+    .line-modal-input-tip{
+      font-size: 1.5vh;
+      color: white;
     }
     .line-modal-claimed{
       height: 5vh;

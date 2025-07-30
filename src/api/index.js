@@ -60,5 +60,6 @@ export const apiLineActivity = {
     getStatus:form=>req.get('/line/status',form),
     listGift:form=>req.get('/line/gift/list',form),
     redeem:form=>req.post('/line/gift/redeem',form),
-    followAuthed:form=>req.post("/line/follow/authed",form)
+    followAuthed:form=>req.post("/line/follow/authed",form),
+    follow:form=>req.post("/line/follow",form)
 }

@@ -21,18 +21,20 @@ export default function (){
     const [uid,setUid] = useState(null)
 
     const [status,setStatus] = useState(null)
+    const [inviteInput,setInviteInput] = useState("")
 
     const navigate = useNavigate()
     async function init(){
         setLoading(true)
+        let line = ""
         const infoResp = await apiAuth.userInfo({})
         if(infoResp?.data?.email){
+            line = ss.get("Line","")
             setEmail(infoResp?.data?.email)
         }
         if(infoResp?.data?.user_idx){
             setUid(infoResp?.data?.user_idx)
         }
-        const line = ss.get("Line","")
         const statusResp = await apiLineActivity.getStatus({
             line_idx: line,
         })
@@ -55,6 +57,72 @@ export default function (){
         </>}
         {status&& <>
             <div className='line'>
+                {params.invite && !status.bound && <>
+                    <div className='line-modal-mask'/>
+                    <div className='line-invite-modal'>
+                        <svg t="1753690585134" onClick={() => {
+                            window.location.href = '#/activity/line';
+                        }} className="line-invite-modal-close" viewBox="0 0 1024 1024" version="1.1"
+                             xmlns="http://www.w3.org/2000/svg" p-id="3380" width="200" height="200">
+                            <path
+                                d="M828.770654 148.714771C641.293737-20.89959 354.184117-19.590868 168.245698 152.630946c-212.062907 196.418185-212.062907 522.329912 0 718.748098 185.93842 172.221815 473.048039 173.520546 660.524956 3.916176 219.435707-198.536117 219.435707-528.054322 0-726.580449z m-121.880976 569.643707c-11.708566 11.708566-30.680039 11.708566-42.388605 0L502.729054 556.586459c-0.659356-0.659356-1.728312-0.659356-2.397659 0L338.609327 718.318517c-11.708566 11.708566-30.680039 11.708566-42.388605 0l-0.039961-0.039961c-11.708566-11.708566-11.708566-30.680039 0-42.388605l161.732059-161.732058c0.659356-0.659356 0.659356-1.728312 0-2.397659L296.1408 350.008195c-11.708566-11.708566-11.708566-30.680039 0-42.388605l0.039961-0.039961c11.708566-11.708566 30.680039-11.708566 42.388605 0l161.772019 161.77202c0.659356 0.659356 1.728312 0.659356 2.397659 0L664.551024 307.539668c11.708566-11.708566 30.680039-11.708566 42.388605 0l0.039961 0.039961c11.708566 11.708566 11.708566 30.680039 0 42.388605L545.15762 511.770224c-0.659356 0.659356-0.659356 1.728312 0 2.397659L706.919649 675.939902c11.708566 11.708566 11.708566 30.680039 0 42.388605l-0.029971 0.029971z"
+                                fill="#1c043c" p-id="3381"></path>
+                        </svg>
+                        <div className='line-invite-modal-title'>
+                            {getText(Text.LineWelcome)}
+                        </div>
+                        <div className='line-invite-modal-desc'>
+                            {getText(Text.LineInviteFollowTip)}
+                        </div>
+                        <div className='line-modal-input-box'>
+                            <input type='text' onChange={(e) => {
+                                setInviteInput(e.target.value)
+                            }} value={inviteInput}/>
+                            <div className='line-modal-input-btn' onClick={async () => {
+                                setLoading(true)
+                                if(!email) {
+                                    Toast.info(getText(Text.LinePlsLogin))
+                                    setLoading(false)
+                                    return
+                                }
+                                const followResp = await apiLineActivity.follow({
+                                    inviter_idx: params.invite,
+                                    code: inviteInput,
+                                })
+                                setInputText("")
+                                if (followResp.success) {
+                                    let line = ""
+                                    ss.set("Line",line)
+                                    if (email) {
+                                        line = followResp.data.secret
+                                    }
+                                    const statusResp = await apiLineActivity.getStatus({
+                                        line_idx: line,
+                                    })
+                                    if (statusResp.success) {
+                                        setStatus(statusResp.data)
+                                    }
+                                } else {
+                                    switch (followResp.err_code) {
+                                        case 61004:
+                                            Toast.info(getText(Text.LineAccountFollow))
+                                            break;
+                                        case 61003:
+                                            Toast.info(getText(Text.LineCodeInvalid))
+                                            break;
+                                        default:
+                                            Toast.info(getText(Text.ServerError))
+                                            break;
+                                    }
+                                }
+                                setLoading(false)
+                            }}>
+                                <div className='line-modal-btn-mask'/>
+                                {getText(Text.LineClaim)}</div>
+                        </div>
+                        <div className='line-modal-input-tip'>{getText(Text.LineCodeAgain)}</div>
+                    </div>
+                </>}
                 <img className='line-bg' src={require("@/assets/line/bg.png")} alt='line'/>
                 <div className='line-login'>
                     <div className='line-login-btn' onClick={() => {
@@ -81,8 +149,13 @@ export default function (){
                 <div className='line-gift'>
                     <div className='line-gift-btn' onClick={async () => {
                         setLoading(true)
+                        if(!email) {
+                            Toast.info(getText(Text.LinePlsLogin))
+                            setLoading(false)
+                            return
+                        }
                         const listResp = await apiLineActivity.listGift({})
-                        if(listResp.success) {
+                        if (listResp.success) {
                             setGiftList(listResp.data.list)
                         }
                         setGiftModal(true)
@@ -109,60 +182,75 @@ export default function (){
                                 fill="#1c043c" p-id="3381"></path>
                         </svg>
                         <div className='line-gift-modal-content'>
-                            {giftList.map((item, index) => {
-                                const d = new Date(item.time * 1000)
-                                switch (item.type) {
-                                    case "coin":
-                                        return <>
-                                            <div className='line-gift-modal-item line-gift-modal-item-coin'>
-                                                <div className='line-gift-modal-item-icon-box'>
-                                                    <img className='line-gift-modal-item-icon'
-                                                         src={require("@/assets/line/n-coin.png")} alt='icon'/>
-                                                </div>
-                                                <div className='line-gift-modal-item-info'>
-                                                    <div className='line-gift-modal-item-info-text'>
-                                                        {getText(Text.LineClaimTime)}: {d.toLocaleString(navigator.language)}
+                            {giftList?.length?<>
+                                {giftList.map((item, index) => {
+                                    const d = new Date(item.time * 1000)
+                                    switch (item.type) {
+                                        case "coin":
+                                            return <>
+                                                <div className='line-gift-modal-item line-gift-modal-item-coin'>
+                                                    <div className='line-gift-modal-item-icon-box'>
+                                                        <img className='line-gift-modal-item-icon'
+                                                             src={require("@/assets/line/n-coin.png")} alt='icon'/>
                                                     </div>
-                                                    <div className='line-gift-modal-item-info-text'>
-                                                        {getText(Text.LineGiftStatus)}: {item.used ? getText(Text.LineGiftStatusCredited) : getText(Text.LineGiftStatusPending)}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </>
-                                    case "coupon":
-                                        return <>
-                                            <div className='line-gift-modal-item line-gift-modal-item-coupon'
-                                                 onClick={() => {
-                                                     navigator.clipboard.writeText(item.code)
-                                                         .then(() => {
-                                                             Toast.info("copy success")
-                                                         })
-                                                         .catch(err => {
-                                                             Toast.info("copy failed")
-                                                         });
-                                                 }}>
-                                                <div className='line-gift-modal-item-tip'>
-                                                    {getText(Text.LineGiftClickToCopy)}
-                                                </div>
-                                                <div className='line-gift-modal-item-icon-box'>
-                                                    <img className='line-gift-modal-item-icon'
-                                                         src={require("@/assets/line/coupon.png")} alt='icon'/>
-                                                </div>
-                                                <div className='line-gift-modal-item-info'>
-                                                    <div className='line-gift-modal-item-info-text'>
-                                                        {getText(Text.LineClaimTime)}: {d.toLocaleString(navigator.language)}
-                                                    </div>
-                                                    <div className='line-gift-modal-item-info-text'>
-                                                        {getText(Text.LineGiftCode)}: {item.code}
-                                                    </div>
-                                                    <div className='line-gift-modal-item-info-text'>
-                                                        {getText(Text.LineGiftStatus)}: {item.used ? getText(Text.LineGiftStatusAvailable) : getText(Text.LineGiftStatusUsed)}
+                                                    <div className='line-gift-modal-item-info'>
+                                                        <div className='line-gift-modal-item-info-text'>
+                                                            {getText(Text.LineClaimTime)}: {d.toLocaleString(navigator.language)}
+                                                        </div>
+                                                        <div className='line-gift-modal-item-info-text'>
+                                                            {getText(Text.LineGiftStatus)}: {item.used ? getText(Text.LineGiftStatusCredited) : getText(Text.LineGiftStatusPending)}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </>
-                                }
-                            })}
+                                            </>
+                                        case "coupon":
+                                            return <>
+                                                <div className='line-gift-modal-item line-gift-modal-item-coupon'
+                                                     onClick={() => {
+                                                         navigator.clipboard.writeText(item.code)
+                                                             .then(() => {
+                                                                 Toast.info("copy success")
+                                                             })
+                                                             .catch(err => {
+                                                                 Toast.info("copy failed")
+                                                             });
+                                                     }}>
+                                                    <div className='line-gift-modal-item-tip'>
+                                                        {getText(Text.LineGiftClickToCopy)}
+                                                    </div>
+                                                    <div className='line-gift-modal-item-icon-box'>
+                                                        <img className='line-gift-modal-item-icon'
+                                                             src={require("@/assets/line/coupon.png")} alt='icon'/>
+                                                    </div>
+                                                    <div className='line-gift-modal-item-info'>
+                                                        <div className='line-gift-modal-item-info-text'>
+                                                            {getText(Text.LineClaimTime)}: {d.toLocaleString(navigator.language)}
+                                                        </div>
+                                                        <div className='line-gift-modal-item-info-text'>
+                                                            {getText(Text.LineGiftCode)}: {item.code}
+                                                        </div>
+                                                        <div className='line-gift-modal-item-info-text'>
+                                                            {getText(Text.LineGiftStatus)}: {item.used ? getText(Text.LineGiftStatusAvailable) : getText(Text.LineGiftStatusUsed)}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </>
+                                    }
+                                })}
+                            </>:<>
+                                <div className='line-gift-modal-empty'>
+                                    <svg t="1753856127392" className="icon" viewBox="0 0 1024 1024" version="1.1"
+                                         xmlns="http://www.w3.org/2000/svg" p-id="2615" width="88" height="88">
+                                        <path
+                                            d="M511.23315 512.76685m-511.23315 0a511.23315 511.23315 0 1 0 1022.466301 0 511.23315 511.23315 0 1 0-1022.466301 0Z"
+                                            fill="#E8E8E8" p-id="2616"></path>
+                                        <path
+                                            d="M663.580629 434.036945H362.464304c-3.578632 0-6.646031 2.044933-8.179731 5.112331l-59.303045 106.847728c-1.022466 1.533699-1.022466 3.067399-1.022467 4.601099v129.85322c0 5.112332 4.089865 9.71343 9.71343 9.71343h419.722417c5.112332 0 9.71343-4.089865 9.713429-9.71343v-129.85322c0-1.533699-0.511233-3.067399-1.022466-4.601099l-59.303045-106.847728c-2.556166-3.067399-6.134798-5.112332-9.202197-5.112331zM577.69346 549.575637c-4.601098 0-8.690964 3.578632-9.71343 8.17973-4.089865 26.584124-27.095357 47.544683-55.21318 47.544683s-51.123315-20.449326-55.213181-47.544683c-0.511233-4.601098-4.601098-8.17973-9.713429-8.17973h-112.471293c-7.157264 0-11.758362-7.668497-8.690964-13.803296l40.898652-77.707438c1.533699-3.067399 5.112332-5.112332 8.690964-5.112332h273.509735c3.578632 0 6.646031 2.044933 8.690964 5.112332l40.898652 77.707438c3.578632 6.134798-1.533699 13.803295-8.690964 13.803296H577.69346z m-60.325512-232.099851c5.112332 0 9.71343 4.089865 9.71343 9.71343v49.589616c0 5.112332-4.089865 9.71343-9.71343 9.71343-5.112332 0-9.71343-4.089865-9.71343-9.71343V327.189216c0-5.112332 4.601098-9.71343 9.71343-9.71343z m-132.409386 27.60659c3.578632-3.578632 9.71343-3.578632 13.292062 0l35.275087 35.275088c3.578632 3.578632 3.578632 9.71343 0 13.292062-3.578632 3.578632-9.71343 3.578632-13.292061 0l-35.275088-35.275088c-4.089865-3.578632-4.089865-9.71343 0-13.292062z m210.628058 35.275088l35.275087-35.275088c3.578632-3.578632 9.71343-3.578632 13.292062 0 3.578632 3.578632 3.578632 9.71343 0 13.292062l-35.275087 35.275088c-3.578632 3.578632-9.71343 3.578632-13.292062 0-4.089865-3.578632-4.089865-9.71343 0-13.292062z"
+                                            fill="#FFFFFF" p-id="2617"></path>
+                                    </svg>
+                                    {getText(Text.LineGiftEmpty)}
+                                </div>
+                            </>}
                         </div>
                     </div>
                 </>}
@@ -230,6 +318,11 @@ export default function (){
                     </div>
                     <div className='line-modal-redeem-btn' style={{marginTop: '3vh'}} onClick={async ()=>{
                         setLoading(true)
+                        if(!email) {
+                            Toast.info(getText(Text.LinePlsLogin))
+                            setLoading(false)
+                            return
+                        }
                         const resp = await apiLineActivity.redeem({
                             type: "coin"
                         })
@@ -270,6 +363,11 @@ export default function (){
                     </div>
                     <div className='line-modal-redeem-btn' style={{marginTop: '1vh'}} onClick={async ()=>{
                         setLoading(true)
+                        if(!email) {
+                            Toast.info(getText(Text.LinePlsLogin))
+                            setLoading(false)
+                            return
+                        }
                         const resp = await apiLineActivity.redeem({
                             type: "coupon"
                         })
@@ -323,15 +421,18 @@ export default function (){
                             }} value={inputText}/>
                             <div className='line-modal-input-btn' onClick={async () => {
                                 setLoading(true)
+                                if(!email) {
+                                    Toast.info(getText(Text.LinePlsLogin))
+                                    setLoading(false)
+                                    return
+                                }
                                 const followResp = await apiLineActivity.followAuthed({
-                                    invite_id: params.invite,
+                                    invite_idx: params.invite,
                                     code: inputText,
                                 })
+                                setInputText("")
                                 if(followResp.success) {
-                                    const line = ss.get("Line","")
-                                    const statusResp = await apiLineActivity.getStatus({
-                                        line_idx: line,
-                                    })
+                                    const statusResp = await apiLineActivity.getStatus({})
                                     if(statusResp.success){
                                         setStatus(statusResp.data)
                                     }
@@ -351,6 +452,7 @@ export default function (){
                                 setLoading(false)
                             }}>{getText(Text.LineClaim)}</div>
                         </div>
+                        <div className='line-modal-input-tip'>{getText(Text.LineCodeAgain)}</div>
                     </> : <>
                         <div className='line-modal-claimed'>{getText(Text.LineClaimed)}</div>
                     </>}
@@ -361,6 +463,10 @@ export default function (){
                     </div></div>
                     <div className='line-modal-text' style={{marginTop: '2vh'}}>{getText(Text.LineShareDesc)}</div>
                     <div className='line-modal-share' onClick={() => {
+                        if(!email) {
+                            Toast.info(getText(Text.LinePlsLogin))
+                            return
+                        }
                         window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(`https://player.netshort.online/#/activity/line?invite=${uid}`)}`)
                     }}>
                         <div className='line-modal-btn-mask'/>
