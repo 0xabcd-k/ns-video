@@ -490,7 +490,14 @@ export default function (){
                     <div className='line-modal-title'>{getText(Text.LineFollowGroup)}</div>
                     <div className='line-modal-text' style={{marginTop: '2vh'}}>{getText(Text.LineGroupDesc)}</div>
                     <div className='line-modal-share' onClick={() => {
-                        window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(`https://player.netshort.online/#/activity/line?invite=${uid}`)}`)
+                        switch (navigator.language){
+                            case "ja":
+                                window.open(`https://api.netshort.online/pay/21`)
+                                break;
+                            default:
+                                window.open(`https://api.netshort.online/pay/22`)
+                                break;
+                        }
                     }}>
                         <div className='line-modal-btn-mask'/>
                         {getText(Text.LineGo)}
