@@ -327,6 +327,10 @@ export default function (){
                             type: "coin"
                         })
                         if(resp.success) {
+                            const statusResp = await apiLineActivity.getStatus({})
+                            if (statusResp.success) {
+                                setStatus(statusResp.data)
+                            }
                             Toast.info(getText(Text.LineRedeemSuccess))
                         }else {
                             switch (resp.err_code) {
@@ -372,6 +376,10 @@ export default function (){
                             type: "coupon"
                         })
                         if(resp.success) {
+                            const statusResp = await apiLineActivity.getStatus({})
+                            if (statusResp.success) {
+                                setStatus(statusResp.data)
+                            }
                             Toast.info(getText(Text.LineRedeemSuccess))
                         }else {
                             switch (resp.err_code) {
