@@ -311,51 +311,54 @@ export default function (){
                     </div>
                 </>}
                 <div className='line-modal'>
-                    <div className='line-modal-title' style={{marginLeft: '5vw'}}>{getText(Text.LinePointBalance)}: {status.balance}
+                    <div className='line-modal-title'
+                         style={{marginLeft: '5vw'}}>{getText(Text.LinePointBalance)}: {status.balance}
                         <div className='star'>
                             <img className='star-img' src={require("@/assets/line/star.png")} alt='star'/>
                         </div>
                     </div>
-                    <div className='line-modal-redeem-btn' style={{marginTop: '3vh'}} onClick={async ()=>{
-                        setLoading(true)
-                        if(!email) {
-                            Toast.info(getText(Text.LinePlsLogin))
+                    <div className='line-modal-redeem-btn-box' style={{marginTop: '3vh'}}>
+                        <div className='line-modal-redeem-btn' onClick={async () => {
+                            setLoading(true)
+                            if (!email) {
+                                Toast.info(getText(Text.LinePlsLogin))
+                                setLoading(false)
+                                return
+                            }
+                            const resp = await apiLineActivity.redeem({
+                                type: "coin"
+                            })
+                            if (resp.success) {
+                                const statusResp = await apiLineActivity.getStatus({})
+                                if (statusResp.success) {
+                                    setStatus(statusResp.data)
+                                }
+                                Toast.info(getText(Text.LineRedeemSuccess))
+                            } else {
+                                switch (resp.err_code) {
+                                    case 21002:
+                                        Toast.info(getText(Text.LineBalanceInsufficient))
+                                        break;
+                                    default:
+                                        Toast.info(getText(Text.ServerError))
+                                        break;
+                                }
+                            }
                             setLoading(false)
-                            return
-                        }
-                        const resp = await apiLineActivity.redeem({
-                            type: "coin"
-                        })
-                        if(resp.success) {
-                            const statusResp = await apiLineActivity.getStatus({})
-                            if (statusResp.success) {
-                                setStatus(statusResp.data)
-                            }
-                            Toast.info(getText(Text.LineRedeemSuccess))
-                        }else {
-                            switch (resp.err_code) {
-                                case 21002:
-                                    Toast.info(getText(Text.LineBalanceInsufficient))
-                                    break;
-                                default:
-                                    Toast.info(getText(Text.ServerError))
-                                    break;
-                            }
-                        }
-                        setLoading(false)
-                    }}>
-                        <span>200</span>
-                        <div className='star'>
-                            <img className='star-img' src={require("@/assets/line/star.png")} alt='star'/>
+                        }}>
+                            <span>200</span>
+                            <div className='star'>
+                                <img className='star-img' src={require("@/assets/line/star.png")} alt='star'/>
+                            </div>
+                            <svg t="1753432059477" className="icon" viewBox="0 0 1024 1024" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" p-id="13045" width="200" height="200">
+                                <path
+                                    d="M885.6850000000001 325.9999999999999l0-74.33300000000001-74.33400000000002 0L811.3510000000001 177.00000000000006l-74.84200000000001 0 0-74.487-74.84200000000001 0L661.667 325.99999999999994l-597.3340000000001 0 0 75.00000000000001L960.3520000000001 401l0-75.00000000000001zM363.018 849.5130000000001l0-149.00000000000003L960.3520000000001 700.513l0-75.00000000000001-896.019 0 0 75.00000000000001L138.9999999999999 700.513l0 74.33400000000002 74.33400000000002 0 0 74.66600000000001 74.84200000000001 0L288.176 924l74.84200000000001 0z"
+                                    p-id="13046" fill="#00ffff"></path>
+                            </svg>
+                            <span>500</span>
+                            <img className='coin' src={require("@/assets/line/n-coin.png")} alt='n-coin'/>
                         </div>
-                        <svg t="1753432059477" className="icon" viewBox="0 0 1024 1024" version="1.1"
-                             xmlns="http://www.w3.org/2000/svg" p-id="13045" width="200" height="200">
-                            <path
-                                d="M885.6850000000001 325.9999999999999l0-74.33300000000001-74.33400000000002 0L811.3510000000001 177.00000000000006l-74.84200000000001 0 0-74.487-74.84200000000001 0L661.667 325.99999999999994l-597.3340000000001 0 0 75.00000000000001L960.3520000000001 401l0-75.00000000000001zM363.018 849.5130000000001l0-149.00000000000003L960.3520000000001 700.513l0-75.00000000000001-896.019 0 0 75.00000000000001L138.9999999999999 700.513l0 74.33400000000002 74.33400000000002 0 0 74.66600000000001 74.84200000000001 0L288.176 924l74.84200000000001 0z"
-                                p-id="13046" fill="#00ffff"></path>
-                        </svg>
-                        <span>500</span>
-                        <img className='coin' src={require("@/assets/line/n-coin.png")} alt='n-coin'/>
                         <svg t="1753691747789" onClick={() => {
                             setCoinModal(true)
                         }} className="question" viewBox="0 0 1024 1024" version="1.1"
@@ -365,46 +368,48 @@ export default function (){
                                 fill="#1296db" p-id="10568"></path>
                         </svg>
                     </div>
-                    <div className='line-modal-redeem-btn' style={{marginTop: '1vh'}} onClick={async ()=>{
-                        setLoading(true)
-                        if(!email) {
-                            Toast.info(getText(Text.LinePlsLogin))
+                    <div className='line-modal-redeem-btn-box' style={{marginTop: '1vh'}}>
+                        <div className='line-modal-redeem-btn' onClick={async () => {
+                            setLoading(true)
+                            if (!email) {
+                                Toast.info(getText(Text.LinePlsLogin))
+                                setLoading(false)
+                                return
+                            }
+                            const resp = await apiLineActivity.redeem({
+                                type: "coupon"
+                            })
+                            if (resp.success) {
+                                const statusResp = await apiLineActivity.getStatus({})
+                                if (statusResp.success) {
+                                    setStatus(statusResp.data)
+                                }
+                                Toast.info(getText(Text.LineRedeemSuccess))
+                            } else {
+                                switch (resp.err_code) {
+                                    case 21002:
+                                        Toast.info(getText(Text.LineBalanceInsufficient))
+                                        break;
+                                    default:
+                                        Toast.info(getText(Text.ServerError))
+                                        break;
+                                }
+                            }
                             setLoading(false)
-                            return
-                        }
-                        const resp = await apiLineActivity.redeem({
-                            type: "coupon"
-                        })
-                        if(resp.success) {
-                            const statusResp = await apiLineActivity.getStatus({})
-                            if (statusResp.success) {
-                                setStatus(statusResp.data)
-                            }
-                            Toast.info(getText(Text.LineRedeemSuccess))
-                        }else {
-                            switch (resp.err_code) {
-                                case 21002:
-                                    Toast.info(getText(Text.LineBalanceInsufficient))
-                                    break;
-                                default:
-                                    Toast.info(getText(Text.ServerError))
-                                    break;
-                            }
-                        }
-                        setLoading(false)
-                    }}>
-                        <span>200</span>
-                        <div className='star'>
-                            <img className='star-img' src={require("@/assets/line/star.png")} alt='star'/>
+                        }}>
+                            <span>200</span>
+                            <div className='star'>
+                                <img className='star-img' src={require("@/assets/line/star.png")} alt='star'/>
+                            </div>
+                            <svg t="1753432059477" className="icon" viewBox="0 0 1024 1024" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" p-id="13045" width="200" height="200">
+                                <path
+                                    d="M885.6850000000001 325.9999999999999l0-74.33300000000001-74.33400000000002 0L811.3510000000001 177.00000000000006l-74.84200000000001 0 0-74.487-74.84200000000001 0L661.667 325.99999999999994l-597.3340000000001 0 0 75.00000000000001L960.3520000000001 401l0-75.00000000000001zM363.018 849.5130000000001l0-149.00000000000003L960.3520000000001 700.513l0-75.00000000000001-896.019 0 0 75.00000000000001L138.9999999999999 700.513l0 74.33400000000002 74.33400000000002 0 0 74.66600000000001 74.84200000000001 0L288.176 924l74.84200000000001 0z"
+                                    p-id="13046" fill="#00ffff"></path>
+                            </svg>
+                            <span>1</span>
+                            <img className='code' src={require("@/assets/line/coupon.png")} alt='coupon'/>
                         </div>
-                        <svg t="1753432059477" className="icon" viewBox="0 0 1024 1024" version="1.1"
-                             xmlns="http://www.w3.org/2000/svg" p-id="13045" width="200" height="200">
-                            <path
-                                d="M885.6850000000001 325.9999999999999l0-74.33300000000001-74.33400000000002 0L811.3510000000001 177.00000000000006l-74.84200000000001 0 0-74.487-74.84200000000001 0L661.667 325.99999999999994l-597.3340000000001 0 0 75.00000000000001L960.3520000000001 401l0-75.00000000000001zM363.018 849.5130000000001l0-149.00000000000003L960.3520000000001 700.513l0-75.00000000000001-896.019 0 0 75.00000000000001L138.9999999999999 700.513l0 74.33400000000002 74.33400000000002 0 0 74.66600000000001 74.84200000000001 0L288.176 924l74.84200000000001 0z"
-                                p-id="13046" fill="#00ffff"></path>
-                        </svg>
-                        <span>1</span>
-                        <img className='code' src={require("@/assets/line/coupon.png")} alt='coupon'/>
                         <svg t="1753691747789" onClick={() => {
                             setCouponModal(true)
                         }} className="question" viewBox="0 0 1024 1024" version="1.1"
@@ -429,7 +434,7 @@ export default function (){
                             }} value={inputText}/>
                             <div className='line-modal-input-btn' onClick={async () => {
                                 setLoading(true)
-                                if(!email) {
+                                if (!email) {
                                     Toast.info(getText(Text.LinePlsLogin))
                                     setLoading(false)
                                     return
@@ -439,12 +444,12 @@ export default function (){
                                     code: inputText,
                                 })
                                 setInputText("")
-                                if(followResp.success) {
+                                if (followResp.success) {
                                     const statusResp = await apiLineActivity.getStatus({})
-                                    if(statusResp.success){
+                                    if (statusResp.success) {
                                         setStatus(statusResp.data)
                                     }
-                                }else {
+                                } else {
                                     switch (followResp.err_code) {
                                         case 61004:
                                             Toast.info(getText(Text.LineAccountFollow))
@@ -471,7 +476,7 @@ export default function (){
                     </div></div>
                     <div className='line-modal-text' style={{marginTop: '2vh'}}>{getText(Text.LineShareDesc)}</div>
                     <div className='line-modal-share' onClick={() => {
-                        if(!email) {
+                        if (!email) {
                             Toast.info(getText(Text.LinePlsLogin))
                             return
                         }
