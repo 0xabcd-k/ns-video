@@ -771,6 +771,26 @@ export const Text = {
         "zh-TW": "請先登入",
         "en-US": "Please log in first",
         "ja": "先にログインしてね",
+    },
+    LineAppIdInputTip: {
+        "zh-TW": "複製你的 NetShort APP 使用者 ID",
+        "en-US": "Copy your NetShort APP user ID",
+        "ja": "NetShort アプリのユーザーIDをコピーしてください",
+    },
+    LineSave: {
+        "zh-TW": "保存",
+        "en-US": "Save",
+        "ja": "保存する",
+    },
+    LineAppIdInputAsk: {
+        "zh-TW": "填寫 NetShort App 使用者 ID，以便我們發放獎勵",
+        "en-US": "Enter your NetShort App user ID so we can issue the reward",
+        "ja": "NetShortアプリのユーザーIDを入力してください。報酬を配布するために必要です",
+    },
+    LineAppIdInvalid: {
+        "zh-TW": "NetShortAPP 使用者 ID 為 19 位，請點擊複製按鈕獲取",
+        "en-US": "The NetShort APP user ID is 19 digits long. Please click the copy button to get it",
+        "ja": "NetShortアプリのユーザーIDは19桁です。コピーボタンをクリックして取得してください",
     }
 }
 
