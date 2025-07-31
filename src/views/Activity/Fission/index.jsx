@@ -213,7 +213,7 @@ export default function (){
                                         }
                                         setLoading(false)
                                     }else {
-                                        window.Telegram.WebApp.openTelegramLink("https://t.me/netshor_official")
+                                        window.Telegram.WebApp.openTelegramLink("https://t.me/netshort_official")
                                     }
                                 }}>
                                     <div className='f-btn-mask'/>
