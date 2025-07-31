@@ -333,7 +333,8 @@ export default function (){
                                 return
                             }
                             const resp = await apiLineActivity.redeem({
-                                type: "coin"
+                                type: "coin",
+                                uid: appId,
                             })
                             if (resp.success) {
                                 const statusResp = await apiLineActivity.getStatus({})
@@ -383,8 +384,14 @@ export default function (){
                                 setLoading(false)
                                 return
                             }
+                            if(!appId){
+                                Toast.info(getText(Text.LineAppIdInputAsk))
+                                setLoading(false)
+                                return
+                            }
                             const resp = await apiLineActivity.redeem({
-                                type: "coupon"
+                                type: "coupon",
+                                uid: appId,
                             })
                             if (resp.success) {
                                 const statusResp = await apiLineActivity.getStatus({})
@@ -428,11 +435,13 @@ export default function (){
                     </div>
                     <div className='line-uid-input-box'>
                         <input value={appId} onChange={(e)=>{
-                            setAPPId(e.target.value)
+                            setAPPId(e.target.value.replaceAll(" ",""))
                         }} placeholder={getText(Text.LineAppIdInputTip)}/>
                         <div className='line-uid-input-btn' onClick={()=>{
-                            if(appId?.length!==19) {
+                            console.log(appId)
+                            if(appId?.length===19) {
                                 ss.set("APPUSERID",appId)
+                                Toast.info("Success!")
                             }else {
                                 Toast.info(getText(Text.LineAppIdInvalid))
                             }
