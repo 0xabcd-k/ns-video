@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Poster</title>
+</head>
+<style>
+  .main{
+    width: 800px;
+    height: 354px;
+    background: #20044C;
+  }
+  .d1{
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 4vh;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 20px rgba(252, 249, 201, 0.50);
+    width: 20vw;
+    text-align: center;
+    z-index: 2;
+  }
+  .d2{
+    position: absolute;
+    left: 30px;
+    top: 120px;
+    text-align: center;
+    background: linear-gradient(to right, rgba(132, 68, 132, 0.1) , rgba(132, 68, 132, 0.7) 20%, rgba(132, 68, 132, 0.8),rgba(132, 68, 132, 0.7) 80%, rgba(132, 68, 132, 0.1));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 20vw;
+    font-size: 30px;
+    color: white;
+    z-index: 2;
+  }
+  .d3{
+    position: absolute;
+    left: 35px;
+    top: 215px;
+    height: 60px;
+    width: 20vw;
+    background: #DD18B9;
+    stroke-width: 1px;
+    stroke: #EEBDFF;
+    box-shadow: 10px 10px 15px 0 rgba(255, 255, 255, 0.25) inset;
+    transform: skew(-20deg);
+    border-radius: 10px;
+    border: #e7e4e1 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
+  .t1{
+    position: absolute;
+    left: 30px;
+    top: 215px;
+    height: 60px;
+    width: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+  }
+  .t1-text{
+    margin-left: 60px;
+    color: white;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 50px;
+    font-weight: bold;
+  }
+  .i1{
+    position: absolute;
+    left: 20px;
+    top: -40px;
+    width: 80px;
+    height: auto;
+    aspect-ratio: 1;
+  }
+  .line-modal-redeem-btn-box{
+    position: absolute;
+    left: 90px;
+    top: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4vh;
+    gap: 2vw;
+    z-index: 2;
+    .line-modal-redeem-btn{
+      height: 100%;
+      position: relative;
+      box-sizing: border-box;
+      padding-right: 2vw;
+      padding-left: 2vw;
+      background: linear-gradient(
+              to bottom,
+              rgba(255, 255, 255, 0.8) 0%,
+              rgba(255, 255, 255, 0.1) 50%,
+              rgba(255, 255, 255, 0.1) 100%
+      );
+      box-shadow: 0 0 10px rgba(252, 249, 201, 0.50);
+      border-radius: 9999px;
+      font-size: 2vh;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span{
+        width: 2vw;
+        display: flex;
+        justify-content: center;
+        vertical-align: baseline
+      }
+      .star{
+        position: relative;
+        height: 3vh;
+        width: auto;
+        aspect-ratio: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .star-img{
+          position: absolute;
+          height: 200%;
+          width: auto;
+          aspect-ratio: 1;
+        }
+      }
+      .icon{
+        margin-left: 1vw;
+        margin-right: 1vw;
+        height: 3vh;
+        width: auto;
+        aspect-ratio: 1;
+      }
+      .coin{
+        height: 3vh;
+        width: auto;
+        aspect-ratio: 1;
+      }
+    }
+  }
+  .b4{
+    position: absolute;
+    right: 0;
+    top: 20px;
+    height: 20px;
+    width: 100px;
+    border-radius: 9999px 0 0 9999px;
+    background: linear-gradient(90deg, #FB7D17 0%, #E23673 100%);
+    box-shadow: 0 0 10px 0 #F46A2F;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .i2{
+    position: absolute;
+    top: -40px;
+    right: 0;
+    width: 450px;
+    height: auto;
+    z-index: 1;
+    mask-composite: intersect;
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent),
+    linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    //mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+  .b5{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 350px;
+    height: 120px;
+    background: rgba(255,255,255,0.01);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+    padding: 20px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    z-index: 2;
+    gap: 10px;
+  }
+  .t2{
+    font-size: 2vh;
+    color: white;
+    text-align: center;
+    width: 100%;
+    a{
+      color: #FFD890;
+      text-decoration: underline;
+    }
+  }
+  .t3{
+    color: greenyellow;
+  }
+</style>
+<body style="position: fixed;top:50vh;left:50vw;transform: translate(-50%,-50%);">
+  <div class='main'>
+    <div class='d1'>
+      LINE group rewards just dropped!
+    </div>
+    <div class='d2'>
+      Follow us & Invite friends<br/>Watch dramas for free
+    </div>
+    <div class='d3'>
+    </div>
+    <div class='t1'>
+      <img class='i1' src="../src/assets/line/alarm.png" alt='alarm'/>
+      <span class="t1-text">Hot & Live!</span>
+    </div>
+    <div class='line-modal-redeem-btn-box' style='margin-top: 3vh'>
+      <div class='line-modal-redeem-btn'>
+        <span>200</span>
+        <div class='star'>
+          <img class='star-img' src="../src/assets/line/star.png" alt='star'/>
+        </div>
+        <svg t="1753432059477" class="icon" viewBox="0 0 1024 1024" version="1.1"
+             xmlns="http://www.w3.org/2000/svg" p-id="13045" width="200" height="200">
+          <path
+                  d="M885.6850000000001 325.9999999999999l0-74.33300000000001-74.33400000000002 0L811.3510000000001 177.00000000000006l-74.84200000000001 0 0-74.487-74.84200000000001 0L661.667 325.99999999999994l-597.3340000000001 0 0 75.00000000000001L960.3520000000001 401l0-75.00000000000001zM363.018 849.5130000000001l0-149.00000000000003L960.3520000000001 700.513l0-75.00000000000001-896.019 0 0 75.00000000000001L138.9999999999999 700.513l0 74.33400000000002 74.33400000000002 0 0 74.66600000000001 74.84200000000001 0L288.176 924l74.84200000000001 0z"
+                  p-id="13046" fill="#00ffff"></path>
+        </svg>
+        <span>500</span>
+        <img class='coin' src="../src/assets/line/n-coin.png" alt='n-coin'/>
+      </div>
+    </div>
+    <div class='b4'>
+      🎁 History
+    </div>
+    <img class='i2' src="../src/assets/line/bg.png" alt='bg'>
+    <div class='b5'>
+      <div class='t2'>
+        🎁 Follow the <a>LINE official account</a> to claim your reward
+      </div>
+      <div class='t3'>🎉 Already Claimed</div>
+    </div>
+  </div>
+</body>
+</html>

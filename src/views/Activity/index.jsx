@@ -18,8 +18,10 @@ export default function (){
                     <img onClick={()=>{
                         window.open("https://t.me/netshort001bot/app")
                     }} className='a-box-item' src={require("@/assets/poster/fission-poster.png")} alt='poster'/>
+                    <img onClick={()=>{
+                        navigate("/activity/line")
+                    }} className='a-box-item' src={require("@/assets/poster/line-poster.jpg")} alt='poster'/>
                 </div>
-
             </div>
         </div>
     </>

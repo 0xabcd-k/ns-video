@@ -212,6 +212,8 @@ export default function (){
                                             setUserInfo(infoResp.data)
                                         }
                                         setLoading(false)
+                                    }else {
+                                        window.Telegram.WebApp.openTelegramLink("https://t.me/netshor_official")
                                     }
                                 }}>
                                     <div className='f-btn-mask'/>
