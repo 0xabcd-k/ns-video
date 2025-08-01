@@ -56,7 +56,12 @@ export default function (){
                     <div className='f-modal-mask'></div>
                     <div className='f-invite-toast'>
                         {getText(Text.FissionInviteTip)}
-                        <div className='f-invite-toast-btn'>
+                        <div className='f-invite-toast-btn' onClick={()=>{
+                            window.Telegram.WebApp.openTelegramLink("https://t.me/netshort_official")
+                            setTimeout(() => {
+                                init()
+                            }, 5000)
+                        }}>
                             <div className='f-btn-mask' />
                             {getText(Text.FissionFollow)}
                         </div>
