@@ -287,7 +287,7 @@ export default function (){
                                                 d="M885.6850000000001 325.9999999999999l0-74.33300000000001-74.33400000000002 0L811.3510000000001 177.00000000000006l-74.84200000000001 0 0-74.487-74.84200000000001 0L661.667 325.99999999999994l-597.3340000000001 0 0 75.00000000000001L960.3520000000001 401l0-75.00000000000001zM363.018 849.5130000000001l0-149.00000000000003L960.3520000000001 700.513l0-75.00000000000001-896.019 0 0 75.00000000000001L138.9999999999999 700.513l0 74.33400000000002 74.33400000000002 0 0 74.66600000000001 74.84200000000001 0L288.176 924l74.84200000000001 0z"
                                                 p-id="13046" fill="#00ffff"></path>
                                         </svg>
-                                        <span>500</span>
+                                        <span className='txt'>500</span>
                                         <img className='coin' src={require("@/assets/line/n-coin.png")} alt='n-coin'/>
                                     </div>
                                     <svg t="1753691747789" onClick={()=>{
@@ -302,11 +302,6 @@ export default function (){
                                 <div className='line-modal-redeem-btn-box' style={{marginTop: '1vh'}}>
                                     <div className='line-modal-redeem-btn' onClick={async () => {
                                         setLoading(true)
-                                        if (!uid) {
-                                            Toast.info(getText(Text.LineAppIdInputAsk))
-                                            setLoading(false)
-                                            return
-                                        }
                                         const resp = await apiTelegramChannelActivity.redeemFissionReward({
                                             id: id,
                                             type: "coupon",
@@ -334,7 +329,7 @@ export default function (){
                                         setLoading(false)
                                     }}>
                                         <div className='f-btn-mask'/>
-                                        <span>200</span>
+                                        <span>300</span>
                                         <div className='star'>
                                             <img className='star-img' src={require("@/assets/line/star.png")}
                                                  alt='star'/>
@@ -345,8 +340,7 @@ export default function (){
                                                 d="M885.6850000000001 325.9999999999999l0-74.33300000000001-74.33400000000002 0L811.3510000000001 177.00000000000006l-74.84200000000001 0 0-74.487-74.84200000000001 0L661.667 325.99999999999994l-597.3340000000001 0 0 75.00000000000001L960.3520000000001 401l0-75.00000000000001zM363.018 849.5130000000001l0-149.00000000000003L960.3520000000001 700.513l0-75.00000000000001-896.019 0 0 75.00000000000001L138.9999999999999 700.513l0 74.33400000000002 74.33400000000002 0 0 74.66600000000001 74.84200000000001 0L288.176 924l74.84200000000001 0z"
                                                 p-id="13046" fill="#00ffff"></path>
                                         </svg>
-                                        <span>1</span>
-                                        <img className='code' src={require("@/assets/line/coupon.png")} alt='coupon'/>
+                                        <span className='txt2'>1 Drama</span>
                                     </div>
                                     <svg t="1753691747789" onClick={()=>{
                                         setCouponModal(true)

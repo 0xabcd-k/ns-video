@@ -555,8 +555,8 @@ export const Text = {
         "en-US": "Invite Friends",
     },
     FissionLoginTelegramDesc: {
-        "zh-TW": "💬 登入 Telegram — Boom！50 積分就是你的！",
-        "en-US": "💬 Log in to Telegram — Boom! 50 points are yours!",
+        "zh-TW": "💬 登入 Telegram — Boom！100 積分就是你的！",
+        "en-US": "💬 Log in to Telegram — Boom! 100 points are yours!",
     },
     FissionFollowChannelDesc: {
         "zh-TW": "📢 關注我們的官方頻道，再拿 100 積分！",
