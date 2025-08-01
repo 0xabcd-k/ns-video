@@ -24,11 +24,10 @@ export default function (){
             }
             window.__cloudflare_loading = "loading";
             (()=>{
-                const existingScript = document.querySelector('script[src^="https://challenges.cloudflare.com/turnstile/v0/api.js"]');
-                if (existingScript) {
-                    return;
-                }
-                console.log("run")
+                // const existingScript = document.querySelector('script[src^="https://challenges.cloudflare.com/turnstile/v0/api.js"]');
+                // if (existingScript) {
+                //     return;
+                // }
                 // 脚本不存在，创建并加载
                 const script = document.createElement('script');
                 script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback';

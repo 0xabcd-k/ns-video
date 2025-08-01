@@ -163,7 +163,7 @@ export default function (){
                     </div>
                 </div>
                 <LoginButton
-                    botUsername={"netshort001bot"}
+                    botUsername={process.env.NODE_ENV === "development"?"netshort002bot":"netshort001bot"}
                     buttonSize="large"
                     showAvatar={false}
                     onAuthCallback={async (user) => {
