@@ -535,8 +535,8 @@ export const Text = {
         "en-US": "Claim"
     },
     FissionFollowChannel: {
-        "zh-TW": "任務1 —— 50 積分",
-        "en-US": "Task1 -- 50points",
+        "zh-TW": "任務1 —— 100 積分",
+        "en-US": "Task1 -- 100points",
     },
     FissionFollow:{
         "zh-TW": "關注",
@@ -559,12 +559,12 @@ export const Text = {
         "en-US": "💬 Log in to Telegram — Boom! 50 points are yours!",
     },
     FissionFollowChannelDesc: {
-        "zh-TW": "📢 關注我們的官方頻道，再拿 50 積分！",
-        "en-US": "📢 Follow our official channel and grab another 50 points!"
+        "zh-TW": "📢 關注我們的官方頻道，再拿 100 積分！",
+        "en-US": "📢 Follow our official channel and grab 100 points!"
     },
     FissionInviteDesc: {
-        "zh-TW":"💡 每邀請一位好友參加活動，即可獲得 50 積分！邀越多，賺越多！",
-        "en-US":"💡 Earn 50 points for every friend you bring to the event! The more, the better!"
+        "zh-TW":"💡 每邀請一位好友參加活動，即可獲得 100 積分！邀越多，賺越多！",
+        "en-US":"💡 Earn 100 points for every friend you bring to the event! The more, the better!"
     },
     FissionClaimSuccess: {
         "zh-TW": "獲取成功",
@@ -591,6 +591,9 @@ export const Text = {
             <p>✨ The more points you earn, the more free dramas you get!</p>
             <p>♾️ No limit — keep earning, keep watching!</p>
         </>
+    },
+    FissionInviteTip: {
+        "en-US": "Join the community, help friends, and watch the latest mini-dramas",
     },
     Activity: {
         "zh-TW": "近期活動",

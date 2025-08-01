@@ -33,7 +33,7 @@
     position: fixed;
     right: 4%;
     top: 2vh;
-    padding: 0.5vh 8vw 0.5vh 8vw;
+    padding: 0.5vh 4vw 0.5vh 4vw;
 
     background: #FECD7B;
     box-shadow: inset 0 4px 8px 0 rgba(255,255,255,0.54), inset 0px -4px 8px 0px #C9943A;
@@ -44,6 +44,8 @@
     border-radius: 9999px;
 
     z-index: 9999;
+    gap: 2vw;
+    color: #ac6629;
     .icon{
       width: 2vh;
       height: auto;
@@ -349,10 +351,95 @@
       gap: 2vh;
       box-sizing: border-box;
       padding: 3vh 5vw 3vh 5vw;
+      .line-modal-redeem-btn-box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 5vh;
+        gap: 2vw;
+        .question{
+          height: 3vh;
+          width: auto;
+          aspect-ratio: 1;
+          border-radius: 50%;
+        }
+        .line-modal-redeem-btn{
+          height: 100%;
+          position: relative;
+          box-sizing: border-box;
+          padding-right: 5vw;
+          padding-left: 5vw;
+          background: linear-gradient(to right bottom, #c63cb0, #f52154, #fd4e36, #ff6a26);
+          border-radius: 9999px;
+          font-size: 2vh;
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+          span{
+            width: 7vw;
+            display: flex;
+            justify-content: center;
+            vertical-align: baseline
+          }
+          .star{
+            margin-left: 2vw;
+            margin-right: 2vw;
+            position: relative;
+            height: 3vh;
+            width: auto;
+            aspect-ratio: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .star-img{
+              position: absolute;
+              height: 200%;
+              width: auto;
+              aspect-ratio: 1;
+            }
+          }
+          .icon{
+            height: 3vh;
+            width: auto;
+            aspect-ratio: 1;
+            margin-right: 2vw;
+          }
+          .coin{
+            margin-left: 2vw;
+            height: 3vh;
+            width: auto;
+            aspect-ratio: 1;
+          }
+          .code{
+            margin-left: 2vw;
+            height: 3vh;
+            width: auto;
+            aspect-ratio: 1;
+          }
+        }
+      }
       .f-balance-modal-title{
         font-size: 3vh;
         font-weight: bold;
         color: #ac6629;
+        display: flex;
+        .star{
+          position: relative;
+          height: 3vh;
+          width: auto;
+          aspect-ratio: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .star-img{
+            position: absolute;
+            height: 200%;
+            width: auto;
+            aspect-ratio: 1;
+          }
+        }
       }
       .f-balance-modal-btn{
         padding: 1vh 5vw 1vh 5vw;
@@ -500,6 +587,358 @@
             rgba(255, 255, 255, 0) 50%,
             rgba(255, 255, 255, 0) 100%
     );
+  }
+
+  .f-modal-mask{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 200;
+  }
+  .f-invite-toast{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: auto;
+    z-index: 201;
+    gap: 2vh;
+    background: #FFF0D5;
+    border: 1px solid white;
+    padding: 3vh 5vw 3vh 5vw;
+    border-radius: 50px;
+    font-size: 2vh;
+    text-align: center;
+    .f-invite-toast-btn{
+      padding: 1vh 5vw 1vh 5vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border-radius: 9999px;
+      background: linear-gradient(to right bottom, #c63cb0, #f52154, #fd4e36, #ff6a26);
+      color: white;
+      font-size: 2vh;
+      font-weight: bold;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+  }
+  .f-coupon-modal{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: auto;
+    z-index: 201;
+    gap: 2vh;
+    color: #ac6629;
+    .f-coupon-content{
+      width: 100%;
+      height: auto;
+      background: #FFF0D5;
+      border: 1px solid white;
+      box-sizing: border-box;
+      padding: 3vh 5vw 3vh 5vw;
+      border-radius: 50px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+
+      gap: 2vh;
+      video{
+        max-width: 96%;
+        max-height: 60vh;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+      .f-coupon-content-desc{
+        color: #ac6629;
+      }
+    }
+    .f-coupon-btn-box{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2vw;
+      width: 100%;
+      height: 5vh;
+      .f-coupon-btn-close{
+        position: relative;
+        border-radius: 9999px;
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(90deg, #111111 0%, #555555 100%);
+        color: white;
+        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 0 10px rgba(252, 249, 201, 0.50);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 2vh;
+      }
+      .f-coupon-btn-go{
+        position: relative;
+        border-radius: 9999px;
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(90deg, #FB7D17 0%, #E23673 100%);
+        color: white;
+        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 0 10px rgba(252, 249, 201, 0.50);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 2vh;
+      }
+    }
+  }
+  .f-coin-modal{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: auto;
+    z-index: 201;
+    gap: 2vh;
+    .f-coin-content{
+      width: 100%;
+      height: auto;
+      background: #FFF0D5;
+      border: 1px solid white;
+      box-sizing: border-box;
+      padding: 3vh 5vw 3vh 5vw;
+      border-radius: 50px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+
+      gap: 2vh;
+      .f-coin-content-desc{
+        text-align: center;
+        color: #ac6629;
+      }
+    }
+    .f-coin-btn-box{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2vw;
+      width: 100%;
+      height: 5vh;
+      .f-coin-btn-close{
+        position: relative;
+        border-radius: 9999px;
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(90deg, #111111 0%, #555555 100%);
+        color: white;
+        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 0 10px rgba(252, 249, 201, 0.50);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 2vh;
+      }
+      .f-coin-btn-go{
+        position: relative;
+        border-radius: 9999px;
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(90deg, #FB7D17 0%, #E23673 100%);
+        color: white;
+        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 0 10px rgba(252, 249, 201, 0.50);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 2vh;
+      }
+    }
+  }
+  .f-uid-input-box{
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:2vw;
+    input{
+      height: 60%;
+      width: 50vw;
+      background: linear-gradient(
+              to bottom,
+              rgba(244, 178, 73, 0.9) 0%,     /* 深一点的橙色 (#f4b249) */
+              rgba(244, 178, 73, 0.5) 50%,
+              rgba(244, 178, 73, 0.2) 100%
+      );
+      border: none;
+      border-radius: 9999px;
+      color: #ac6629;
+      font-size: 1.5vh;
+      font-weight: bold;
+      text-align: center;
+    }
+    .f-uid-input-btn{
+      height: 60%;
+      width: 15vw;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #FB7D17 0%, #E23673 100%);
+      color: white;
+      font-size: 2vh;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .f-gift-modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 80%;
+    height: 60vh;
+    background: #FECD7B;
+    border: 1px solid white;
+    border-radius: 50px;
+    z-index: 201;
+
+    box-sizing: border-box;
+    padding: 3vh 5vw 3vh 5vw;
+
+    .f-gift-modal-close{
+      position: absolute;
+      left: 50%;
+      bottom: -2vh;
+      transform: translateX(-50%) translateY(100%);
+      width: 5vh;
+      height: auto;
+      aspect-ratio: 1;
+      z-index: 201;
+    }
+    .f-gift-modal-content{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      gap: 2vh;
+      .f-gift-modal-empty{
+        width: 40vw;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 2vh;
+        font-weight: bold;
+        color: #ac6629;
+        gap: 2vh;
+        text-align: center;
+        .icon{
+          width: 60%;
+          height: auto;
+          aspect-ratio: 1;
+        }
+      }
+      .f-gift-modal-item{
+        position: relative;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 2vw;
+        height: 8vh;
+        width: 100%;
+
+        border-radius: 10px;
+        background: rgba(255,255,255,0.4);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-sizing: border-box;
+        padding: 1vh 2vw 1vh 2vw;
+
+        .f-gift-modal-item-tip{
+          position: absolute;
+          right: 2vw;
+          bottom: 2vh;
+          color: gray;
+          font-size: 1vh;
+          transform: rotate(-20deg);
+        }
+        .f-gift-modal-item-icon-box{
+          height: 100%;
+          width: auto;
+          aspect-ratio: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #ac6629;
+          .f-gift-modal-item-icon{
+            width: 80%;
+            height: 80%;
+          }
+        }
+        .f-gift-modal-item-info{
+          height: 100%;
+          flex: 1;
+          width: auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: start;
+          color: #ac6629;
+          font-size: 1.2vh;
+          .f-gift-modal-item-info-text{
+
+          }
+          .f-gift-modal-item-info-status-gray{
+
+          }
+          .f-gift-modal-item-info-status-green{
+
+          }
+        }
+      }
+    }
+    .f-gift-modal-item-coupon{
+      .f-gift-modal-item-info{
+        gap: 0.5vh;
+      }
+    }
+    .f-gift-modal-item-coin{
+      .f-gift-modal-item-info{
+        gap: 1vh;
+      }
+    }
   }
 }
 .fission::-webkit-scrollbar {

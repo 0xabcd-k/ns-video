@@ -49,11 +49,9 @@ export const apiAdmin = {
 }
 
 export const apiTelegramChannelActivity = {
-    getUserInfo:form=>req.get('/telegram/user/info',{lan:navigator.language,...form}),
-    claimReward:form=>req.post('/telegram/reward/claim',{lan:navigator.language,...form}),
-    redeemReward:form=>req.post('/telegram/reward/redeem',{lan:navigator.language,...form}),
-    bindTelegram:form=>req.post('/telegram/bind',{lan:navigator.language,...form}),
-    listGift:form=>req.get('/telegram/activity/gift',{lan:navigator.language,...form})
+    getFissionStatus:form=>req.get('/telegram/fission/status',form),
+    redeemFissionReward:form=>req.post('/telegram/fission/redeem',form),
+    listFissionReward:form=>req.get('/telegram/fission/list',form),
 }
 
 export const apiLineActivity = {

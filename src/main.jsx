@@ -8,7 +8,7 @@ const rootDom = document.getElementById('root')
 const root = ReactDOM.createRoot(rootDom)
 const auth = ss.get("Authorization","")
 if(process.env.NODE_ENV === "development"){
-    await fetch("http://localhost:8282/param.json", {
+    await fetch("http://local.netshort.online/param.json", {
         method: 'GET',
     })
         .then(response => response.json())
