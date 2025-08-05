@@ -1,0 +1,75 @@
+.me-item{
+  height: 12vh;
+  width: 90%;
+  box-shadow: 0 8px 32px 0 rgba(56, 36, 28, 0.37),2px 2px 5px 0 rgba(255, 255, 255, 0.50) inset;
+  border-radius: 50px;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+  padding: 1vw 1vh 1vw 1vh;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  .me-i-icon{
+    position: relative;
+    width: 20%;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.1);
+    .icon{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .me-i-info{
+    width: 90%;
+    height: 8vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 1vh;
+    .me-i-title{
+      width: 90%;
+      height: 2vh;
+      font-size: 40px;
+      font-weight: bold;
+      color: #ffd890;
+    }
+    .me-i-text{
+      width: 90%;
+      height: 5vh;
+      overflow: hidden;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      color: gray;
+    }
+  }
+}
+.me-item-unread{
+  background: rgba(255, 255, 255, 0.15);
+  .me-i-icon{
+    .red-dot{
+      width: 20%;
+      height: auto;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: red;
+      position: absolute;
+      top: 5%;
+      right: 5%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+.me-item-read{
+  background: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(56, 36, 28, 0.37);
+  .me-i-icon{
+    .red-dot{
+      display: none;
+    }
+  }
+}

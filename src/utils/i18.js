@@ -9,10 +9,20 @@ export const Text = {
         "zh-TW": "返回",
         "ja": "戻る",
     },
+    Empty: {
+        "zh-TW": "暫無記錄",
+        "en-US": "No record found",
+        "ja": "記録はまだありません",
+    },
     Loading: {
         "en-US": "loading",
         "zh-TW": "載入中",
         "ja": "ローディング中",
+    },
+    Search: {
+        "zh-TW": "尋找更多短劇",
+        "en-US": "Discover more dramas",
+        "ja": "ショートドラマをもっと探す",
     },
     NoMore: {
         "en-US": "No More",
@@ -45,7 +55,7 @@ export const Text = {
         "ja": "購入",
     },
     PaymentChoice: {
-        "en-US": "Pls choice a payment",
+        "en-US": "Please choice a payment",
         "zh-TW": "請選擇一種付款方式",
         "ja": "支払い方法",
     },
@@ -299,6 +309,11 @@ export const Text = {
         "en-US": "Please leave your feedback",
         "ja": "ご意見をお願いします",
     },
+    ReviewTip: {
+        "zh-TW": "請留下您的建議與聯絡方式，我們查收後會第一時間跟進與改進。若您的建議對我們有幫助，我們也會給予您一些獎勵以表感謝。",
+        "en-US": "Please leave your suggestions and contact information. We will follow up and improve as soon as we review them. If your suggestion is helpful to us, we will also offer you a reward as a token of our appreciation.",
+        "ja": "ご意見とご連絡先を残してください。確認後、すぐに対応し改善いたします。ご提案が私たちにとって有益な場合は、感謝の気持ちとして報酬を差し上げます。"
+    },
     LiveAgent: {
         "zh-TW": "人工客服",
         "en-US": "Live Agent",
@@ -335,9 +350,9 @@ export const Text = {
         "ja": "待機中",
     },
     RechargeReportTip: {
-        "zh-TW": "回報支付異常情況，可獲得免費觀看禮品碼喔！",
-        "en-US": "Report payment issues to get a free access gift code!",
-        "ja": "お支払いの異常を報告すると、無料視聴用のギフトコードがもらえますよ！",
+        "zh-TW": "點此使用兌換碼換取短劇。回報支付異常情況，可獲得免費觀看禮品碼喔！",
+        "en-US": "Redeem a drama using your code here. Report payment issues to get a free access gift code!",
+        "ja": "ここをクリックしてコードでショートドラマをゲット！お支払いの異常を報告すると、無料視聴用のギフトコードがもらえますよ！",
     },
     KocTitle: {
         "zh-TW": "發影片拿 <span>99,999</span> 金幣！",

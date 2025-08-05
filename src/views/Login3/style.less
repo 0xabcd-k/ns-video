@@ -1,0 +1,239 @@
+.login-main{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url("@/assets/home/background.png");
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2vh;
+  .l-header{
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 5vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 2%;
+    z-index: 100;
+    .l-header-back{
+      height: 90%;
+      width: auto;
+    }
+  }
+  .l-title{
+    font-size: 4vh;
+    font-weight: bold;
+    color: white;
+    background: radial-gradient(1163.51% 105.13% at 103.12% 78.75%, #FCF6E4 0%, #FFD382 70.67%, #DFDFDF 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5vw rgba(252, 249, 201, 0.80);
+  }
+  .l-desc{
+    font-size: 1.7vh;
+    width: 90%;
+    color: #ffd890;
+    text-align: center;
+  }
+  .l-tab{
+    height: 30vh;
+    width: 80%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    .l-tab-box-item1{
+      left: 0;
+    }
+    .l-tab-box-item2{
+      left: -100%;
+    }
+    .l-tab-box{
+      height: 30vh;
+      width: 200%;
+      display: flex;
+      position: relative;
+      transition: left 0.5s ease;
+      gap: 10px;
+      .l-tab-item{
+        height: 30vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 3vh;
+        .l-email{
+          margin-top:50px;
+          width: 80%;
+          height: 3vh;
+          input{
+            width: 100%;
+            height: 100%;
+            border-radius: 9999px;
+            border: 1px solid #FFF;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 2px 2px 5px 0 rgba(255, 255, 255, 0.20) inset;
+            text-align: center;
+            color: white;
+            font-size: 1.7vh;
+          }
+        }
+        .l-code{
+          width: 80%;
+          height: 3vh;
+          display: flex;
+          gap: 5%;
+          align-items: center;
+          justify-content: start;
+          input{
+            width: 55%;
+            height: 100%;
+            border-radius: 9999px;
+            border: 1px solid #FFF;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 2px 2px 5px 0 rgba(255, 255, 255, 0.20) inset;
+            text-align: center;
+            color: white;
+            font-size: 1.7vh;
+          }
+          .l-code-btn{
+            width: 40%;
+            height: 100%;
+            font-size: 1.7vh;
+            font-weight: bold;
+            border-radius: 9999px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #9f814c;
+            color: #ffd890;
+          }
+        }
+        .l-confirm{
+          width: 50%;
+          height: 5vh;
+          font-size: 2.5vh;
+          font-weight: bold;
+          border-radius: 9999px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid #ff0000;
+          background: linear-gradient(90deg, #f5315e, #f5315e, #ff512c);
+          box-shadow: 2px 2px 5px 0 rgba(255, 255, 255, 0.50) inset;
+          text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+          color: white;
+        }
+
+        .l-tab-input-box{
+          height: 4vh;
+          width: 100%;
+          display: flex;
+          gap: 5%;
+          color: #ffd890;
+          .l-tab-input{
+            height: 100%;
+            width: 63%;
+            border-radius: 9999px;
+            text-align: center;
+            color: white;
+            border: 1px solid #FFF;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 2px 2px 5px 0 rgba(255, 255, 255, 0.20) inset;
+          }
+          .l-tab-info{
+            height: 100%;
+            width: 30%;
+            font-size: 1vh;
+          }
+        }
+        .l-tip{
+          color: #ffd890;
+          width: 80%;
+          text-align: center;
+          font-size: 30px;
+        }
+      }
+    }
+  }
+  .l-login-box{
+    height: 15vh;
+    width: 100%;
+    gap: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .l2-login-telegram{
+      height: 5vh;
+    }
+    .l2-login-line{
+      height: 4vh;
+      width: 50%;
+      border-radius: 9999px;
+      background: #08c454;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 10%;
+      font-size: 2vh;
+      color: white;
+      .icon{
+        margin-left: 5%;
+        width: 10%;
+        aspect-ratio: 1;
+      }
+    }
+  }
+  .l2-login-bottom{
+    position: absolute;
+    width: 100%;
+    bottom: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+    .l2-login-methods{
+      height: 4vh;
+      width: 80%;
+      background: rgba(0,0,0, 0.1);
+      border-radius: 9999px;
+      display: flex;
+      background: #111102;
+      border: 1px solid #9f814c;
+      box-shadow: inset 0 0 20px 5px rgba(255, 215, 0, 0.05),
+      inset 0 0 20px 5px rgba(255, 165, 0, 0.05);
+      .l2-l-m-btn-black{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2vh;
+        font-weight: bold;
+        color: #ffd890;
+      }
+      .l2-l-m-btn-light{
+        width: 50%;
+        height: 100%;
+        background: #9f814c;
+        color: #ffd890;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 9999px;
+        font-size: 2vh;
+        font-weight: bold;
+      }
+    }
+  }
+}

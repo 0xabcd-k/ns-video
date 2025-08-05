@@ -14,23 +14,28 @@ import Activity from "@/views/Activity";
 import Search from "@/views/Search";
 import Check from "@/views/Check";
 import Line from "@/views/Activity/Line";
+import Home2 from "@/views/Home2";
+import Search2 from "@/views/Search2";
+import Login3 from "@/views/Login3";
+import History2 from "@/views/History2";
+import Activity2 from "@/views/Activity2";
+import Message2 from "@/views/Message2";
 const router = createHashRouter([
     {path:"/",element:<App />,children:[
-        {index: true, element:<Home/>},
-        {path: "/login",element:<Login2/>},
-        {path: "/login2",element:<Login2/>},
+        {index: true, element:<Home2/>},
         {path: "/show", element: <Show />},
-        {path: "/history", element: <History />},
         {path: "/series", element: <Series/>},
         {path: "/i18",element: <Redirect />},
-        {path: "/message", element: <Message />},
         {path: "/admin114514", element: <Admin />},
         {path: "/koc", element: <Koc />},
         {path: "/activity/fission",element: <Fission />},
-        {path: "/activity",element: <Activity/>},
-        {path: "/search",element: <Search />},
         {path: "/check", element: <Check />},
-        {path: "/activity/line",element: <Line />}
+        {path: "/activity/line",element: <Line />},
+        {path: "/search",element: <Search2 />},
+        {path: "/login",element: <Login3 />},
+        {path: "/history",element: <History2 />},
+        {path: "/activity",element: <Activity2 />},
+        {path: "/message", element: <Message2 />},
     ]},
     {path:"*",element:<Navigate to="/"/>}
 ]);

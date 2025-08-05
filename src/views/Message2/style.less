@@ -1,0 +1,140 @@
+.message-main{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url("@/assets/home/background.png");
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-content: center;
+  gap: 2vh;
+  .m-header{
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 2%;
+    z-index: 100;
+    .m-header-left{
+      height: 100%;
+      width: 50%;
+      .h-header-back{
+        left: 5%;
+        height: 90%;
+        width: auto;
+      }
+    }
+    .m-header-right{
+      height: 100%;
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .h-header-count{
+        font-size: 2vh;
+        color: #ffd890;
+      }
+    }
+  }
+  .m-modal-mask{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 200;
+  }
+  .m-detail-modal{
+    position: fixed;
+    width: 90%;
+    height: 60vh;
+    z-index: 201;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50px;
+    border: 1px solid #9f814c;
+    box-shadow: 0 0 20px rgba(252, 249, 201, 0.50),
+    inset 0 0 20px 5px rgba(255, 215, 0, 0.05),
+    inset 0 0 20px 5px rgba(255, 165, 0, 0.05);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background: #111102;
+    box-sizing: border-box;
+    padding: 20px 20px 20px 20px;
+    gap: 2vh;
+    .icon{
+      width: 20%;
+      height: auto;
+      aspect-ratio: 1;
+      border-radius: 50%;
+    }
+    .m-m-title{
+      height: 5vh;
+      width: 90%;
+      text-align: center;
+      font-size: 3vh;
+      font-weight: bold;
+      color: #ffd890;
+    }
+    .m-m-content{
+      flex: 1;
+      width: 90%;
+      overflow: auto;
+      color: #ffd890;
+    }
+    .m-m-close{
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateY(100%) translateX(-50%);
+      width: 10vw;
+      height: auto;
+      aspect-ratio: 1;
+    }
+    .m-m-link{
+      padding: 5px 50px 5px 50px;
+      font-size: 50px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(
+              to bottom,
+              #fff8dc 0%,     /* 金属高光 */
+              #ffd700 30%,    /* 黄金色 */
+              #f0c300 50%,    /* 深一点的金色 */
+              #d4af37 70%,    /* 古金色 */
+              #b8860b 100%    /* 底部金棕阴影 */
+      );
+      border-radius: 9999px;
+    }
+  }
+  .m-list{
+    margin-top: 6vh;
+    height: 93vh;
+    width: 100%;
+    overflow-y: auto;
+    .m-list-end{
+      color: gray;
+      font-size: 2vh;
+      font-weight: bold;
+    }
+    .infinite-scroll-component{
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      gap: 2vh;
+    }
+  }
+}
