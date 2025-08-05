@@ -34,6 +34,8 @@ export default function (){
     const [liveAgentComment,setLiveAgentComment] = useState("")
     const [descExpand,setDescExpand] = useState(null)
 
+    const [videoFocus,setVideoFocus] = useState(false)
+
     function setPurchase(state){
         if(state){
             if(logined){
@@ -175,6 +177,14 @@ export default function (){
                 const component = playerInstance.getComponent("AliplayerDanmuComponent")
                 playerInstance.on("ended",()=>{
                     playNext(playerInstance)
+                })
+                playerInstance.on("showBar",()=>{
+                    setVideoFocus(true)
+                    console.log("showBar")
+                })
+                playerInstance.on("hideBar",()=>{
+                    setVideoFocus(false)
+                    console.log("hideBar")
                 })
                 setPlayer(playerInstance)
                 apiVideo.listComment({
@@ -541,9 +551,9 @@ export default function (){
                 </div>
             </div>
             <div className='h-h-show'>
-                <div id='J_prismPlayer' />
+                <div id='J_prismPlayer'/>
             </div>
-            <div className='h-h-no'>
+            <div className='h-h-no' style={videoFocus?{marginTop: "5vh"}:{}}>
                 <div className='h-h-n-left'>
                     <span>{getText(Text.VideoNo)} {playingVideoNo}</span>
                 </div>
