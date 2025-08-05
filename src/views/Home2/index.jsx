@@ -523,7 +523,9 @@ export default function (){
                     </svg>
                     <span>{getText(Text.Search)}</span>
                 </div>
-                <div className='h-h-login'>
+                <div className='h-h-login' onClick={()=>{
+                    navigate("/login")
+                }}>
                     {email?<>
                         <span className='h-h-l-account'>{email}</span>
                     </>:<>
