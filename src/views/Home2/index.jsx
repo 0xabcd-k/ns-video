@@ -601,13 +601,13 @@ export default function (){
             </div>
             {descExpand?<>
                 <div className='h-h-desc-expand'>
-                    <img className='h-h-d-poster' src={drama.poster} alt='poster'/>
                     <div className='h-h-d-desc'>
                         <div className='h-h-d-desc-title'>
                             {drama?.name}
                         </div>
                         <div className='h-h-d-desc-desc'>
-                            {drama?.desc}
+                            <img className='h-h-d-poster' src={drama.poster} alt='poster'/>
+                            <p>{drama?.desc}</p>
                         </div>
                     </div>
                     <div className='h-h-d-desc-btn' onClick={()=>{
