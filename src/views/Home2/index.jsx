@@ -553,7 +553,7 @@ export default function (){
             <div className='h-h-show'>
                 <div id='J_prismPlayer'/>
             </div>
-            <div className='h-h-no' style={videoFocus?{marginTop: "5vh"}:{}}>
+            <div className='h-h-no' style={videoFocus?{marginTop: "8vh"}:{}}>
                 <div className='h-h-n-left'>
                     <span>{getText(Text.VideoNo)} {playingVideoNo}</span>
                 </div>
