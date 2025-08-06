@@ -6,19 +6,18 @@ import {getText, Text} from "@/utils/i18";
 import {apiAuth, apiVideo} from "@/api";
 import {getSafeTop, useHashQueryParams} from "@/utils";
 import {useNavigate} from "react-router-dom";
-import {Toast} from "react-vant";
-import ss from "good-storage";
-
 export default function (){
     const [loading,setLoading] = useState(false);
     const isMobile = useMediaQuery({ maxWidth: 767 });
     const [email,setEmail] = useState("");
     const [dramas,setDramas] = useState("");
     const params = useHashQueryParams();
-    if(navigator.language==='zh-TW'){
-        params.series = 2
-    }else {
-        params.series = 1
+    if(!params.series) {
+        if(navigator.language==='zh-TW'){
+            params.series = 2
+        }else {
+            params.series = 1
+        }
     }
     const navigate = useNavigate();
     const [login,setLogin] = useState(null);
