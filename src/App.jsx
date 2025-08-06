@@ -5,7 +5,7 @@ import ss from "good-storage";
 
 export default function(){
     const navigate = useNavigate()
-    const params = {...useHashQueryParams(),...useTelegramStartParams()};
+    const params = useHashQueryParams()
     async function init(){
         if(params.token){
             ss.set("Authorization", params.token)
