@@ -99,7 +99,7 @@ export function useHashQueryParams() {
 }
 
 export function useTelegramStartParams(){
-    const params = new URLSearchParams(window.Telegram.WebApp.initDataUnsafe);
+    const params = new URLSearchParams(window.Telegram.WebApp.initDataUnsafe.start_param);
     const result = {};
     for (const [key, value] of params.entries()) {
         result[key] = value;

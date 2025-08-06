@@ -13,6 +13,7 @@ let playNo;
 let logined;
 export default function (){
     const params = {...useHashQueryParams(),...useTelegramStartParams()};
+    console.log(params)
     const isMobile = useMediaQuery({ maxWidth: 767 });
     const [loading,setLoading] = useState(false)
     const [drama,setDrama] = useState(null);
