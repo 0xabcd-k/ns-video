@@ -1,7 +1,7 @@
 import "./style.less"
 import ReactLoading from "react-loading";
 import {useState} from "react";
-import {getSafeTop, useHashQueryParams} from "@/utils";
+import {getSafeTop, useHashQueryParams, useTelegramStartParams} from "@/utils";
 import {useNavigate} from "react-router-dom";
 import {getText, Text} from "@/utils/i18";
 import {LoginButton} from "@telegram-auth/react";
@@ -15,7 +15,7 @@ const LoginType = {
 }
 let accountTimeout;
 export default function (){
-    const params = useHashQueryParams()
+    const params = {...useHashQueryParams(),...useTelegramStartParams()};
     const [loading, setLoading] = useState(false);
     const [emailInput,setEmailInput] = useState("")
     const [codeInput,setCodeInput] = useState("")

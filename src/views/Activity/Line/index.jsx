@@ -7,10 +7,10 @@ import {apiAuth, apiLineActivity} from "@/api";
 import Uid from "@/views/Common/Uid";
 import ss from "good-storage";
 import {useNavigate} from "react-router-dom";
-import {getSafeTop, useHashQueryParams} from "@/utils";
+import {getSafeTop, useHashQueryParams, useTelegramStartParams} from "@/utils";
 
 export default function (){
-    const params = useHashQueryParams()
+    const params = {...useHashQueryParams(),...useTelegramStartParams()};
     const [inputText,setInputText] = useState('')
     const [giftModal,setGiftModal] = useState(null);
     const [couponModal,setCouponModal] = useState(null);

@@ -3,13 +3,13 @@ import {useEffect, useRef, useState} from "react";
 import {apiVideo} from "@/api";
 import Aliplayer from "aliyun-aliplayer";
 import {useMediaQuery} from "react-responsive";
-import {useHashQueryParams} from "@/utils";
+import {useHashQueryParams, useTelegramStartParams} from "@/utils";
 import {useNavigate} from "react-router-dom";
 import {Toast} from "react-vant";
 import {getText,Text} from "@/utils/i18";
 
 export default function (){
-    const params = useHashQueryParams()
+    const params = {...useHashQueryParams(),...useTelegramStartParams()};
     let no = Number(params.no);
     if(!no){
         no = 1;

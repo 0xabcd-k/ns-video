@@ -1,7 +1,7 @@
 import "./style.less"
 import {getText,Text} from "@/utils/i18";
 import {useEffect, useState} from "react";
-import {delay, getCurrencySignal, getSafeTop, useHashQueryParams} from "@/utils";
+import {delay, getCurrencySignal, getSafeTop, useHashQueryParams, useTelegramStartParams} from "@/utils";
 import {apiAuth, apiFinance, apiVideo} from "@/api";
 import {Toast,Swiper,Image } from "react-vant";
 import Uid from "@/views/Common/Uid";
@@ -12,7 +12,7 @@ let watchRecordTimeout;
 let playNo;
 let logined;
 export default function (){
-    const params = useHashQueryParams()
+    const params = {...useHashQueryParams(),...useTelegramStartParams()};
     const isMobile = useMediaQuery({ maxWidth: 767 });
     const [loading,setLoading] = useState(false)
     const [drama,setDrama] = useState(null);

@@ -1,11 +1,11 @@
 import ReactLoading from "react-loading";
 import {useEffect} from "react";
 import {apiVideo} from "@/api";
-import {useHashQueryParams} from "@/utils";
+import {useHashQueryParams, useTelegramStartParams} from "@/utils";
 import {useNavigate} from "react-router-dom";
 
 export default function (){
-    const params = useHashQueryParams();
+    const params = {...useHashQueryParams(),...useTelegramStartParams()};
     const navigate = useNavigate();
     async function init(){
         const dramaResp = await apiVideo.dramaI18({

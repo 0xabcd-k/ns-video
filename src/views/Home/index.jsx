@@ -1,5 +1,5 @@
 import "./style.less"
-import {delay, getCurrencySignal, useHashQueryParams} from "@/utils";
+import {delay, getCurrencySignal, useHashQueryParams, useTelegramStartParams} from "@/utils";
 import {useEffect, useState} from "react";
 import {apiAuth, apiFinance, apiVideo} from "@/api";
 import { useMediaQuery } from 'react-responsive';
@@ -17,7 +17,7 @@ let watchRecordTimeout;
 let playNo;
 let logined;
 export default function (){
-    const params = useHashQueryParams()
+    const params = {...useHashQueryParams(),...useTelegramStartParams()};
     const isMobile = useMediaQuery({ maxWidth: 767 });
     const [loading,setLoading] = useState(false)
     const [drama,setDrama] = useState(null);

@@ -98,6 +98,15 @@ export function useHashQueryParams() {
     }, [window.location.hash]);
 }
 
+export function useTelegramStartParams(){
+    const params = new URLSearchParams(window.Telegram.WebApp.initDataUnsafe);
+    const result = {};
+    for (const [key, value] of params.entries()) {
+        result[key] = value;
+    }
+    return result;
+}
+
 export function getSafeTop(){
     return window.Telegram.WebApp.safeAreaInset?(window.Telegram.WebApp.safeAreaInset.top + window.Telegram.WebApp.contentSafeAreaInset.top+ 'px'):0
 }
