@@ -9,7 +9,7 @@ module.exports = {
         filename: '[name].[contenthash].js',
         path: path.resolve(dirname, 'dist'),
         clean: true,
-        publicPath: '/'
+        publicPath: '/v2.0.0/'
     },
     resolve: {
         alias: {
