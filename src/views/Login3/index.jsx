@@ -1,7 +1,7 @@
 import "./style.less"
 import ReactLoading from "react-loading";
 import {useState} from "react";
-import {useHashQueryParams} from "@/utils";
+import {getSafeTop, useHashQueryParams} from "@/utils";
 import {useNavigate} from "react-router-dom";
 import {getText, Text} from "@/utils/i18";
 import {LoginButton} from "@telegram-auth/react";
@@ -36,7 +36,7 @@ export default function (){
             </div>
         </>}
         <div className='login-main' style={{maxWidth: '500px'}}>
-            <div className='l-header' style={{maxWidth: '500px'}}>
+            <div className='l-header' style={{maxWidth: '500px',top: getSafeTop()}}>
                 <svg t="1754293807822" onClick={()=>{
                     navigate(-1)
                 }} className="l-header-back" viewBox="0 0 1024 1024" version="1.1"

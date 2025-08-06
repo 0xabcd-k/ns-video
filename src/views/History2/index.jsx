@@ -6,6 +6,7 @@ import {getText,Text} from "@/utils/i18";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {apiFinance, apiVideo} from "@/api";
 import {Toast} from "react-vant";
+import {getSafeTop} from "@/utils";
 
 const HistoryType = {
     WatchRecord: "WatchRecord",
@@ -91,7 +92,7 @@ export default function (){
             </div>
         </>}
         <div className='history-main' style={{maxWidth: '500px'}}>
-            <div className='h-header' style={{maxWidth: '500px'}}>
+            <div className='h-header' style={{maxWidth: '500px',top: getSafeTop()}}>
                 <div className='h-header-left'>
                     <svg t="1754293807822" onClick={()=>{
                         navigate(-1)
@@ -122,7 +123,7 @@ export default function (){
                     </div>
                 </div>
             </div>
-            <div className='h-modal-inner' id='history-recharge-scroll' style={historyType===HistoryType.RechargeRecord?{}:{display:"none"}}>
+            <div className='h-modal-inner' id='history-recharge-scroll' style={historyType===HistoryType.RechargeRecord?{marginTop:`calc(6vh+${getSafeTop()})`}:{marginTop:`calc(6vh+${getSafeTop()})`,display:"none"}}>
                 <InfiniteScroll scrollableTarget="history-recharge-scroll" next={updateRecharge} hasMore={hasMoreRecharge} loader={
                     <h4 style={{color: "#ffd890"}}>{getText(Text.Empty)}</h4>
                 } dataLength={recharge.length}
@@ -161,7 +162,7 @@ export default function (){
                     })}
                 </InfiniteScroll>
             </div>
-            <div className='h-modal-inner' id='history-watch-scroll' style={historyType===HistoryType.WatchRecord?{}:{display:"none"}}>
+            <div className='h-modal-inner' id='history-watch-scroll' style={historyType===HistoryType.WatchRecord?{marginTop:`calc(6vh+${getSafeTop()})`}:{marginTop:`calc(6vh+${getSafeTop()})`,display:"none"}}>
                 <InfiniteScroll scrollableTarget="history-watch-scroll" next={updateHistory} hasMore={hasMore} loader={
                     <h4 style={{color: "#ffd890"}}>{getText(Text.Empty)}</h4>
                 } dataLength={history.length}

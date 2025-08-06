@@ -6,6 +6,7 @@ import ReactLoading from "react-loading";
 import {useNavigate} from "react-router-dom";
 import {Toast} from "react-vant";
 import ss from "good-storage";
+import {getSafeTop} from "@/utils";
 export default function (){
     const startParam = window.Telegram.WebApp.initDataUnsafe.start_param
     const id =  window.Telegram.WebApp.initDataUnsafe.user.id;
@@ -76,7 +77,7 @@ export default function (){
                              xmlns="http://www.w3.org/2000/svg" p-id="3380" width="200" height="200">
                             <path
                                 d="M828.770654 148.714771C641.293737-20.89959 354.184117-19.590868 168.245698 152.630946c-212.062907 196.418185-212.062907 522.329912 0 718.748098 185.93842 172.221815 473.048039 173.520546 660.524956 3.916176 219.435707-198.536117 219.435707-528.054322 0-726.580449z m-121.880976 569.643707c-11.708566 11.708566-30.680039 11.708566-42.388605 0L502.729054 556.586459c-0.659356-0.659356-1.728312-0.659356-2.397659 0L338.609327 718.318517c-11.708566 11.708566-30.680039 11.708566-42.388605 0l-0.039961-0.039961c-11.708566-11.708566-11.708566-30.680039 0-42.388605l161.732059-161.732058c0.659356-0.659356 0.659356-1.728312 0-2.397659L296.1408 350.008195c-11.708566-11.708566-11.708566-30.680039 0-42.388605l0.039961-0.039961c11.708566-11.708566 30.680039-11.708566 42.388605 0l161.772019 161.77202c0.659356 0.659356 1.728312 0.659356 2.397659 0L664.551024 307.539668c11.708566-11.708566 30.680039-11.708566 42.388605 0l0.039961 0.039961c11.708566 11.708566 11.708566 30.680039 0 42.388605L545.15762 511.770224c-0.659356 0.659356-0.659356 1.728312 0 2.397659L706.919649 675.939902c11.708566 11.708566 11.708566 30.680039 0 42.388605l-0.029971 0.029971z"
-                                fill="#ac6629" p-id="3381"></path>
+                                fill="#FECD7B" p-id="3381"></path>
                         </svg>
                         <div className='f-gift-modal-content'>
                             {giftList?.length?<>
@@ -208,7 +209,7 @@ export default function (){
                     </div>
                 </>}
                 <img className='f-bg' src={require("@/assets/fission/bg.png")} alt='bg'/>
-                <div className='f-gift' onClick={async ()=>{
+                <div className='f-gift' style={{top: `calc(2vh + ${getSafeTop()})`}} onClick={async ()=>{
                     setLoading(true)
                     const listFissionRewardResp = await apiTelegramChannelActivity.listFissionReward({
                         id: id,
@@ -228,6 +229,7 @@ export default function (){
                     </svg>
                 </div>
                 <div className='f-main'>
+                    <div style={{marginTop: getSafeTop()}}/>
                     <div className='f-m-title'>{getText(Text.FissionTitle)}</div>
                     <div className='f-m-time'><span>{getText(Text.FissionTime)}</span></div>
                     <div className='f-m-modal-1'>

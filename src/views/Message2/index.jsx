@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {apiFinance, apiVideo} from "@/api";
 import ReactLoading from "react-loading";
 import {useNavigate} from "react-router-dom";
+import {getSafeTop} from "@/utils";
 
 export default function (){
     const [messages,setMessages] = useState([])
@@ -96,7 +97,7 @@ export default function (){
                     </div>}
                 </div>
             </>}
-            <div className='m-header' style={{maxWidth: '500px'}}>
+            <div className='m-header' style={{maxWidth: '500px',top: getSafeTop()}}>
                 <div className='m-header-left' style={{maxWidth: '500px'}}>
                     <svg t="1754293807822" onClick={()=>{
                         navigate(-1)

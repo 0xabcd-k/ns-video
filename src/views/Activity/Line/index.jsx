@@ -7,7 +7,7 @@ import {apiAuth, apiLineActivity} from "@/api";
 import Uid from "@/views/Common/Uid";
 import ss from "good-storage";
 import {useNavigate} from "react-router-dom";
-import {useHashQueryParams} from "@/utils";
+import {getSafeTop, useHashQueryParams} from "@/utils";
 
 export default function (){
     const params = useHashQueryParams()
@@ -126,6 +126,7 @@ export default function (){
                     </div>
                 </>}
                 <img className='line-bg' src={require("@/assets/line/bg.png")} alt='line'/>
+                <div style={{marginTop: getSafeTop()}}/>
                 <div className='line-login'>
                     <div className='line-login-btn' onClick={() => {
                         navigate(`/login?redirect=${encodeURIComponent(`https://player.netshort.online/#/activity/line?v=1`)}`)

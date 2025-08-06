@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {useMediaQuery} from "react-responsive";
 import {getText, Text} from "@/utils/i18";
 import {apiAuth, apiVideo} from "@/api";
-import {useHashQueryParams} from "@/utils";
+import {getSafeTop, useHashQueryParams} from "@/utils";
 import {useNavigate} from "react-router-dom";
 import {Toast} from "react-vant";
 import ss from "good-storage";
@@ -51,9 +51,10 @@ export default function (){
             </div>
         </>}
         <div className='series-main' style={{maxWidth: '500px'}}>
-            <div className='s-header' style={{maxWidth: '500px'}}>
+            <div className='s-header' style={{maxWidth: '500px',top: getSafeTop()}}>
                 <img className='s-h-logo' src={require("@/assets/logo.png")} alt='logo'/>
             </div>
+            <div style={{marginTop: getSafeTop()}}/>
             <div className='s-drama'>
                 <div className='s-drama-title'>
                     {getText(Text.Recommend)}

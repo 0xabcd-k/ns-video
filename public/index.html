@@ -23,6 +23,17 @@
         })(window, document, "clarity", "script", "ry4hn5ivhn");
     </script>
     <script>
+        if(window.Telegram){
+            window.Telegram.WebApp.ready();
+            window.Telegram.WebApp.disableVerticalSwipes()
+            window.Telegram.WebApp.BackButton.show()
+            window.Telegram.WebApp.requestFullscreen()
+            window.Telegram.WebApp.BackButton.onClick(() => {
+                window.Telegram.WebApp.close()
+            });
+        }
+    </script>
+    <script>
         if("serviceWorker" in navigator){
             navigator.serviceWorker.register("/service-worker.js")
         }

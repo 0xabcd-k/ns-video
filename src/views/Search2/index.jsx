@@ -4,6 +4,7 @@ import {getText, Text} from "@/utils/i18";
 import {useState} from "react";
 import {apiVideo} from "@/api";
 import ReactLoading from "react-loading";
+import {getSafeTop} from "@/utils";
 
 function getSearchKeys(){
     let m = {
@@ -48,7 +49,7 @@ export default function (){
             </div>
         </>}
         <div className='search-main' style={{maxWidth: '500px'}}>
-            <div className='s-header' style={{maxWidth: '500px'}}>
+            <div className='s-header' style={{maxWidth: '500px',top:getSafeTop()}}>
                 <svg t="1754293807822" onClick={()=>{
                     navigate(-1)
                 }} className="s-header-back" viewBox="0 0 1024 1024" version="1.1"
@@ -58,7 +59,8 @@ export default function (){
                         fill="#cdcdcd" p-id="12171"></path>
                 </svg>
             </div>
-            <div className='s-search'>
+            <div style={{marginTop: getSafeTop()}}/>
+            <div className='s-search' >
                 <svg className='icon' xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33"
                      fill="none">
                     <path
