@@ -50,9 +50,9 @@ export const Text = {
         "ja": "購入済み",
     },
     Purchase: {
-        "en-US": "Purchase",
-        "zh-TW": "購買",
-        "ja": "購入",
+        "en-US": "Full Series🛒",
+        "zh-TW": "全集🛒",
+        "ja": "全話🛒",
     },
     PaymentChoice: {
         "en-US": "Please choice a payment",

@@ -559,6 +559,17 @@ export default function (){
                 </div>
             </div>
             <div className='h-h-next'>
+                {
+                    params.buy&&<div className='h-h-n-left'>
+                        {drama?.purchase||1===1?<div className='h-h-n-btn-purchased'>
+                            {getText(Text.Purchased)}
+                        </div>:<div className='h-h-n-btn' onClick={()=>{
+                            setPurchase(true)
+                        }}>
+                            {getText(Text.Purchase)}
+                        </div>}
+                    </div>
+                }
                 <div className='h-h-n-right'>
                     <div className='h-h-n-btn' onClick={async ()=>{
                         await play(playingVideoNo + 1)
