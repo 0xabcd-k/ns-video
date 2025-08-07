@@ -6,7 +6,7 @@ import {getText, Text} from "@/utils/i18";
 import {apiAuth, apiVideo} from "@/api";
 import {getSafeTop, useHashQueryParams} from "@/utils";
 import {useNavigate} from "react-router-dom";
-import {Toast} from "react-vant";
+import {Image, Swiper, Toast} from "react-vant";
 import ss from "good-storage";
 
 export default function (){
@@ -58,6 +58,20 @@ export default function (){
             <div className='s-drama'>
                 <div className='s-drama-title'>
                     {getText(Text.Recommend)}
+                </div>
+                <div className='s-drama-activity'>
+                    <Swiper autoplay={5000}>
+                        <Swiper.Item key={1} onClick={()=>{
+                            window.open("https://t.me/netshort001bot/app")
+                        }}>
+                            <Image src={require("@/assets/poster/fission-poster.png")} />
+                        </Swiper.Item>
+                        <Swiper.Item key={2} onClick={()=>{
+                            navigate("/activity/line")
+                        }}>
+                            <Image src={require("@/assets/poster/line-poster.jpg")} />
+                        </Swiper.Item>
+                    </Swiper>
                 </div>
                 <div className='s-drama-box'>
                     {dramas && dramas.map((item, index) => {
