@@ -4,6 +4,8 @@ import router from './router'
 import {apiAuth} from "@/api";
 import ss from "good-storage";
 import {getLocalId} from "@/utils";
+import {Toast} from "react-vant";
+import {getText, Text} from "@/utils/i18";
 const rootDom = document.getElementById('root')
 const root = ReactDOM.createRoot(rootDom)
 const auth = ss.get("Authorization","")
@@ -27,9 +29,25 @@ if(process.env.NODE_ENV === "development"){
         })
         .catch(error => {});
 }
+if(window.location.hash.split('?')[0] === '#/'){
+    if(window.Telegram.WebApp.initDataUnsafe.start_param){
+        console.log(1)
+        const link = "#/"+window.Telegram.WebApp.initDataUnsafe.start_param.replace("-", "?")
+        console.log(link)
+        window.location.hash = link
+    }
+}
 if(auth){
     root.render(router)
-}else{
+}else if (window.Telegram.WebApp.initDataUnsafe.user){
+    const resp = await apiAuth.loginTelegram({...window.Telegram.WebApp.initDataUnsafe.user,hash:window.Telegram.WebApp.initDataUnsafe.hash,auth_date: Number(window.Telegram.WebApp.initDataUnsafe.auth_date)})
+    if(resp.success) {
+        ss.set("Authorization", resp.data.token)
+        navigate(-1)
+    }else {
+        Toast.info(getText(Text.LoginFail))
+    }
+}else {
     getLocalId().then((ans)=> {
         apiAuth.loginDevice({
             device_id: ans

@@ -23,6 +23,7 @@ import Message2 from "@/views/Message2";
 const router = createHashRouter([
     {path:"/",element:<App />,children:[
         {index: true, element:<Home2/>},
+        {path: "/home", element: <Home2 />},
         {path: "/show", element: <Show />},
         {path: "/series", element: <Series/>},
         {path: "/i18",element: <Redirect />},
