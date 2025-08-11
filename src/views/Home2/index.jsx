@@ -8,6 +8,7 @@ import Uid from "@/views/Common/Uid";
 import ReactLoading from "react-loading";
 import {useMediaQuery} from "react-responsive";
 import {useNavigate} from "react-router-dom";
+import ss from "good-storage";
 let watchRecordTimeout;
 let playNo;
 let logined;
@@ -34,7 +35,7 @@ export default function (){
     const [descExpand,setDescExpand] = useState(null)
 
     const [videoFocus,setVideoFocus] = useState(false)
-
+    const [paid,setPaid] = useState(null)
     function setPurchase(state){
         if(state){
             if(logined){
@@ -269,9 +270,10 @@ export default function (){
             if (payment === "JKOPAY"){
                 p = "PaymentTypeAntPay"
             }
+            const token = ss.get("Authorization")
             const rechargeResp = await apiFinance.recharge({
                 os: os,
-                redirect: `https://player.netshort.online/#/?drama=${params.drama}&from=order`,
+                redirect: `https://player.netshort.online/#/?drama=${params.drama}&from=order&token=${token}`,
                 payment: p,
                 method_type: payment,
                 terminal_type: isMobile?"WAP":"WEB",
@@ -281,7 +283,7 @@ export default function (){
                 }
             })
             if(rechargeResp.success){
-                window.location.href = rechargeResp.data.url
+                window.open(rechargeResp.data.url,"_blank")
             }
             setTimeout(()=>{
                 setLoading(false)
@@ -515,6 +517,14 @@ export default function (){
                             }
                         }}>{getText(Text.Submit)}</div>
                     </div>
+                </div>
+            </>}
+            {paid && <>
+                <div className='h-modal-mask' />
+                <div className='h-paid-modal' style={{maxWidth: '450px'}}>
+                    <div className='h-paid-modal-btn' onClick={()=>{
+                        window.location.reload()
+                    }}>{getText(Text.Paid)}</div>
                 </div>
             </>}
             <div className='h-header' style={{maxWidth: '500px',top:getSafeTop()}}>

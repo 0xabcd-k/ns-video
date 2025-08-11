@@ -30,6 +30,35 @@
     left: 50%;
     transform: translateY(100%) translateX(-50%);
   }
+  .h-paid-modal{
+    position: fixed;
+    width: 90%;
+    height: auto;
+    z-index: 201;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #111102;
+    border-radius: 50px;
+    border: 1px solid #9f814c;
+    box-shadow: 0 0 20px rgba(252, 249, 201, 0.50),
+            inset 0 0 20px 5px rgba(255, 215, 0, 0.05),
+            inset 0 0 20px 5px rgba(255, 165, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    .h-paid-modal-btn{
+      font-size: 2vh;
+      color: #ffd890;
+      font-weight: bold;
+      padding: 5px 10px 5px 10px;
+      background: #9f814c;
+      border-radius: 9999px;
+    }
+  }
   .h-recharge-modal{
     position: fixed;
     width: 90%;

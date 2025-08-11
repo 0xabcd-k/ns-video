@@ -49,6 +49,11 @@ export const Text = {
         "zh-TW": "已購買",
         "ja": "購入済み",
     },
+    Paid: {
+        "en-US": "Paid",
+        "zh-TW": "已付款",
+        "ja": "支払い済み",
+    },
     Purchase: {
         "en-US": "Full Series🛒",
         "zh-TW": "全集🛒",
