@@ -163,7 +163,9 @@ export default function (){
                                 setDramaSeriesModal(null)
                             }} onClose={()=>{
                                 setDramaSeriesModal(null)
-                            }} setLoading={setLoading}/>
+                            }} setLoading={(n)=>{
+                                setLoading(n)
+                            }}/>
                         </div>
                     </>}
                     {seriesUpdateModal && <>
@@ -172,7 +174,9 @@ export default function (){
                                 setDramaList([])
                                 setBakInfo("")
                                 setSeriesUpdateModal(null)
-                            }} setLoading={setLoading}/>
+                            }} setLoading={(n)=>{
+                                setLoading(n)
+                            }}/>
                         </div>
                     </>}
                     {createCDKModal && <>
@@ -182,7 +186,9 @@ export default function (){
                         <div className='create-cdk-modal'>
                             <CreateCDK onClose={() => {
                                 setCreateCDKModal(null)
-                            }} setLoading={setLoading}/>
+                            }} setLoading={(n)=>{
+                                setLoading(n)
+                            }}/>
                         </div>
                     </>}
                     <div className='admin-main'>
