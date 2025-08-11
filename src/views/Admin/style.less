@@ -171,16 +171,21 @@
           }
         }
       }
+      .am-vm-table-box{
+        width: 98%;
+        height: 100%;
+        overflow-x: scroll;
+      }
       .am-vm-table{
-        height: 80%;
-        width: 99%;
-        overflow-x: auto;
+        height: 100%;
+        width: 100vw;
         ul{
+          width: auto;
           display: flex;
         }
         .ul-header{
           height: 5%;
-          width: 100%;
+          width: auto;
           overflow-y: scroll;
           ul{
             height: 100%;
@@ -199,10 +204,11 @@
         }
         .am-vm-table-body{
           height: 95%;
+          width: auto;
           overflow-y: auto;
         }
         .am-vm-t-index{
-          width: 100px;
+          width: 4vw;
           text-align: center;
         }
         .am-vm-t-index-header{
@@ -212,7 +218,7 @@
 
         }
         .am-vm-t-title{
-          width: 400px;
+          width: 10vw;
           text-align: center;
         }
         .am-vm-t-title-header {
@@ -220,7 +226,7 @@
         .am-vm-t-title-body {
         }
         .am-vm-t-desc{
-          width: 500px;
+          width: 15vw;
         }
         .am-vm-t-desc-header {
         }
@@ -234,7 +240,7 @@
           }
         }
         .am-vm-t-poster{
-          width: 300px;
+          width: 8vw;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -243,12 +249,12 @@
         }
         .am-vm-t-poster-body {
           img{
-            width: 100%;
+            width: 98%;
             height: auto;
           }
         }
         .am-vm-t-total-no{
-          width: 150px;
+          width: 4vw;
           text-align: center;
         }
         .am-vm-t-total-no-header {
@@ -256,7 +262,7 @@
         .am-vm-t-total-no-body {
         }
         .am-vm-t-free-no{
-          width: 200px;
+          width: 5vw;
           text-align: center;
         }
         .am-vm-t-free-no-header {
@@ -264,7 +270,7 @@
         .am-vm-t-free-no-body {
         }
         .am-vm-t-price{
-          width: 200px;
+          width: 5vw;
           text-align: center;
         }
         .am-vm-t-price-header {
@@ -274,7 +280,7 @@
 
         }
         .am-vm-t-currency{
-          width: 200px;
+          width: 8vw;
           text-align: center;
         }
         .am-vm-t-currency-header{
@@ -282,7 +288,7 @@
         .am-vm-t-currency-body {
         }
         .am-vm-t-effect-time{
-          width: 200px;
+          width: 5vw;
           text-align: center;
         }
         .am-vm-t-effect-time-header {
@@ -291,7 +297,7 @@
 
         }
         .am-vm-t-belong-name{
-          width: 300px;
+          width: 10vw;
           text-wrap: wrap;
           word-break: break-all;
         }
@@ -302,7 +308,7 @@
 
         }
         .am-vm-t-lan{
-          width: 150px;
+          width: 4vw;
           text-align: center;
         }
         .am-vm-t-lan-header {
@@ -311,7 +317,7 @@
 
         }
         .am-vm-t-series{
-          width: 100px;
+          width: 4vw;
           text-align: center;
         }
         .am-vm-t-series-header{
@@ -321,7 +327,7 @@
 
         }
         .am-vm-t-redeem{
-          width: 200px;
+          width: 4vw;
           text-align: center;
         }
         .am-vm-t-redeem-header{
@@ -331,7 +337,7 @@
 
         }
         .am-vm-t-expire{
-          width: 15vh;
+          width: 10vw;
           text-align: center;
         }
         .am-vm-t-expire-header{
@@ -341,7 +347,7 @@
         }
 
         .am-vm-t-keys{
-          width: 15vh;
+          width: 8vw;
           text-align: center;
         }
         .am-vm-t-keys-header{
@@ -351,8 +357,19 @@
           overflow: auto;
         }
 
+        .am-vm-t-weight{
+          width: 5vw;
+          text-align: center;
+        }
+        .am-vm-t-weight-header{
+
+        }
+        .am-vm-t-weight-body{
+
+        }
+
         .am-vm-t-exec {
-          width: 400px;
+          width: 10vw;
           text-align: center;
         }
         .am-vm-t-exec-header {
@@ -433,6 +450,7 @@
           }
         }
         .ul-body{
+          width: auto;
           li{
             height: 400px;
           }

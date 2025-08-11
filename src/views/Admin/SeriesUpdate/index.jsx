@@ -3,8 +3,9 @@ import {useEffect, useState} from "react";
 import {apiAdmin} from "@/api";
 import {Toast} from "react-vant";
 
-export default function ({seriesId,onClose,dramaList,setDramaList,bak,setBak}){
+export default function ({seriesId,onClose,dramaList,setDramaList,bak,setBak,setLoading}){
     async function init(){
+        setLoading(true)
         if(seriesId){
             const resp = await apiAdmin.listSeriesDrama({
                 series_id: seriesId,
@@ -14,6 +15,7 @@ export default function ({seriesId,onClose,dramaList,setDramaList,bak,setBak}){
                 setBak(resp.data.bak)
             }
         }
+        setLoading(false)
     }
     useEffect(() => {
         init()

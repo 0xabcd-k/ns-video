@@ -2,7 +2,7 @@ import "./style.less"
 import {useEffect, useState} from "react";
 import {apiAdmin} from "@/api";
 
-export default function ({onClick,onClose}){
+export default function ({onClick,onClose,onLoading}){
     const [lastId,setLastId] = useState(0);
     const [seriesList,setSeriesList] = useState([])
     const [whereIdx,setWhereIdx] = useState("");
@@ -24,7 +24,9 @@ export default function ({onClick,onClose}){
         }
     }
     async function init(){
+        onLoading(true)
         await getNextSeriesList()
+        onLoading(false)
     }
     useEffect(() => {
         init()
@@ -77,7 +79,9 @@ export default function ({onClick,onClose}){
                 </div>
                 <div className='sm-ul-bottom-total'>总共：{total}条</div>
                 <div className='sm-ul-bottom-btn' onClick={async ()=>{
+                    setLoading(true)
                     await getNextSeriesList()
+                    setLoading(false)
                 }}>拉取更多</div>
             </div>
         </div>
