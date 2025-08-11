@@ -283,6 +283,8 @@ export default function (){
                 }
             })
             if(rechargeResp.success){
+                setPurchase(null)
+                setPaid(true)
                 window.open(rechargeResp.data.url,"_blank")
             }
             setTimeout(()=>{
