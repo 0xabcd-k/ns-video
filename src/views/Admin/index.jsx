@@ -56,6 +56,7 @@ export default function (){
             page_size: 10,
             where_belong_name: whereBelongName,
             where_idx: whereIdx.replace("https://player.netshort.online/#/?drama=",""),
+            where_series: whereSeries,
         })
         if(videoListResp.success){
             if(videoListResp.data.list?.length){
