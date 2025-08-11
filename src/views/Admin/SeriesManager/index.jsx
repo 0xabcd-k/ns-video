@@ -2,7 +2,7 @@ import "./style.less"
 import {useEffect, useState} from "react";
 import {apiAdmin} from "@/api";
 
-export default function ({onClick,onClose,onLoading}){
+export default function ({onClick,onClose,setLoading}){
     const [lastId,setLastId] = useState(0);
     const [seriesList,setSeriesList] = useState([])
     const [whereIdx,setWhereIdx] = useState("");
@@ -24,9 +24,9 @@ export default function ({onClick,onClose,onLoading}){
         }
     }
     async function init(){
-        onLoading(true)
+        setLoading(true)
         await getNextSeriesList()
-        onLoading(false)
+        setLoading(false)
     }
     useEffect(() => {
         init()
