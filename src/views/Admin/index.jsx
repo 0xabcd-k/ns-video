@@ -601,6 +601,23 @@ export default function (){
                                                         }}>
                                                             获取链接
                                                         </div>
+                                                        <div className='am-vm-t-exec-btn' onClick={() => {
+                                                            Toast.info("请双击删除")
+                                                        }} onDoubleClick={async ()=>{
+                                                            setLoading(true)
+                                                            const resp = await apiAdmin.updateDrama({
+                                                                drama_id: item.id,
+                                                                is_deleted: Math.floor(Date.now() / 1000),
+                                                            })
+                                                            if (resp.success) {
+                                                                Toast.info("删除成功")
+                                                            } else {
+                                                                Toast.info("删除失败")
+                                                            }
+                                                            setLoading(false)
+                                                        }}>
+                                                            删除剧目
+                                                        </div>
                                                         {seriesUpdateModal &&
                                                             <div className='am-vm-t-exec-btn' onClick={() => {
                                                                 const list = [...dramaList, {
