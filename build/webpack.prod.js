@@ -20,7 +20,7 @@ module.exports = {
         filename: '[name].[contenthash].js',
         path: path.resolve(dirname, 'dist'),
         clean: true,
-        publicPath: '/v2.0.0/'
+        publicPath: '/'
     },
     optimization: {
         minimize: true,
