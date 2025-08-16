@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="nightmode" content="disable">
+    <meta property="og:image" content="https://static.netshort.online/netshort.jpg" />
     <title>ShortStore</title>
     <link rel="manifest" href="/manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +22,26 @@
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "ry4hn5ivhn");
+    </script>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1682799039099834',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v23.0'
+            });
+
+            FB.AppEvents.logPageView();
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = `https://connect.facebook.net/${navigator.language}/sdk.js`;
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
     <script>
         if(window.Telegram.WebApp){

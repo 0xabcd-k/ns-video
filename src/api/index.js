@@ -25,6 +25,7 @@ export const apiAuth = {
     isAccountExist:form=>req.get('/account/exist',{lan:navigator.language,...form}),
     loginPassword:form=>req.post('/login/password',{lan:navigator.language,...form}),
     loginTelegram:form=>req.post('/login/tg',{lan:navigator.language,...form}),
+    loginFacebook:form=>req.post("/login/fb",{lan:navigator.language,...form}),
 }
 
 export const apiFinance= {

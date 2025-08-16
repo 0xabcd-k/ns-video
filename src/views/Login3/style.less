@@ -164,7 +164,7 @@
     }
   }
   .l-login-box{
-    height: 15vh;
+    height: auto;
     width: 100%;
     gap: 2vh;
     display: flex;
@@ -185,6 +185,25 @@
       gap: 10%;
       font-size: 2vh;
       color: white;
+      overflow: hidden;
+      .icon{
+        margin-left: 5%;
+        width: 10%;
+        aspect-ratio: 1;
+      }
+    }
+    .fb-login{
+      height: 4vh;
+      width: 60%;
+      border-radius: 9999px;
+      background: #0f65f5;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 10%;
+      font-size: 2vh;
+      color: white;
+      overflow: hidden;
       .icon{
         margin-left: 5%;
         width: 10%;
@@ -232,6 +251,8 @@
         border-radius: 9999px;
         font-size: 2vh;
         font-weight: bold;
+        text-wrap: nowrap;
+        overflow: hidden;
       }
     }
   }

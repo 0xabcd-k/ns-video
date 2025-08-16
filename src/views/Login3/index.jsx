@@ -1,6 +1,6 @@
 import "./style.less"
 import ReactLoading from "react-loading";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {getSafeTop, useHashQueryParams, useTelegramStartParams} from "@/utils";
 import {useNavigate} from "react-router-dom";
 import {getText, Text} from "@/utils/i18";
@@ -27,6 +27,22 @@ export default function (){
     const [passwordAgainInput,setPasswordAgainInput] = useState("")
     const [isRegister,setIsRegister] = useState(false)
     const navigate = useNavigate();
+    const top = getSafeTop()
+    console.log(top)
+    // useEffect(() => {
+    //     // function loadFacebookScript() {
+    //     //     const script = document.createElement('script')
+    //     //     script.src = `https://connect.facebook.net/${navigator.language}/sdk.js`
+    //     //     script.defer = true
+    //     //     script.async = true
+    //     //     script.crossOrigin = "anonymous"
+    //     //     document.body.appendChild(script)
+    //     // }
+    //     // loadFacebookScript()
+    //     document.addEventListener("logined", function (event) {
+    //         navigate(-1)
+    //     });
+    // }, []);
     return <>
         {loading && <>
             <div className='mask'>
@@ -36,7 +52,7 @@ export default function (){
             </div>
         </>}
         <div className='login-main' style={{maxWidth: '500px'}}>
-            <div className='l-header' style={{maxWidth: '500px',top: getSafeTop()}}>
+            <div className='l-header' style={{maxWidth: '500px',top: top}}>
                 <svg t="1754293807822" onClick={()=>{
                     navigate(-1)
                 }} className="l-header-back" viewBox="0 0 1024 1024" version="1.1"
@@ -160,6 +176,7 @@ export default function (){
                         buttonSize="large"
                         showAvatar={false}
                         onAuthCallback={async (user) => {
+                            setLoading(true)
                             const resp = await apiAuth.loginTelegram(user)
                             if(resp.success) {
                                 ss.set("Authorization", resp.data.token)
@@ -167,6 +184,7 @@ export default function (){
                             }else {
                                 Toast.info(getText(Text.LoginFail))
                             }
+                            setLoading(false)
                         }}
                     />
                 </div>
@@ -182,6 +200,54 @@ export default function (){
                     </svg>
                     Log in with Line
                 </div>
+                <div className='fb-login' onClick={() => {
+                    FB.getLoginStatus(async function (response) {
+                        if (response.status === "connected") {
+                            setLoading(true)
+                            const resp = await apiAuth.loginFacebook({
+                                otoken: response.authResponse.accessToken,
+                                signed_request: response.authResponse.signedRequest
+                            })
+                            if (resp.success) {
+                                ss.set("Authorization", resp.data.token)
+                                navigate(-1)
+                            } else {
+                                Toast.info(getText(Text.LoginFail))
+                            }
+                            setLoading(false)
+                        } else {
+                            FB.login(async function (response) {
+                                setLoading(true)
+                                if (response.status === "connected") {
+                                    const resp = await apiAuth.loginFacebook({
+                                        otoken: response.authResponse.accessToken,
+                                        signed_request: response.authResponse.signedRequest
+                                    })
+                                    if (resp.success) {
+                                        ss.set("Authorization", resp.data.token)
+                                        navigate(-1)
+                                    } else {
+                                        Toast.info(getText(Text.LoginFail))
+                                    }
+                                } else {
+                                    Toast.info(getText(Text.LoginFail))
+                                }
+                                setLoading(false)
+                            });
+                        }
+                    })
+                }}>
+                    <svg t="1755317112699" className="icon" viewBox="0 0 1024 1024" version="1.1"
+                         xmlns="http://www.w3.org/2000/svg" p-id="2313" width="200" height="200">
+                        <path
+                            d="M967.509333 0H56.490667C25.301333 0 0 25.301333 0 56.490667v911.018666C0 998.741333 25.301333 1024 56.490667 1024h490.410666v-396.544H413.397333v-154.496h133.504V358.826667c0-132.224 80.810667-204.16 198.784-204.16 56.533333 0 105.130667 4.138667 119.296 6.016v138.24h-81.962666c-64 0-76.458667 30.762667-76.458667 75.562666v98.602667h152.917333l-19.84 154.88H706.56V1024h260.906667c31.274667 0 56.533333-25.258667 56.533333-56.490667V56.490667C1024 25.301333 998.741333 0 967.509333 0"
+                            fill="#ffffff" p-id="2314"></path>
+                    </svg>
+                    Log in with Facebook
+                </div>
+                {/*<div className="fb-login-button" data-width="200px" data-size="large" data-button-type="" data-layout=""*/}
+                {/*     data-auto-logout-link="false" data-use-continue-as="true" onlogin="checkLoginState();">*/}
+                {/*</div>*/}
             </div>
             <div className='l2-login-bottom'>
                 <div className='l2-login-methods'>

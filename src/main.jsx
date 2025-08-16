@@ -4,6 +4,8 @@ import router from './router'
 import {apiAuth} from "@/api";
 import ss from "good-storage";
 import {getLocalId} from "@/utils";
+import {Toast} from "react-vant";
+import {getText, Text} from "@/utils/i18";
 const rootDom = document.getElementById('root')
 const root = ReactDOM.createRoot(rootDom)
 const auth = ss.get("Authorization","")
@@ -27,6 +29,7 @@ if(process.env.NODE_ENV === "development"){
         })
         .catch(error => {});
 }
+
 if(auth){
     root.render(router)
 }else{

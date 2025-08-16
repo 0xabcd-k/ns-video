@@ -108,7 +108,7 @@ export function useTelegramStartParams(){
 }
 
 export function getSafeTop(){
-    return window.Telegram.WebApp.safeAreaInset?(window.Telegram.WebApp.safeAreaInset.top + window.Telegram.WebApp.contentSafeAreaInset.top+ 'px'):0
+    return window.Telegram?.WebApp?.safeAreaInset?((window.Telegram?.WebApp?.safeAreaInset?.top??0) + (window.Telegram?.WebApp?.contentSafeAreaInset?.top??0)+ 'px'):0
 }
 
 export async function getLocalId(){

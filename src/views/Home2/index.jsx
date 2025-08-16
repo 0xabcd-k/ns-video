@@ -111,6 +111,9 @@ export default function (){
             return
         }
         setLoading(true)
+        const timeout = setTimeout(()=>{
+            setLoading(false)
+        },4000)
         const resp = await apiVideo.video({
             drama_idx: params.drama,
             video_no: no
@@ -201,6 +204,7 @@ export default function (){
                 setPurchase(true)
             }
         }
+        clearTimeout(timeout)
         setLoading(false)
     }
     function getPayments(currency){
