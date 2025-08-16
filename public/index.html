@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="nightmode" content="disable">
+    <meta property="og:image" content="https://static.netshort.online/netshort.jpg" />
+    <meta property="og:url" content="https://player.netshort.online/v2.0.0/#/series" />
+    <meta property="og:type" content="video.movie" />
+    <meta property="og:title" content="NetShort" />
+    <meta property="og:description" content="NetShort is a streaming platform that offers a wide variety of short-form dramas."/>
+    <meta property="fb:app_id" content="1682799039099834"/>
     <title>ShortStore</title>
     <link rel="manifest" href="/manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,12 +29,32 @@
         })(window, document, "clarity", "script", "ry4hn5ivhn");
     </script>
     <script>
-        if(window.Telegram){
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1682799039099834',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v23.0'
+            });
+
+            FB.AppEvents.logPageView();
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = `https://connect.facebook.net/${navigator.language}/sdk.js`;
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script>
+        if(window.Telegram.WebApp){
             window.Telegram.WebApp.ready();
-            window.Telegram.WebApp.disableVerticalSwipes()
-            window.Telegram.WebApp.BackButton.show()
-            window.Telegram.WebApp.requestFullscreen()
-            window.Telegram.WebApp.BackButton.onClick(() => {
+            window.Telegram.WebApp?.disableVerticalSwipes()
+            window.Telegram.WebApp?.BackButton?.show()
+            window.Telegram.WebApp?.requestFullscreen()
+            window.Telegram.WebApp?.BackButton?.onClick(() => {
                 window.Telegram.WebApp.close()
             });
         }

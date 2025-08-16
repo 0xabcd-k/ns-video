@@ -1,7 +1,16 @@
+const path = require("path");
+const dirname = __dirname.replace('build','');
+
 
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
+    output: {
+        filename: '[name].[contenthash].js',
+        path: path.resolve(dirname, 'dist'),
+        clean: true,
+        publicPath: '/'
+    },
     module: {
         rules: [
             {

@@ -5,12 +5,6 @@ const dirname = __dirname.replace('build','');
 
 module.exports = {
     entry: path.resolve(dirname, 'src/main.jsx'),
-    output: {
-        filename: '[name].[contenthash].js',
-        path: path.resolve(dirname, 'dist'),
-        clean: true,
-        publicPath: '/'
-    },
     resolve: {
         alias: {
             '@': path.join(dirname, 'src'),

@@ -20,6 +20,7 @@ import Login3 from "@/views/Login3";
 import History2 from "@/views/History2";
 import Activity2 from "@/views/Activity2";
 import Message2 from "@/views/Message2";
+import FacebookDeleted from "@/views/Login3/FacebookDeleted";
 const router = createHashRouter([
     {path:"/",element:<App />,children:[
         {index: true, element:<Home2/>},
@@ -37,6 +38,7 @@ const router = createHashRouter([
         {path: "/history",element: <History2 />},
         {path: "/activity",element: <Activity2 />},
         {path: "/message", element: <Message2 />},
+        {path: "/facebook/deleted",element: <FacebookDeleted/>},
     ]},
     {path:"*",element:<Navigate to="/"/>}
 ]);

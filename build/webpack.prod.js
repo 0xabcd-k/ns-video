@@ -3,6 +3,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require("path");
+const dirname = __dirname.replace('build','');
+
 
 module.exports = {
     mode: 'production',
@@ -13,6 +16,12 @@ module.exports = {
             ignoreOrder: false, // 忽略 CSS 规则的顺序
         })
     ],
+    output: {
+        filename: '[name].[contenthash].js',
+        path: path.resolve(dirname, 'dist'),
+        clean: true,
+        publicPath: '/v2.0.0/'
+    },
     optimization: {
         minimize: true,
         minimizer: [
