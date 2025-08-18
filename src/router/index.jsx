@@ -26,7 +26,7 @@ const router = createHashRouter([
         {path: "/activity/fission",element: <Fission />},
         {path: "/check", element: <Check />},
         {path: "/activity/line",element: <Line />},
-        {path: "/search",element: <Search2 />},
+        {path: "/search",element: <Show />},
         {path: "/login",element: <Login3 />},
         {path: "/history",element: <History2 />},
         {path: "/activity",element: <Activity2 />},
