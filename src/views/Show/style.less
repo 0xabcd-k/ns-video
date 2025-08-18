@@ -1,69 +1,244 @@
-.show {
+.show-main{
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  background-image: url("@/assets/home/background.png");
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
+  justify-content: start;
   align-items: center;
-  background: black;
-  .s-box {
-    position: relative;
-    height: 90%;
+  .s-header{
+    position: fixed;
+    top: 0;
     width: 100%;
-  }
-  .s-name{
-    color: #bfbfbf;
-    width: 100%;
-    font-size: 5vw;
-    text-align: center;
-    text-decoration: underline;
-  }
-  .s-video-no{
-    position: absolute;
-    bottom: 4vh;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    opacity: 0.8;
-  }
-  .s-back-btn{
-    position: absolute;
-    color: #bfbfbf;
-    left: 5vw;
-    bottom: 2vh;
-    font-size: 3vh;
+    height: 5vh;
     display: flex;
-    align-items: center;
     justify-content: center;
-    svg{
-      height: 3vh;
-      width: auto;
-    }
-    span{
-      height: 2vh;
+    align-items: center;
+    gap: 2%;
+    z-index: 100;
+    .s-header-icon{
+      width: 33%;
+      height: 100%;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      img{
+        width: 100%;
+        height: auto;
+      }
+    }
+    .s-header-empty{
+      width: 35%;
+      height: 70%;
+    }
+    .s-header-login{
+      width: 25%;
+      height: 70%;
+      border-radius: 9999px;
+      border: 1px solid #ff0000;
+      background: linear-gradient(90deg, #f5315e, #f5315e, #ff512c);
+      box-shadow: 2px 2px 5px 0 rgba(255, 255, 255, 0.50) inset;
+      text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 5px 10px 5px 10px;
+      gap: 5px;
+      font-size: 1.7vh;
+      .s-header-login-account{
+        height: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        color: white;
+      }
+      .icon{
+        height: 80%;
+        width: auto;
+        aspect-ratio: 1;
+        animation: pulse 1s infinite ease-in-out;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2); /* 变大一点 */
+        }
+        100% {
+          transform: scale(1); /* 回到原始大小 */
+        }
+      }
+      .s-header-login-text{
+        height: 100%;
+        width: 100%;
+        flex: 1;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+      }
     }
   }
-  .s-next-btn{
-    position: absolute;
-    color: #bfbfbf;
-    right: 5vw;
-    bottom: 2vh;
-    font-size: 3vh;
+  .s-poster{
+    margin-top: 8vh;
+    height: auto;
+    width: 96%;
+  }
+  .s-search-box{
+    margin-top: 4vh;
+    width: 90%;
+    height: 4vh;
+    gap: 2%;
     display: flex;
+    justify-content: start;
     align-items: center;
-    justify-content: center;
-    svg{
-      height: 3vh;
-      width: auto;
-    }
-    span{
-      height: 2vh;
+    .s-search-input{
+      height: 100%;
+      flex: 1;
+      border-radius: 9999px;
+      border: 1px solid #FFF;
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 2px 2px 5px 0 rgba(255, 255, 255, 0.20) inset;
       display: flex;
+      justify-content: start;
       align-items: center;
+      box-sizing: border-box;
+      padding: 5px 5px 5px 5px;
+      gap: 5px;
+      .icon{
+        height: 100%;
+        width: auto;
+        aspect-ratio: 1;
+      }
+      input{
+        height: 100%;
+        flex: 1;
+        background: rgba(0,0,0,0);
+        border: none;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        color: white;
+        text-align: center;
+        font-size: 2vh;
+      }
+    }
+    .s-search-btn{
+      height: 100%;
+      padding-left: 50px;
+      padding-right: 50px;
+      display: flex;
       justify-content: center;
+      align-items: center;
+      border-radius: 9999px;
+      border: 1px solid #ff0000;
+      background: linear-gradient(90deg, #f5315e, #f5315e, #ff512c);
+      box-shadow: 2px 2px 5px 0 rgba(255, 255, 255, 0.50) inset;
+      text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+      color: white;
+      font-size: 1.7vh;
+      font-weight: bold;
+    }
+  }
+  .s-keys-box{
+    margin-top: 2vh;
+    width: 98%;
+    height: auto;
+    overflow-x: auto;
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+    .s-keys-content{
+      width: 200%;
+      height: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      .s-keys-box-item{
+        padding-left: 30px;
+        padding-right: 30px;
+        border: 1px solid #FFF;
+        background: rgba(255, 255, 255, 0.12);
+        box-shadow: 2px 2px 5px 0 rgba(255, 255, 255, 0.20) inset;
+        color: white;
+        font-size: 2vh;
+        border-radius: 9999px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+  .s-keys-box::-webkit-scrollbar{
+    display: none;
+  }
+  .s-drama-box{
+    margin-top: 2vh;
+    flex: 1;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+    justify-content:start;
+    align-items: center;
+    overflow-y: auto;
+    .s-drama-box-item{
+      position: relative;
+      width: 30%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      gap: 1vh;
+      .s-drama-box-tip{
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        padding: 5px 50px 5px 50px;
+        font-size: 1vh;
+        font-weight: bold;
+        color: #6b3e00;
+        border-radius: 9999px;
+        background: linear-gradient(90deg, #FFD700, #FFC300, #FFB300);
+      }
+      .s-drama-box-desc{
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1080/1440;
+        border-radius: 30px;
+        box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+      }
+      .s-drama-box-name{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        font-size: 1.5vh;
+        font-weight: bold;
+        text-wrap: nowrap;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        padding-bottom: 1vh;
+      }
     }
   }
 }

@@ -29,6 +29,12 @@ export const Text = {
         "ja": "ショートドラマをもっと探す",
         "ko": "더 많은 단편 드라마 찾기",
     },
+    SearchBtn: {
+        "zh-TW": "搜索",
+        "en-US": "Search",
+        "ja": "検索",
+        "ko": "검색",
+    },
     NoMore: {
         "en-US": "No More",
         "zh-TW": "沒有更多了",
@@ -430,6 +436,12 @@ export const Text = {
         "en-US": "Redeem a drama using your code here. Report payment issues to get a free access gift code!",
         "ja": "ここをクリックしてコードでショートドラマをゲット！お支払いの異常を報告すると、無料視聴用のギフトコードがもらえますよ！",
         "ko": "여기를 눌러 교환 코드를 사용해 단편극을 받으세요. 결제 오류를 신고하면 무료 시청 기프트 코드를 드립니다!",
+    },
+    SearchAll: {
+        "zh-TW": "全部劇",
+        "en-US": "All Dramas",
+        "ja": "全部ドラマ",
+        "ko": "전체 드라마"
     },
     KocTitle: {
         "zh-TW": "發影片拿 <span>99,999</span> 金幣！",
