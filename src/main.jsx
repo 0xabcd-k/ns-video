@@ -43,7 +43,6 @@ if(auth){
     const resp = await apiAuth.loginTelegram({...window.Telegram.WebApp.initDataUnsafe.user,hash:window.Telegram.WebApp.initDataUnsafe.hash,auth_date: Number(window.Telegram.WebApp.initDataUnsafe.auth_date)})
     if(resp.success) {
         ss.set("Authorization", resp.data.token)
-        navigate(-1)
     }else {
         Toast.info(getText(Text.LoginFail))
     }
