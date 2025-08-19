@@ -1,4 +1,5 @@
 import "./style.less"
+import "aliyun-aliplayer"
 import {getText,Text} from "@/utils/i18";
 import {useEffect, useState} from "react";
 import {delay, getCurrencySignal, getSafeTop, useHashQueryParams, useTelegramStartParams} from "@/utils";
