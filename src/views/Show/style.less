@@ -10,6 +10,7 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  overflow-y: auto;
   .s-header{
     position: fixed;
     top: 0;
@@ -20,6 +21,10 @@
     align-items: center;
     gap: 2%;
     z-index: 100;
+    background-image: url("@/assets/home/background.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;   /* 宽度适应，高度自动 */
+    background-position: top center; /* 从顶部开始显示 */
     .s-header-icon{
       width: 33%;
       height: 100%;
@@ -93,18 +98,24 @@
     }
   }
   .s-poster{
+    flex-shrink: 0;
     margin-top: 8vh;
     height: auto;
     width: 96%;
   }
   .s-search-box{
-    margin-top: 4vh;
+    position: sticky;
+    top: 5vh;
+    flex-shrink: 0;
     width: 98%;
     height: 4vh;
     gap: 2%;
+    margin-top: 4vh;
     display: flex;
     justify-content: end;
     align-items: center;
+    z-index: 2;
+    background: #20141c;
     .s-search-input{
       height: 100%;
       width: 68%;
@@ -159,12 +170,16 @@
     }
   }
   .s-keys-box{
-    margin-top: 2vh;
+    position: sticky;
+    top: 9vh;
+    flex-shrink: 0;
+    background: #20141c;
+    padding-top: 3vh;
     width: 98%;
     height: auto;
     overflow-x: auto;
     padding-bottom: 1vh;
-    padding-top: 1vh;
+    z-index: 2;
     .s-keys-content{
       width: 200%;
       height: auto;
@@ -198,7 +213,6 @@
     gap: 5%;
     justify-content:start;
     align-items: center;
-    overflow-y: auto;
     .s-drama-box-item{
       position: relative;
       width: 30%;
