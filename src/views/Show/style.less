@@ -99,15 +99,15 @@
   }
   .s-search-box{
     margin-top: 4vh;
-    width: 90%;
+    width: 98%;
     height: 4vh;
     gap: 2%;
     display: flex;
-    justify-content: start;
+    justify-content: end;
     align-items: center;
     .s-search-input{
       height: 100%;
-      flex: 1;
+      width: 68%;
       border-radius: 9999px;
       border: 1px solid #FFF;
       background: rgba(255, 255, 255, 0.12);
@@ -117,6 +117,8 @@
       align-items: center;
       box-sizing: border-box;
       padding: 5px 5px 5px 5px;
+      overflow-x: hidden;
+      overflow-y: hidden;
       gap: 5px;
       .icon{
         height: 100%;
@@ -126,6 +128,7 @@
       input{
         height: 100%;
         flex: 1;
+        width: 100%;
         background: rgba(0,0,0,0);
         border: none;
         text-overflow: ellipsis;
@@ -141,8 +144,7 @@
     }
     .s-search-btn{
       height: 100%;
-      padding-left: 50px;
-      padding-right: 50px;
+      width: 28%;
       display: flex;
       justify-content: center;
       align-items: center;
