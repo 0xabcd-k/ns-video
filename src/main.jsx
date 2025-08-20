@@ -24,8 +24,8 @@ if(process.env.NODE_ENV === "development"){
             window.Telegram.WebApp.openTelegramLink = (link)=>{
                 window.open(link, "_blank");
             }
-            window.Telegram.WebApp.safeAreaInset = 20
-            window.Telegram.WebApp.contentSafeAreaInset = 20
+            window.Telegram.WebApp.safeAreaInset = {top: 20}
+            window.Telegram.WebApp.contentSafeAreaInset = {top: 20}
         })
         .catch(error => {});
 }

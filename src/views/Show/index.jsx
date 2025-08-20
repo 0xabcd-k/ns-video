@@ -34,6 +34,7 @@ export default function (){
     const [list,setList] = useState(null);
     const params = useHashQueryParams();
     const [searchText,setSearchText] = useState("");
+    const top = getSafeTop();
     async function search(text){
         setLoading(true);
         const resp = await apiVideo.listDramaByKey({
@@ -81,7 +82,7 @@ export default function (){
             </div>
         </>}
         <div className='show-main' style={{maxWidth: '500px'}}>
-            <div className='s-header' style={{maxWidth: '500px', top:getSafeTop()}}>
+            <div className='s-header' style={{maxWidth: '500px', paddingTop:top}}>
                 <div className='s-header-icon'>
                     <img src={require("@/assets/logo.png")} alt='logo'/>
                 </div>
@@ -103,7 +104,7 @@ export default function (){
                     </>}
                 </div>
             </div>
-            <div style={{marginTop: getSafeTop()}}/>
+            <div style={{marginTop: top}}/>
             <div className='s-poster'>
                 <Swiper autoplay={5000}>
                     <Swiper.Item key={1} onClick={()=>{
@@ -118,7 +119,7 @@ export default function (){
                     </Swiper.Item>
                 </Swiper>
             </div>
-            <div className='s-search-box'>
+            <div className='s-search-box' style={{top: `calc(5vh + ${top})` }}>
                 <div className='s-search-input'>
                     <svg className='icon' xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33"
                          fill="none">
@@ -134,7 +135,7 @@ export default function (){
                     {getText(Text.SearchBtn)}
                 </div>
             </div>
-            <div className='s-keys-box'>
+            <div className='s-keys-box' style={{top: `calc(9vh + ${top})`}}>
                 <div className='s-keys-content'>
                     <div className='s-keys-box-item' onClick={async ()=>{
                         setLoading(true)

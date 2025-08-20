@@ -89,6 +89,18 @@ export const Text = {
         "ja": "オンライン最安値，シリーズを購入する",
         "ko": "온라인 최저가, 전체 시리즈 구매 시 단돈",
     },
+    PayAds: {
+        "en-US": "Watch an ad to unlock this episode?",
+        "zh-TW": "広告を見てこのエピソードを解放しますか？",
+        "ja": "看廣告解鎖本集？",
+        "ko": "광고를 보고 이 에피소드를 해제하시겠습니까?",
+    },
+    PayAdsNotFinish: {
+        "en-US": "Please watch the full ad",
+        "zh-TW": "請觀看完廣告",
+        "ja": "広告を最後までご覧ください",
+        "ko": "광고를 끝까지 시청해 주세요",
+    },
     Login: {
         "en-US": "Login",
         "zh-TW": "登入",
