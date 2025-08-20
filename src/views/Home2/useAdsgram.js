@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 
-const blockId = 'int-14020';
+const blockId = '14020';
 export function useAdsgram({}) {
     const AdControllerRef = useRef(undefined);
 

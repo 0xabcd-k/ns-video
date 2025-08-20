@@ -27,6 +27,9 @@ export default function (){
     const [player,setPlayer] = useState(null);
     const [playingVideoNo,setPlayingVideoNo] = useState(null);
     const navigate = useNavigate();
+    if(!params.drama){
+        navigate("/series")
+    }
     const [email,setEmail] = useState("");
     const [purchase,setPurchaseState] = useState(null);
     const [gift,setGift] = useState(null)
@@ -335,13 +338,13 @@ export default function (){
                             return payment
                         })}
                     </div>
-                    {purchase?.no && window.Telegram && <>
+                    {purchase?.no && window.Telegram?.WebApp?.initDataUnsafe && <>
                         <div className='h-recharge-modal-or'>——————————————————————— Or ———————————————————————</div>
                         <div className='h-recharge-modal-ads' onClick={async ()=>{
                             setLoading(true)
                             await showAd({onReward: async (res)=>{
                                     if(res.done){
-                                        const resp = await apiVideo.telegramAdsCheck({userid: window.Telegram?.initDataUnsafe?.user?.id})
+                                        const resp = await apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id})
                                         if (resp.success){
                                             if (resp.data.rewarded){
                                                 await play(purchase.no)
