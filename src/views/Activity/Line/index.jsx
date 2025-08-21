@@ -8,6 +8,7 @@ import Uid from "@/views/Common/Uid";
 import ss from "good-storage";
 import {useNavigate} from "react-router-dom";
 import {getSafeTop, useHashQueryParams} from "@/utils";
+import Version from "@/views/Common/Version";
 
 export default function (){
     const params = useHashQueryParams();
@@ -50,6 +51,7 @@ export default function (){
     }, []);
     return <>
         <Uid uid={uid}/>
+        <Version />
         {loading && <>
             <div className='mask'>
                 <div className='loading'>

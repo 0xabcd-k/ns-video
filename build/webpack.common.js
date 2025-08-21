@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const dirname = __dirname.replace('build','');
-
+const webpack = require("webpack");
 module.exports = {
     entry: path.resolve(dirname, 'src/main.jsx'),
     resolve: {
@@ -48,6 +48,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.resolve(dirname, 'public/index.html')
+        }),
+        new webpack.DefinePlugin({
+            __BUILD_VERSION__: JSON.stringify(new Date().toISOString().replace(/[-:.TZ]/g, ""))
         }),
     ]
 };

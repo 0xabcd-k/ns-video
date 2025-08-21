@@ -11,6 +11,7 @@ import {useMediaQuery} from "react-responsive";
 import {useNavigate} from "react-router-dom";
 import ss from "good-storage";
 import {useAdsgram} from "@/views/Home2/useAdsgram";
+import Version from "@/views/Common/Version";
 let watchRecordTimeout;
 let playNo;
 let logined;
@@ -363,6 +364,7 @@ export default function (){
     }, []);
     return <>
         <Uid uid={uid}/>
+        <Version />
         {loading && <>
             <div className='mask'>
                 <div className='loading'>
@@ -371,7 +373,7 @@ export default function (){
             </div>
         </>}
         <div className='h-main' style={{maxWidth: '500px'}}>
-            {purchase != null || 1===1 && <>
+            {purchase != null && <>
                 <div className='h-modal-mask' />
                 <div className='h-recharge-modal' style={{maxWidth: '450px'}}>
                     <svg t="1754281707178" onClick={()=>{

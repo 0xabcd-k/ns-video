@@ -12,6 +12,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {getText,Text} from "@/utils/i18";
 import Recommend from "@/views/Home/Recommend";
 import Uid from "@/views/Common/Uid";
+import Version from "@/views/Common/Version";
 
 let watchRecordTimeout;
 let playNo;
@@ -328,6 +329,7 @@ export default function (){
     }, []);
     return <>
         <Uid uid={uid}/>
+        <Version />
         {loading && <>
             <div className='mask'>
                 <div className='loading'>
