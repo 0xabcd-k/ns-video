@@ -342,7 +342,7 @@ export default function (){
                         <div className='h-recharge-modal-or'>——————————————————————— Or ———————————————————————</div>
                         <div className='h-recharge-modal-ads' onClick={async ()=>{
                             setLoading(true)
-                            show_9748526().then(() => {
+                            show_9748526({requestVar: `${params.drama}:${purchase.no}`}).then(() => {
                                 setTimeout(()=>{
                                     apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id}).then((resp)=>{
                                         if (resp.data?.rewarded){
