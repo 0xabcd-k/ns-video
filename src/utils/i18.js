@@ -59,6 +59,18 @@ export const Text = {
         "zh-TW": "請選擇一種付款方式",
         "ja": "支払い方法",
     },
+    PayAds: {
+        "en-US": "Watch an ad to unlock this episode?",
+        "zh-TW": "広告を見てこのエピソードを解放しますか？",
+        "ja": "看廣告解鎖本集？",
+        "ko": "광고를 보고 이 에피소드를 해제하시겠습니까?",
+    },
+    PayAdsNotFinish: {
+        "en-US": "Please watch the full ad",
+        "zh-TW": "請觀看完廣告",
+        "ja": "広告を最後までご覧ください",
+        "ko": "광고를 끝까지 시청해 주세요",
+    },
     PriceDesc: {
         "en-US": "Lowest price online，Buy the series for",
         "zh-TW": "線上最低價，購買全集僅需",

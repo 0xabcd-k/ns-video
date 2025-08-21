@@ -33,7 +33,8 @@
   .h-recharge-modal{
     position: fixed;
     width: 90%;
-    height: 30vh;
+    height: auto;
+    padding-bottom: 2vh;
     z-index: 201;
     left: 50%;
     top: 50%;
@@ -49,6 +50,19 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    .h-recharge-modal-or{
+      height: 4vh;
+      width: 80%;
+      display: flex;
+      text-align: center;
+      text-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8vh;
+      font-weight: bold;
+      color: #ffd890;
+      overflow: hidden;
+    }
     .h-recharge-modal-title{
       position: absolute;
       top: 0;
@@ -70,8 +84,32 @@
       color: #ffd890;
       font-size: 1.7vh;
     }
+    .h-recharge-modal-ads{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2% 5% 2% 5%;
+      border-radius: 9999px;
+      gap: 2%;
+      background: #9f814c;
+      color: #ffd890;
+      font-size: 2vh;
+      text-wrap: nowrap;
+      .icon{
+        vertical-align: middle;
+        height: 3vh;
+        width: auto;
+      }
+      span{
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        text-align: start;
+        height: 3vh;
+      }
+    }
     .h-recharge-modal-icon-box{
-      margin-top: 3vh;
+      margin-top: 1vh;
       width: 80%;
       height: 5vh;
       display: flex;
@@ -94,7 +132,6 @@
       }
     }
     .h-recharge-modal-icon-gift{
-      margin-top: 2vh;
       width: 90%;
       height: 8vh;
       display: flex;
