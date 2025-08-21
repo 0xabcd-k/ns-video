@@ -346,17 +346,17 @@ export default function (){
                                 setTimeout(()=>{
                                     apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id}).then((resp)=>{
                                         if (resp.data?.rewarded){
-                                            Toast.info("Claimed episode successfully")
+                                            Toast.info(getText(Text.PayAdsSuccess))
                                             play(purchase.no)
                                             setPurchase(null)
                                         }else{
-                                            Toast.info("Not complete Ads. Please try again")
+                                            Toast.info(getText(Text.PayAdsNotFinish))
                                         }
                                         setLoading(false)
                                     })
                                 },2000)
                             }).catch(()=>{
-                                Toast.info("Not complete Ads. Please try again")
+                                Toast.info(getText(Text.PayAdsNotFinish))
                                 setLoading(false)
                             })
                         }}>

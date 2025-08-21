@@ -95,11 +95,17 @@ export const Text = {
         "ja": "看廣告解鎖本集？",
         "ko": "광고를 보고 이 에피소드를 해제하시겠습니까?",
     },
+    PayAdsSuccess: {
+        "en-US": "Episode unlocked successfully",
+        "zh-TW": "解鎖劇集成功",
+        "ko": "에피소드 잠금 해제 성공",
+        "ja": "エピソードのロックを解除しました",
+    },
     PayAdsNotFinish: {
-        "en-US": "Please watch the full ad",
-        "zh-TW": "請觀看完廣告",
-        "ja": "広告を最後までご覧ください",
-        "ko": "광고를 끝까지 시청해 주세요",
+        "en-US": "Ad task not completed, please try again.",
+        "zh-TW": "未完成廣告任務，請再次嘗試。",
+        "ja": "広告タスクが完了していません。もう一度お試しください。",
+        "ko": "광고 작업이 완료되지 않았습니다. 다시 시도해주세요.",
     },
     Login: {
         "en-US": "Login",
