@@ -342,21 +342,23 @@ export default function (){
                         <div className='h-recharge-modal-or'>——————————————————————— Or ———————————————————————</div>
                         <div className='h-recharge-modal-ads' onClick={async ()=>{
                             setLoading(true)
-                            await showAd({onReward: async (res)=>{
-                                    if(res.done){
-                                        const resp = await apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id})
-                                        if (resp.success){
-                                            if (resp.data.rewarded){
-                                                await play(purchase.no)
-                                                return
-                                            }
+                            show_9748526().then(() => {
+                                setTimeout(()=>{
+                                    apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id}).then((resp)=>{
+                                        if (resp.data?.rewarded){
+                                            Toast.info("Claimed episode successfully")
+                                            play(purchase.no)
+                                            setPurchase(null)
+                                        }else{
+                                            Toast.info("Not complete Ads. Please try again")
                                         }
-                                    }
-                                    Toast.info("Please try again")
-                                },onError: (res)=>{
-                                    Toast.info(res.description)
-                                }})
-                            setLoading(false)
+                                        setLoading(false)
+                                    })
+                                },2000)
+                            }).catch(()=>{
+                                Toast.info("Not complete Ads. Please try again")
+                                setLoading(false)
+                            })
                         }}>
                             <svg t="1755680109284" className="icon" viewBox="0 0 1024 1024" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg" p-id="3386" width="200" height="200">
