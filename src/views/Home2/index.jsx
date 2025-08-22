@@ -11,14 +11,12 @@ import ReactLoading from "react-loading";
 import {useMediaQuery} from "react-responsive";
 import {useNavigate} from "react-router-dom";
 import ss from "good-storage";
-import {useAdsgram} from "@/views/Home2/useAdsgram";
 import Version from "@/views/Common/Version";
 let watchRecordTimeout;
 let playNo;
 let logined;
 export default function (){
     const params = useHashQueryParams();
-    const showAd = useAdsgram({});
     const isMobile = useMediaQuery({ maxWidth: 767 });
     const [loading,setLoading] = useState(false)
     const [drama,setDrama] = useState(null);
