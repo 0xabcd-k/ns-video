@@ -407,13 +407,17 @@ export default function (){
                         <div className='h-recharge-modal-ads' onClick={async ()=>{
                             Occur(Event.AdsClick)
                             setLoading(true)
-                            show_9748526({requestVar: `${params.drama}:${purchase.no}`}).then(() => {
+                            show_9754694({requestVar: `${params.drama}:${purchase.no}`}).then(() => {
                                 setTimeout(()=>{
                                     apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id}).then((resp)=>{
-                                        if (resp.data?.rewarded){
-                                            Toast.info(getText(Text.PayAdsSuccess))
-                                            play(purchase.no)
-                                            setPurchase(null)
+                                        if (resp.success){
+                                            if(resp.data.need_ads>0){
+                                                Toast.info(getText(Text.PayAdsNeedMore).replace("$",resp.data.need_ads))
+                                            }else{
+                                                Toast.info(getText(Text.PayAdsSuccess))
+                                                play(purchase.no)
+                                                setPurchase(null)
+                                            }
                                         }else{
                                             Toast.info(getText(Text.PayAdsNotFinish))
                                         }

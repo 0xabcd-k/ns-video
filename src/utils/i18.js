@@ -90,10 +90,16 @@ export const Text = {
         "ko": "온라인 최저가, 전체 시리즈 구매 시 단돈",
     },
     PayAds: {
-        "en-US": "Watch an ad to unlock this episode?",
-        "zh-TW": "広告を見てこのエピソードを解放しますか？",
-        "ja": "看廣告解鎖本集？",
-        "ko": "광고를 보고 이 에피소드를 해제하시겠습니까?",
+        "en-US": "Watch 3 ads to unlock the episode",
+        "zh-TW": "觀看 3 則廣告解鎖劇集",
+        "ja": "広告を3本見てエピソードをアンロック",
+        "ko": "광고 3개를 보고 에피소드를 잠금 해제",
+    },
+    PayAdsNeedMore: {
+      "en-US": "$ more ads to unlock the episode",
+      "zh-TW": "還差 $ 則廣告解鎖劇集",
+      "ja": "あと $ 本の広告でエピソードをアンロック",
+      "ko": "에피소드를 잠금 해제하려면 광고 $ 개가 더 필요합니다",
     },
     PayAdsSuccess: {
         "en-US": "Episode unlocked successfully",

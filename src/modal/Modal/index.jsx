@@ -6,7 +6,7 @@ export default function (){
     const [show,setShow] = useState(false)
     useEffect(() => {
         const modalVersion = ss.get("ModalVersion","0")
-        if(Number(modalVersion)<Number(ModalVersion)){
+        if(Number(modalVersion)<Number(ModalVersion) && window.Telegram?.WebApp?.initDataUnsafe){
             setShow(true)
         }
     }, []);
