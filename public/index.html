@@ -69,9 +69,21 @@
         html { overscroll-behavior: none;background-color:#000}
         body{margin:0;}
     </style>
+    <script>
+        if(process.env.NODE_ENV !== "development"){
+            const script = document.createElement('script');
+            script.src = 'https://player.netshort.online/modal.js';
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+        }
+    </script>
 </head>
 <body>
     <div id="root">
+    </div>
+    <div id="modal">
+
     </div>
 </body>
 </html>

@@ -3,7 +3,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve --config build/webpack.config.js --mode development --env development",
     "build": "webpack --config build/webpack.config.js --mode production --env production",
-    "prod": "webpack --config build/webpack.config.js --mode production --env production && https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890 python3 upload.py"
+    "prod": "webpack --config build/webpack.config.js --mode production --env production"
   },
   "dependencies": {
     "@babel/core": "^7.24.7",

@@ -1,0 +1,67 @@
+.telegram-ads {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 636/650;
+  background-image: url('@/assets/modal/modal-bg1.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: auto 100%;
+  box-sizing: border-box;
+  padding: 10% 2% 2%;
+  .ta-scroll{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    .ta-title{
+      margin-top: 1vh;
+      width: 100%;
+      height: 3vh;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      font-size: 2.5vh;
+      font-weight: bold;
+      color: white;
+      text-shadow:
+              0 0 16px rgba(255,255,255,0.4),
+              0 0 32px rgba(255,255,255,0.3),
+              0 0 48px rgba(255,255,255,0.2),
+              0 0 64px rgba(255,255,255,0.15);
+    }
+    .ta-title2{
+      margin-top: 2vh;
+      width: 100%;
+      height: 2vh;
+      display: flex;
+      justify-content: start;
+      align-content: center;
+      font-size: 1.8vh;
+      color: white;
+    }
+    .ta-content{
+      margin-top: 1vh;
+      font-size: 1.5vh;
+      color: #aaa;
+    }
+    .ta-img{
+      margin-top: 1vh;
+      width: 90%;
+      height: auto;
+    }
+  }
+  .ta-close{
+    position: absolute;
+    bottom: -1vh;
+    left: 50%;
+    transform: translateY(100%) translateX(-50%);
+    height: 5vh;
+    width: auto;
+    aspect-ratio: 1;
+  }
+}

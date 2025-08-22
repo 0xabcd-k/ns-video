@@ -8,12 +8,12 @@ import Fission from "@/views/Activity/Fission";
 import Check from "@/views/Check";
 import Line from "@/views/Activity/Line";
 import Home2 from "@/views/Home2";
-import Search2 from "@/views/Search2";
 import Login3 from "@/views/Login3";
 import History2 from "@/views/History2";
 import Activity2 from "@/views/Activity2";
 import Message2 from "@/views/Message2";
 import FacebookDeleted from "@/views/Login3/FacebookDeleted";
+import Modal from "@/modal/Modal";
 const router = createHashRouter([
     {path:"/",element:<App />,children:[
         {index: true, element:<Home2/>},
@@ -37,5 +37,6 @@ const router = createHashRouter([
 ]);
 
 export default <>
+    <Modal/>
     <RouterProvider router={router} />
 </>;
