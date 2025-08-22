@@ -52,7 +52,7 @@ export default function ({onClose}){
                 <div className='ta-title2'>
                     {getText(Text.TitlePayerMax)}
                 </div>
-                <img className='ta-img' src={require("@/assets/modal/payermax-example.jpg")} alt='ads'/>
+                <img className='ta-img' src={require("@/assets/modal/payermax-example.png")} alt='ads'/>
                 <div className='ta-content'>
                     {getText(Text.ContentPayerMax)}
                 </div>
