@@ -1,6 +1,7 @@
 import "./style.less"
 import "aliyun-aliplayer"
 import {getText,Text} from "@/utils/i18";
+import {Event, Occur} from "@/utils/event";
 import {useEffect, useState} from "react";
 import {delay, getCurrencySignal, getSafeTop, useHashQueryParams, useTelegramStartParams} from "@/utils";
 import {apiAuth, apiFinance, apiVideo} from "@/api";
@@ -215,6 +216,7 @@ export default function (){
         const payments = {
             PayerMax: (
                 <div className='h-recharge-modal-icon' onClick={async () => {
+                    Occur(Event.PaymentPayerMax)
                     if (drama?.purchase) {
                         Toast.info(getText(Text.Purchased))
                     } else {
@@ -261,6 +263,7 @@ export default function (){
                 </div>
             ),
             CARD: (<div className='h-recharge-modal-icon' onClick={() => {
+                Occur(Event.PaymentAliCardPay)
                 buyDrama("CARD")
             }}>
                 <svg t="1749267876715" className="main" viewBox="0 0 1378 1024" version="1.1"
@@ -271,6 +274,7 @@ export default function (){
                 </svg>
             </div>),
             GOOGLE: (<div className='h-recharge-modal-icon' onClick={() => {
+                Occur(Event.PaymentAliApplePay)
                 buyDrama("GOOGLEPAY")
             }}>
                 <svg t="1749267908906"  className="main" viewBox="0 0 1024 1024" version="1.1"
@@ -284,6 +288,7 @@ export default function (){
                 </svg>
             </div>),
             APPLEPAY: (<div className='h-recharge-modal-icon' onClick={() => {
+                Occur(Event.PaymentAliApplePay)
                 buyDrama("APPLEPAY")
             }}>
                 <svg t="1749267950666" className="main" viewBox="0 0 1152 1024" version="1.1"
@@ -294,6 +299,7 @@ export default function (){
                 </svg>
             </div>),
             JKOPAY: (<div className='h-recharge-modal-icon' onClick={() => {
+                Occur(Event.PaymentAliJKoPay)
                 buyDrama("JKOPAY")
             }}>
                 <svg t="1749267972362" className="main" viewBox="0 0 1024 1024" version="1.1"
@@ -304,6 +310,7 @@ export default function (){
                 </svg>
             </div>),
             MORE: (<div className='h-recharge-modal-icon' onClick={() => {
+                Occur(Event.PaymentAliMorePay)
                 buyDrama("")
             }}>
                 <svg t="1749461822218" className="main" viewBox="0 0 1024 1024" version="1.1"
@@ -400,6 +407,7 @@ export default function (){
                     {purchase?.no && window.Telegram?.WebApp?.initDataUnsafe && <>
                         <div className='h-recharge-modal-or'>——————————————————————— Or ———————————————————————</div>
                         <div className='h-recharge-modal-ads' onClick={async ()=>{
+                            Occur(Event.AdsClick)
                             setLoading(true)
                             show_9748526({requestVar: `${params.drama}:${purchase.no}`}).then(() => {
                                 setTimeout(()=>{
@@ -474,6 +482,7 @@ export default function (){
                                 {getText(Text.NoRedeem)}
                             </> : <>
                                 <div className='h-recharge-modal-icon-gift-box' onClick={() => {
+                                    Occur(Event.GiftClick)
                                     setGift(true)
                                 }}>
                                     <div className='h-recharge-modal-icon-gift-tip-box'>
@@ -767,6 +776,7 @@ export default function (){
             </>}
             <div className='h-btn-bar'>
                 <svg t="1754272034181" onClick={()=>{
+                    Occur(Event.HistoryEntry)
                     navigate("/history")
                 }} className="h-btn-bar-icon" viewBox="0 0 1024 1024" version="1.1"
                      xmlns="http://www.w3.org/2000/svg" p-id="2340" width="200" height="200">
@@ -775,6 +785,7 @@ export default function (){
                         p-id="2341" fill="#cdcdcd"></path>
                 </svg>
                 <svg t="1754272077181" onClick={()=>{
+                    Occur(Event.SupportEntry)
                     setLiveAgentModel(true)
                 }} className="h-btn-bar-icon" viewBox="0 0 1024 1024" version="1.1"
                      xmlns="http://www.w3.org/2000/svg" p-id="3491" width="200" height="200">
@@ -783,6 +794,7 @@ export default function (){
                         fill="#cdcdcd" p-id="3492"></path>
                 </svg>
                 <svg t="1754272136586" onClick={()=>{
+                    Occur(Event.ShareEntry)
                     setShareModel(true)
                 }} className="h-btn-bar-icon" viewBox="0 0 1024 1024" version="1.1"
                      xmlns="http://www.w3.org/2000/svg" p-id="4736" width="200" height="200">
@@ -791,6 +803,7 @@ export default function (){
                         fill="#cdcdcd" p-id="4737"></path>
                 </svg>
                 <div className={'h-btn-bar-icon'+' '+ (!isReadAll&&'notify')} onClick={()=>{
+                    Occur(Event.MessageEntry)
                     navigate("/message")
                 }}>
                     <svg t="1754272171195" className="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -805,11 +818,13 @@ export default function (){
             <div className='h-activity-swiper'>
                 <Swiper autoplay={5000}>
                     <Swiper.Item key={1} onClick={()=>{
+                        Occur(Event.ActivityTelegramFission)
                         window.open("https://t.me/netshort001bot/app")
                     }}>
                         <Image src={require("@/assets/poster/fission-poster.png")} />
                     </Swiper.Item>
                     <Swiper.Item key={2} onClick={()=>{
+                        Occur(Event.ActivityLineFission)
                         navigate("/activity/line")
                     }}>
                         <Image src={require("@/assets/poster/line-poster.jpg")} />

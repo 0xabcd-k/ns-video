@@ -123,6 +123,7 @@ export default function (){
                     </div>
                 </div>
             </div>
+            <div style={{marginTop: getSafeTop()}}/>
             <div className='h-modal-inner' id='history-recharge-scroll' style={historyType===HistoryType.RechargeRecord?{marginTop:`calc(6vh+${getSafeTop()})`}:{marginTop:`calc(6vh+${getSafeTop()})`,display:"none"}}>
                 <InfiniteScroll scrollableTarget="history-recharge-scroll" next={updateRecharge} hasMore={hasMoreRecharge} loader={
                     <h4 style={{color: "#ffd890"}}>{getText(Text.Empty)}</h4>
