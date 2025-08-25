@@ -40,7 +40,7 @@ if(window.location.hash.split('?')[0] === '#/'){
 if(auth){
     root.render(router)
 }else if (window.Telegram.WebApp.initDataUnsafe.user){
-    const resp = await apiAuth.loginTelegram({...window.Telegram.WebApp.initDataUnsafe.user,hash:window.Telegram.WebApp.initDataUnsafe.hash,auth_date: Number(window.Telegram.WebApp.initDataUnsafe.auth_date)})
+    const resp = await apiAuth.loginTelegramDirect({...window.Telegram.WebApp.initDataUnsafe.user,hash:window.Telegram.WebApp.initDataUnsafe.hash,auth_date: Number(window.Telegram.WebApp.initDataUnsafe.auth_date)})
     if(resp.success) {
         ss.set("Authorization", resp.data.token)
     }else {

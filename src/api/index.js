@@ -27,6 +27,7 @@ export const apiAuth = {
     loginPassword:form=>req.post('/login/password',{lan:navigator.language,...form}),
     loginTelegram:form=>req.post('/login/tg',{lan:navigator.language,...form}),
     loginFacebook:form=>req.post("/login/fb",{lan:navigator.language,...form}),
+    loginTelegramDirect:form=>req.post("/login/direct/tg",{lan:navigator.language,...form}),
 }
 
 export const apiFinance= {
