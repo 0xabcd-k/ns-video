@@ -684,7 +684,7 @@ export default function (){
                     {params.buy&&!drama?.purchase&&<div className='h-h-n-btn' onClick={()=>{
                         setPurchase(true)
                     }}>
-                        {getText(Text.Purchase)}
+                        {getText(Text.Purchase)+"🛒"}
                     </div>}
                     {drama?.purchase&&<div className='h-h-n-btn-purchased'>
                         {getText(Text.Purchased)}
