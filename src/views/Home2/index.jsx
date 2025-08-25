@@ -359,6 +359,7 @@ export default function (){
         window.open("https://us.sobot.com/chat/h5/v6/index.html?sysnum=e23643ffc415478faf86f32bd31e2480&channelid=21","_blank")
     }
     useEffect(() => {
+        Occur(window.navigator.language)
         init()
     }, []);
     return <>
