@@ -43,16 +43,10 @@ export default function (){
     const [videoFocus,setVideoFocus] = useState(false)
     const [paid,setPaid] = useState(null)
     function setPurchase(state){
-        if(state){
-            if(logined){
-                setPurchaseState(state)
-            }else{
-                Toast.info(getText(Text.LoginEmailToast))
-                navigate(`/login?redirect=${encodeURIComponent(`https://player.netshort.online/#/?drama=${params.drama}`)}`)
-            }
-        }else{
-            setPurchaseState(state)
+        if(state&&!logined){
+            Toast.info(getText(Text.LoginEmailToast))
         }
+        setPurchaseState(state)
     }
     async function init(){
         setLoading(true)
