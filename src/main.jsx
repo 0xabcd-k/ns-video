@@ -30,7 +30,7 @@ if(process.env.NODE_ENV === "development"){
         .catch(error => {});
 }
 if(window.location.hash.split('?')[0] === '#/'){
-    if(window.Telegram.WebApp.initDataUnsafe.start_param){
+    if(window.Telegram?.WebApp?.initDataUnsafe?.start_param){
         console.log(1)
         const link = "#/"+window.Telegram.WebApp.initDataUnsafe.start_param.replace("-", "?")
         console.log(link)
@@ -39,7 +39,7 @@ if(window.location.hash.split('?')[0] === '#/'){
 }
 if(auth){
     root.render(router)
-}else if (window.Telegram.WebApp.initDataUnsafe.user){
+}else if (window.Telegram?.WebApp?.initDataUnsafe?.user){
     const resp = await apiAuth.loginTelegramDirect({...window.Telegram.WebApp.initDataUnsafe.user,hash:window.Telegram.WebApp.initDataUnsafe.hash,auth_date: Number(window.Telegram.WebApp.initDataUnsafe.auth_date)})
     if(resp.success) {
         ss.set("Authorization", resp.data.token)

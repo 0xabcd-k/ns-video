@@ -397,7 +397,7 @@ export default function (){
                             return payment
                         })}
                     </div>
-                    {purchase?.no && window.Telegram?.WebApp?.initDataUnsafe && <>
+                    {purchase?.no && window.Telegram?.WebApp?.initDataUnsafe?.user && <>
                         <div className='h-recharge-modal-or'>——————————————————————— Or ———————————————————————</div>
                         <div className='h-recharge-modal-ads' onClick={async ()=>{
                             Occur(Event.AdsClick)
@@ -635,7 +635,7 @@ export default function (){
                 <div className='h-paid-modal' style={{maxWidth: '450px'}}>
                     <div className='h-paid-modal-btn' onClick={()=>{
                         window.location.reload()
-                    }}>{getText(Text.Paid)}</div>
+                    }}>{getText(Text.Continue)}</div>
                 </div>
             </>}
             <div className='h-header' style={{maxWidth: '500px',top:getSafeTop()}}>

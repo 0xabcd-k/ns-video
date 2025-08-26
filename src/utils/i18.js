@@ -856,6 +856,17 @@ export const Text = {
         "id": "Semua drama",
         "it": "Tutti i drammi",
     },
+    Continue: {
+        "zh-TW": "繼續",
+        "en": "Continue",
+        "ja": "続ける",
+        "ko": "계속",
+        "es": "Continuar",
+        "pt": "Continuar",
+        "fil": "Magpatuloy",
+        "id": "Lanjutkan",
+        "it": "Continuare",
+    },
     KocTitle: {
         "zh-TW": "發影片拿 <span>99,999</span> 金幣！",
         "en": "Post to Win <span>99,999</span> Bonus!",
