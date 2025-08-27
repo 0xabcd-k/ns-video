@@ -41,8 +41,17 @@ export default function (){
     const [descExpand,setDescExpand] = useState(null)
 
     const [videoFocus,setVideoFocus] = useState(false)
-    const [paid,setPaid] = useState(null)
+    const [needAds,setNeedAds] = useState(3)
     function setPurchase(state){
+        if(window.Telegram?.WebApp?.initDataUnsafe?.user){
+            apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id}).then((resp)=>{
+                if (resp.success){
+                    if(resp.data.need_ads>0){
+                        setNeedAds(resp.data.need_ads)
+                    }
+                }
+            })
+        }
         if(state&&!logined){
             Toast.info(getText(Text.LoginEmailToast))
         }
@@ -111,19 +120,16 @@ export default function (){
         const timeout = setTimeout(()=>{
             setLoading(false)
         },4000)
+        apiVideo.setHistory({
+            drama_idx: params.drama,
+            no: no,
+        })
         const resp = await apiVideo.video({
             drama_idx: params.drama,
             video_no: no
         })
         if (resp.success) {
             setPlayingVideoNo(no)
-            clearTimeout(watchRecordTimeout)
-            watchRecordTimeout = setTimeout(()=>{
-                apiVideo.setHistory({
-                    drama_idx: params.drama,
-                    no: no,
-                })
-            },3000)
             if (player) {
                 player.replayByVidAndPlayAuth(resp.data.id,resp.data.auth)
                 apiVideo.listComment({
@@ -231,12 +237,11 @@ export default function (){
                         })
                         if (rechargeResp.success) {
                             setPurchase(null)
-                            setPaid(true)
-                            window.open(rechargeResp.data.url, "_blank")
-                        }
-                        setTimeout(() => {
+                            window.location.href = rechargeResp.data.url
+                        }else{
+                            Toast.info(getText(Text.ServerError))
                             setLoading(false)
-                        }, 1000)
+                        }
                     }
                 }}>
                     <svg t="1755767053321" className="main" viewBox="0 0 1024 1024" version="1.1"
@@ -347,12 +352,11 @@ export default function (){
             })
             if(rechargeResp.success){
                 setPurchase(null)
-                setPaid(true)
-                window.open(rechargeResp.data.url,"_blank")
-            }
-            setTimeout(()=>{
+                window.location.href = rechargeResp.data.url
+            }else{
+                Toast.info(getText(Text.ServerError))
                 setLoading(false)
-            },1000)
+            }
         }
     }
     async function goAgent(){
@@ -375,30 +379,8 @@ export default function (){
         <div className='h-main' style={{maxWidth: '500px'}}>
             {purchase != null && <>
                 <div className='h-modal-mask' />
-                <div className='h-recharge-modal' style={{maxWidth: '450px'}}>
-                    <svg t="1754281707178" onClick={()=>{
-                        setPurchase(null)
-                    }} className="h-modal-bottom-close" viewBox="0 0 1024 1024" version="1.1"
-                         xmlns="http://www.w3.org/2000/svg" p-id="10963" width="200" height="200">
-                        <path
-                            d="M512 1024A512 512 0 1 1 512 0a512 512 0 0 1 0 1024zM305.956571 370.395429L447.488 512 305.956571 653.604571a45.568 45.568 0 1 0 64.438858 64.438858L512 576.512l141.604571 141.531429a45.568 45.568 0 0 0 64.438858-64.438858L576.512 512l141.531429-141.604571a45.568 45.568 0 1 0-64.438858-64.438858L512 447.488 370.395429 305.956571a45.568 45.568 0 0 0-64.438858 64.438858z"
-                            fill="#cdcdcd" p-id="10964"></path>
-                    </svg>
-                    <div className='h-recharge-modal-title'>
-                        {getText(Text.PaymentChoice)}
-                    </div>
-                    <div className='h-recharge-modal-desc'>
-                        {getText(Text.PriceDesc)} {drama?.amount} {getCurrencySignal(drama?.currency)}
-                        <br/>
-                        {getText(Text.RechargeTip)}
-                    </div>
-                    <div className='h-recharge-modal-icon-box'>
-                        {getPayments(drama?.currency).map((payment) => {
-                            return payment
-                        })}
-                    </div>
+                <div className='h-recharge-modal-box' style={{maxWidth: '450px'}}>
                     {purchase?.no && window.Telegram?.WebApp?.initDataUnsafe?.user && <>
-                        <div className='h-recharge-modal-or'>——————————————————————— Or ———————————————————————</div>
                         <div className='h-recharge-modal-ads' onClick={async ()=>{
                             Occur(Event.AdsClick)
                             setLoading(true)
@@ -436,91 +418,114 @@ export default function (){
                                     d="M647.32 452.35c16.88-0.23 33.78-0.03 50.67-0.1 19.22 0.59 38.02 7.96 53.02 19.91 13.86 11.06 24.69 25.82 31.31 42.25 14.55 35.38 9.96 78.28-12.95 109.12-16.53 22.87-43.53 38.36-71.96 39.08-16.04 0.26-32.1 0.17-48.15 0.05-11.84-0.2-22.36-10.71-22.26-22.61-0.01-55.01 0.01-110.03 0-165.04-0.2-11.27 9.12-21.61 20.32-22.66m26.19 46.4c-0.01 39.17-0.01 78.33 0 117.5 12.02-0.43 24.58 1.53 36.09-2.94 12.43-4.78 22.23-15.01 27.96-26.88 9.13-18.66 8.76-41.66-0.98-60.02-5.81-11.06-15.3-20.45-27.07-24.95-11.47-4.52-24.02-2.11-36-2.71zM333.41 489.58c7.68-1.78 16.18 0.65 21.72 6.27 3.53 3.48 5.36 8.18 7.49 12.57 11.87 24.09 23.65 48.22 35.5 72.32 4.05 7.86 3.21 18.04-2.35 24.97-4.41 5.74-11.52 9.04-18.73 9.01-25.68 0.05-51.37 0.05-77.05 0-8.1-0.02-16.16-4.31-20.22-11.4-4.18-6.91-4.26-15.91-0.48-23 12.75-25.96 25.45-51.94 38.23-77.89 2.93-6.46 8.97-11.32 15.89-12.85m4.2 78.81c1.12 0.64 1.98 0.44 2.59-0.6-0.29-0.52-0.88-1.56-1.17-2.08-1.4-0.48-2.4 1.76-1.42 2.68z"
                                     p-id="3389" fill="#ffd890"></path>
                             </svg>
-                            <span>{getText(Text.PayAds)}</span>
+                            <span>{getText(Text.PayAds)} ({needAds}/3)</span>
                         </div>
                     </>}
-                    <div className='h-recharge-modal-or'>——————————————————————— Or ———————————————————————</div>
-                    <div className='h-recharge-modal-icon-gift'>
-                        {gift ? <>
-                            <div className='h-recharge-modal-icon-gift-input-box'>
-                                <input onChange={(e) => {
-                                    setGiftCode(e.target.value)
-                                }} value={giftCode} placeholder={getText(Text.RedeemTip)}/>
-                                <div className='h-recharge-modal-icon-gift-input-btn' onClick={async () => {
-                                    setLoading(true)
-                                    const resp = await apiVideo.dramaRedeem({
-                                        cdk: giftCode,
-                                        drama_idx: params.drama
-                                    })
-                                    if (resp.success) {
-                                        Toast.info(getText(Text.RedeemSuccess))
-                                        setGift(null)
-                                        setGiftCode('')
-                                        setPurchase(null)
-                                    } else {
-                                        switch (resp.err_code) {
-                                            case 51001:
-                                                Toast.info(getText(Text.RedeemInsufficient))
-                                                break
-                                            case 51002:
-                                                Toast.info(getText(Text.RedeemDuplicate))
-                                                break
-                                            default:
-                                                Toast.info(getText(Text.RedeemFailed))
+                    <div className='h-recharge-modal'>
+                        <svg t="1754281707178" onClick={()=>{
+                            setPurchase(null)
+                        }} className="h-modal-bottom-close" viewBox="0 0 1024 1024" version="1.1"
+                             xmlns="http://www.w3.org/2000/svg" p-id="10963" width="200" height="200">
+                            <path
+                                d="M512 1024A512 512 0 1 1 512 0a512 512 0 0 1 0 1024zM305.956571 370.395429L447.488 512 305.956571 653.604571a45.568 45.568 0 1 0 64.438858 64.438858L512 576.512l141.604571 141.531429a45.568 45.568 0 0 0 64.438858-64.438858L576.512 512l141.531429-141.604571a45.568 45.568 0 1 0-64.438858-64.438858L512 447.488 370.395429 305.956571a45.568 45.568 0 0 0-64.438858 64.438858z"
+                                fill="#cdcdcd" p-id="10964"></path>
+                        </svg>
+                        <div className='h-recharge-modal-title'>
+                            {getText(Text.PaymentChoice)}
+                        </div>
+                        <div className='h-recharge-modal-desc'>
+                            {getText(Text.PriceDesc)} {drama?.amount} {getCurrencySignal(drama?.currency)}
+                            <br/>
+                            {getText(Text.RechargeTip)}
+                        </div>
+                        <div className='h-recharge-modal-icon-box'>
+                            {getPayments(drama?.currency).map((payment) => {
+                                return payment
+                            })}
+                        </div>
+                        <div className='h-recharge-modal-or'>——————————————————————— Or ———————————————————————</div>
+                        <div className='h-recharge-modal-icon-gift'>
+                            {gift ? <>
+                                <div className='h-recharge-modal-icon-gift-input-box'>
+                                    <input onChange={(e) => {
+                                        setGiftCode(e.target.value)
+                                    }} value={giftCode} placeholder={getText(Text.RedeemTip)}/>
+                                    <div className='h-recharge-modal-icon-gift-input-btn' onClick={async () => {
+                                        setLoading(true)
+                                        const resp = await apiVideo.dramaRedeem({
+                                            cdk: giftCode,
+                                            drama_idx: params.drama
+                                        })
+                                        if (resp.success) {
+                                            Toast.info(getText(Text.RedeemSuccess))
+                                            setGift(null)
+                                            setGiftCode('')
+                                            setPurchase(null)
+                                        } else {
+                                            switch (resp.err_code) {
+                                                case 51001:
+                                                    Toast.info(getText(Text.RedeemInsufficient))
+                                                    break
+                                                case 51002:
+                                                    Toast.info(getText(Text.RedeemDuplicate))
+                                                    break
+                                                default:
+                                                    Toast.info(getText(Text.RedeemFailed))
+                                            }
                                         }
-                                    }
-                                    setLoading(false)
-                                }}>
-                                    {getText(Text.Redeem)}
-                                </div>
-                            </div>
-                        </> : <>
-                            {drama?.no_redeem ? <>
-                                {getText(Text.NoRedeem)}
-                            </> : <>
-                                <div className='h-recharge-modal-icon-gift-box' onClick={() => {
-                                    Occur(Event.GiftClick)
-                                    setGift(true)
-                                }}>
-                                    <div className='h-recharge-modal-icon-gift-tip-box'>
-                                        <div className='h-recharge-modal-icon-gift-tip'>
-                                            {getText(Text.RechargeReportTip)}
-                                        </div>
-                                        <div className='h-recharge-modal-icon-gift-tip-btn'>
-                                            {getText(Text.Redeem)}
-                                        </div>
+                                        setLoading(false)
+                                    }}>
+                                        {getText(Text.Redeem)}
                                     </div>
-                                    <svg t="1754279216115" className="icon" onClick={() => {
-                                        setGift(true)
-                                    }} viewBox="0 0 1024 1024" version="1.1"
-                                         xmlns="http://www.w3.org/2000/svg" p-id="9925" width="200" height="200">
-                                        <path
-                                            d="M163.637 204.221c0 0 105.635-76.058 207.044-4.225 99.297 73.945 135.213 90.846 154.227 92.959 0 0-4.225-19.014-4.225-23.239 0 0-73.945-27.466-105.635-120.423 0 0-160.565-63.381-251.411 54.93v0z"
-                                            opacity="0.8" p-id="9926" fill="#ffd890"></path>
-                                        <path
-                                            d="M805.898 626.761c0 0 25.353-128.875-80.283-192.256-105.635-61.268-137.326-88.734-145.776-103.522 0 0 19.014-4.225 23.239-6.338 0 0 54.93 57.043 152.114 48.592 2.113 0 122.537 120.423 50.705 253.524z"
-                                            opacity="0.8" p-id="9927" fill="#ffd890"></path>
-                                        <path
-                                            d="M358.006 134.502c0 0-27.466-67.606 4.225-82.396 33.804-12.676 63.381 88.734 65.493 95.072 4.225 6.338 35.916 78.17 92.959 111.973 0 0 4.225-27.466 27.466-40.141 0 0-4.225-80.283-2.113-90.846 2.113-10.563 16.901-114.086-71.831-124.65 0 0-118.311 19.014-133.1 35.916-14.789 14.789-21.127 50.705 0 90.846l16.901 4.225z"
-                                            opacity="0.8" p-id="9928" fill="#ffd890"></path>
-                                        <path
-                                            d="M793.036 418.185c0 0 73.945-2.113 71.831-38.029s-105.635-21.127-114.086-23.239c-6.338 2.113-86.621 0-139.438-40.141 0 0 23.239-14.789 25.353-42.254 0 0 73.945-29.578 84.508-35.916 8.451-6.338 97.184-61.268 143.664 14.789 0 0 29.578 116.198 21.127 137.326-8.451 21.127-38.029 42.254-82.396 40.141l-10.563-12.676z"
-                                            opacity="0.8" p-id="9929" fill="#ffd890"></path>
-                                        <path
-                                            d="M605.192 229.574c23.239 14.789 29.578 46.479 14.789 69.719-14.789 21.127-46.479 27.466-67.606 12.676-23.239-14.789-29.578-46.479-14.789-69.719 14.789-21.127 44.367-29.578 67.606-12.676z"
-                                            opacity="0.8" p-id="9930" fill="#ffd890"></path>
-                                        <path
-                                            d="M710.826 597.183l-190.143-124.65 52.817-80.283 190.143 124.65-52.817 80.283zM427.724 409.153l-198.594-130.988 52.817-80.283 198.594 130.988-52.817 80.283zM780.545 487.323l-481.696-314.793c-14.789-10.563-33.804-6.338-44.367 8.451l-52.817 80.283c-10.563 14.789-6.338 35.916 8.451 44.367l14.789 10.563 27.466 16.901 158.452 103.522 92.959 61.268 150.002 99.297 27.466 16.901 12.676 8.451c14.789 10.563 33.804 6.338 44.367-8.451l52.817-80.283c8.451-16.901 4.225-35.916-10.563-46.479v0z"
-                                            opacity="0.8" p-id="9931" fill="#ffd890"></path>
-                                        <path
-                                            d="M689.699 983.808h-179.58v-382.399h-111.973v384.512h-188.031v-384.512h-31.691v384.512c0 16.901 14.789 31.691 31.691 31.691h479.583c16.901 0 31.691-14.789 31.691-31.691v-384.512h-31.691v382.399z"
-                                            opacity="0.8" p-id="9932" fill="#ffd890"></path>
-                                        <path d="M178.426 633.099h542.964v-33.804h-542.964z" opacity="0.8" p-id="9933"
-                                              fill="#ffd890"></path>
-                                    </svg>
                                 </div>
+                            </> : <>
+                                {drama?.no_redeem ? <>
+                                    {getText(Text.NoRedeem)}
+                                </> : <>
+                                    <div className='h-recharge-modal-icon-gift-box' onClick={() => {
+                                        Occur(Event.GiftClick)
+                                        setGift(true)
+                                    }}>
+                                        <div className='h-recharge-modal-icon-gift-tip-box'>
+                                            <div className='h-recharge-modal-icon-gift-tip'>
+                                                {getText(Text.RechargeReportTip)}
+                                            </div>
+                                            <div className='h-recharge-modal-icon-gift-tip-btn'>
+                                                {getText(Text.Redeem)}
+                                            </div>
+                                        </div>
+                                        <svg t="1754279216115" className="icon" onClick={() => {
+                                            setGift(true)
+                                        }} viewBox="0 0 1024 1024" version="1.1"
+                                             xmlns="http://www.w3.org/2000/svg" p-id="9925" width="200" height="200">
+                                            <path
+                                                d="M163.637 204.221c0 0 105.635-76.058 207.044-4.225 99.297 73.945 135.213 90.846 154.227 92.959 0 0-4.225-19.014-4.225-23.239 0 0-73.945-27.466-105.635-120.423 0 0-160.565-63.381-251.411 54.93v0z"
+                                                opacity="0.8" p-id="9926" fill="#ffd890"></path>
+                                            <path
+                                                d="M805.898 626.761c0 0 25.353-128.875-80.283-192.256-105.635-61.268-137.326-88.734-145.776-103.522 0 0 19.014-4.225 23.239-6.338 0 0 54.93 57.043 152.114 48.592 2.113 0 122.537 120.423 50.705 253.524z"
+                                                opacity="0.8" p-id="9927" fill="#ffd890"></path>
+                                            <path
+                                                d="M358.006 134.502c0 0-27.466-67.606 4.225-82.396 33.804-12.676 63.381 88.734 65.493 95.072 4.225 6.338 35.916 78.17 92.959 111.973 0 0 4.225-27.466 27.466-40.141 0 0-4.225-80.283-2.113-90.846 2.113-10.563 16.901-114.086-71.831-124.65 0 0-118.311 19.014-133.1 35.916-14.789 14.789-21.127 50.705 0 90.846l16.901 4.225z"
+                                                opacity="0.8" p-id="9928" fill="#ffd890"></path>
+                                            <path
+                                                d="M793.036 418.185c0 0 73.945-2.113 71.831-38.029s-105.635-21.127-114.086-23.239c-6.338 2.113-86.621 0-139.438-40.141 0 0 23.239-14.789 25.353-42.254 0 0 73.945-29.578 84.508-35.916 8.451-6.338 97.184-61.268 143.664 14.789 0 0 29.578 116.198 21.127 137.326-8.451 21.127-38.029 42.254-82.396 40.141l-10.563-12.676z"
+                                                opacity="0.8" p-id="9929" fill="#ffd890"></path>
+                                            <path
+                                                d="M605.192 229.574c23.239 14.789 29.578 46.479 14.789 69.719-14.789 21.127-46.479 27.466-67.606 12.676-23.239-14.789-29.578-46.479-14.789-69.719 14.789-21.127 44.367-29.578 67.606-12.676z"
+                                                opacity="0.8" p-id="9930" fill="#ffd890"></path>
+                                            <path
+                                                d="M710.826 597.183l-190.143-124.65 52.817-80.283 190.143 124.65-52.817 80.283zM427.724 409.153l-198.594-130.988 52.817-80.283 198.594 130.988-52.817 80.283zM780.545 487.323l-481.696-314.793c-14.789-10.563-33.804-6.338-44.367 8.451l-52.817 80.283c-10.563 14.789-6.338 35.916 8.451 44.367l14.789 10.563 27.466 16.901 158.452 103.522 92.959 61.268 150.002 99.297 27.466 16.901 12.676 8.451c14.789 10.563 33.804 6.338 44.367-8.451l52.817-80.283c8.451-16.901 4.225-35.916-10.563-46.479v0z"
+                                                opacity="0.8" p-id="9931" fill="#ffd890"></path>
+                                            <path
+                                                d="M689.699 983.808h-179.58v-382.399h-111.973v384.512h-188.031v-384.512h-31.691v384.512c0 16.901 14.789 31.691 31.691 31.691h479.583c16.901 0 31.691-14.789 31.691-31.691v-384.512h-31.691v382.399z"
+                                                opacity="0.8" p-id="9932" fill="#ffd890"></path>
+                                            <path d="M178.426 633.099h542.964v-33.804h-542.964z" opacity="0.8" p-id="9933"
+                                                  fill="#ffd890"></path>
+                                        </svg>
+                                    </div>
+                                </>}
                             </>}
-                        </>}
+                        </div>
                     </div>
                 </div>
             </>}
@@ -630,14 +635,6 @@ export default function (){
                     </div>
                 </div>
             </>}
-            {paid && <>
-                <div className='h-modal-mask' />
-                <div className='h-paid-modal' style={{maxWidth: '450px'}}>
-                    <div className='h-paid-modal-btn' onClick={()=>{
-                        window.location.reload()
-                    }}>{getText(Text.Continue)}</div>
-                </div>
-            </>}
             <div className='h-header' style={{maxWidth: '500px',top:getSafeTop()}}>
                 <div className='h-h-icon'>
                     <img src={require("@/assets/logo.png")} alt='logo'/>
@@ -654,7 +651,7 @@ export default function (){
                     <span>{getText(Text.Search)}</span>
                 </div>
                 <div className='h-h-login' onClick={()=>{
-                    navigate("/login")
+                    navigate(`/login?redirect=${encodeURIComponent(window.location.href)}`);
                 }}>
                     {email?<>
                         <span className='h-h-l-account'>{email}</span>

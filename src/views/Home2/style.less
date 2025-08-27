@@ -59,15 +59,52 @@
       border-radius: 9999px;
     }
   }
-  .h-recharge-modal{
+  .h-recharge-modal-box{
     position: fixed;
     width: 90%;
     height: auto;
-    padding-bottom: 2vh;
     z-index: 201;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1vh;
+  }
+  .h-recharge-modal-ads{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2% 5% 2% 5%;
+    border-radius: 9999px;
+    gap: 2%;
+    background: #9f814c;
+    color: #ffd890;
+    font-size: 2vh;
+    text-wrap: nowrap;
+    box-shadow: 0 0 20px rgba(252, 249, 201, 0.50),
+    inset 0 0 20px 5px rgba(255, 215, 0, 0.05),
+    inset 0 0 20px 5px rgba(255, 165, 0, 0.05);
+    .icon{
+      vertical-align: middle;
+      height: 3vh;
+      width: auto;
+    }
+    span{
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      text-align: start;
+      height: 3vh;
+    }
+  }
+  .h-recharge-modal{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 2vh;
     background: #111102;
     border-radius: 50px;
     border: 1px solid #9f814c;
@@ -112,30 +149,6 @@
       text-align: center;
       color: #ffd890;
       font-size: 1.7vh;
-    }
-    .h-recharge-modal-ads{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 2% 5% 2% 5%;
-      border-radius: 9999px;
-      gap: 2%;
-      background: #9f814c;
-      color: #ffd890;
-      font-size: 2vh;
-      text-wrap: nowrap;
-      .icon{
-        vertical-align: middle;
-        height: 3vh;
-        width: auto;
-      }
-      span{
-        display: flex;
-        justify-content: center;
-        align-items: end;
-        text-align: start;
-        height: 3vh;
-      }
     }
     .h-recharge-modal-icon-box{
       margin-top: 1vh;
