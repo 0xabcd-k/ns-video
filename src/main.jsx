@@ -53,7 +53,6 @@ if(auth){
     if(resp.success) {
         ss.set("Authorization", resp.data.token)
         try{
-            const token = ss.get("Authorization","")
             const sseEventObj = new EventSource(`https://api.netshort.online/notify/sse?token=${resp.data.token}`);
             sseEventObj.onmessage = event => {
                 console.log(JSON.stringify(event.data));
