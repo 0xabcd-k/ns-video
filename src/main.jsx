@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client'
+import {notification} from "antd"
 import './common.less'
 import router from './router'
 import {apiAuth} from "@/api";
@@ -37,6 +38,15 @@ if(window.location.hash.split('?')[0] === '#/'){
         window.location.hash = link
     }
 }
+try{
+    const token = ss.get("Authorization","")
+    const sseEventObj = new EventSource(`https://api.netshort.online/notify/sse?token=${token}`);
+    sseEventObj.onmessage = event => {
+        console.log(JSON.stringify(event.data));
+    }
+}catch (e){
+    console.log(e)
+}
 if(auth){
     root.render(router)
 }else if (window.Telegram?.WebApp?.initDataUnsafe?.user){
@@ -46,6 +56,7 @@ if(auth){
     }else {
         Toast.info(getText(Text.LoginFail))
     }
+    root.render(router);
 }else {
     getLocalId().then((ans)=> {
         apiAuth.loginDevice({
