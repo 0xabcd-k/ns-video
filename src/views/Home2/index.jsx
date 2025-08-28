@@ -161,7 +161,7 @@ export default function (){
                     useH5Prism: true,
                     useFlashPrism: false,
                     isLive: false,
-                    loadDataTimeout: "3",
+                    loadDataTimeout: "5",
                     playConfig: {EncryptType: 'AliyunVoDEncryption'}, // 当您输出的M3U8流中，含有其他非私有加密流时，需要指定此参数。
                     components: [{
                         name: 'RateComponent',
