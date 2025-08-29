@@ -104,7 +104,7 @@
     position: relative;
     width: 100%;
     height: auto;
-    padding-bottom: 2vh;
+    padding-bottom: 4vh;
     background: #111102;
     border-radius: 50px;
     border: 1px solid #9f814c;
@@ -143,136 +143,169 @@
       border-bottom-right-radius: 10px;
       border-bottom-left-radius: 10px;
     }
-    .h-recharge-modal-desc{
-      margin-top: 5vh;
-      width: 90%;
-      text-align: center;
-      color: #ffd890;
-      font-size: 1.7vh;
+    .h-recharge-modal-icon{
+      position: relative;
+      flex-shrink: 0;
+      height: 60%;
+      width: auto;
+      aspect-ratio: 1;
+      .main{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+      }
+      .tag{
+        position: absolute;
+        width: 180%;
+        height: auto;
+        aspect-ratio: 1;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        z-index: 1;
+        animation: spin 30s linear infinite;
+        opacity: 0.8;
+      }
+      @keyframes spin {
+        to { transform: translate(-50%,-50%) rotate(360deg); }
+      }
     }
-    .h-recharge-modal-icon-box{
-      margin-top: 1vh;
+    .h-recharge-pay-btn{
+      position: relative;
+      margin-top: 6vh;
       width: 80%;
       height: 5vh;
       display: flex;
-      overflow-y: hidden;
-      overflow-x: auto;
-      justify-content: center;
+      justify-content: start;
       align-items: center;
-      border-radius: 9999px;
+      gap: 2%;
+      border-radius: 1vh;
       background: black;
-      gap: 10%;
-      box-sizing: border-box;
-      padding-right: 20px;
-      padding-left: 20px;
-      box-shadow: inset 0 0 20px 5px rgba(255, 255, 255, 0.1),
-      inset 0 0 20px 5px rgba(255, 255, 255, 0.1);
+      border: 1px solid #800020;
+      box-shadow: 0 0 20px rgba(128, 0, 32, 0.6),       /* 酒红外发光 */
+      inset 0 0 20px 5px rgba(128, 0, 32, 0.2), /* 酒红内发光 */
+      inset 0 0 20px 5px rgba(255, 105, 180, 0.15); /* 玫红点缀柔光 */
       .h-recharge-modal-icon{
-        position: relative;
-        flex-shrink: 0;
-        height: 60%;
+        margin-left: 10%;
+      }
+      span{
+        height: 90%;
+        width: 70%;
+        color: #ffd890;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-x: auto;
+        text-align: center;
+        font-size: 2vh;
+      }
+      span::-webkit-scrollbar{
+        display: none;
+      }
+      .finger{
+        position: absolute;
+        right: 1%;
+        bottom: 2%;
+        height: 3vh;
         width: auto;
         aspect-ratio: 1;
-        .main{
-          position: relative;
-          width: 100%;
-          height: 100%;
-          z-index: 10;
-        }
-        .tag{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .f-light{
           position: absolute;
-          width: 180%;
-          height: auto;
+          height: 120%;
+          width: auto;
           aspect-ratio: 1;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%,-50%);
           z-index: 1;
-          animation: spin 30s linear infinite;
-          opacity: 0.8;
+          animation: size 1s infinite;
+          @keyframes size {
+            0%,100% {
+              transform: scale(0.1);
+            }
+            50% {
+              transform: scale(1);
+            }
+          }
         }
-        @keyframes spin {
-          to { transform: translate(-50%,-50%) rotate(360deg); }
+        .f-hand{
+          position: absolute;
+          height: 100%;
+          width: auto;
+          z-index: 2;
+          animation: move 1s infinite;
+          @keyframes move{
+            0%,100% {
+              transform: translate(80%,80%);
+            }
+            50% {
+              transform: translate(50%,50%);
+            }
+          }
         }
       }
     }
-    .h-recharge-modal-icon-gift{
-      width: 90%;
-      height: 8vh;
+    .h-recharge-no-redeem{
+      margin-top: 2vh;
+      width: 80%;
+      height: 5vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 1.7vh;
       color: #ffd890;
-      .h-recharge-modal-icon-gift-input-box{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        input{
-          background: black;
-          border-radius: 9999px;
-          border: 1px solid #FFF;
-          background: rgba(255, 255, 255, 0.12);
-          box-shadow: 2px 2px 5px 0 rgba(255, 255, 255, 0.20) inset;
-          padding-left: 10px;
-          padding-right: 10px;
-          box-sizing: border-box;
-          height: 3vh;
-        }
-        .h-recharge-modal-icon-gift-input-btn{
-          font-size: 1.5vh;
-          color: #ffd890;
-          font-weight: bold;
-          padding: 5px 10px 5px 10px;
-          background: #9f814c;
-          border-radius: 9999px;
-        }
+    }
+    .h-recharge-gift-btn{
+      margin-top: 2vh;
+      width: 80%;
+      height: 5vh;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 2%;
+      border-radius: 1vh;
+      background: black;
+      border: 1px solid #555;
+      .h-recharge-modal-icon{
+        margin-left: 10%;
       }
-      .h-recharge-modal-icon-gift-box{
-        width: 100%;
-        height: 100%;
+      span{
+        height: 90%;
+        width: 70%;
+        color: #ffd890;
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 5%;
-        .icon{
-          height: auto;
-          width: 20%;
-          aspect-ratio: 1;
-        }
-        .h-recharge-modal-icon-gift-tip-box{
-          height: 100%;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 1vh;
-          .h-recharge-modal-icon-gift-tip{
-            width: 100%;
-            height: 48%;
-            background: #9f814c;
-            color: #ffd890;
-            padding: 5px 10px 5px 10px;
-            box-sizing: border-box;
-            font-size: 1.2vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-            border-top-right-radius: 10px;
-          }
-          .h-recharge-modal-icon-gift-tip-btn{
-            font-size: 1.5vh;
-            color: #ffd890;
-            font-weight: bold;
-            padding: 5px 10px 5px 10px;
-            background: #9f814c;
-            border-radius: 9999px;
-          }
-        }
+        overflow-x: auto;
+        text-align: start;
+        font-size: 1.2vh;
+      }
+    }
+    .h-recharge-modal-icon-gift-input-box{
+      margin-top: 2vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      input{
+        background: black;
+        border-radius: 9999px;
+        border: 1px solid #FFF;
+        background: rgba(255, 255, 255, 0.12);
+        box-shadow: 2px 2px 5px 0 rgba(255, 255, 255, 0.20) inset;
+        padding-left: 10px;
+        padding-right: 10px;
+        box-sizing: border-box;
+        height: 3vh;
+      }
+      .h-recharge-modal-icon-gift-input-btn{
+        font-size: 1.5vh;
+        color: #ffd890;
+        font-weight: bold;
+        padding: 5px 10px 5px 10px;
+        background: #9f814c;
+        border-radius: 9999px;
       }
     }
   }

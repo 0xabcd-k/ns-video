@@ -12,6 +12,7 @@ import {useMediaQuery} from "react-responsive";
 import {useNavigate} from "react-router-dom";
 import ss from "good-storage";
 import Version from "@/views/Common/Version";
+import {useAdsgram} from "@/views/Home2/useAdsgram";
 let watchRecordTimeout;
 let playNo;
 let logined;
@@ -23,7 +24,7 @@ export default function (){
 
     const [uid,setUid] = useState(null)
     const [isReadAll,setIsReadAll] = useState(null)
-
+    const showAd = useAdsgram({});
     const [player,setPlayer] = useState(null);
     const [playingVideoNo,setPlayingVideoNo] = useState(null);
     const navigate = useNavigate();
@@ -387,27 +388,22 @@ export default function (){
                         <div className='h-recharge-modal-ads' onClick={async ()=>{
                             Occur(Event.AdsClick)
                             setLoading(true)
-                            show_9754694({requestVar: `${params.drama}:${purchase.no}`}).then(() => {
-                                setTimeout(()=>{
-                                    apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id}).then((resp)=>{
+                            await showAd({onReward: async (res)=>{
+                                    if(res.done){
+                                        const resp = await apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id})
                                         if (resp.success){
-                                            if(resp.data.need_ads>0){
-                                                Toast.info(getText(Text.PayAdsNeedMore).replace("$",resp.data.need_ads))
-                                            }else{
-                                                Toast.info(getText(Text.PayAdsSuccess))
-                                                play(purchase.no)
+                                            if (resp.data.rewarded){
+                                                await play(purchase.no)
                                                 setPurchase(null)
+                                                return
                                             }
-                                        }else{
-                                            Toast.info(getText(Text.PayAdsNotFinish))
                                         }
-                                        setLoading(false)
-                                    })
-                                },2000)
-                            }).catch(()=>{
-                                Toast.info(getText(Text.PayAdsNotFinish))
-                                setLoading(false)
-                            })
+                                    }
+                                    Toast.info(getText(Text.PayAdsNotFinish))
+                                },onError: (res)=>{
+                                    Toast.info(res.description)
+                                }})
+                            setLoading(false)
                         }}>
                             <svg t="1755680109284" className="icon" viewBox="0 0 1024 1024" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg" p-id="3386" width="200" height="200">
@@ -436,99 +432,211 @@ export default function (){
                         <div className='h-recharge-modal-title'>
                             {getText(Text.PaymentChoice)}
                         </div>
-                        <div className='h-recharge-modal-desc'>
-                            {getText(Text.PriceDesc)} {drama?.amount} {getCurrencySignal(drama?.currency)}
-                            <br/>
-                            {getText(Text.RechargeTip)}
+                        <div className='h-recharge-pay-btn' onClick={async () => {
+                            Occur(Event.PaymentPayerMax)
+                            if (drama?.purchase) {
+                                Toast.info(getText(Text.Purchased))
+                            } else {
+                                setLoading(true)
+                                let os = "ANDROID"
+                                if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                                    os = "IOS"
+                                }
+                                const token = ss.get("Authorization")
+                                const rechargeResp = await apiFinance.recharge({
+                                    os: os,
+                                    redirect: `https://player.netshort.online/#/?drama=${params.drama}&from=order&token=${token}`,
+                                    payment: "PaymentTypePayerMaxPay",
+                                    method_type: "",
+                                    terminal_type: isMobile ? "WAP" : "WEB",
+                                    sku: "SkuTypeDrama",
+                                    meta: {
+                                        "drama_idx": params.drama,
+                                    }
+                                })
+                                if (rechargeResp.success) {
+                                    setPurchase(null)
+                                    window.location.href = rechargeResp.data.url
+                                }else{
+                                    Toast.info(getText(Text.ServerError))
+                                    setLoading(false)
+                                }
+                            }
+                        }}>
+                            <div className='h-recharge-modal-icon'>
+                                <svg t="1755767053321" className="main" viewBox="0 0 1024 1024" version="1.1"
+                                     xmlns="http://www.w3.org/2000/svg" p-id="5358" width="200" height="200">
+                                    <path
+                                        d="M887.4752-2013.20106635H136.5248C61.1328-2013.20106635 0-1952.86186635 0-1878.46826635v741.0432C0-1062.98026635 61.1328-1002.66666635 136.5248-1002.66666635h750.9248C962.8672-1002.66666635 1024-1062.98026635 1024-1137.39946635V-1878.46826635C1024-1952.86186635 962.8672-2013.20106635 887.4752-2013.20106635z"
+                                        fill="#ffffff" p-id="5359"></path>
+                                    <path
+                                        d="M832.8448 323.1744L559.7952 40.3968c-59.392-61.2608-122.88 0-122.88 0L54.6048 403.968c-68.2752 67.328-27.3152 175.0528-27.3152 175.0528l163.84 148.1216 150.1952-134.656c49.8432-50.5088 95.5648-26.9312 95.5648-26.9312l54.6048 53.8624c68.9408 65.3056 122.88 26.9312 122.88 26.9312l204.8-188.5184c60.7744-55.8592 13.6704-134.656 13.6704-134.656z m-225.28 148.4032c-41.472 0-75.0848-33.1776-75.0848-74.112s33.6128-74.112 75.0848-74.112 75.0848 33.1776 75.0848 74.112c0.0256 40.9344-33.6128 74.112-75.0848 74.112z"
+                                        fill="#ffffff" p-id="5360"></path>
+                                    <path
+                                        d="M914.7648 390.7328c-2.048 27.6224-40.96 67.3792-40.96 67.3792l-232.1152 242.5344c-43.008 42.4448-95.5648 26.9568-95.5648 26.9568L450.56 646.7328c-45.7472-45.1328-81.92 0-81.92 0l-109.2352 94.3104c-43.6992 43.1104 27.3152 94.3104 27.3152 94.3104l109.2352 121.2672c77.1328 81.5104 177.4848 26.9568 177.4848 26.9568l382.2848-390.7328c101.7344-123.2896-40.96-202.112-40.96-202.112z"
+                                        fill="#ffffff" p-id="5361"></path>
+                                </svg>
+                                <img className='tag' src={require("@/assets/light-bg.png")} alt='tag' />
+                            </div>
+                            <span>{getText(Text.PriceDesc).replace("{n}", `${drama?.amount}${getCurrencySignal(drama?.currency)}`)}</span>
+
+                            <div className='finger'>
+                                <img className='f-light' src={require("@/assets/finger-light.png")} alt='light'/>
+                                <img className='f-hand' src={require("@/assets/finger.png")} alt='light'/>
+                            </div>
                         </div>
-                        <div className='h-recharge-modal-icon-box'>
-                            {getPayments(drama?.currency).map((payment) => {
-                                return payment
-                            })}
-                        </div>
-                        <div className='h-recharge-modal-or'>——————————————————————— Or ———————————————————————</div>
-                        <div className='h-recharge-modal-icon-gift'>
-                            {gift ? <>
-                                <div className='h-recharge-modal-icon-gift-input-box'>
-                                    <input onChange={(e) => {
-                                        setGiftCode(e.target.value)
-                                    }} value={giftCode} placeholder={getText(Text.RedeemTip)}/>
-                                    <div className='h-recharge-modal-icon-gift-input-btn' onClick={async () => {
-                                        setLoading(true)
-                                        const resp = await apiVideo.dramaRedeem({
-                                            cdk: giftCode,
-                                            drama_idx: params.drama
-                                        })
-                                        if (resp.success) {
-                                            Toast.info(getText(Text.RedeemSuccess))
-                                            setGift(null)
-                                            setGiftCode('')
-                                            setPurchase(null)
-                                        } else {
-                                            switch (resp.err_code) {
-                                                case 51001:
-                                                    Toast.info(getText(Text.RedeemInsufficient))
-                                                    break
-                                                case 51002:
-                                                    Toast.info(getText(Text.RedeemDuplicate))
-                                                    break
-                                                default:
-                                                    Toast.info(getText(Text.RedeemFailed))
-                                            }
+                        {gift?<>
+                            <div className='h-recharge-modal-icon-gift-input-box'>
+                                <input onChange={(e) => {
+                                    setGiftCode(e.target.value)
+                                }} value={giftCode} placeholder={getText(Text.RedeemTip)}/>
+                                <div className='h-recharge-modal-icon-gift-input-btn' onClick={async () => {
+                                    setLoading(true)
+                                    const resp = await apiVideo.dramaRedeem({
+                                        cdk: giftCode,
+                                        drama_idx: params.drama
+                                    })
+                                    if (resp.success) {
+                                        Toast.info(getText(Text.RedeemSuccess))
+                                        setGift(null)
+                                        setGiftCode('')
+                                        setPurchase(null)
+                                    } else {
+                                        switch (resp.err_code) {
+                                            case 51001:
+                                                Toast.info(getText(Text.RedeemInsufficient))
+                                                break
+                                            case 51002:
+                                                Toast.info(getText(Text.RedeemDuplicate))
+                                                break
+                                            default:
+                                                Toast.info(getText(Text.RedeemFailed))
                                         }
-                                        setLoading(false)
-                                    }}>
-                                        {getText(Text.Redeem)}
-                                    </div>
+                                    }
+                                    setLoading(false)
+                                }}>
+                                    {getText(Text.Redeem)}
                                 </div>
+                            </div>
+                        </>:<>
+                            {drama?.no_redeem ? <>
+                                <div className='h-recharge-no-redeem'>{getText(Text.NoRedeem)}</div>
                             </> : <>
-                                {drama?.no_redeem ? <>
-                                    {getText(Text.NoRedeem)}
-                                </> : <>
-                                    <div className='h-recharge-modal-icon-gift-box' onClick={() => {
-                                        Occur(Event.GiftClick)
-                                        setGift(true)
-                                    }}>
-                                        <div className='h-recharge-modal-icon-gift-tip-box'>
-                                            <div className='h-recharge-modal-icon-gift-tip'>
-                                                {getText(Text.RechargeReportTip)}
-                                            </div>
-                                            <div className='h-recharge-modal-icon-gift-tip-btn'>
-                                                {getText(Text.Redeem)}
-                                            </div>
-                                        </div>
-                                        <svg t="1754279216115" className="icon" onClick={() => {
-                                            setGift(true)
-                                        }} viewBox="0 0 1024 1024" version="1.1"
-                                             xmlns="http://www.w3.org/2000/svg" p-id="9925" width="200" height="200">
+                                <div className='h-recharge-gift-btn' onClick={()=>{
+                                    setGift(true)
+                                }}>
+                                    <div className='h-recharge-modal-icon'>
+                                        <svg t="1756372027172" className="main" viewBox="0 0 1024 1024" version="1.1"
+                                             xmlns="http://www.w3.org/2000/svg" p-id="5382" width="200" height="200">
                                             <path
-                                                d="M163.637 204.221c0 0 105.635-76.058 207.044-4.225 99.297 73.945 135.213 90.846 154.227 92.959 0 0-4.225-19.014-4.225-23.239 0 0-73.945-27.466-105.635-120.423 0 0-160.565-63.381-251.411 54.93v0z"
-                                                opacity="0.8" p-id="9926" fill="#ffd890"></path>
-                                            <path
-                                                d="M805.898 626.761c0 0 25.353-128.875-80.283-192.256-105.635-61.268-137.326-88.734-145.776-103.522 0 0 19.014-4.225 23.239-6.338 0 0 54.93 57.043 152.114 48.592 2.113 0 122.537 120.423 50.705 253.524z"
-                                                opacity="0.8" p-id="9927" fill="#ffd890"></path>
-                                            <path
-                                                d="M358.006 134.502c0 0-27.466-67.606 4.225-82.396 33.804-12.676 63.381 88.734 65.493 95.072 4.225 6.338 35.916 78.17 92.959 111.973 0 0 4.225-27.466 27.466-40.141 0 0-4.225-80.283-2.113-90.846 2.113-10.563 16.901-114.086-71.831-124.65 0 0-118.311 19.014-133.1 35.916-14.789 14.789-21.127 50.705 0 90.846l16.901 4.225z"
-                                                opacity="0.8" p-id="9928" fill="#ffd890"></path>
-                                            <path
-                                                d="M793.036 418.185c0 0 73.945-2.113 71.831-38.029s-105.635-21.127-114.086-23.239c-6.338 2.113-86.621 0-139.438-40.141 0 0 23.239-14.789 25.353-42.254 0 0 73.945-29.578 84.508-35.916 8.451-6.338 97.184-61.268 143.664 14.789 0 0 29.578 116.198 21.127 137.326-8.451 21.127-38.029 42.254-82.396 40.141l-10.563-12.676z"
-                                                opacity="0.8" p-id="9929" fill="#ffd890"></path>
-                                            <path
-                                                d="M605.192 229.574c23.239 14.789 29.578 46.479 14.789 69.719-14.789 21.127-46.479 27.466-67.606 12.676-23.239-14.789-29.578-46.479-14.789-69.719 14.789-21.127 44.367-29.578 67.606-12.676z"
-                                                opacity="0.8" p-id="9930" fill="#ffd890"></path>
-                                            <path
-                                                d="M710.826 597.183l-190.143-124.65 52.817-80.283 190.143 124.65-52.817 80.283zM427.724 409.153l-198.594-130.988 52.817-80.283 198.594 130.988-52.817 80.283zM780.545 487.323l-481.696-314.793c-14.789-10.563-33.804-6.338-44.367 8.451l-52.817 80.283c-10.563 14.789-6.338 35.916 8.451 44.367l14.789 10.563 27.466 16.901 158.452 103.522 92.959 61.268 150.002 99.297 27.466 16.901 12.676 8.451c14.789 10.563 33.804 6.338 44.367-8.451l52.817-80.283c8.451-16.901 4.225-35.916-10.563-46.479v0z"
-                                                opacity="0.8" p-id="9931" fill="#ffd890"></path>
-                                            <path
-                                                d="M689.699 983.808h-179.58v-382.399h-111.973v384.512h-188.031v-384.512h-31.691v384.512c0 16.901 14.789 31.691 31.691 31.691h479.583c16.901 0 31.691-14.789 31.691-31.691v-384.512h-31.691v382.399z"
-                                                opacity="0.8" p-id="9932" fill="#ffd890"></path>
-                                            <path d="M178.426 633.099h542.964v-33.804h-542.964z" opacity="0.8" p-id="9933"
-                                                  fill="#ffd890"></path>
+                                                d="M192 597.333h298.667v213.334H192V597.333z m640 0v213.334H533.333V597.333H832z m0-42.666H533.333V341.333H832v213.334zM490.667 341.333v213.334H192V341.333h298.667zM421.794 133.358l150.85 150.85-60.34 60.339-150.85-150.85z"
+                                                p-id="5383" fill="#ffffff"></path>
+                                            <path d="M452.265 284.184l150.85-150.85 60.34 60.34-150.85 150.85z" p-id="5384"
+                                                  fill="#ffffff"></path>
                                         </svg>
                                     </div>
-                                </>}
+                                    <span>{getText(Text.RechargeReportTip)}</span>
+                                </div>
                             </>}
-                        </div>
+                        </>}
+                        {/*<div className='h-recharge-modal-desc'>*/}
+                        {/*    <svg t="1756370400747" className="h-recharge-modal-desc-icon" viewBox="0 0 1024 1024" version="1.1"*/}
+                        {/*         xmlns="http://www.w3.org/2000/svg" p-id="2761" width="200" height="200">*/}
+                        {/*        <path*/}
+                        {/*            d="M887.4752-2397.20106629H136.5248C61.1328-2397.20106629 0-2336.86186629 0-2262.46826629v741.0432C0-1446.98026629 61.1328-1386.66666629 136.5248-1386.66666629h750.9248C962.8672-1386.66666629 1024-1446.98026629 1024-1521.39946629V-2262.46826629C1024-2336.86186629 962.8672-2397.20106629 887.4752-2397.20106629z"*/}
+                        {/*            fill="#D7FDFF" p-id="2762"></path>*/}
+                        {/*        <path*/}
+                        {/*            d="M832.8448 323.1744L559.7952 40.3968c-59.392-61.2608-122.88 0-122.88 0L54.6048 403.968c-68.2752 67.328-27.3152 175.0528-27.3152 175.0528l163.84 148.1216 150.1952-134.656c49.8432-50.5088 95.5648-26.9312 95.5648-26.9312l54.6048 53.8624c68.9408 65.3056 122.88 26.9312 122.88 26.9312l204.8-188.5184c60.7744-55.8592 13.6704-134.656 13.6704-134.656z m-225.28 148.4032c-41.472 0-75.0848-33.1776-75.0848-74.112s33.6128-74.112 75.0848-74.112 75.0848 33.1776 75.0848 74.112c0.0256 40.9344-33.6128 74.112-75.0848 74.112z"*/}
+                        {/*            fill="#0C71FF" p-id="2763"></path>*/}
+                        {/*        <path*/}
+                        {/*            d="M914.7648 390.7328c-2.048 27.6224-40.96 67.3792-40.96 67.3792l-232.1152 242.5344c-43.008 42.4448-95.5648 26.9568-95.5648 26.9568L450.56 646.7328c-45.7472-45.1328-81.92 0-81.92 0l-109.2352 94.3104c-43.6992 43.1104 27.3152 94.3104 27.3152 94.3104l109.2352 121.2672c77.1328 81.5104 177.4848 26.9568 177.4848 26.9568l382.2848-390.7328c101.7344-123.2896-40.96-202.112-40.96-202.112z"*/}
+                        {/*            fill="#02C251" p-id="2764"></path>*/}
+                        {/*    </svg>*/}
+                        {/*    <span> {getText(Text.PriceDesc).replace("{n}", `${drama?.amount}${getCurrencySignal(drama?.currency)}`)} </span>*/}
+                        {/*</div>*/}
+                        {/*<div className='h-recharge-modal-or'>——————————————————————— Or ———————————————————————</div>*/}
+                        {/*<div className='h-recharge-modal-icon-gift'>*/}
+                        {/*    {gift ? <>*/}
+                        {/*        <div className='h-recharge-modal-icon-gift-input-box'>*/}
+                        {/*            <input onChange={(e) => {*/}
+                        {/*                setGiftCode(e.target.value)*/}
+                        {/*            }} value={giftCode} placeholder={getText(Text.RedeemTip)}/>*/}
+                        {/*            <div className='h-recharge-modal-icon-gift-input-btn' onClick={async () => {*/}
+                        {/*                setLoading(true)*/}
+                        {/*                const resp = await apiVideo.dramaRedeem({*/}
+                        {/*                    cdk: giftCode,*/}
+                        {/*                    drama_idx: params.drama*/}
+                        {/*                })*/}
+                        {/*                if (resp.success) {*/}
+                        {/*                    Toast.info(getText(Text.RedeemSuccess))*/}
+                        {/*                    setGift(null)*/}
+                        {/*                    setGiftCode('')*/}
+                        {/*                    setPurchase(null)*/}
+                        {/*                } else {*/}
+                        {/*                    switch (resp.err_code) {*/}
+                        {/*                        case 51001:*/}
+                        {/*                            Toast.info(getText(Text.RedeemInsufficient))*/}
+                        {/*                            break*/}
+                        {/*                        case 51002:*/}
+                        {/*                            Toast.info(getText(Text.RedeemDuplicate))*/}
+                        {/*                            break*/}
+                        {/*                        default:*/}
+                        {/*                            Toast.info(getText(Text.RedeemFailed))*/}
+                        {/*                    }*/}
+                        {/*                }*/}
+                        {/*                setLoading(false)*/}
+                        {/*            }}>*/}
+                        {/*                {getText(Text.Redeem)}*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*    </> : <>*/}
+                        {/*        {drama?.no_redeem ? <>*/}
+                        {/*            {getText(Text.NoRedeem)}*/}
+                        {/*        </> : <>*/}
+                        {/*            <div className='h-recharge-modal-icon-gift-box' onClick={() => {*/}
+                        {/*                Occur(Event.GiftClick)*/}
+                        {/*                setGift(true)*/}
+                        {/*            }}>*/}
+                        {/*                <div className='h-recharge-modal-icon-gift-tip-box'>*/}
+                        {/*                    <div className='h-recharge-modal-icon-gift-tip'>*/}
+                        {/*                        {getText(Text.RechargeReportTip)}*/}
+                        {/*                    </div>*/}
+                        {/*                    <div className='h-recharge-modal-icon-gift-tip-btn'>*/}
+                        {/*                        {getText(Text.Redeem)}*/}
+                        {/*                    </div>*/}
+                        {/*                </div>*/}
+                        {/*                <svg t="1754279216115" className="icon" onClick={() => {*/}
+                        {/*                    setGift(true)*/}
+                        {/*                }} viewBox="0 0 1024 1024" version="1.1"*/}
+                        {/*                     xmlns="http://www.w3.org/2000/svg" p-id="9925" width="200" height="200">*/}
+                        {/*                    <path*/}
+                        {/*                        d="M163.637 204.221c0 0 105.635-76.058 207.044-4.225 99.297 73.945 135.213 90.846 154.227 92.959 0 0-4.225-19.014-4.225-23.239 0 0-73.945-27.466-105.635-120.423 0 0-160.565-63.381-251.411 54.93v0z"*/}
+                        {/*                        opacity="0.8" p-id="9926" fill="#ffd890"></path>*/}
+                        {/*                    <path*/}
+                        {/*                        d="M805.898 626.761c0 0 25.353-128.875-80.283-192.256-105.635-61.268-137.326-88.734-145.776-103.522 0 0 19.014-4.225 23.239-6.338 0 0 54.93 57.043 152.114 48.592 2.113 0 122.537 120.423 50.705 253.524z"*/}
+                        {/*                        opacity="0.8" p-id="9927" fill="#ffd890"></path>*/}
+                        {/*                    <path*/}
+                        {/*                        d="M358.006 134.502c0 0-27.466-67.606 4.225-82.396 33.804-12.676 63.381 88.734 65.493 95.072 4.225 6.338 35.916 78.17 92.959 111.973 0 0 4.225-27.466 27.466-40.141 0 0-4.225-80.283-2.113-90.846 2.113-10.563 16.901-114.086-71.831-124.65 0 0-118.311 19.014-133.1 35.916-14.789 14.789-21.127 50.705 0 90.846l16.901 4.225z"*/}
+                        {/*                        opacity="0.8" p-id="9928" fill="#ffd890"></path>*/}
+                        {/*                    <path*/}
+                        {/*                        d="M793.036 418.185c0 0 73.945-2.113 71.831-38.029s-105.635-21.127-114.086-23.239c-6.338 2.113-86.621 0-139.438-40.141 0 0 23.239-14.789 25.353-42.254 0 0 73.945-29.578 84.508-35.916 8.451-6.338 97.184-61.268 143.664 14.789 0 0 29.578 116.198 21.127 137.326-8.451 21.127-38.029 42.254-82.396 40.141l-10.563-12.676z"*/}
+                        {/*                        opacity="0.8" p-id="9929" fill="#ffd890"></path>*/}
+                        {/*                    <path*/}
+                        {/*                        d="M605.192 229.574c23.239 14.789 29.578 46.479 14.789 69.719-14.789 21.127-46.479 27.466-67.606 12.676-23.239-14.789-29.578-46.479-14.789-69.719 14.789-21.127 44.367-29.578 67.606-12.676z"*/}
+                        {/*                        opacity="0.8" p-id="9930" fill="#ffd890"></path>*/}
+                        {/*                    <path*/}
+                        {/*                        d="M710.826 597.183l-190.143-124.65 52.817-80.283 190.143 124.65-52.817 80.283zM427.724 409.153l-198.594-130.988 52.817-80.283 198.594 130.988-52.817 80.283zM780.545 487.323l-481.696-314.793c-14.789-10.563-33.804-6.338-44.367 8.451l-52.817 80.283c-10.563 14.789-6.338 35.916 8.451 44.367l14.789 10.563 27.466 16.901 158.452 103.522 92.959 61.268 150.002 99.297 27.466 16.901 12.676 8.451c14.789 10.563 33.804 6.338 44.367-8.451l52.817-80.283c8.451-16.901 4.225-35.916-10.563-46.479v0z"*/}
+                        {/*                        opacity="0.8" p-id="9931" fill="#ffd890"></path>*/}
+                        {/*                    <path*/}
+                        {/*                        d="M689.699 983.808h-179.58v-382.399h-111.973v384.512h-188.031v-384.512h-31.691v384.512c0 16.901 14.789 31.691 31.691 31.691h479.583c16.901 0 31.691-14.789 31.691-31.691v-384.512h-31.691v382.399z"*/}
+                        {/*                        opacity="0.8" p-id="9932" fill="#ffd890"></path>*/}
+                        {/*                    <path d="M178.426 633.099h542.964v-33.804h-542.964z" opacity="0.8" p-id="9933"*/}
+                        {/*                          fill="#ffd890"></path>*/}
+                        {/*                </svg>*/}
+                        {/*            </div>*/}
+                        {/*        </>}*/}
+                        {/*    </>}*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </>}

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 
-const blockId = '14020';
+const blockId = '14279';
 export function useAdsgram({}) {
     const AdControllerRef = useRef(undefined);
 
@@ -12,9 +12,9 @@ export function useAdsgram({}) {
         if (AdControllerRef.current) {
             AdControllerRef.current
                 .show()
-                .then(() => {
+                .then((result) => {
                     // 用户观看广告至结束或在插页格式中关闭它
-                    onReward?.();
+                    onReward?.(result);
                 })
                 .catch((result) => {
                     // 用户在播放广告时遇到错误
