@@ -220,7 +220,7 @@ export const Text = {
         "it": "Condividi",
     },
     ShareDesc: {
-        "en": <>Like this show? <br/>Share it with your friends and watch together!</>,
+        "en": <>Like this drama? <br/>Share it with your friends and watch together!</>,
         "zh-TW": <>喜歡這部劇，<br/>分享給好友一起看吧</>,
         "ja": <>このドラマが気に入りましたか？<br/>友達と一緒に観ましょう！</>,
         "ko": <>이 드라마가 마음에 드세요?<br/>친구와 함께 보세요!</>,
