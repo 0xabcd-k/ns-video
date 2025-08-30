@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react';
+import {getText} from "@/utils/i18";
 
-const blockId = '14279';
+const blockId = '14308';
 export function useAdsgram({}) {
     const AdControllerRef = useRef(undefined);
 
@@ -25,7 +26,7 @@ export function useAdsgram({}) {
                 error: true,
                 done: false,
                 state: 'load',
-                description: 'server error',
+                description: getText(Text.ServerError),
             });
         }
     }, []);

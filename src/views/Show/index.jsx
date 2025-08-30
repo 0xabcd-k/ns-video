@@ -88,7 +88,7 @@ export default function (){
                 </div>
                 <div className='s-header-empty'></div>
                 <div className='s-header-login' onClick={()=>{
-                    navigate("/login")
+                    navigate(`/login?redirect=${encodeURIComponent(window.location.href)}`);
                 }}>
                     {email?<>
                         <span className='s-header-login-account'>{email}</span>

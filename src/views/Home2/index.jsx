@@ -13,6 +13,7 @@ import {useNavigate} from "react-router-dom";
 import ss from "good-storage";
 import Version from "@/views/Common/Version";
 import {useAdsgram} from "@/views/Home2/useAdsgram";
+import Share from "@/views/Home2/Share";
 let watchRecordTimeout;
 let playNo;
 let logined;
@@ -42,7 +43,8 @@ export default function (){
     const [descExpand,setDescExpand] = useState(null)
 
     const [videoFocus,setVideoFocus] = useState(false)
-    const [needAds,setNeedAds] = useState(3)
+    const [playing,setPlaying] = useState(false)
+    const [notShowShare,setNotShowShare] = useState(false)
     function setPurchase(state){
         if(window.Telegram?.WebApp?.initDataUnsafe?.user){
             apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id}).then((resp)=>{
@@ -194,6 +196,12 @@ export default function (){
                 playerInstance.on("hideBar",()=>{
                     setVideoFocus(false)
                     console.log("hideBar")
+                })
+                playerInstance.on("playing",()=>{
+                    setPlaying(false)
+                })
+                playerInstance.on("pause",()=>{
+                    setPlaying(true)
                 })
                 setPlayer(playerInstance)
                 apiVideo.listComment({
@@ -390,20 +398,28 @@ export default function (){
                             setLoading(true)
                             await showAd({onReward: async (res)=>{
                                     if(res.done){
-                                        const resp = await apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id})
-                                        if (resp.success){
-                                            if (resp.data.rewarded){
-                                                await play(purchase.no)
-                                                setPurchase(null)
-                                                return
+                                        setTimeout(async ()=>{
+                                            const resp = await apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id})
+                                            if (resp.success){
+                                                if (resp.data.rewarded){
+                                                    Toast.info(getText(Text.PayAdsSuccess))
+                                                    await play(purchase.no)
+                                                    setPurchase(null)
+                                                    setLoading(false)
+                                                    return
+                                                }
                                             }
-                                        }
+                                            setLoading(false)
+                                            Toast.info(getText(Text.PayAdsNotFinish))
+                                        },2000)
+                                    }else{
+                                        setLoading(false)
+                                        Toast.info(getText(Text.PayAdsNotFinish))
                                     }
-                                    Toast.info(getText(Text.PayAdsNotFinish))
                                 },onError: (res)=>{
+                                    setLoading(false)
                                     Toast.info(res.description)
                                 }})
-                            setLoading(false)
                         }}>
                             <svg t="1755680109284" className="icon" viewBox="0 0 1024 1024" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg" p-id="3386" width="200" height="200">
@@ -417,7 +433,7 @@ export default function (){
                                     d="M647.32 452.35c16.88-0.23 33.78-0.03 50.67-0.1 19.22 0.59 38.02 7.96 53.02 19.91 13.86 11.06 24.69 25.82 31.31 42.25 14.55 35.38 9.96 78.28-12.95 109.12-16.53 22.87-43.53 38.36-71.96 39.08-16.04 0.26-32.1 0.17-48.15 0.05-11.84-0.2-22.36-10.71-22.26-22.61-0.01-55.01 0.01-110.03 0-165.04-0.2-11.27 9.12-21.61 20.32-22.66m26.19 46.4c-0.01 39.17-0.01 78.33 0 117.5 12.02-0.43 24.58 1.53 36.09-2.94 12.43-4.78 22.23-15.01 27.96-26.88 9.13-18.66 8.76-41.66-0.98-60.02-5.81-11.06-15.3-20.45-27.07-24.95-11.47-4.52-24.02-2.11-36-2.71zM333.41 489.58c7.68-1.78 16.18 0.65 21.72 6.27 3.53 3.48 5.36 8.18 7.49 12.57 11.87 24.09 23.65 48.22 35.5 72.32 4.05 7.86 3.21 18.04-2.35 24.97-4.41 5.74-11.52 9.04-18.73 9.01-25.68 0.05-51.37 0.05-77.05 0-8.1-0.02-16.16-4.31-20.22-11.4-4.18-6.91-4.26-15.91-0.48-23 12.75-25.96 25.45-51.94 38.23-77.89 2.93-6.46 8.97-11.32 15.89-12.85m4.2 78.81c1.12 0.64 1.98 0.44 2.59-0.6-0.29-0.52-0.88-1.56-1.17-2.08-1.4-0.48-2.4 1.76-1.42 2.68z"
                                     p-id="3389" fill="#ffd890"></path>
                             </svg>
-                            <span>{getText(Text.PayAds)} ({needAds}/3)</span>
+                            <span>{getText(Text.PayAds)}</span>
                         </div>
                     </>}
                     <div className='h-recharge-modal'>
@@ -780,6 +796,12 @@ export default function (){
             </div>
             <div style={{marginTop: getSafeTop()}}/>
             <div className='h-h-show'>
+                {playing &&!notShowShare && <Share onClick={()=>{
+                    Occur(Event.ShareToast)
+                    setShareModel(true)
+                }} onClose={()=>{
+                    setNotShowShare(true)
+                }}/>}
                 <div id='J_prismPlayer'/>
             </div>
             <div className='h-h-no' style={videoFocus?{marginTop: "8vh"}:{}}>

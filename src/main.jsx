@@ -39,27 +39,11 @@ if(window.location.hash.split('?')[0] === '#/'){
     }
 }
 if(auth){
-    try{
-        const sseEventObj = new EventSource(`https://api.netshort.online/notify/sse?token=${auth}`);
-        sseEventObj.onmessage = event => {
-            console.log(JSON.stringify(event.data));
-        }
-    }catch (e){
-        console.log(e)
-    }
     root.render(router)
 }else if (window.Telegram?.WebApp?.initDataUnsafe?.user){
     const resp = await apiAuth.loginTelegramDirect({...window.Telegram.WebApp.initDataUnsafe.user,hash:window.Telegram.WebApp.initDataUnsafe.hash,auth_date: Number(window.Telegram.WebApp.initDataUnsafe.auth_date)})
     if(resp.success) {
         ss.set("Authorization", resp.data.token)
-        try{
-            const sseEventObj = new EventSource(`https://api.netshort.online/notify/sse?token=${resp.data.token}`);
-            sseEventObj.onmessage = event => {
-                console.log(JSON.stringify(event.data));
-            }
-        }catch (e){
-            console.log(e)
-        }
     }else {
         Toast.info(getText(Text.LoginFail))
     }
@@ -71,14 +55,6 @@ if(auth){
         }).then((resp)=>{
             if(resp.success){
                 ss.set("Authorization", resp.data.token)
-                try{
-                    const sseEventObj = new EventSource(`https://api.netshort.online/notify/sse?token=${resp.data.token}`);
-                    sseEventObj.onmessage = event => {
-                        console.log(JSON.stringify(event.data));
-                    }
-                }catch (e){
-                    console.log(e)
-                }
                 root.render(router);
             }
         })

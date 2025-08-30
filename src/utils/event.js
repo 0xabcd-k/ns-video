@@ -13,6 +13,7 @@ export const Event = {
     SupportEntry: "SupportEntry",
     ShareEntry: "ShareEntry",
     MessageEntry: "MessageEntry",
+    ShareToast: "ShareToast",
 }
 
 export function Occur(event){
