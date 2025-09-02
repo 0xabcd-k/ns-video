@@ -1,7 +1,7 @@
 import "./style.less"
 import {useEffect, useState} from "react";
 import ss from "good-storage";
-import {apiAdmin, apiVideo} from "@/api";
+import {apiAdmin, apiAuth, apiVideo} from "@/api";
 import {Toast} from "react-vant";
 import ReactLoading from "react-loading";
 import DramaCreator from "@/views/Admin/DramaCreator";
@@ -10,10 +10,12 @@ import SeriesManager from "@/views/Admin/SeriesManager";
 import SeriesUpdate from "@/views/Admin/SeriesUpdate";
 import Content from "@/views/Admin/Content";
 import CreateCDK from "@/views/Admin/CreateCDK";
+import StatsItem from "@/views/Admin/StatsItem";
 
 const tabName = {
     VideoManager: "剧集管理",
     CDKManager: "CDK管理",
+    StatsManager: "数据统计",
     AdminManager: "管理员管理",
 }
 
@@ -48,6 +50,10 @@ export default function (){
 
     const [dramaList,setDramaList] = useState([])
     const [bakInfo,setBakInfo] = useState("")
+
+    //statsManager
+    const [seriesId,setSeriesId] = useState(0)
+    const [statsInfo,setStatsInfo] = useState(null)
     
     async function getNextVideoList(){
         setLoading(true)
@@ -197,17 +203,31 @@ export default function (){
                             管理员信息：{bak}
                         </div>
                         <div className='am-tab'>
-                            <div className={'am-tab-item'+" "+ (tabName.VideoManager===tab?"clicked":"")} onClick={async ()=>{
-                                setTab(tabName.VideoManager);
-                                await getNextVideoList()
-                            }}>
+                            <div className={'am-tab-item' + " " + (tabName.VideoManager === tab ? "clicked" : "")}
+                                 onClick={async () => {
+                                     setTab(tabName.VideoManager);
+                                     await getNextVideoList()
+                                 }}>
                                 {tabName.VideoManager}
                             </div>
-                            <div className={'am-tab-item'+" "+ (tabName.CDKManager===tab?"clicked":"")} onClick={async ()=>{
-                                setTab(tabName.CDKManager);
-                                await getNextCDKList()
-                            }}>
+                            <div className={'am-tab-item' + " " + (tabName.CDKManager === tab ? "clicked" : "")}
+                                 onClick={async () => {
+                                     setTab(tabName.CDKManager);
+                                     await getNextCDKList()
+                                 }}>
                                 {tabName.CDKManager}
+                            </div>
+                            <div className={'am-tab-item' + " " + (tabName.StatsManager === tab ? "clicked" : "")}
+                                 onClick={async () => {
+                                     setTab(tabName.StatsManager);
+                                     setLoading(true)
+                                     const resp = await apiAdmin.stats({})
+                                     if(resp.success) {
+                                        setStatsInfo(resp.data)
+                                     }
+                                     setLoading(false)
+                                 }}>
+                                {tabName.StatsManager}
                             </div>
                             {/*<div className={'am-tab-item'+" "+ (tabName.AdminManager===tab?"clicked":"")} onClick={()=>{*/}
                             {/*    setTab(tabName.AdminManager);*/}
@@ -684,6 +704,71 @@ export default function (){
                                         拉取更多
                                     </div>
                                 </div>
+                            </>}
+                            {tab === tabName.StatsManager && <>
+                            {statsInfo &&
+                                <div className='am-sm-box'>
+                                    <div className='am-sm-input-box'>
+                                        <div className='am-sm-input-title'>按剧单统计：</div>
+                                        <input type='number' value={seriesId} onChange={(e) => {
+                                            setSeriesId(e.target.value)
+                                        }} placeholder='输入剧单序号'/>
+                                        <div className='am-sm-input-btn' onClick={async () => {
+                                            setLoading(true)
+                                            const resp = await apiAdmin.stats({
+                                                series_id: seriesId,
+                                            })
+                                            if (resp.success) {
+                                                setStatsInfo(resp.data)
+                                            }
+                                            setLoading(false)
+                                        }}>更新统计数据
+                                        </div>
+                                    </div>
+                                    <div className='am-sm-line'>
+                                        <StatsItem title={"总充值"} data={`${statsInfo.recharge_total}$`}
+                                                   desc={"总计充值，已换算为美元。 ps：范围会根据剧单缩小"}/>
+                                        <StatsItem title={"近一周充值"} data={`${statsInfo.recharge_week}$`}
+                                                   desc={"最近一周的时间的充值，已换算为美元。 ps：范围会根据剧单缩小"}/>
+                                        <StatsItem title={"与上上周环比"} data={`${statsInfo.recharge_week_on_week}%`}
+                                                   desc={"（最近一周充值-最近第二周充值）/最近第二周充值 ps：范围会根据剧单缩小"}/>
+                                        <StatsItem title={"昨日充值"} data={`${statsInfo.recharge_yesterday}$`}
+                                                   desc={"昨日充值 ps：范围会根据剧单缩小"}/>
+                                    </div>
+                                    <div className='am-sm-line'>
+                                        <StatsItem title={"复充比例"} data={`${statsInfo.recharge_again_rate}%`}
+                                                   desc={"充值超过1笔的人数/有过充值的人数 ps：范围会根据剧单缩小"}/>
+                                        <StatsItem title={"近一周充值订单成功率"}
+                                                   data={`${statsInfo.recharge_success_rate_recent_week}%`}
+                                                   desc={"用于观察充值渠道是否正常 ps：范围会根据剧单缩小"}/>
+                                    </div>
+                                    <div className='am-sm-line'>
+                                        <StatsItem title={"总点击数"} data={`${statsInfo.click_total}`}
+                                                   desc={"剧目点击次数。点击次数用于观察曝光情况。 ps：范围会根据剧单缩小"}/>
+                                        <StatsItem title={"上周点击数"}
+                                                   data={`${statsInfo.click_week}`}
+                                                   desc={"剧目上周点击次数。点击次数用于观察曝光情况。 ps：范围会根据剧单缩小"}/>
+                                        <StatsItem title={"点击数环比"}
+                                                   data={`${statsInfo.click_week_on_week}%`}
+                                                   desc={"（最近一周点击-最近第二周点击）/最近第二周点击。点击次数用于观察曝光情况。 ps：范围会根据剧单缩小"}/>
+                                        <StatsItem title={"昨日点击数"}
+                                                   data={`${statsInfo.click_yesterday}`}
+                                                   desc={"剧目昨日点击次数。点击次数用于观察曝光情况。 ps：范围会根据剧单缩小"}/>
+                                    </div>
+                                    <div className='am-sm-line'>
+                                        <StatsItem title={"总观看数"} data={`${statsInfo.watch_total}`}
+                                                   desc={"剧目观看次数。 ps：范围会根据剧单缩小"}/>
+                                        <StatsItem title={"上周观看数"}
+                                                   data={`${statsInfo.watch_week}`}
+                                                   desc={"剧目上周观看次数。 ps：范围会根据剧单缩小"}/>
+                                        <StatsItem title={"观看数环比"}
+                                                   data={`${statsInfo.watch_week_on_week}%`}
+                                                   desc={"（最近一周观看-最近第二周观看）/最近第二周观看。 ps：范围会根据剧单缩小"}/>
+                                        <StatsItem title={"昨日观看数"}
+                                                   data={`${statsInfo.watch_yesterday}`}
+                                                   desc={"剧目上周观看次数。 ps：范围会根据剧单缩小"}/>
+                                    </div>
+                                </div>}
                             </>}
                         </div>
                     </div>

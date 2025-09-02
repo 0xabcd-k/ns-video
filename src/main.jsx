@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom/client'
-import {notification} from "antd"
 import './common.less'
 import router from './router'
 import {apiAuth} from "@/api";
@@ -32,10 +31,7 @@ if(process.env.NODE_ENV === "development"){
 }
 if(window.location.hash.split('?')[0] === '#/'){
     if(window.Telegram?.WebApp?.initDataUnsafe?.start_param){
-        console.log(1)
-        const link = "#/"+window.Telegram.WebApp.initDataUnsafe.start_param.replace("-", "?")
-        console.log(link)
-        window.location.hash = link
+        window.location.hash = "#/"+window.Telegram.WebApp.initDataUnsafe.start_param.replace("-", "?")
     }
 }
 if(auth){

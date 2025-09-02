@@ -11,9 +11,6 @@ export default function (){
         }
     }, []);
     return <>
-        {show && <TelegramAds onClose={()=>{
-            setShow(false)
-            ss.set("ModalVersion",ModalVersion)
-        }}/>}
+        {show && <></>}
     </>
 }

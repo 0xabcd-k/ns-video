@@ -1,4 +1,4 @@
-import {createHashRouter, Navigate, RouterProvider,} from "react-router-dom";
+import {createHashRouter, Navigate, RouterProvider, useLocation,} from "react-router-dom";
 import App from '@/App'
 import Show from "@/views/Show";
 import Redirect from "@/views/Redirect";
@@ -15,10 +15,16 @@ import Message2 from "@/views/Message2";
 import FacebookDeleted from "@/views/Login3/FacebookDeleted";
 import Modal from "@/modal/Modal";
 import Test from "@/views/Test";
+
+function HomeWrapper() {
+    const location = useLocation();
+    return <Home2 key={location.search} />;
+}
+
 const router = createHashRouter([
     {path:"/",element:<App />,children:[
-        {index: true, element:<Home2/>},
-        {path: "/home", element: <Home2 />},
+        {index: true, element:<HomeWrapper />},
+        {path: "/home", element: <HomeWrapper />},
         {path: "/show", element: <Show />},
         {path: "/series", element: <Show />},
         {path: "/i18",element: <Redirect />},

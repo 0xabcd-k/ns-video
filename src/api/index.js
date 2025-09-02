@@ -49,6 +49,7 @@ export const apiAdmin = {
     createCDK:form=>req.post("/video/admin/cdk",form),
 
     VideoUploadToken:form=>req.post('/video/admin/upload/token',form),
+    stats:form=>req.get("/video/stats",form),
 }
 
 export const apiTelegramChannelActivity = {

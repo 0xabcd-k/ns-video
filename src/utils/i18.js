@@ -230,6 +230,17 @@ export const Text = {
         "id": <>Suka dengan serial ini?<br/>Bagikan ke teman-temanmu untuk menontonnya bersama!</>,
         "it": <>Ti piace questa serie?<br/>Condividila con i tuoi amici per guardarla insieme!</>,
     },
+    Card: {
+        "en": <>$<span>7.99</span>,<br/>watch for a week</>,
+        "zh-TW": <><span>7.99</span>美元,<br/>持續看一週</>,
+        "ja": <><span>7.99</span>ドル,<br/>1週間見放題</>,
+        "ko": <><span>7.99</span>달러,,<br/>일주일 동안 시청 가능</>,
+        "es": <><span>7.99</span>9 USD,<br/>ver durante una semana</>,
+        "pt": <>US$<span>7,99</span>,<br/>assistir por uma semana</>,
+        "fil": <>US$<span>7.99</span>,<br/>manood ng isang linggo</>,
+        "id": <>US$<span>7,99</span>,<br/>nonton selama satu minggu</>,
+        "it": <><span>7,99</span> USD,<br/>guarda per una settimana</>,
+    },
     Login: {
         "en": "Login",
         "zh-TW": "登入",
