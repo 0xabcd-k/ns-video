@@ -671,7 +671,7 @@ export default function (){
                         const rechargeResp = await apiFinance.recharge({
                             os: os,
                             redirect: `https://player.netshort.online/#/?drama=${params.drama}&from=order&token=${token}`,
-                            payment: "PaymentTypePayerMaxTest114514Pay",
+                            payment: "PaymentTypePayerMaxPay",
                             method_type: "",
                             terminal_type: isMobile ? "WAP" : "WEB",
                             sku: "SkuTypeCard",
