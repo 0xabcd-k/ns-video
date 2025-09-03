@@ -16,6 +16,7 @@ export const apiVideo = {
     readNotify:form=>req.post('/notify/read',{lan:navigator.language,...form}),
     listDramaByKey:form=>req.post('/drama/key',{lan:navigator.language,...form}),
     telegramAdsCheck:form=>req.get('/adsgram/check',{lan:navigator.language,...form}),
+    getFreeCard:form=>req.post('/card/free',{lan:navigator.language,...form}),
 }
 
 export const apiAuth = {

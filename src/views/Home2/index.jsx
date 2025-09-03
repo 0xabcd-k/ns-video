@@ -14,6 +14,7 @@ import ss from "good-storage";
 import Version from "@/views/Common/Version";
 import {useAdsgram} from "@/views/Home2/useAdsgram";
 import Share from "@/views/Home2/Share";
+import Card from "@/views/Home2/Card";
 let watchRecordTimeout;
 let playNo;
 let logined;
@@ -45,6 +46,7 @@ export default function (){
     const [videoFocus,setVideoFocus] = useState(false)
     const [playing,setPlaying] = useState(false)
     const [notShowShare,setNotShowShare] = useState(false)
+    const [freeCard,setFreeCard] = useState(0)
     function setPurchase(state){
         if(window.Telegram?.WebApp?.initDataUnsafe?.user){
             apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id}).then((resp)=>{
@@ -78,6 +80,10 @@ export default function (){
             }
             if(infoResp?.data?.is_read_all){
                 setIsReadAll(true)
+            }
+            const freeCard = await apiVideo.getFreeCard({})
+            if(freeCard.success){
+                setFreeCard(freeCard.data.time)
             }
             const dramaResp = await apiVideo.drama({
                 idx: params.drama
@@ -654,7 +660,7 @@ export default function (){
                         {/*    </>}*/}
                         {/*</div>*/}
                     </div>
-                    <div className='h-recharge-card' onClick={async ()=>{
+                    {drama.free_card_enable && <div className='h-recharge-card' onClick={async ()=>{
                         Occur(Event.PaymentCard)
                         setLoading(true)
                         let os = "ANDROID"
@@ -682,10 +688,10 @@ export default function (){
                         }
                     }}>
                         <div className='h-recharge-card-title'>
-                            {getText(Text.Card)}
+                            <span>{drama.free_card_amount}{getCurrencySignal(drama.free_card_currency)}</span>{getText(Text.Card)}
                         </div>
                         <img className='h-recharge-card-icon' src={require("@/assets/card.png")} alt="card"/>
-                    </div>
+                    </div>}
                 </div>
             </>}
             {shareModel && <>
@@ -842,15 +848,21 @@ export default function (){
                 </div>
             </div>
             <div className='h-h-next'>
-                <div className='h-h-n-left'>
-                    {params.buy&&!drama?.purchase&&<div className='h-h-n-btn' onClick={()=>{
-                        setPurchase(true)
-                    }}>
-                        {getText(Text.Purchase)+"🛒"}
-                    </div>}
-                    {drama?.purchase&&<div className='h-h-n-btn-purchased'>
-                        {getText(Text.Purchased)}
-                    </div>}
+                <div className='h-h-n-left'>]
+                    {freeCard>0?<>
+                        <Card time={freeCard} setTime={(t)=>{
+                            setFreeCard(t)
+                        }}/>
+                    </>:<>
+                        {params.buy&&!drama?.purchase&&<div className='h-h-n-btn' onClick={()=>{
+                            setPurchase(true)
+                        }}>
+                            {getText(Text.Purchase)+"🛒"}
+                        </div>}
+                        {drama?.purchase&&<div className='h-h-n-btn-purchased'>
+                            {getText(Text.Purchased)}
+                        </div>}
+                    </>}
                 </div>
                 <div className='h-h-n-right'>
                     <div className='h-h-n-btn' onClick={async ()=>{
