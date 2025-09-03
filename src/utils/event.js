@@ -1,4 +1,5 @@
 export const Event = {
+    PaymentCard: "PaymentCard",
     PaymentPayerMax: "PaymentPayerMax",
     PaymentAliGooglePay: "PaymentAliGooglePay",
     PaymentAliApplePay: "PaymentAliApplePay",

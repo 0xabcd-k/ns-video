@@ -392,6 +392,14 @@ export default function (){
             {purchase != null && <>
                 <div className='h-modal-mask' />
                 <div className='h-recharge-modal-box' style={{maxWidth: '450px'}}>
+                    <svg t="1754281707178" onClick={()=>{
+                        setPurchase(null)
+                    }} className="h-modal-bottom-close" viewBox="0 0 1024 1024" version="1.1"
+                         xmlns="http://www.w3.org/2000/svg" p-id="10963" width="200" height="200">
+                        <path
+                            d="M512 1024A512 512 0 1 1 512 0a512 512 0 0 1 0 1024zM305.956571 370.395429L447.488 512 305.956571 653.604571a45.568 45.568 0 1 0 64.438858 64.438858L512 576.512l141.604571 141.531429a45.568 45.568 0 0 0 64.438858-64.438858L576.512 512l141.531429-141.604571a45.568 45.568 0 1 0-64.438858-64.438858L512 447.488 370.395429 305.956571a45.568 45.568 0 0 0-64.438858 64.438858z"
+                            fill="#cdcdcd" p-id="10964"></path>
+                    </svg>
                     {/*{purchase?.no && window.Telegram?.WebApp?.initDataUnsafe?.user && <>*/}
                     {/*    <div className='h-recharge-modal-ads' onClick={async ()=>{*/}
                     {/*        Occur(Event.AdsClick)*/}
@@ -437,14 +445,6 @@ export default function (){
                     {/*    </div>*/}
                     {/*</>}*/}
                     <div className='h-recharge-modal'>
-                        <svg t="1754281707178" onClick={()=>{
-                            setPurchase(null)
-                        }} className="h-modal-bottom-close" viewBox="0 0 1024 1024" version="1.1"
-                             xmlns="http://www.w3.org/2000/svg" p-id="10963" width="200" height="200">
-                            <path
-                                d="M512 1024A512 512 0 1 1 512 0a512 512 0 0 1 0 1024zM305.956571 370.395429L447.488 512 305.956571 653.604571a45.568 45.568 0 1 0 64.438858 64.438858L512 576.512l141.604571 141.531429a45.568 45.568 0 0 0 64.438858-64.438858L576.512 512l141.531429-141.604571a45.568 45.568 0 1 0-64.438858-64.438858L512 447.488 370.395429 305.956571a45.568 45.568 0 0 0-64.438858 64.438858z"
-                                fill="#cdcdcd" p-id="10964"></path>
-                        </svg>
                         <div className='h-recharge-modal-title'>
                             {getText(Text.PaymentChoice)}
                         </div>
@@ -654,7 +654,33 @@ export default function (){
                         {/*    </>}*/}
                         {/*</div>*/}
                     </div>
-                    <div className='h-recharge-card'>
+                    <div className='h-recharge-card' onClick={async ()=>{
+                        Occur(Event.PaymentCard)
+                        setLoading(true)
+                        let os = "ANDROID"
+                        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                            os = "IOS"
+                        }
+                        const token = ss.get("Authorization")
+                        const rechargeResp = await apiFinance.recharge({
+                            os: os,
+                            redirect: `https://player.netshort.online/#/?drama=${params.drama}&from=order&token=${token}`,
+                            payment: "PaymentTypePayerMaxPay",
+                            method_type: "",
+                            terminal_type: isMobile ? "WAP" : "WEB",
+                            sku: "SkuTypeCard",
+                            meta: {
+                                "drama_idx": params.drama,
+                            }
+                        })
+                        if (rechargeResp.success) {
+                            setPurchase(null)
+                            window.location.href = rechargeResp.data.url
+                        }else{
+                            Toast.info(getText(Text.ServerError))
+                            setLoading(false)
+                        }
+                    }}>
                         <div className='h-recharge-card-title'>
                             {getText(Text.Card)}
                         </div>
