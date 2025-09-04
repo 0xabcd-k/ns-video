@@ -18,7 +18,7 @@ export default function ({time,setTime}){
     }
     const [tick,setTick] = useState(time)
     useEffect(() => {
-        const ticker = setInterval(()=>{
+        const ticker = setInterval(() => {
             setTick(prevTick => {
                 if (prevTick <= 0) {
                     clearInterval(ticker); // 停止计时

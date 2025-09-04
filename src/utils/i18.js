@@ -241,6 +241,17 @@ export const Text = {
         "id": <>,<br/>Tonton semua drama tanpa batas selama satu minggu</>,
         "it": <>,<br/>Visione illimitata di tutti i drammi per una settimana</>,
     },
+    PlayNext: {
+        "en": "{m} will start in {n} seconds",
+        "zh-TW": "{m} 將在 {n} 秒後播出",
+        "ja": "{m} は {n} 秒後に放送開始",
+        "ko": "{m}이(가) {n}초 후에 방송됩니다",
+        "es": "{m} se emitirá en {n} segundos",
+        "pt": "{m} será transmitido em {n} segundos",
+        "fil": "Mag-uumpisa ang {m} sa loob ng {n} segundo",
+        "id": "{m} akan ditayangkan dalam {n} detik",
+        "it": "{m} inizierà tra {n} secondi",
+    },
     Free: {
         "en": "Unlimited",
         "zh-TW": "無限",
