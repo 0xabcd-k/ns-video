@@ -5,7 +5,7 @@ import {apiVideo} from "@/api";
 import {getText, Text} from "@/utils/i18";
 
 export default function ({setLoading,drama,recommendsList,onClose}){
-    const [tick,setTick] = useState(4)
+    const [tick,setTick] = useState(8)
     const navigate = useNavigate()
     async function init(){
         setLoading(true)
@@ -14,7 +14,7 @@ export default function ({setLoading,drama,recommendsList,onClose}){
                 idx: drama.next_idx
             })
             if(dramaResp.success){
-                return {...dramaResp.data,idx: drama.next_idx}
+                return dramaResp.data
             }
         }else{
             for (let i = 0; i < recommendsList.length; i++) {
