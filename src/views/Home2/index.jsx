@@ -15,6 +15,7 @@ import Version from "@/views/Common/Version";
 import {useAdsgram} from "@/views/Home2/useAdsgram";
 import Share from "@/views/Home2/Share";
 import Card from "@/views/Home2/Card";
+import PlayNext from "@/views/Home2/PlayNext";
 let watchRecordTimeout;
 let playNo;
 let logined;
@@ -47,6 +48,7 @@ export default function (){
     const [playing,setPlaying] = useState(false)
     const [notShowShare,setNotShowShare] = useState(false)
     const [freeCard,setFreeCard] = useState(0)
+    const [playNextDrama,setPlayNextDrama] = useState(false)
     function setPurchase(state){
         if(window.Telegram?.WebApp?.initDataUnsafe?.user){
             apiVideo.telegramAdsCheck({userid: window.Telegram?.WebApp?.initDataUnsafe?.user?.id}).then((resp)=>{
@@ -193,18 +195,21 @@ export default function (){
                 });
                 const component = playerInstance.getComponent("AliplayerDanmuComponent")
                 playerInstance.on("ended",()=>{
-                    playNext(playerInstance)
+                    if(playNo===drama.video_num){
+                        setPlayNextDrama(true)
+                    }else{
+                        playNext(playerInstance)
+                    }
                 })
                 playerInstance.on("showBar",()=>{
                     setVideoFocus(true)
-                    console.log("showBar")
                 })
                 playerInstance.on("hideBar",()=>{
                     setVideoFocus(false)
-                    console.log("hideBar")
                 })
                 playerInstance.on("playing",()=>{
                     setPlaying(false)
+                    setPlayNextDrama(false)
                 })
                 playerInstance.on("pause",()=>{
                     setPlaying(true)
@@ -834,12 +839,13 @@ export default function (){
             </div>
             <div style={{marginTop: getSafeTop()}}/>
             <div className='h-h-show'>
-                {playing &&!notShowShare && <Share onClick={()=>{
+                {playing && !playNextDrama &&!notShowShare && <Share onClick={()=>{
                     Occur(Event.ShareToast)
                     setShareModel(true)
                 }} onClose={()=>{
                     setNotShowShare(true)
                 }}/>}
+                {playNextDrama && <PlayNext setLoading={setLoading} drama={drama} recommendsList={recommendsList}/>}
                 <div id='J_prismPlayer'/>
             </div>
             <div className='h-h-no' style={videoFocus?{marginTop: "8vh"}:{}}>
