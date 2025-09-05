@@ -195,7 +195,7 @@ export default function (){
                 const component = playerInstance.getComponent("AliplayerDanmuComponent")
                 playerInstance.on("ended",()=>{
                     if(playNo===dramaInfo.video_num){
-                        Toast.info(getText(Text.DramaFinish))
+                        Toast.info(getText(Text.DramaFinish                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ))
                         setPlayNextDrama(true)
                     }else{
                         playNext(dramaInfo)
