@@ -9,6 +9,8 @@ export const Text = {
         "fil": "Error ng server",
         "id": "Kesalahan Server",
         "it": "Errore del server",
+        "fr": "Erreur du serveur",
+        "ar": "خطأ في الخادم",
     },
     Back: {
         "en": "Back",
@@ -20,6 +22,8 @@ export const Text = {
         "fil": "Bumalik",
         "id": "Kembali",
         "it": "Indietro",
+        "fr": "Retour",
+        "ar": "رجوع",
     },
     Empty: {
         "zh-TW": "暫無記錄",
@@ -31,6 +35,8 @@ export const Text = {
         "fil": "Walang natagpuat",
         "id": "Tidak ada catatan yang ditemukan",
         "it": "Nessun record trovato",
+        "fr": "Aucun enregistrement trouvé",
+        "ar": "لم يتم العثور على سجل",
     },
     Loading: {
         "en": "loading",
@@ -42,6 +48,8 @@ export const Text = {
         "fil": "Pag-loadad",
         "id": "Memuat",
         "it": "Caricamento",
+        "fr": "chargement",
+        "ar": "جارٍ التحميل",
     },
     Search: {
         "zh-TW": "尋找更多短劇",
@@ -53,6 +61,8 @@ export const Text = {
         "fil": "Higit pang mga dramas",
         "id": "Temukan drama lainnya",
         "it": "Scopri altri drammi",
+        "fr": "Découvrez plus de séries",
+        "ar": "اكتشف المزيد من الدراما",
     },
     SearchBtn: {
         "zh-TW": "搜索",
@@ -63,7 +73,9 @@ export const Text = {
         "pt": "Pesquisa",
         "fil": "Paghahanap",
         "id": "Pencarian",
-        "it": "Ricerca"
+        "it": "Ricerca",
+        "fr": "Rechercher",
+        "ar": "بحث",
     },
     NoMore: {
         "en": "No More",
@@ -75,6 +87,8 @@ export const Text = {
         "fil": "Walang Himo",
         "id": "Tidak ada lagi",
         "it": "Non c' è più",
+        "fr": "Plus de",
+        "ar": "لا مزيد",
     },
     WatchUpToEpisode: {
         "en": "Watch Up to Episode",
@@ -86,6 +100,8 @@ export const Text = {
         "fil": "Panok sa Episode",
         "id": "Tonton hingga Episode",
         "it": "Guarda fino all'episodio",
+        "fr": "Regarder jusqu'à l'épisode",
+        "ar": "شاهد حتى الحلقة",
     },
     LoginEmailToast: {
         "en": "Login to keep your viewing progress intact",
@@ -97,6 +113,8 @@ export const Text = {
         "fil": "Login upang mapanatili ang iyong pag-unlad sa panonoon",
         "id": "Masuk untuk menjaga kemajuan melihat Anda utuh",
         "it": "Accedi per mantenere intatti i tuoi progressi di visualizzazione",
+        "fr": "Connectez-vous pour conserver votre progression de visionnage",
+        "ar": "سجّل الدخول للحفاظ على تقدمك في المشاهدة",
     },
     OrderWaitToast: {
         "en": "The order may take a while to complete. If it doesn't take effect after payment, please try refreshing.",
@@ -108,6 +126,8 @@ export const Text = {
         "fil": "Ang order ay maaaring tumagal ng isang oras upang makumpleto. Kung hindi ito magkakaroon ng epekto pagkatapos ng pagbabayad, mangyaring subukang mag-refresshing.",
         "id": "Pesanan mungkin membutuhkan waktu beberapa saat untuk menyelesaikan. Jika tidak berlaku setelah pembayaran, coba Segarkan.",
         "it": "L'ordine potrebbe richiedere del tempo per essere completato. Se non ha effetto dopo il pagamento, prova ad aggiornare.",
+        "fr": "La commande peut prendre un certain temps pour être traitée. Si elle n'est pas effective après le paiement, veuillez essayer de rafraîchir la page.",
+        "ar": "قد يستغرق إتمام الطلب بعض الوقت. إذا لم يتم تفعيله بعد الدفع، يرجى محاولة تحديث الصفحة.",
     },
     Purchased: {
         "en": "Purchased",
@@ -119,6 +139,8 @@ export const Text = {
         "fil": "Binili",
         "id": "Dibeli",
         "it": "Acquistato",
+        "fr": "Acheté",
+        "ar": "تم الشراء",
     },
     Paid: {
         "en": "Paid",
@@ -130,6 +152,8 @@ export const Text = {
         "fil": "Paad",
         "id": "Dibayar",
         "it": "Pagato",
+        "fr": "Payé",
+        "ar": "مدفوع",
     },
     Purchase: {
         "en": "Full Series",
@@ -141,6 +165,8 @@ export const Text = {
         "fil": "Buong Seryes",
         "id": "Seri penuh",
         "it": "Serie completa",
+        "fr": "Série complète",
+        "ar": "المسلسل الكامل",
     },
     PaymentChoice: {
         "en": "Please choice a payment",
@@ -152,6 +178,8 @@ export const Text = {
         "fil": "Mangyaring pumili ng pagbabayad",
         "id": "Silakan pilih pembayaran",
         "it": "Si prega di scegliere un pagamento",
+        "fr": "Veuillez choisir un mode de paiement",
+        "ar": "يرجى اختيار طريقة دفع",
     },
     PriceDesc: {
         "en": "{n} to unlock the full series",
@@ -163,6 +191,8 @@ export const Text = {
         "fil": "{n} para ma-unlock ang buong serye",
         "id": "{n} untuk membuka semua episode",
         "it": "{n} per sbloccare l’intera serie",
+        "fr": "{n} pour débloquer la série complète",
+        "ar": "{n} لفتح المسلسل الكامل",
     },
     PayAds: {
         "en": "Watch ads to unlock the episode",
@@ -174,6 +204,8 @@ export const Text = {
         "fil": "Tingnan ang ad upang i-unlock ang episodes",
         "id": "Tonton iklan untuk membuka episode",
         "it": "Guarda annunci per sbloccare l'episodio",
+        "fr": "",
+        "ar": "",
     },
     PayAdsNeedMore: {
         "en": "$ more ads to unlock the episode",
@@ -184,7 +216,9 @@ export const Text = {
         "pt": "Faltam $ anúncios para desbloquear o episódio.",
         "fil": "Kailangan pa ng $ na ad para ma-unlock ang episode.",
         "id": "Masih perlu $ iklan untuk membuka episode.",
-        "it": "Mancano $ annunci per sbloccare l’episodio."
+        "it": "Mancano $ annunci per sbloccare l’episodio.",
+        "fr": "$ publicités de plus pour débloquer l'épisode",
+        "ar": "$ إعلانات إضافية لفتح الحلقة",
     },
     PayAdsSuccess: {
         "en": "Episode unlocked successfully",
@@ -196,6 +230,8 @@ export const Text = {
         "fil": "Matagumpay na nag-unlock ng episodes",
         "id": "Episode berhasil membuka kunci",
         "it": "Episodio sbloccato con successo",
+        "fr": "Épisode débloqué avec succès",
+        "ar": "تم فتح الحلقة بنجاح",
     },
     PayAdsNotFinish: {
         "en": "Ad task not completed, please try again.",
@@ -207,6 +243,8 @@ export const Text = {
         "fil": "Hindi nakumpleto ang ad task, mangyaring subukan muli.",
         "id": "Tugas iklan belum selesai, coba lagi.",
         "it": "Attività dell'annuncio non completata, riprova.",
+        "fr": "La tâche publicitaire n'a pas été complétée, veuillez réessayer.",
+        "ar": "لم تكتمل مهمة الإعلان، يرجى المحاولة مرة أخرى.",
     },
     Share: {
         "en": "Share",
@@ -218,6 +256,8 @@ export const Text = {
         "fil": "I-share",
         "id": "Bagikan",
         "it": "Condividi",
+        "fr": "Partager",
+        "ar": "مشاركة",
     },
     ShareDesc: {
         "en": <>Like this drama? <br/>Share it with your friends and watch together!</>,
@@ -229,17 +269,21 @@ export const Text = {
         "fil": <>Gusto mo ba ang palabas na ito?<br/>I-share ito sa iyong mga kaibigan para sabay kayong manood!</>,
         "id": <>Suka dengan serial ini?<br/>Bagikan ke teman-temanmu untuk menontonnya bersama!</>,
         "it": <>Ti piace questa serie?<br/>Condividila con i tuoi amici per guardarla insieme!</>,
+        "fr": <>Vous aimez ce drama ? <br/>Partagez-le avec vos amis et regardez-le ensemble !</>,
+        "ar": <>هل أعجبك هذا المسلسل؟ <br/>شاركها مع أصدقائك وشاهدوا معًا!</>,
     },
     Card: {
-        "en": <>,<br/>Unlimited View All Dramas For A Week</>,
-        "zh-TW": <>,<br/>一週內無限觀看全站劇集</>,
-        "ja": <>,<br/>1週間、すべてのドラマを無制限で視聴</>,
-        "ko": <>,<br/>일주일 동안 모든 드라마 무제한 시청</>,
-        "es": <>,<br/>Visualización ilimitada de todos los dramas durante una semana</>,
-        "pt": <>,<br/>Visualização ilimitada de todos os dramas por uma semana</>,
-        "fil": <>,<br/>Walang limitasyong panonood ng lahat ng drama sa loob ng isang linggo</>,
-        "id": <>,<br/>Tonton semua drama tanpa batas selama satu minggu</>,
-        "it": <>,<br/>Visione illimitata di tutti i drammi per una settimana</>,
+        "en": <>,Unlimited View All Dramas For A Week</>,
+        "zh-TW": <>,一週內無限觀看全站劇集</>,
+        "ja": <>,1週間、すべてのドラマを無制限で視聴</>,
+        "ko": <>,일주일 동안 모든 드라마 무제한 시청</>,
+        "es": <>,Visualización ilimitada de todos los dramas durante una semana</>,
+        "pt": <>,Visualização ilimitada de todos os dramas por uma semana</>,
+        "fil": <>,Walang limitasyong panonood ng lahat ng drama sa loob ng isang linggo</>,
+        "id": <>,Tonton semua drama tanpa batas selama satu minggu</>,
+        "it": <>,Visione illimitata di tutti i drammi per una settimana</>,
+        "fr": <>,Visionnage illimité de toutes les séries pendant une semaine</>,
+        "ar": <>,مشاهدة غير محدودة لجميع المسلسلات لمدة أسبوع</>,
     },
     PlayNext: {
         "en": "{m} will start in {n} seconds",
@@ -251,6 +295,8 @@ export const Text = {
         "fil": "Mag-uumpisa ang {m} sa loob ng {n} segundo",
         "id": "{m} akan ditayangkan dalam {n} detik",
         "it": "{m} inizierà tra {n} secondi",
+        "fr": "{m} commencera dans {n} secondes",
+        "ar": "سيبدأ {m} خلال {n} ثانية",
     },
     Free: {
         "en": "Unlimited",
@@ -262,6 +308,8 @@ export const Text = {
         "fil": "Walang limitasyon",
         "id": "Tak terbatas",
         "it": "Illimitato",
+        "fr": "Illimité",
+        "ar": "غير محدود",
     },
     Login: {
         "en": "Login",
@@ -273,6 +321,8 @@ export const Text = {
         "fil": "Login",
         "id": "Masuk",
         "it": "Accesso",
+        "fr": "Connexion",
+        "ar": "تسجيل الدخول",
     },
     PlayNow: {
         "en": "Play Now",
@@ -284,6 +334,8 @@ export const Text = {
         "fil": "Pag-play ngayon",
         "id": "Main sekarang",
         "it": "Gioca ora",
+        "fr": "Jouer maintenant",
+        "ar": "شغّل الآن",
     },
     Store: {
         "en": "Store",
@@ -295,6 +347,8 @@ export const Text = {
         "fil": "Store",
         "id": "Toko",
         "it": "Negozio",
+        "fr": "Boutique",
+        "ar": "المتجر",
     },
     EmailInput: {
         "en": "input your email",
@@ -306,6 +360,8 @@ export const Text = {
         "fil": "Input ng iyong email",
         "id": "Masukkan email Anda",
         "it": "Inserisci la tua email",
+        "fr": "Saisissez votre e-mail",
+        "ar": "أدخل بريدك الإلكتروني",
     },
     CodeInput: {
         "en": "email verify code",
@@ -317,6 +373,8 @@ export const Text = {
         "fil": "Email verify code",
         "id": "Kode verifikasi email",
         "it": "Codice verifica e-mail",
+        "fr": "Code de vérification par e-mail",
+        "ar": "رمز التحقق من البريد الإلكتروني",
     },
     EmailSuccess: {
         "en": "Email sent successfully. Pls Check your email",
@@ -328,6 +386,8 @@ export const Text = {
         "fil": "Ipinadala ang email nang matagumpay. Pls Check ang iyong email...",
         "id": "Email berhasil dikirim. Harap periksa email Anda",
         "it": "Email inviata con successo. Controlla la tua email",
+        "fr": "E-mail envoyé avec succès. Veuillez vérifier votre boîte mail.",
+        "ar": "تم إرسال البريد الإلكتروني بنجاح. يرجى التحقق من بريدك الإلكتروني.",
     },
     EmailFailure: {
         "en": "Email send failed.Pls try again",
@@ -339,6 +399,8 @@ export const Text = {
         "fil": "Nabigo ang pagpapadala ng email.Pls subukan muli.Pls subukang",
         "id": "Pengiriman Email gagal. Silakan coba lagi",
         "it": "Invio e-mail non riuscito. Riprova",
+        "fr": "L'envoi de l'e-mail a échoué. Veuillez réessayer.",
+        "ar": "فشل إرسال البريد الإلكتروني. يرجى المحاولة مرة أخرى.",
     },
     GetCode: {
         "en": "Get Code",
@@ -350,6 +412,8 @@ export const Text = {
         "fil": "Kuha ng Code",
         "id": "Dapatkan kode",
         "it": "Ottieni codice",
+        "fr": "Obtenir le code",
+        "ar": "الحصول على الرمز",
     },
     EmailCodeExpire: {
         "en": "Email verify code expire.Pls try again",
@@ -361,6 +425,8 @@ export const Text = {
         "fil": "Mag-expire ng email code.Pls subukan muli ang Pls",
         "id": "Kode verifikasi Email kedaluwarsa. Mohon coba lagi",
         "it": "Il codice di verifica e-mail scade. Riprova",
+        "fr": "Le code de vérification par e-mail a expiré. Veuillez réessayer.",
+        "ar": "انتهت صلاحية رمز التحقق من البريد الإلكتروني. يرجى المحاولة مرة أخرى.",
     },
     LoginFail: {
         "en": "Login failed.Pls try again",
@@ -372,6 +438,8 @@ export const Text = {
         "fil": "Nabigo ang Login.Pls subukan mulin",
         "id": "Gagal masuk. Coba lagi",
         "it": "Accesso non riuscito. Prova di nuovo",
+        "fr": "Échec de la connexion. Veuillez réessayer.",
+        "ar": "فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.",
     },
     Confirm: {
         "en": "Confirm",
@@ -383,6 +451,8 @@ export const Text = {
         "fil": "Pagkumpirma",
         "id": "Konfirmasi",
         "it": "Conferma",
+        "fr": "Confirmer",
+        "ar": "تأكيد",
     },
     About: {
         "en": "About",
@@ -394,6 +464,8 @@ export const Text = {
         "fil": "Tungkol",
         "id": "Tentang",
         "it": "A proposito",
+        "fr": "À propos",
+        "ar": "حول",
     },
     TermsOfService: {
         "en": "Terms of Service",
@@ -405,6 +477,8 @@ export const Text = {
         "fil": "Mga termino ng Serbisyo",
         "id": "Ketentuan Layanan",
         "it": "Termini di servizio",
+        "fr": "Conditions d'utilisation",
+        "ar": "شروط الخدمة",
     },
     PrivacyPolicy: {
         "en": "Privacy Policy",
@@ -415,6 +489,8 @@ export const Text = {
         "fil": "Privacy Policy",
         "id": "Kebijakan Privasi",
         "it": "Politica sulla privacy",
+        "fr": "Politique de confidentialité",
+        "ar": "سياسة الخصوصية",
     },
     FAQ: {
         "en": "FAQ",
@@ -426,6 +502,8 @@ export const Text = {
         "fil": "FAQ",
         "id": "FAQ",
         "it": "FAQ",
+        "fr": "FAQ",
+        "ar": "FAQ",
     },
     ContactUs: {
         "en": "Contact Us",
@@ -470,6 +548,8 @@ export const Text = {
         "fil": "NetShort | Lahat ng Karapatan ay Reserved | 2024 NETSTORY PTE. LTD.",
         "id": "NetShort | Semua hak cipta reservasi | 2024 NETSTORY PTE. LTD.",
         "it": "NetShort | Tutti i diritti riservati | 2024 NETSTORY PTE. LTD.",
+        "fr": "NetShort | All Rights Reserved | 2024 NETSTORY PTE. LTD.",
+        "ar": "NetShort | All Rights Reserved | 2024 NETSTORY PTE. LTD.",
     },
     NotFound: {
         "en": "404 Not Found",
@@ -481,6 +561,8 @@ export const Text = {
         "fil": "404 Hindi nahanap",
         "id": "404 tidak ditemukan",
         "it": "404 Non Trovato",
+        "fr": "404 Non trouvé",
+        "ar": "404 غير موجود",
     },
     DramaFinish: {
         "en": "Drama Finish...",
@@ -492,17 +574,8 @@ export const Text = {
         "fil": "Drama finish...",
         "id": "Drama selesai...",
         "it": "Drama Finish...",
-    },
-    NeedPurchase: {
-        "en": "Need Purchase",
-        "zh-TW": "需要購買",
-        "ja": "購入が必要",
-        "ko": "구매가 필요합니다",
-        "es": "Necesidad de compra",
-        "pt": "Precisa Comprar",
-        "fil": "Kailangang bumili",
-        "id": "Perlu membeli",
-        "it": "Hai bisogno di acquisto",
+        "fr": "Fin du drama…",
+        "ar": "انتهى المسلسل…",
     },
     Next: {
         "en": "Next",
@@ -514,6 +587,8 @@ export const Text = {
         "fil": "Susunoda",
         "id": "Berikutnya",
         "it": "Successivo",
+        "fr": "Suivant",
+        "ar": "التالي",
     },
     QuestionPurchase: {
         "en": "Purchase or After-sales Issues?",
@@ -525,6 +600,8 @@ export const Text = {
         "fil": "Pagbili o After-sales Issues?",
         "id": "Pembelian atau masalah purnajual?",
         "it": "Problemi di acquisto o post-vendita?",
+        "fr": "",
+        "ar": "",
     },
     QuestionSuggestion: {
         "en": "Some Suggestions",
@@ -536,6 +613,8 @@ export const Text = {
         "fil": "Ilang mga mungkahi",
         "id": "Beberapa saran",
         "it": "Alcuni suggerimenti",
+        "fr": "",
+        "ar": "",
     },
     QuestionCollaboration: {
         "en": "Ideas for Collaboration",
@@ -547,6 +626,8 @@ export const Text = {
         "fil": "Mga ideya para sa Collaboration",
         "id": "Ide untuk kolaborasi",
         "it": "Idee per la collaborazione",
+        "fr": "",
+        "ar": "",
     },
     VideoNo: {
         "en": "Episode:",
@@ -558,6 +639,8 @@ export const Text = {
         "fil": "Episode:",
         "id": "Episode:",
         "it": "Episodio:",
+        "fr": "Épisode :",
+        "ar": "الحلقة:",
     },
     Recommend: {
         "en": "Top Series for You",
@@ -569,6 +652,8 @@ export const Text = {
         "fil": "Top Series para sa Iw",
         "id": "Seri atas untuk Anda",
         "it": "Serie top per te",
+        "fr": "Meilleures séries pour vous",
+        "ar": "أفضل المسلسلات لك",
     },
     CompleteSeries: {
         "en": "Full Series",
@@ -580,6 +665,8 @@ export const Text = {
         "fil": "Buong Seryes",
         "id": "Seri penuh",
         "it": "Serie completa",
+        "fr": "Série complète",
+        "ar": "المسلسل الكامل",
     },
     More: {
         "zh-TW": "更多推荐的好剧",
@@ -591,6 +678,8 @@ export const Text = {
         "fil": "Mas Top Recomkomend Shows",
         "id": "Pameran rekomendasi teratas lainnya",
         "it": "Altri spettacoli più consigliati",
+        "fr": "",
+        "ar": "",
     },
     EmailLogin: {
         "zh-TW": "電子信箱登入",
@@ -602,6 +691,8 @@ export const Text = {
         "fil": "Email Login",
         "id": "Masuk Email",
         "it": "Accesso e-mail",
+        "fr": "Connexion par e-mail",
+        "ar": "تسجيل الدخول بالبريد الإلكتروني",
     },
     AccountLogin: {
         "zh-TW": "帳號密碼登入",
@@ -613,6 +704,8 @@ export const Text = {
         "fil": "Account Login",
         "id": "Masuk akun",
         "it": "Accesso account",
+        "fr": "Connexion au compte",
+        "ar": "تسجيل الدخول إلى الحساب",
     },
     AccountInput: {
         "zh-TW": "输入您的帳號",
@@ -624,6 +717,8 @@ export const Text = {
         "fil": "Input ng iyong account.",
         "id": "Masukkan Akun Anda",
         "it": "Inserisci il tuo account",
+        "fr": "Saisissez votre compte",
+        "ar": "أدخل حسابك",
     },
     PasswordInput: {
         "zh-TW": "輸入您的密碼",
@@ -635,6 +730,8 @@ export const Text = {
         "fil": "Input ng iyong password",
         "id": "Masukkan kata sandi Anda",
         "it": "Inserisci la tua password",
+        "fr": "Saisissez votre mot de passe",
+        "ar": "أدخل كلمة المرور",
     },
     PasswordAgainInput: {
         "zh-TW": "再次輸入您的密碼",
@@ -646,6 +743,8 @@ export const Text = {
         "fil": "Input muli ang iyong password.",
         "id": "Masukkan kembali kata sandi Anda",
         "it": "Inserisci di nuovo la tua password",
+        "fr": "Saisissez à nouveau votre mot de passe",
+        "ar": "أعد إدخال كلمة المرور",
     },
     RegisterTip: {
         "zh-TW": "若您輸入的是未註冊的帳號，我們將自動建立新帳號。",
@@ -657,6 +756,8 @@ export const Text = {
         "fil": "Isang bagong account ay lilikha kung ang username na ipasok mo ay hindi nakarekord",
         "id": "Akun baru akan dibuat jika nama pengguna yang Anda masukkan tidak terdaftar",
         "it": "Un nuovo account verrà creato se il nome utente inserito non è registrato",
+        "fr": "Un nouveau compte sera créé si le nom d'utilisateur que vous saisissez n'est pas enregistré.",
+        "ar": "سيتم إنشاء حساب جديد إذا لم يكن اسم المستخدم الذي أدخلته مسجلاً.",
     },
     AccountTip: {
         "zh-TW": "僅限 a-z、A-Z、0-9、底線，且須以字母開頭，長度為 6 至 12 個字元",
@@ -668,6 +769,8 @@ export const Text = {
         "fil": "A-z, A-Z, 0-9, _, nagsisimula sa titik, 6-12 chars",
         "id": "A-Z, A-Z, 0-9, _, mulai dengan huruf, 6-12 gunting",
         "it": "A-z,A-Z, 0-9, _, inizia con la lettera, 6-12 pezzi",
+        "fr": "a-z, A-Z, 0-9, _, commencer par une lettre, 6 à 12 caractères",
+        "ar": "a-z, A-Z, 0-9, _, يجب أن يبدأ بحرف، من 6 إلى 12 حرفًا",
     },
     PasswordTip: {
         "zh-TW": "僅限 a-z、A-Z、0-9、符號，長度 6–10 個字元",
@@ -679,6 +782,8 @@ export const Text = {
         "fil": "A-z, A-Z, 0-9, simbolo, 6-10 chars",
         "id": "A-Z, A-Z, 0-9, simbol, 6-10 dolar",
         "it": "A-z, A-Z, 0-9, simboli, 6-10 caratteri",
+        "fr": "a-z, A-Z, 0-9, symboles, 6 à 10 caractères",
+        "ar": "a-z, A-Z, 0-9, رموز، من 6 إلى 10 أحرف",
     },
     NotSamePassword: {
         "zh-TW": "兩次輸入的密碼不相同",
@@ -690,6 +795,8 @@ export const Text = {
         "fil": "Ang dalawang password na ipinasok mo ay hindi pareho...",
         "id": "Dua kata sandi yang Anda masukkan tidak sama.",
         "it": "Le due password che hai inserito non sono le stesse",
+        "fr": "Les deux mots de passe que vous avez saisis ne sont pas identiques.",
+        "ar": "كلمتا المرور اللتان أدخلتهما غير متطابقتين.",
     },
     InvalidFormat: {
         "zh-TW": "錯誤的格式",
@@ -701,6 +808,8 @@ export const Text = {
         "fil": "Hindi maliit na formato",
         "id": "Format tidak valid",
         "it": "Formato non valido",
+        "fr": "Format invalide",
+        "ar": "تنسيق غير صالح",
     },
     Redeem: {
         "zh-TW": "兌換",
@@ -712,6 +821,8 @@ export const Text = {
         "fil": "Redeem",
         "id": "Tukarkan",
         "it": "Riscatta",
+        "fr": "Échanger",
+        "ar": "استرداد",
     },
     RedeemTip: {
         "zh-TW": "請輸入禮品碼",
@@ -723,6 +834,8 @@ export const Text = {
         "fil": "Mangyaring i-input ang regalo code.",
         "id": "Masukkan kode hadiah.",
         "it": "Inserisci il codice regalo.",
+        "fr": "Veuillez saisir le code cadeau.",
+        "ar": "يرجى إدخال رمز الهدية.",
     },
     RedeemInsufficient: {
         "zh-TW": "此禮品碼兌換名額已用光",
@@ -734,6 +847,8 @@ export const Text = {
         "fil": "Naabot ang limitasyon ng pagbabago para sa regalong code na ito.",
         "id": "Batas penukaran untuk kode hadiah ini telah tercapai.",
         "it": "Il limite di riscatto per questo codice regalo è stato raggiunto.",
+        "fr": "La limite d'utilisation de ce code cadeau a été atteinte.",
+        "ar": "تم الوصول إلى الحد الأقصى لاسترداد رمز الهدية هذا.",
     },
     RedeemDuplicate: {
         "zh-TW": "你已經參與過此活動",
@@ -745,6 +860,8 @@ export const Text = {
         "fil": "Nakilahok ka na sa kaganapan na ito.",
         "id": "Anda sudah berpartisipasi dalam acara ini.",
         "it": "Hai già partecipato a questo evento.",
+        "fr": "Vous avez déjà participé à cet événement.",
+        "ar": "لقد شاركت بالفعل في هذا الحدث.",
     },
     RedeemFailed: {
         "zh-TW": "兌換失敗，請重試",
@@ -756,6 +873,8 @@ export const Text = {
         "fil": "Nabigo ang pagbabago. Mangyaring subukan muli.",
         "id": "Penukaran gagal. Coba lagi.",
         "it": "La redenzione non è riuscita. Riprova.",
+        "fr": "Échec de l'échange. Veuillez réessayer.",
+        "ar": "فشل الاسترداد. يرجى المحاولة مرة أخرى.",
     },
     RedeemSuccess: {
         "zh-TW": "兌換成功",
@@ -767,6 +886,8 @@ export const Text = {
         "fil": "Tagumpay ang pagbabad",
         "id": "Penukaran berhasil",
         "it": "Redenzione riuscita",
+        "fr": "Échange réussi",
+        "ar": "تم الاسترداد بنجاح",
     },
     NoRedeem: {
         "zh-TW": "本劇暫不可使用禮品碼",
@@ -778,6 +899,8 @@ export const Text = {
         "fil": "Sa kasalukuyang hindi magagamit ang mga regalong code para sa palabas na ito",
         "id": "Kode hadiah saat ini tidak tersedia untuk acara ini",
         "it": "I codici regalo non sono attualmente disponibili per questo spettacolo",
+        "fr": "Les codes cadeaux ne sont actuellement pas disponibles pour ce spectacle.",
+        "ar": "رموز الهدايا غير متوفرة حاليًا لهذا العرض.",
     },
     ShareTitle: {
         "zh-TW": "你想分享到哪裡？",
@@ -789,6 +912,8 @@ export const Text = {
         "fil": "Saan mo gustong ibahagi?",
         "id": "Di mana Anda ingin membagikan?",
         "it": "Dove vorresti condividere?",
+        "fr": "Où souhaitez-vous partager ?",
+        "ar": "أين ترغب في المشاركة؟",
     },
     ReviewTitle: {
         "zh-TW": "請留下你的意見",
@@ -800,6 +925,8 @@ export const Text = {
         "fil": "Mangyaring iwanan ang iyong feedback...",
         "id": "Berikan tanggapan Anda",
         "it": "Si prega di lasciare il vostro feedback",
+        "fr": "Veuillez laisser votre avis",
+        "ar": "يرجى ترك ملاحظاتك",
     },
     ReviewTip: {
         "zh-TW": "請留下您的建議與聯絡方式，我們查收後會第一時間跟進與改進。若您的建議對我們有幫助，我們也會給予您一些獎勵以表感謝。",
@@ -811,6 +938,8 @@ export const Text = {
         "fil": "Mangyaring iwanan ang iyong mga mungkahi at impormasyon sa contact. Tayo ay susundin at magpapabuti sa lalong madaling pagsusuri namin ang mga ito. Kung ang iyong mungkahi ay makatulong sa amin, mag-aalok din kami ng gantimpala bilang tanda ng aming pagpapahalaga.",
         "id": "Mohon tinggalkan saran dan informasi kontak Anda. Kami akan menindaklanjuti dan memperbaiki segera setelah kami tinjau mereka. Jika saran Anda bermanfaat bagi kami, kami juga akan menawarkan hadiah kepada Anda sebagai token apresiasi kami.",
         "it": "Si prega di lasciare i vostri suggerimenti e informazioni di contatto. Seguiremo e miglioreremo non appena li esamineremo. Se il tuo suggerimento ci è utile, ti offriremo anche una ricompensa come segno del nostro apprezzamento.",
+        "fr": "Veuillez laisser vos suggestions et vos coordonnées. Nous y donnerons suite et nous améliorerons dès que nous les aurons examinées. Si votre suggestion nous est utile, nous vous offrirons également une récompense en signe de notre gratitude.",
+        "ar": "يرجى ترك اقتراحاتك ومعلومات الاتصال الخاصة بك. سنقوم بالمتابعة والتحسين بمجرد مراجعتها. إذا كان اقتراحك مفيدًا لنا، سنقدم لك أيضًا مكافأة كرمز لتقديرنا.",
     },
     LiveAgent: {
         "zh-TW": "人工客服",
@@ -822,6 +951,8 @@ export const Text = {
         "fil": "Live Agent",
         "id": "Agen langsung",
         "it": "Agente vivo",
+        "fr": "Agent en direct",
+        "ar": "وكيل مباشر",
     },
     Submit: {
         "zh-TW": "提交",
@@ -833,6 +964,8 @@ export const Text = {
         "fil": "Submite",
         "id": "Kirimkan",
         "it": "Invia",
+        "fr": "Soumettre",
+        "ar": "إرسال",
     },
     RechargeTip: {
         "zh-TW": "此訂單僅用於本網站觀看",
@@ -844,6 +977,8 @@ export const Text = {
         "fil": "Ang order na ito ay para sa panonood lamang sa website na ito",
         "id": "Pesanan ini hanya untuk dilihat di Situs Web ini",
         "it": "Questo ordine è solo per la visualizzazione su questo sito web",
+        "fr": "Cette commande est uniquement destinée à être visionnée sur ce site web.",
+        "ar": "هذا الطلب مخصص للمشاهدة على هذا الموقع فقط.",
     },
     RechargeRecord: {
         "es": "Registro de recarga",
@@ -855,6 +990,8 @@ export const Text = {
         "en": "Recharge Record",
         "ja": "チャージ履歴",
         "ko": "충전 기록",
+        "fr": "Historique de rechargement",
+        "ar": "سجل إعادة الشحن",
     },
     WatchRecord: {
         "zh-TW": "觀看紀錄",
@@ -866,6 +1003,8 @@ export const Text = {
         "fil": "Watch Record",
         "id": "Rekam jam",
         "it": "Guarda la registrazione",
+        "fr": "Historique de visionnage",
+        "ar": "سجل المشاهدة",
     },
     RechargeSuccess: {
         "zh-TW": "已付款",
@@ -877,6 +1016,8 @@ export const Text = {
         "fil": "Paad",
         "id": "Dibayar",
         "it": "Pagato",
+        "fr": "Payé",
+        "ar": "مدفوع",
     },
     RechargePending: {
         "zh-TW": "等待中",
@@ -888,6 +1029,8 @@ export const Text = {
         "fil": "Pinapatayan",
         "id": "Tertunda",
         "it": "In sospeso",
+        "fr": "En attente",
+        "ar": "قيد الانتظار",
     },
     RechargeReportTip: {
         "zh-TW": "點此使用兌換碼換取短劇。回報支付異常情況，可獲得免費觀看禮品碼喔！",
@@ -899,6 +1042,8 @@ export const Text = {
         "fil": "Pagbabago ng drama gamit ang iyong code dito. Mga isyu sa payment upang makakuha ng libreng access regalo code!",
         "id": "Tukarkan drama dengan menggunakan kode Anda di sini. Laporkan masalah pembayaran untuk mendapatkan kode hadiah akses gratis!",
         "it": "Riscatta un dramma usando il tuo codice qui. Segnala problemi di pagamento per ottenere un codice regalo di accesso gratuito!",
+        "fr": "Utilisez votre code ici pour obtenir un drama. Signalez un problème de paiement pour obtenir un code cadeau d'accès gratuit !",
+        "ar": "استخدم رمزك هنا لاسترداد الدراما. أبلغ عن مشاكل الدفع لتحصل على رمز هدية مجاني!",
     },
     SearchAll: {
         "zh-TW": "全部劇",
@@ -910,6 +1055,8 @@ export const Text = {
         "fil": "Lahat ng Dramas",
         "id": "Semua drama",
         "it": "Tutti i drammi",
+        "fr": "Tous les drames",
+        "ar": "جميع الأعمال الدرامية",
     },
     Continue: {
         "zh-TW": "繼續",
@@ -921,6 +1068,8 @@ export const Text = {
         "fil": "Magpatuloy",
         "id": "Lanjutkan",
         "it": "Continuare",
+        "fr": "Continuer",
+        "ar": "يكمل",
     },
     KocTitle: {
         "zh-TW": "發影片拿 <span>99,999</span> 金幣！",
