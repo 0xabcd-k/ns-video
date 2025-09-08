@@ -515,7 +515,33 @@ export default function (){
                                 <img className='f-hand' src={require("@/assets/finger.png")} alt='light'/>
                             </div>
                         </div>
-                        { drama.free_card_enable && <div className='h-recharge-card-btn'>
+                        { drama.free_card_enable && <div className='h-recharge-card-btn' onClick={async ()=>{
+                            Occur(Event.PaymentCard)
+                            setLoading(true)
+                            let os = "ANDROID"
+                            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                                os = "IOS"
+                            }
+                            const token = ss.get("Authorization")
+                            const rechargeResp = await apiFinance.recharge({
+                                os: os,
+                                redirect: `https://player.netshort.online/#/?drama=${params.drama}&from=order&token=${token}`,
+                                payment: "PaymentTypePayerMaxPay",
+                                method_type: "",
+                                terminal_type: isMobile ? "WAP" : "WEB",
+                                sku: "SkuTypeCard",
+                                meta: {
+                                    "drama_idx": params.drama,
+                                }
+                            })
+                            if (rechargeResp.success) {
+                                setPurchase(null)
+                                window.location.href = rechargeResp.data.url
+                            }else{
+                                Toast.info(getText(Text.ServerError))
+                                setLoading(false)
+                            }
+                        }}>
                             <div className='h-recharge-modal-icon'>
                                 <svg t="1756982082369" className="main" viewBox="0 0 1024 1024" version="1.1"
                                      xmlns="http://www.w3.org/2000/svg" p-id="3355" width="200" height="200">
